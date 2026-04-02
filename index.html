@@ -528,6 +528,40 @@
       align-items: center;
     }
 
+    .inline-asset-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      min-height: 24px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 11px;
+      color: #ecf0f1;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .inline-asset-badge img {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .inline-asset-badge.alignment-badge.face {
+      border-color: rgba(93, 173, 226, 0.35);
+    }
+
+    .inline-asset-badge.alignment-badge.heel {
+      border-color: rgba(231, 76, 60, 0.35);
+    }
+
+    .inline-asset-badge.alignment-badge.neutral {
+      border-color: rgba(149, 165, 166, 0.3);
+    }
+
     .power-score {
       color: var(--gold);
       font-weight: 700;
@@ -638,12 +672,20 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
       font-size: 16px;
       z-index: 1;
+      background-image: url('data/images/ui/badges/favorite_star.png');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 16px 16px;
+      color: transparent;
+      text-indent: -9999px;
+      overflow: hidden;
     }
 
     .favorite-toggle.active {
-      color: #f1c40f;
       background: rgba(241, 196, 15, 0.12);
       border-color: rgba(241, 196, 15, 0.28);
+      background-image: url('data/images/ui/badges/favorite_star.png');
+      box-shadow: 0 0 16px rgba(241, 196, 15, 0.2);
     }
 
     .roster-menu {
@@ -1139,6 +1181,12 @@
       display: flex;
       flex-direction: column;
       gap: 14px;
+      padding: 16px;
+      border-radius: 18px;
+      background:
+        linear-gradient(rgba(12, 18, 32, 0.72), rgba(12, 18, 32, 0.86)),
+        url('data/images/ui/panels/mission_board.png') center/cover no-repeat;
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .mission-card {
@@ -1149,6 +1197,32 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mission-card.daily-card {
+      background:
+        linear-gradient(rgba(15, 24, 42, 0.82), rgba(15, 24, 42, 0.9)),
+        url('data/images/ui/quest/daily_quest_panel.png') center/cover no-repeat;
+    }
+
+    .mission-card.weekly-card {
+      background:
+        linear-gradient(rgba(18, 22, 38, 0.84), rgba(18, 22, 38, 0.92)),
+        url('data/images/ui/quest/weekly_mission_panel.png') center/cover no-repeat;
+    }
+
+    .mission-card.completed::after {
+      content: "";
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 92px;
+      height: 92px;
+      background: url('data/images/ui/quest/completed_stamp.png') center/contain no-repeat;
+      opacity: 0.34;
+      pointer-events: none;
     }
 
     .mission-title-row {
@@ -1184,7 +1258,9 @@
       align-self: flex-end;
       padding: 10px 14px;
       border-radius: 12px;
-      background: rgba(46, 204, 113, 0.18);
+      background:
+        linear-gradient(rgba(46, 204, 113, 0.18), rgba(12, 22, 18, 0.18)),
+        url('data/images/ui/buttons/primary_button.png') center/cover no-repeat;
       color: #9af5b2;
       border: 1px solid rgba(46, 204, 113, 0.22);
       font-size: 12px;
@@ -1264,12 +1340,16 @@
     }
 
     .draw-button.single {
-      background: rgba(52, 152, 219, 0.18);
+      background:
+        linear-gradient(rgba(52, 152, 219, 0.22), rgba(12, 18, 28, 0.18)),
+        url('data/images/ui/buttons/primary_button.png') center/cover no-repeat;
       color: #9dd7ff;
     }
 
     .draw-button.multi {
-      background: rgba(241, 196, 15, 0.14);
+      background:
+        linear-gradient(rgba(241, 196, 15, 0.18), rgba(24, 18, 10, 0.12)),
+        url('data/images/ui/buttons/secondary_button.png') center/cover no-repeat;
       color: #ffe28a;
     }
 
@@ -1372,7 +1452,9 @@
       min-width: 90px;
       padding: 10px 12px;
       border-radius: 12px;
-      background: rgba(46, 204, 113, 0.16);
+      background:
+        linear-gradient(rgba(46, 204, 113, 0.16), rgba(18, 30, 24, 0.16)),
+        url('data/images/ui/buttons/primary_button.png') center/cover no-repeat;
       color: #98ffbf;
       border: 1px solid rgba(46, 204, 113, 0.2);
       text-align: center;
@@ -1450,7 +1532,9 @@
       font-size: 12px;
       font-weight: 700;
       border: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(52, 152, 219, 0.18);
+      background:
+        linear-gradient(rgba(52, 152, 219, 0.18), rgba(12, 18, 30, 0.14)),
+        url('data/images/ui/buttons/primary_button.png') center/cover no-repeat;
       color: #9dd7ff;
     }
 
@@ -1518,7 +1602,10 @@
     }
 
     .gacha-face.back {
-      background: radial-gradient(circle at top, rgba(255,255,255,0.12), rgba(0,0,0,0.85));
+      background:
+        linear-gradient(rgba(5, 8, 16, 0.2), rgba(5, 8, 16, 0.58)),
+        url('data/images/ui/particles/smoke_puff.png') center/cover no-repeat,
+        url('data/images/ui/panels/gacha_card_back.png') center/cover no-repeat;
       display: grid;
       place-items: center;
       color: #ecf0f1;
@@ -1549,18 +1636,26 @@
 
     .gacha-face.front.grade-a,
     .gacha-result-card.grade-a {
-      background: linear-gradient(160deg, rgba(243, 156, 18, 0.28), rgba(231, 126, 34, 0.18));
+      background:
+        url('data/images/ui/particles/red_sparks.png') center/cover no-repeat,
+        linear-gradient(160deg, rgba(243, 156, 18, 0.28), rgba(231, 126, 34, 0.18));
     }
 
     .gacha-face.front.grade-s,
     .gacha-result-card.grade-s {
-      background: linear-gradient(160deg, rgba(155, 89, 182, 0.35), rgba(52, 73, 94, 0.28));
+      background:
+        url('data/images/ui/particles/star_twinkle.png') center/cover no-repeat,
+        url('data/images/ui/particles/red_sparks.png') center/cover no-repeat,
+        linear-gradient(160deg, rgba(155, 89, 182, 0.35), rgba(52, 73, 94, 0.28));
       box-shadow: 0 0 22px rgba(155, 89, 182, 0.4);
     }
 
     .gacha-face.front.grade-legend,
     .gacha-result-card.grade-legend {
-      background: linear-gradient(145deg, rgba(241, 196, 15, 0.52), rgba(230, 126, 34, 0.28), rgba(231, 76, 60, 0.2));
+      background:
+        url('data/images/ui/particles/confetti_strip.png') top center/cover no-repeat,
+        url('data/images/ui/particles/gold_burst.png') center/cover no-repeat,
+        linear-gradient(145deg, rgba(241, 196, 15, 0.52), rgba(230, 126, 34, 0.28), rgba(231, 76, 60, 0.2));
       box-shadow: 0 0 30px rgba(241, 196, 15, 0.45);
     }
 
@@ -1755,6 +1850,16 @@
     .modal-window.settlement-mode {
       width: min(1100px, 100%);
       max-height: calc(100vh - 24px);
+      background:
+        linear-gradient(rgba(10, 14, 26, 0.84), rgba(10, 14, 26, 0.92)),
+        url('data/images/ui/panels/weekly_report_frame.png') center/cover no-repeat;
+    }
+
+    .modal-window.settlement-mode.ppv-mode {
+      background:
+        linear-gradient(rgba(12, 10, 8, 0.72), rgba(12, 10, 8, 0.86)),
+        url('data/images/ui/panels/ppv_gold_frame.png') center/cover no-repeat,
+        url('data/images/ui/panels/weekly_report_frame.png') center/cover no-repeat;
     }
 
     .modal-header {
@@ -1847,11 +1952,15 @@
     }
 
     .modal-action-button.cancel {
-      background: rgba(255, 255, 255, 0.06);
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.06), rgba(18, 20, 30, 0.16)),
+        url('data/images/ui/buttons/secondary_button.png') center/cover no-repeat;
     }
 
     .modal-action-button.confirm {
-      background: rgba(231, 76, 60, 0.18);
+      background:
+        linear-gradient(rgba(231, 76, 60, 0.18), rgba(26, 10, 10, 0.16)),
+        url('data/images/ui/buttons/danger_button.png') center/cover no-repeat;
       color: #ffb1a8;
     }
 
@@ -1885,7 +1994,9 @@
 
     .achievement-toast {
       top: 72px;
-      background: rgba(46, 204, 113, 0.14);
+      background:
+        linear-gradient(rgba(46, 204, 113, 0.14), rgba(12, 22, 18, 0.78)),
+        url('data/images/ui/panels/achievement_toast_bg.png') center/cover no-repeat;
       color: #b8ffd2;
       border-color: rgba(46, 204, 113, 0.2);
     }
@@ -1946,16 +2057,22 @@
       min-height: 420px;
       padding: 24px;
       border-radius: 18px;
-      background: rgba(0, 0, 0, 0.12);
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(8, 10, 18, 0.62), rgba(8, 10, 18, 0.74)),
+        url('data/images/ui/particles/star_twinkle.png') center/cover no-repeat,
+        url('data/images/ui/panels/title_bg.png') center/cover no-repeat;
     }
 
     .title-screen-logo {
-      font-size: 46px;
-      font-weight: 700;
-      color: var(--accent);
-      text-shadow: 0 0 18px rgba(231, 76, 60, 0.32);
-      letter-spacing: 4px;
+      width: min(520px, 90%);
+      min-height: 96px;
+      background: url('data/images/ui/logo/ring_dynasty_logo.png') center/contain no-repeat;
+      color: transparent;
+      text-shadow: none;
+      letter-spacing: 0;
       text-align: center;
+      user-select: none;
     }
 
     .title-screen-actions {
@@ -1968,10 +2085,45 @@
     .title-screen-button {
       padding: 14px 18px;
       border-radius: 14px;
-      background: rgba(255, 255, 255, 0.08);
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.08), rgba(10, 12, 22, 0.12)),
+        url('data/images/ui/buttons/primary_button.png') center/cover no-repeat;
       border: 1px solid rgba(255, 255, 255, 0.1);
       font-size: 14px;
       font-weight: 700;
+    }
+
+    .story-banner {
+      width: 100%;
+      min-height: 76px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      margin-bottom: 10px;
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.18);
+    }
+
+    .story-banner.ppv-night {
+      background-image: url('data/images/ui/story/ppv_night_banner.png');
+    }
+
+    .story-banner.title-match {
+      background-image: url('data/images/ui/story/title_match_banner.png');
+    }
+
+    .story-banner.rivalry {
+      background-image: url('data/images/ui/story/rivalry_climax.png');
+    }
+
+    .legacy-section {
+      background:
+        linear-gradient(rgba(12, 12, 20, 0.74), rgba(12, 12, 20, 0.86)),
+        url('data/images/ui/panels/legacy_frame.png') center/cover no-repeat;
+      border-radius: 18px;
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     @keyframes popValue {
@@ -2151,7 +2303,9 @@
         fame: 0
       },
       spriteSheet: null,
+      battleSpriteSheet: null,
       spriteFrames: 1,
+      battleSpriteFrames: 12,
       portraitMode: false,
       spriteColor: "",
       style: "powerhouse",
@@ -2263,6 +2417,67 @@
       },
       title: "EFFECTS3.png",
       titleAccent: "EFFECTS4.png"
+    };
+
+    const COMMON_BATTLE_SPRITE_ASSETS = {
+      powerhouse: "data/images/wrestlers/common/powerhouse_sheet.png",
+      technician: "data/images/wrestlers/common/technician_sheet.png",
+      showman: "data/images/wrestlers/common/showman_sheet.png"
+    };
+
+    const GENERATED_UI_ASSETS = {
+      logo: "data/images/ui/logo/ring_dynasty_logo.png",
+      panels: {
+        title: "data/images/ui/panels/title_bg.png",
+        vsOverlay: "data/images/ui/panels/vs_overlay.png",
+        gachaBack: "data/images/ui/panels/gacha_card_back.png",
+        weeklyReport: "data/images/ui/panels/weekly_report_frame.png",
+        ppvGold: "data/images/ui/panels/ppv_gold_frame.png",
+        missionBoard: "data/images/ui/panels/mission_board.png",
+        legacyFrame: "data/images/ui/panels/legacy_frame.png",
+        achievementToast: "data/images/ui/panels/achievement_toast_bg.png"
+      },
+      badges: {
+        face: "data/images/ui/badges/face_badge.png",
+        heel: "data/images/ui/badges/heel_badge.png",
+        neutral: "data/images/ui/badges/neutral_badge.png",
+        powerhouse: "data/images/ui/badges/powerhouse_badge.png",
+        technician: "data/images/ui/badges/technician_badge.png",
+        showman: "data/images/ui/badges/showman_badge.png",
+        favorite: "data/images/ui/badges/favorite_star.png",
+        champion: "data/images/ui/badges/champion_crown.png"
+      },
+      quest: {
+        daily: "data/images/ui/quest/daily_quest_panel.png",
+        weekly: "data/images/ui/quest/weekly_mission_panel.png",
+        completed: "data/images/ui/quest/completed_stamp.png"
+      },
+      story: {
+        rivalry: "data/images/ui/story/rivalry_climax.png",
+        titleMatch: "data/images/ui/story/title_match_banner.png",
+        ppvNight: "data/images/ui/story/ppv_night_banner.png"
+      },
+      particles: {
+        goldBurst: "data/images/ui/particles/gold_burst.png",
+        redSparks: "data/images/ui/particles/red_sparks.png",
+        smokePuff: "data/images/ui/particles/smoke_puff.png",
+        starTwinkle: "data/images/ui/particles/star_twinkle.png",
+        confettiStrip: "data/images/ui/particles/confetti_strip.png"
+      },
+      buttons: {
+        primary: "data/images/ui/buttons/primary_button.png",
+        secondary: "data/images/ui/buttons/secondary_button.png",
+        danger: "data/images/ui/buttons/danger_button.png"
+      },
+      legacy: {
+        point: "data/images/ui/legacy/legacy_point.png"
+      },
+      shows: {
+        royalDynasty: "data/images/shows/royal_dynasty.png",
+        eliminationNight: "data/images/shows/elimination_night.png",
+        ironChampionship: "data/images/shows/iron_championship.png",
+        ringDynastyMania: "data/images/shows/ring_dynasty_mania.png"
+      }
     };
 
     const FACILITY_LEVELS = {
@@ -3408,9 +3623,14 @@
       return ALIGNMENT_META[alignment] || ALIGNMENT_META.neutral;
     }
 
+    function getGeneratedBadgePath(key) {
+      return GENERATED_UI_ASSETS.badges[key] || "";
+    }
+
     function getAlignmentBadgeHtml(alignment) {
       const meta = getAlignmentMeta(alignment);
-      return `<span title="${meta.tooltip}" style="display:inline-flex;align-items:center;gap:4px;color:${meta.color};font-weight:700;">${meta.icon} ${meta.label}</span>`;
+      const badgePath = getGeneratedBadgePath(alignment);
+      return `<span class="inline-asset-badge alignment-badge ${alignment}" title="${meta.tooltip}" style="color:${meta.color};font-weight:700;">${badgePath ? `<img src="${badgePath}" alt="${meta.label}">` : meta.icon}<span>${meta.label}</span></span>`;
     }
 
     function getAlignmentTurnCooldownRemaining(wrestler) {
@@ -3511,12 +3731,18 @@
       const isPpv = weekValue > 0 && weekValue % 4 === 0;
       const showIndex = getPpvIndexForWeek(weekValue);
       const baseName = isMania ? "RING DYNASTY MANIA" : PPV_SHOW_NAMES[showIndex];
-      const logoByIndex = ["raw.png", "smack_down.png", "nxt.png", "wcw.png"];
+      const ppvLogoByIndex = [
+        GENERATED_UI_ASSETS.shows.royalDynasty,
+        GENERATED_UI_ASSETS.shows.eliminationNight,
+        GENERATED_UI_ASSETS.shows.ironChampionship,
+        GENERATED_UI_ASSETS.shows.ringDynastyMania
+      ];
+      const weeklyShowLogos = ["raw.png", "smack_down.png", "nxt.png"];
       return {
         isPpv,
         isMania,
         name: baseName,
-        logoPath: getShowLogoPath(isPpv ? logoByIndex[showIndex] : ["raw.png", "smack_down.png", "nxt.png"][(weekValue - 1) % 3]),
+        logoPath: isPpv ? ppvLogoByIndex[showIndex] : getShowLogoPath(weeklyShowLogos[(weekValue - 1) % weeklyShowLogos.length]),
         matchSlots: getWeeklyCardSlotCount(weekValue),
         revenueMultiplier: isMania ? 5 : isPpv ? 2.5 : 1,
         hypeMultiplier: isMania ? 3 : isPpv ? 2 : 1,
@@ -3860,7 +4086,8 @@
 
     function getStyleBadgeHtml(style) {
       const meta = getStyleMeta(style);
-      return `<span title="${meta.tooltip}" style="display:inline-flex;align-items:center;gap:4px;color:#bdc3c7;">${meta.icon} ${meta.label}</span>`;
+      const badgePath = getGeneratedBadgePath(style);
+      return `<span class="inline-asset-badge style-badge ${style}" title="${meta.tooltip}">${badgePath ? `<img src="${badgePath}" alt="${meta.label}">` : meta.icon}<span>${meta.label}</span></span>`;
     }
 
     function getStyleMatchupIndicatorHtml(leftWrestler, rightWrestler) {
@@ -4733,7 +4960,9 @@
       }
 
       return `
-        <div class="side-card">
+        <div class="side-card" style="background:
+          linear-gradient(rgba(20, 12, 10, 0.72), rgba(20, 12, 10, 0.82)),
+          url('${GENERATED_UI_ASSETS.story.rivalry}') center/cover no-repeat;">
           <div class="side-card-title">현재 라이벌</div>
           <div class="side-card-desc" style="display:flex;flex-direction:column;gap:10px;">
             ${gameState.rivalries.slice(0, 4).map((rivalry) => {
@@ -6734,7 +6963,9 @@
           fame: clamp(Number.isFinite(safeStats.fame) ? Math.floor(safeStats.fame) : 10, 1, 100)
         },
         spriteSheet: typeof rawWrestler?.spriteSheet === "string" ? rawWrestler.spriteSheet : null,
+        battleSpriteSheet: typeof rawWrestler?.battleSpriteSheet === "string" ? rawWrestler.battleSpriteSheet : null,
         spriteFrames: Number.isFinite(rawWrestler?.spriteFrames) ? Math.max(1, Math.floor(rawWrestler.spriteFrames)) : 1,
+        battleSpriteFrames: Number.isFinite(rawWrestler?.battleSpriteFrames) ? Math.max(1, Math.floor(rawWrestler.battleSpriteFrames)) : 12,
         portraitMode: Boolean(rawWrestler?.portraitMode),
         spriteColor: typeof rawWrestler?.spriteColor === "string" && rawWrestler.spriteColor ? rawWrestler.spriteColor : "#7f8c8d",
         style: ["powerhouse", "technician", "showman"].includes(rawWrestler?.style)
@@ -7412,7 +7643,7 @@
               <div class="side-card-desc">
                 ${championship.unlocked
                   ? holder
-                    ? `챔피언 ${holder.name} · 방어 ${championship.defenseWeek}회`
+                    ? `<span style="display:inline-flex;align-items:center;gap:6px;"><img src="${getGeneratedBadgePath("champion")}" alt="챔피언" style="width:16px;height:16px;object-fit:contain;">챔피언 ${holder.name} · 방어 ${championship.defenseWeek}회</span>`
                     : "초대 챔피언 결정 대기"
                   : `해금 조건: ${getChampionshipUnlockRequirement(key)}`}
               </div>
@@ -7440,12 +7671,21 @@
     function renderHomeMainContent() {
       const ppvInfo = getPpvInfo();
       const selectedMainEvent = getSelectedPpvMainEventWrestlers();
+      const hasTitleMatch = hasTitleMatchBooked();
+      const hasHotRivalry = (gameState.rivalries || []).some((rivalry) => rivalry.arc_stage >= 2);
       const candidateButtons = ppvInfo.weeksUntil === 3
         ? getPpvMainEventCandidates().map((wrestler) => `
             <button class="booking-button auto" data-action="select-ppv-main" data-wrestler-id="${wrestler.id}">${wrestler.name}</button>
           `).join("")
         : "";
       const previewLines = getHomeMatchPreviewLines().map((line) => `<div>${line}</div>`).join("");
+      const storyBannerHtml = ppvInfo.isPpv
+        ? `<div class="story-banner ppv-night"></div>`
+        : hasTitleMatch
+          ? `<div class="story-banner title-match"></div>`
+          : hasHotRivalry
+            ? `<div class="story-banner rivalry"></div>`
+            : "";
       mainDynamicContentEl.innerHTML = `
         <div class="home-canvas-wrap">
           <div class="canvas-shell">
@@ -7463,6 +7703,7 @@
             </div>
           ` : `
             <div class="home-preview-box">
+              ${storyBannerHtml}
               ${ppvInfo.logoPath ? `<div style="display:flex;justify-content:center;margin-bottom:10px;"><img src="${ppvInfo.logoPath}" alt="${ppvInfo.name}" style="max-height:56px;max-width:220px;object-fit:contain;"></div>` : ""}
               ${getPpvBannerText() ? `<div style="color:${ppvInfo.isPpv ? "#f1c40f" : "#ecf0f1"};font-weight:700;margin-bottom:8px;">${getPpvBannerText()}</div>` : ""}
               Week ${gameState.week} - ${getHomeArenaLabel()}<br>
@@ -7579,6 +7820,82 @@
       ctx.strokeStyle = "rgba(236, 240, 241, 0.6)";
       ctx.lineWidth = 1.5;
       ctx.strokeRect(x - targetWidth / 2, y - targetHeight, targetWidth, targetHeight);
+    }
+
+    function drawVersusPortrait(ctx, snapshot, x, y, width, height, flip = false) {
+      const portrait = getSpriteImage(snapshot.spriteSheet);
+      ctx.save();
+      if (flip) {
+        ctx.translate(x, 0);
+        ctx.scale(-1, 1);
+        x = 0;
+      }
+      if (portrait && portrait.complete && portrait.width && portrait.height) {
+        ctx.beginPath();
+        ctx.roundRect(x - (width / 2), y - height, width, height, 28);
+        ctx.clip();
+        ctx.drawImage(portrait, x - (width / 2), y - height, width, height);
+      } else {
+        ctx.fillStyle = "rgba(255,255,255,0.08)";
+        ctx.beginPath();
+        ctx.roundRect(x - (width / 2), y - height, width, height, 28);
+        ctx.fill();
+      }
+      ctx.restore();
+      ctx.strokeStyle = "rgba(236, 240, 241, 0.65)";
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.roundRect(x - (width / 2), y - height, width, height, 28);
+      ctx.stroke();
+    }
+
+    function getBattleSpritePath(entity) {
+      if (entity?.battleSpriteSheet) {
+        return entity.battleSpriteSheet;
+      }
+      return COMMON_BATTLE_SPRITE_ASSETS[entity?.style] || COMMON_BATTLE_SPRITE_ASSETS.powerhouse;
+    }
+
+    function getBattleSpriteFrameIndex(frame, state, totalFrames = 12) {
+      if (totalFrames < 12) {
+        return Math.floor(frame / 8) % Math.max(1, totalFrames);
+      }
+      if (state === "down") {
+        return 11;
+      }
+      if (state === "victory") {
+        return 10;
+      }
+      if (state === "attack") {
+        return 4 + (Math.floor(frame / 6) % 3);
+      }
+      if (state === "finisher") {
+        return 7 + (Math.floor(frame / 5) % 3);
+      }
+      if (state === "walk") {
+        return Math.floor(frame / 6) % 4;
+      }
+      return 1;
+    }
+
+    function drawBattleSpriteFrame(ctx, x, y, img, frameIndex, totalFrames) {
+      if (!img || !img.complete || !img.width || !img.height || !totalFrames) {
+        return;
+      }
+      const frameWidth = img.width / totalFrames;
+      const destWidth = 96;
+      const destHeight = 96;
+      ctx.drawImage(
+        img,
+        frameWidth * frameIndex,
+        0,
+        frameWidth,
+        img.height,
+        x - (destWidth / 2),
+        y - destHeight,
+        destWidth,
+        destHeight
+      );
     }
 
     /* 
@@ -8027,7 +8344,9 @@
         finisher: wrestler.finisher,
         spriteColor: wrestler.spriteColor,
         spriteSheet: wrestler.spriteSheet,
+        battleSpriteSheet: wrestler.battleSpriteSheet || null,
         spriteFrames: wrestler.spriteFrames,
+        battleSpriteFrames: wrestler.battleSpriteFrames || 12,
         portraitMode: wrestler.portraitMode,
         maxHP,
         currentHP: maxHP,
@@ -8072,7 +8391,9 @@
         finisher: battleState.finisher,
         spriteColor: battleState.spriteColor,
         spriteSheet: battleState.spriteSheet,
+        battleSpriteSheet: battleState.battleSpriteSheet || null,
         spriteFrames: battleState.spriteFrames,
+        battleSpriteFrames: battleState.battleSpriteFrames || 12,
         portraitMode: battleState.portraitMode,
         currentHP: battleState.currentHP,
         maxHP: battleState.maxHP,
@@ -9092,6 +9413,8 @@
       const opacity = staminaRatio <= 0.3 ? 0.8 : 1;
       const shake = staminaRatio <= 0.1 ? Math.sin(frame * 0.55) * 2.5 : 0;
       const spriteImage = getSpriteImage(snapshot.spriteSheet);
+      const battleSpriteImage = getSpriteImage(getBattleSpritePath(snapshot));
+      const totalBattleFrames = snapshot.battleSpriteFrames || 12;
 
       ctx.save();
       ctx.globalAlpha = opacity;
@@ -9101,12 +9424,16 @@
         x = 0;
       }
 
-      if (spriteImage && spriteImage.complete) {
-        drawWrestlerSprite(ctx, x + shake, y, spriteImage, Math.floor(frame / 8) % 4, 4);
+      if (battleSpriteImage && battleSpriteImage.complete && battleSpriteImage.width && battleSpriteImage.height) {
+        const stateForFrame = state === "attack" && snapshot.finisherGauge >= 100 ? "finisher" : state;
+        const frameIndex = getBattleSpriteFrameIndex(frame, stateForFrame, totalBattleFrames);
+        drawBattleSpriteFrame(ctx, x + shake, y, battleSpriteImage, frameIndex, totalBattleFrames);
         ctx.fillStyle = "#ecf0f1";
         ctx.font = '10px "Courier New"';
         ctx.textAlign = "center";
         ctx.fillText(snapshot.name, x + shake, y + 24);
+      } else if (spriteImage && spriteImage.complete) {
+        drawWrestlerVisual(ctx, snapshot, x + shake, y, frame, state);
       } else {
         drawWrestler(ctx, x + shake, y, snapshot.spriteColor, snapshot.grade, frame, state, snapshot.name);
       }
@@ -9147,6 +9474,23 @@
       ctx.save();
       ctx.globalAlpha = alpha;
       ctx.drawImage(image, x, y, width, height);
+      ctx.restore();
+      return true;
+    }
+
+    function drawCanvasImageContain(ctx, imagePath, x, y, width, height, alpha = 1) {
+      const image = getSpriteImage(imagePath);
+      if (!image || !image.complete || !image.width || !image.height) {
+        return false;
+      }
+      const scale = Math.min(width / image.width, height / image.height);
+      const drawWidth = image.width * scale;
+      const drawHeight = image.height * scale;
+      const drawX = x + ((width - drawWidth) / 2);
+      const drawY = y + ((height - drawHeight) / 2);
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.drawImage(image, drawX, drawY, drawWidth, drawHeight);
       ctx.restore();
       return true;
     }
@@ -9217,6 +9561,7 @@
       ctx.clearRect(0, 0, 640, 360);
       ctx.fillStyle = "#0d0d0d";
       ctx.fillRect(0, 0, 640, 360);
+      drawCanvasImageCover(ctx, GENERATED_UI_ASSETS.panels.title, 0.82);
       drawCanvasImageCover(ctx, getShowLogisticsPath(SHOW_LOGISTICS_ASSETS.title), 0.58);
       drawCanvasImageCover(ctx, getShowLogisticsPath(SHOW_LOGISTICS_ASSETS.titleAccent), 0.18);
       ctx.fillStyle = "rgba(6, 10, 18, 0.48)";
@@ -9237,11 +9582,9 @@
         ctx.fillRect(x, y, 3, 3);
       }
 
-      ctx.fillStyle = "#e74c3c";
-      ctx.textAlign = "center";
-      ctx.font = '42px "Courier New"';
-      ctx.fillText("RING DYNASTY", 320, 120);
+      drawCanvasImageContain(ctx, GENERATED_UI_ASSETS.logo, 100, 48, 440, 98, 1);
       ctx.fillStyle = "#ecf0f1";
+      ctx.textAlign = "center";
       ctx.font = '14px "Courier New"';
       ctx.fillText("Build your promotion. Defend your legacy.", 320, 150);
     }
@@ -9526,27 +9869,39 @@
       drawHypeHeader(ctx, gameState.hype);
       const leftSnapshot = snapshotBattleState(battlePackage.leftState);
       const rightSnapshot = snapshotBattleState(battlePackage.rightState);
-      const leftX = -60 + (220 * clamp(progress / 0.75, 0, 1));
-      const rightX = 700 - (220 * clamp(progress / 0.75, 0, 1));
+      const slideProgress = clamp(progress / 0.68, 0, 1);
+      const leftX = -170 + (430 * slideProgress);
+      const rightX = 810 - (430 * slideProgress);
 
-      drawBattleWrestler(ctx, leftSnapshot, leftX, 230, frame, "walk", false);
-      drawBattleWrestler(ctx, rightSnapshot, rightX, 230, frame, "walk", true);
+      ctx.fillStyle = "rgba(3, 5, 10, 0.46)";
+      ctx.fillRect(0, 0, 640, 360);
+      drawCanvasImageCover(ctx, "data/images/ui/panels/vs_overlay.png", 0.85);
+
+      drawVersusPortrait(ctx, leftSnapshot, leftX, 312, 180, 244, false);
+      drawVersusPortrait(ctx, rightSnapshot, rightX, 312, 180, 244, true);
 
       ctx.fillStyle = "#ecf0f1";
-      ctx.font = '14px "Courier New"';
+      ctx.font = '18px "Courier New"';
       ctx.textAlign = "center";
-      ctx.fillText(`${leftSnapshot.name} / ${leftSnapshot.nickname || ""}`, 180, 320);
-      ctx.fillText(`${rightSnapshot.name} / ${rightSnapshot.nickname || ""}`, 460, 320);
+      ctx.fillText(leftSnapshot.name, 170, 300);
+      ctx.fillText(rightSnapshot.name, 470, 300);
+      ctx.font = '12px "Courier New"';
+      ctx.fillStyle = "#bdc3c7";
+      ctx.fillText(`"${leftSnapshot.nickname || ""}"`, 170, 322);
+      ctx.fillText(`"${rightSnapshot.nickname || ""}"`, 470, 322);
 
-      if (progress > 0.55) {
-        ctx.fillStyle = "#e74c3c";
-        ctx.font = '34px "Courier New"';
-        ctx.fillText("VS", 320, 170);
+      if (progress > 0.40) {
+        ctx.fillStyle = "#ffffff";
+        ctx.strokeStyle = "#b42020";
+        ctx.lineWidth = 3;
+        ctx.font = '46px "Courier New"';
+        ctx.strokeText("VS", 320, 176);
+        ctx.fillText("VS", 320, 176);
       }
-      if (progress > 0.82) {
+      if (progress > 0.78) {
         ctx.fillStyle = "#f1c40f";
-        ctx.font = '28px "Courier New"';
-        ctx.fillText("FIGHT!", 320, 120);
+        ctx.font = '30px "Courier New"';
+        ctx.fillText("FIGHT!", 320, 112);
       }
     }
 
@@ -9777,6 +10132,7 @@
           <span>남은 편성 슬롯 ${countRemainingCardSlots()}개 / 총 ${ppvInfo.matchSlots}개</span>
         </div>
         <div class="home-preview-box">
+          ${ppvInfo.isPpv ? `<div class="story-banner ppv-night"></div>` : hasTitleMatchBooked() ? `<div class="story-banner title-match"></div>` : ""}
           이번 주 편성 시 예상 Hype 변화:
           <strong style="color:${projectedHypeChange >= 0 ? "#2ecc71" : "#e74c3c"};">${projectedHypeChange >= 0 ? "+" : ""}${projectedHypeChange}</strong>
           / 예상 Hype <strong>${projectedHypeValue}/100</strong>
@@ -9941,7 +10297,7 @@
         const progress = getDailyQuestProgress(quest);
         const complete = isDailyQuestComplete(quest);
         return `
-          <article class="mission-card">
+          <article class="mission-card daily-card ${complete ? "completed" : ""}">
             <div class="mission-title-row">
               <div>
                 <div class="mission-title">${quest.label}</div>
@@ -9962,8 +10318,9 @@
         const state = getWeeklyMissionStateById(definition.id);
         const maxTarget = Math.max(...definition.stages.map((stage) => stage.target));
         const mainProgress = Math.min(maxTarget, getCurrentWeekMetric(definition.metric));
+        const missionComplete = definition.stages.every((_, index) => Boolean(state?.claimedStages[index]));
         return `
-          <article class="mission-card">
+          <article class="mission-card weekly-card ${missionComplete ? "completed" : ""}">
             <div class="mission-title-row">
               <div>
                 <div class="mission-title">${definition.title}</div>
@@ -10249,12 +10606,17 @@
         const canBuy = level < upgrade.maxLevel && (gameState.legacy?.points || 0) >= upgrade.cost;
         return `
           <article class="facility-card">
-            <div class="facility-title-row">
-              <div>
-                <div class="facility-title">${upgrade.name}</div>
-                <div class="facility-level">Lv.${level} / ${upgrade.maxLevel}</div>
+            <div class="asset-card-head">
+              <div class="asset-thumb" style="background-image:url('${GENERATED_UI_ASSETS.legacy.point}');"></div>
+              <div style="flex:1;min-width:0;">
+                <div class="facility-title-row">
+                  <div>
+                    <div class="facility-title">${upgrade.name}</div>
+                    <div class="facility-level">Lv.${level} / ${upgrade.maxLevel}</div>
+                  </div>
+                  ${level >= upgrade.maxLevel ? '<div class="facility-max">MAX</div>' : ""}
+                </div>
               </div>
-              ${level >= upgrade.maxLevel ? '<div class="facility-max">MAX</div>' : ""}
             </div>
             <div class="fragment-meta">${upgrade.desc}</div>
             ${level >= upgrade.maxLevel ? "" : `<button class="facility-upgrade-button" data-action="upgrade-legacy" data-upgrade-key="${upgrade.key}" ${canBuy ? "" : "disabled"}>레거시 ${upgrade.cost}pt</button>`}
@@ -10310,7 +10672,7 @@
             </div>
             <div class="facility-grid">${facilityCards}</div>
           </div>
-          <div class="fragment-section">
+          <div class="fragment-section legacy-section">
             <div class="section-heading">
               <div>
                 <h3>🏛 레거시 업그레이드</h3>
@@ -11337,7 +11699,7 @@
         .map((line) => `<div>${line}</div>`)
         .join("");
       const rivalryHeader = pendingWeeklySummary.rivalryHighlights.length
-        ? `<div style="font-style:italic;color:#f5cba7;margin-bottom:12px;line-height:1.8;">${pendingWeeklySummary.rivalryHighlights.map((line) => `<div>${line}</div>`).join("")}</div>`
+        ? `<div class="${pendingWeeklySummary.rivalryHighlights.some((line) => /클라이맥스|악연/.test(line)) ? "story-banner rivalry" : ""}" style="${pendingWeeklySummary.rivalryHighlights.some((line) => /클라이맥스|악연/.test(line)) ? "padding:12px;" : ""}font-style:italic;color:#f5cba7;margin-bottom:12px;line-height:1.8;">${pendingWeeklySummary.rivalryHighlights.map((line) => `<div>${line}</div>`).join("")}</div>`
         : "";
       const resultsHtml = pendingWeeklySummary.results.map((result, index) => `
         <div class="result-card result-reveal" style="animation-delay:${(index * 0.8).toFixed(1)}s;">
@@ -11367,6 +11729,7 @@
             <p class="modal-subtitle">이번 주 경기, 재정, 성장 지표를 한 번에 정리합니다.</p>
           </div>
         </div>
+        ${pendingWeeklySummary.ppvInfo?.isPpv ? `<div class="story-banner ppv-night"></div>` : pendingWeeklySummary.titleChanges.length ? `<div class="story-banner title-match"></div>` : ""}
         ${rivalryHeader}
         <div class="result-list">${resultsHtml}</div>
         <div class="result-summary result-reveal" style="animation-delay:${summaryDelay.toFixed(1)}s;">
@@ -11432,7 +11795,7 @@
             <button class="modal-action-button confirm" id="advanceWeekButton">다음 주 시작 →</button>
           </div>
         </div>
-      `, { locked: true, className: "settlement-mode" });
+      `, { locked: true, className: `settlement-mode${pendingWeeklySummary.ppvInfo?.isPpv ? " ppv-mode" : ""}` });
 
       const advanceButton = document.getElementById("advanceWeekButton");
       if (advanceButton) {
