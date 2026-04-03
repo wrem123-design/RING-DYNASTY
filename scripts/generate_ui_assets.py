@@ -170,11 +170,12 @@ def generate_badge(path: str, bg: str, fg: str, symbol: str, subtitle: str) -> N
     save(img, path)
 
 
-def generate_button(path: str, size: Tuple[int, int], primary: str, secondary: str, label: str) -> None:
+def generate_button(path: str, size: Tuple[int, int], primary: str, secondary: str, label: str | None = None) -> None:
     img = make_gradient_bg(size[0], size[1], primary, secondary)
     draw = ImageDraw.Draw(img)
     draw_frame(draw, (4, 4, size[0] - 4, size[1] - 4), "#ffffff", width=2, radius=20)
-    draw_centered_text(draw, (0, 0, size[0], size[1]), label, FONT_SM, rgba("#ffffff"))
+    if label:
+        draw_centered_text(draw, (0, 0, size[0], size[1]), label, FONT_SM, rgba("#ffffff"))
     save(img, path)
 
 
@@ -277,9 +278,9 @@ def main() -> None:
     generate_badge("data/images/ui/badges/champion_crown.png", "#ca8a04", "#fff7d6", "♛", "CHAMP")
     generate_badge("data/images/ui/legacy/legacy_point.png", "#a855f7", "#faf5ff", "L", "LEGACY")
 
-    generate_button("data/images/ui/buttons/primary_button.png", (420, 120), "#1d4ed8", "#2563eb", "START")
-    generate_button("data/images/ui/buttons/secondary_button.png", (420, 120), "#475569", "#64748b", "OPEN")
-    generate_button("data/images/ui/buttons/danger_button.png", (420, 120), "#991b1b", "#dc2626", "RELEASE")
+    generate_button("data/images/ui/buttons/primary_button.png", (420, 120), "#1d4ed8", "#2563eb")
+    generate_button("data/images/ui/buttons/secondary_button.png", (420, 120), "#475569", "#64748b")
+    generate_button("data/images/ui/buttons/danger_button.png", (420, 120), "#991b1b", "#dc2626")
 
     generate_particle_star("data/images/ui/particles/star_twinkle.png", "#f1c40f", 64)
     generate_particle_burst("data/images/ui/particles/gold_burst.png", ["#f1c40f", "#f39c12", "#fff4bf"], (512, 512), 32)

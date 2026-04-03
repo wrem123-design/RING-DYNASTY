@@ -1,0 +1,253 @@
+RING DYNASTY - Gacha Rate And Wrestler Grade Reference
+
+1. Current normal gacha rates
+
+Default rates with no legacy upgrades:
+- C: 47.4%
+- B: 30.0%
+- A: 20.0%
+- S: 2.0%
+- LEGEND: 0.6%
+
+Relevant code:
+- A rate comes from `0.20 + (gachaRateLevel * 0.001)`
+- S rate comes from `0.02 + (gachaRateLevel * 0.0015)`
+- LEGEND rate comes from `0.006 + (legendChanceLevel * 0.005) + (gachaRateLevel * 0.002)`
+
+In percent form:
+- A = 20.0 + (gachaRateLevel * 0.1)
+- S = 2.0 + (gachaRateLevel * 0.15)
+- LEGEND = 0.6 + (gachaRateLevel * 0.2) + (legendChanceLevel * 0.5)
+- B = 30.0 + (gachaRateLevel * 0.05)
+- C = 100.0 - (LEGEND + S + A + B)
+
+Upgrade caps in current code:
+- gachaRate max level: 5
+- legendChance max level: 3
+
+Max possible normal rates with current upgrade caps:
+- C: 43.65%
+- B: 30.25%
+- A: 20.5%
+- S: 2.75%
+- LEGEND: 2.85%
+
+2. Pity / guarantee rules
+
+Base pity targets:
+- B+ pity: every 10 pulls
+- A/S/LEGEND pity: every 80 pulls
+- LEGEND pity: every 200 pulls
+
+`pityReduce` lowers pity by 5 per level:
+- B+ pity: `max(5, 10 - pityReduceLevel * 5)`
+- A/S/LEGEND pity: `max(40, 80 - pityReduceLevel * 5)`
+- LEGEND pity: `max(80, 200 - pityReduceLevel * 10)`
+
+With current max `pityReduce` level 5:
+- B+ pity minimum: 5
+- A/S/LEGEND pity minimum: 55
+- LEGEND pity minimum: 150
+
+Special pity results:
+- B+ pity roll:
+  - LEGEND: 5%
+  - S: 10%
+  - A: 25%
+  - B: 60%
+- A/S/LEGEND pity roll:
+  - A: 60%
+  - S: 30%
+  - LEGEND: 10%
+- LEGEND pity roll:
+  - LEGEND: 100%
+
+3. Notes about the wrestler pool
+
+- This list is generated from the current `PORTRAIT_FILES` pool and grade rules.
+- Excluded non-playable portrait ids are not listed.
+- `Apex Legacy` is not part of the base pool. It is a prestige unlock and enters the pool only at prestige count 3 or higher.
+- `Bad Bunny` and `Bianca Belair` were already A-grade. Their popularity was lowered inside the A range so their generated stats also go down.
+
+4. Wrestler pool by grade
+
+[C] (75 entries)
+- Akira Tozawa | id=akira_tozawa | popularity=47
+- Al Snow | id=al_snow | popularity=43
+- Alba Fyre | id=alba_fyre | popularity=55
+- Andrade | id=andrade | popularity=43
+- Andre Chase | id=andre_chase | popularity=43
+- Angelo Dawkins | id=angelo_dawkins | popularity=46
+- Austin Theory | id=austin_theory | popularity=44
+- B-Fab | id=b_fab | popularity=52
+- Big Bill | id=big_bill | popularity=56
+- Bo Dallas | id=bo_dallas | popularity=51
+- Brie Bella | id=brie_bella | popularity=55
+- Brooks Jensen | id=brooks_jensen | popularity=50
+- Bubba Ray Dudley | id=bubba_ray_dudley | popularity=55
+- Carlito | id=carlito | popularity=54
+- Charlie Dempsey | id=charlie_dempsey | popularity=44
+- Chelsea Green | id=chelsea_green | popularity=57
+- D-Von Dudley | id=d_von_dudley | popularity=44
+- Dakota Kai | id=dakota_kai | popularity=56
+- Dana Brooke | id=dana_brooke | popularity=51
+- Daphanie Lashaunn | id=daphanie_lashaunn | popularity=59
+- Dave Bautista | id=dave_bautista | popularity=50
+- Dexter Lumis | id=dexter_lumis | popularity=49
+- Dion Lennox | id=dion_lennox | popularity=53
+- Dragon Lee | id=dragon_lee | popularity=58
+- Ethan Page | id=ethan_page | popularity=50
+- Hikuleo | id=hikuleo | popularity=53
+- Humberto Carrillo | id=humberto_carrillo | popularity=49
+- Ivy Nile | id=ivy_nile | popularity=51
+- Jacy Jayne | id=jacy_jayne | popularity=57
+- Jasper Troy | id=jasper_troy | popularity=52
+- Je'Von Evans | id=je_von_evans | popularity=57
+- Jeff Cobb | id=jeff_cobb | popularity=50
+- Jim Duggan | id=jim_duggan | popularity=51
+- Jimmy Uso | id=jimmy_uso | popularity=54
+- Joe Gacy | id=joe_gacy | popularity=59
+- Jorge Gonzalez | id=jorge_gonzalez | popularity=42
+- Josh Briggs | id=josh_briggs | popularity=59
+- Kairi Sane | id=kairi_sane | popularity=52
+- Kaitlyn | id=kaitlyn | popularity=42
+- Kylie Rae | id=kylie_rae | popularity=59
+- Lance Cade | id=lance_cade | popularity=53
+- Lash Legend | id=lash_legend | popularity=48
+- Ludwig Kaiser | id=ludwig_kaiser | popularity=56
+- Lyra Valkyria | id=lyra_valkyria | popularity=44
+- Mariah May | id=mariah_may | popularity=50
+- Matt Bloom | id=matt_bloom | popularity=58
+- Matt Hardy | id=matt_hardy | popularity=47
+- Michin | id=michin | popularity=44
+- Montez Ford | id=montez_ford | popularity=45
+- Muhammad Hassan | id=muhammad_hassan | popularity=57
+- Natalya Neidhart | id=natalya_neidhart | popularity=50
+- Nick Aldis | id=nick_aldis | popularity=59
+- Nikki Cross | id=nikki_cross | popularity=59
+- Noam Dar | id=noam_dar | popularity=45
+- Omos | id=omos | popularity=44
+- Otis | id=otis | popularity=57
+- Paul London | id=paul_london | popularity=59
+- Pete Dunne | id=pete_dunne | popularity=55
+- Piper Niven | id=piper_niven | popularity=59
+- Powerhouse Hobbs | id=powerhouse_hobbs | popularity=50
+- Raul Mendoza | id=raul_mendoza | popularity=51
+- Raven | id=raven | popularity=42
+- Rene Dupree | id=rene_dupree | popularity=50
+- Ricky Starks | id=ricky_starks | popularity=49
+- Santos Escobar | id=santos_escobar | popularity=44
+- Saraya Bevis | id=saraya_bevis | popularity=47
+- Scarlett Bordeaux | id=scarlett_bordeaux | popularity=53
+- Sean Waltman | id=sean_waltman | popularity=42
+- Shawn Spears | id=shawn_spears | popularity=48
+- Sonya Deville | id=sonya_deville | popularity=46
+- Tama Tonga | id=tama_tonga | popularity=43
+- Tanga Loa | id=tanga_loa | popularity=48
+- Tank Ledger | id=tank_ledger | popularity=52
+- Tenille Dashwood | id=tenille_dashwood | popularity=55
+- Zelina Vega | id=zelina_vega | popularity=45
+
+[B] (37 entries)
+- Alberto Del Rio | id=alberto_del_rio | popularity=62
+- Bad Bunny | id=bad_bunny | popularity=71
+- Bianca Belair | id=bianca_belair | popularity=76
+- Candice Lerae | id=candice_lerae | popularity=63
+- Carmelo Hayes | id=carmelo_hayes | popularity=71
+- Chad Gable | id=chad_gable | popularity=76
+- Channing Stacks Lorenzo | id=channing_stacks_lorenzo | popularity=64
+- Dijak | id=dijak | popularity=65
+- Enzo Amore | id=enzo_amore | popularity=63
+- Giulia | id=giulia | popularity=76
+- Grayson Waller | id=grayson_waller | popularity=65
+- Ilja Dragunov | id=ilja_dragunov | popularity=77
+- Jacob Fatu | id=jacob_fatu | popularity=77
+- Johnny Gargano | id=johnny_gargano | popularity=72
+- Karrion Kross | id=karrion_kross | popularity=63
+- Lexis King | id=lexis_king | popularity=61
+- Maxxine Dupri | id=maxxine_dupri | popularity=63
+- Mia Yim | id=mia_yim | popularity=61
+- Myles Borne | id=myles_borne | popularity=63
+- Naomi | id=naomi | popularity=76
+- Nikki Bella | id=nikki_bella | popularity=69
+- Orlando Jordan | id=orlando_jordan | popularity=60
+- Pat Mcafee | id=pat_mcafee | popularity=70
+- R-Truth | id=r_truth | popularity=70
+- Raquel Rodriguez | id=raquel_rodriguez | popularity=62
+- Rey Fenix | id=rey_fenix | popularity=61
+- Ridge Holland | id=ridge_holland | popularity=62
+- Roxanne Perez | id=roxanne_perez | popularity=64
+- Ryan Nemeth | id=ryan_nemeth | popularity=60
+- Shinsuke Nakamura | id=shinsuke_nakamura | popularity=75
+- Spike Dudley | id=spike_dudley | popularity=64
+- Stephanie Vaquer | id=stephanie_vaquer | popularity=64
+- Stevie Richards | id=stevie_richards | popularity=63
+- The Honky Tonk Man | id=the_honky_tonk_man | popularity=72
+- Tommaso Ciampa | id=tommaso_ciampa | popularity=75
+- Tony D Angelo | id=tony_d_angelo | popularity=64
+- Trick Williams | id=trick_williams | popularity=74
+
+[A] (36 entries)
+- AJ Styles | id=aj_styles | popularity=90
+- Alexa Bliss | id=alexa_bliss | popularity=84
+- Asuka | id=asuka | popularity=87
+- Bayley | id=bayley | popularity=88
+- Becky Lynch | id=becky_lynch | popularity=90
+- Big Show | id=big_show | popularity=84
+- Braun Strowman | id=braun_strowman | popularity=79
+- Bron Breakker | id=bron_breakker | popularity=78
+- Bryan Danielson | id=bryan_danielson | popularity=88
+- Chris Jericho | id=chris_jericho | popularity=88
+- Damian Priest | id=damian_priest | popularity=81
+- Dean Ambrose | id=dean_ambrose | popularity=84
+- Dominik Mysterio | id=dominik_mysterio | popularity=80
+- Drew Mcintyre | id=drew_mcintyre | popularity=90
+- Finn Balor | id=finn_balor | popularity=86
+- Iyo Sky | id=iyo_sky | popularity=87
+- Jade Cargill | id=jade_cargill | popularity=86
+- Jeff Hardy | id=jeff_hardy | popularity=86
+- Jey Uso | id=jey_uso | popularity=89
+- Kane | id=kane | popularity=89
+- Kevin Nash | id=kevin_nash | popularity=86
+- Kevin Owens | id=kevin_owens | popularity=87
+- LA Knight | id=la_knight | popularity=88
+- Liv Morgan | id=liv_morgan | popularity=85
+- Logan Paul | id=logan_paul | popularity=83
+- Mankind | id=mankind | popularity=91
+- Mick Foley | id=mick_foley | popularity=89
+- Nia Jax | id=nia_jax | popularity=78
+- Oba Femi | id=oba_femi | popularity=79
+- Randy Savage | id=randy_savage | popularity=90
+- Ronda Rousey | id=ronda_rousey | popularity=82
+- Sami Zayn | id=sami_zayn | popularity=87
+- Scott Hall | id=scott_hall | popularity=88
+- Sheamus | id=sheamus | popularity=85
+- Solo Sikoa | id=solo_sikoa | popularity=78
+- Tiffany Stratton | id=tiffany_stratton | popularity=82
+
+[S] (14 entries)
+- Batista | id=batista | popularity=95
+- Charlotte Flair | id=charlotte_flair | popularity=93
+- CM Punk | id=cm_punk | popularity=96
+- Cody Rhodes | id=cody_rhodes | popularity=96
+- Edge | id=edge | popularity=92
+- Goldberg | id=goldberg | popularity=94
+- Gunther | id=gunther | popularity=92
+- Kurt Angle | id=kurt_angle | popularity=93
+- Randy Orton | id=randy_orton | popularity=97
+- Rey Mysterio | id=rey_mysterio | popularity=93
+- Rhea Ripley | id=rhea_ripley | popularity=95
+- Seth Rollins | id=seth_rollins | popularity=95
+- Sting | id=sting | popularity=96
+- Ultimate Warrior | id=ultimate_warrior | popularity=95
+
+[LEGEND] (9 entries)
+- Brock Lesnar | id=brock_lesnar | popularity=98
+- Hulk Hogan | id=hulk_hogan | popularity=99
+- John Cena | id=john_cena | popularity=100
+- Roman Reigns | id=roman_reigns | popularity=98
+- Shawn Michaels | id=shawn_michaels | popularity=98
+- Stone Cold Steve Austin | id=stone_cold_steve_austin | popularity=100
+- The Rock | id=the_rock | popularity=100
+- The Undertaker | id=the_undertaker | popularity=100
+- Triple H | id=tripleh | popularity=98
