@@ -2,12 +2,13 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
   window.__RING_DYNASTY_MANAGEMENT_MAP__ = true;
 
   const circuitApi = window.__RING_DYNASTY_CIRCUIT_API__ || {};
-  const TRAINING_STAT_OPTIONS = ["power", "stamina", "technique", "charisma"];
+  const TRAINING_STAT_OPTIONS = ["power", "stamina", "technique", "charisma", "fame"];
   const TRAINING_STAT_LABELS = {
     power: "힘",
     stamina: "체력",
     technique: "기술",
-    charisma: "카리스마"
+    charisma: "카리스마",
+    fame: "인지도"
   };
   const SLOT_ICONS = {
     mainEventer: "⚔️",
@@ -19,6 +20,13 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
     coach: "🧠",
     rest: "🛌",
     treatment: "🩹"
+  };
+  const MANAGEMENT_UPGRADE_ART = {
+    "upgrade-side-slots": "Side Expansion",
+    "upgrade-rest-slots": "Dormitory",
+    "upgrade-treatment-slots": "Medical Room",
+    "unlock-special-training": "Star Class",
+    "unlock-coach-slot": "Coach"
   };
   const SIDE_SLOT_LEVELS = {
     1: { slots: 1, cost: 0, label: "기본" },
@@ -35,13 +43,48 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
     1: { slots: 1, healWeeks: 1, conditionBonus: 15, cost: 0 },
     2: { slots: 2, healWeeks: 2, conditionBonus: 15, cost: 1500 }
   };
-  const SIDE_GUEST_NAMES = [
-    ["Milo Rush", "신예 순회자"],
-    ["Gage Rook", "주말 행사꾼"],
-    ["Tony Vale", "거리의 베테랑"],
-    ["Axel Noon", "순회 흥행꾼"],
-    ["Rio Striker", "도전자"],
-    ["Kai Mercer", "대타 파이터"]
+  const FRANCHISE_GRADE_EFFECTS = {
+    A: { income: 900, aura: 2 },
+    S: { income: 1400, aura: 4 },
+    LEGEND: { income: 2200, aura: 6 }
+  };
+  const TRAINING_SLOT_BLUEPRINTS = [
+    {
+      slotType: "training",
+      slotIndex: 0,
+      label: "파워실",
+      shortLabel: "힘",
+      statBonuses: { power: 6 },
+      conditionCost: 8,
+      unlockLevel: 1
+    },
+    {
+      slotType: "training",
+      slotIndex: 1,
+      label: "체력실",
+      shortLabel: "체력",
+      statBonuses: { stamina: 6 },
+      conditionCost: 8,
+      unlockLevel: 2
+    },
+    {
+      slotType: "training",
+      slotIndex: 2,
+      label: "테크랩",
+      shortLabel: "기술",
+      statBonuses: { technique: 6 },
+      conditionCost: 8,
+      unlockLevel: 3
+    },
+    {
+      slotType: "specialTraining",
+      slotIndex: 0,
+      label: "스타 클래스",
+      shortLabel: "스타성",
+      statBonuses: { charisma: 6, fame: 6 },
+      conditionCost: 12,
+      unlockLevel: 3
+    }
   ];
 
   const guestPool = Object.create(null);
@@ -158,8 +201,8 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
     return {
       mainEventer: 1,
       sideFighters: SIDE_SLOT_LEVELS[sideFightLevel].slots,
-      franchiseStars: prStudioLevel >= 2 ? 2 : 1,
-      media: 1,
+      franchiseStars: 1,
+      media: 0,
       training: gymLevel,
       specialTraining: map.upgrades?.specialTrainingUnlocked && gymLevel >= 3 ? 1 : 0,
       coach: map.upgrades?.coachUnlocked ? 1 : 0,
@@ -254,6 +297,159 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
     }[coach?.facilityKey] || "power";
   }
 
+  function isMatchSlotType(slotType) {
+    return slotType === "mainEventer" || slotType === "sideFighters";
+  }
+
+  function isTrainingSlotType(slotType) {
+    return slotType === "training" || slotType === "specialTraining";
+  }
+
+  function isRecoverySlotType(slotType) {
+    return slotType === "rest" || slotType === "treatment";
+  }
+
+  function getFranchiseGradeEffect(grade) {
+    return FRANCHISE_GRADE_EFFECTS[grade] || FRANCHISE_GRADE_EFFECTS.A;
+  }
+
+  function getTrainingSlotBlueprint(slotType, slotIndex = null) {
+    return TRAINING_SLOT_BLUEPRINTS.find((entry) => entry.slotType === slotType && entry.slotIndex === Number(slotIndex ?? 0)) || null;
+  }
+
+  function cloneStatBonuses(bonuses = {}) {
+    return {
+      power: Number(bonuses.power || 0),
+      stamina: Number(bonuses.stamina || 0),
+      technique: Number(bonuses.technique || 0),
+      charisma: Number(bonuses.charisma || 0),
+      fame: Number(bonuses.fame || 0)
+    };
+  }
+
+  function addStatBonuses(target, source) {
+    Object.entries(source || {}).forEach(([statKey, value]) => {
+      if (!Number.isFinite(value) || !Object.prototype.hasOwnProperty.call(target, statKey)) {
+        return;
+      }
+      target[statKey] += value;
+    });
+    return target;
+  }
+
+  function formatStatBonusText(bonuses = {}) {
+    return Object.entries(bonuses)
+      .filter(([, value]) => Number(value) > 0)
+      .map(([statKey, value]) => `${TRAINING_STAT_LABELS[statKey] || statKey} +${value}`)
+      .join(" / ");
+  }
+
+  function getAssignedCoach() {
+    const coachId = getMapAssignments().coach?.[0] || null;
+    return coachId ? (gameState.coaches || []).find((entry) => entry.id === coachId) || null : null;
+  }
+
+  function getTrainingSlotEffect(slotType, slotIndex = null) {
+    const blueprint = getTrainingSlotBlueprint(slotType, slotIndex);
+    if (!blueprint) {
+      return null;
+    }
+    const bonuses = cloneStatBonuses(blueprint.statBonuses);
+    const coach = getAssignedCoach();
+    const coachStatKey = coach ? getCoachStatKey(coach) : "";
+    if (coach && Object.prototype.hasOwnProperty.call(bonuses, coachStatKey) && bonuses[coachStatKey] > 0) {
+      bonuses[coachStatKey] += 2;
+    }
+    return {
+      ...blueprint,
+      bonuses,
+      bonusText: formatStatBonusText(bonuses)
+    };
+  }
+
+  function getTrainingAssignmentsSummary(assignments = getMapAssignments()) {
+    const entries = [];
+    assignments.training.forEach((entry, index) => {
+      if (!entry?.wrestlerId) {
+        return;
+      }
+      const effect = getTrainingSlotEffect("training", index);
+      if (!effect) {
+        return;
+      }
+      entries.push({
+        wrestlerId: entry.wrestlerId,
+        slotType: "training",
+        slotIndex: index,
+        effect
+      });
+    });
+    assignments.specialTraining.forEach((entry, index) => {
+      if (!entry?.wrestlerId) {
+        return;
+      }
+      const effect = getTrainingSlotEffect("specialTraining", index);
+      if (!effect) {
+        return;
+      }
+      entries.push({
+        wrestlerId: entry.wrestlerId,
+        slotType: "specialTraining",
+        slotIndex: index,
+        effect
+      });
+    });
+    return entries;
+  }
+
+  function getFranchiseSlotEffect(assignments = getMapAssignments()) {
+    const wrestlerId = assignments.franchiseStars?.[0] || null;
+    const wrestler = wrestlerId ? findWrestlerById(wrestlerId) : null;
+    if (!wrestler) {
+      return null;
+    }
+    const gradeMeta = getFranchiseGradeEffect(wrestler.grade);
+    return {
+      wrestler,
+      income: gradeMeta.income,
+      aura: gradeMeta.aura
+    };
+  }
+
+  function getManagementBattleBonusesForWrestler(wrestler, assignments = getMapAssignments()) {
+    const bonuses = cloneStatBonuses();
+    if (!wrestler) {
+      return bonuses;
+    }
+    getTrainingAssignmentsSummary(assignments)
+      .filter((entry) => entry.wrestlerId === wrestler.id)
+      .forEach((entry) => addStatBonuses(bonuses, entry.effect.bonuses));
+    const franchise = getFranchiseSlotEffect(assignments);
+    if (franchise && gameState.roster.some((entry) => entry.id === wrestler.id)) {
+      addStatBonuses(bonuses, {
+        power: franchise.aura,
+        stamina: franchise.aura,
+        technique: franchise.aura,
+        charisma: franchise.aura,
+        fame: franchise.aura
+      });
+    }
+    return bonuses;
+  }
+
+  function getManagementBattleReadyStats(wrestler, baseStats = null) {
+    const sourceStats = baseStats ? cloneStatBonuses(baseStats) : cloneStatBonuses(wrestler?.stats || {});
+    if (!wrestler) {
+      return sourceStats;
+    }
+    addStatBonuses(sourceStats, getManagementBattleBonusesForWrestler(wrestler));
+    const cap = getAdjustedStatCap(wrestler);
+    Object.keys(sourceStats).forEach((statKey) => {
+      sourceStats[statKey] = clamp(sourceStats[statKey], 1, statKey === "fame" ? 100 : cap);
+    });
+    return sourceStats;
+  }
+
   function getSlotRef(slotType, slotIndex = null) {
     return slotIndex == null ? slotType : `${slotType}:${slotIndex}`;
   }
@@ -307,25 +503,11 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
     callback("mainEventer", null);
     Array.from({ length: caps.sideFighters }, (_, index) => callback("sideFighters", index));
     Array.from({ length: caps.franchiseStars }, (_, index) => callback("franchiseStars", index));
-    callback("media", null);
     Array.from({ length: caps.training }, (_, index) => callback("training", index));
     Array.from({ length: caps.specialTraining }, (_, index) => callback("specialTraining", index));
     Array.from({ length: caps.coach }, (_, index) => callback("coach", index));
     Array.from({ length: caps.rest }, (_, index) => callback("rest", index));
     Array.from({ length: caps.treatment }, (_, index) => callback("treatment", index));
-  }
-
-  function getExclusiveAssignedRefs(wrestlerId) {
-    const refs = [];
-    iterateManagedSlots((slotType, slotIndex) => {
-      if (slotType === "media") {
-        return;
-      }
-      if (getSlotWrestlerId(slotType, slotIndex) === wrestlerId) {
-        refs.push(getSlotRef(slotType, slotIndex));
-      }
-    });
-    return refs;
   }
 
   function getAllAssignedRefs(wrestlerId) {
@@ -343,7 +525,6 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
       mainEventer: "메인",
       sideFighters: "사이드",
       franchiseStars: "프랜차이즈",
-      media: "미디어",
       training: "훈련",
       specialTraining: "특훈",
       coach: "코치",
@@ -356,10 +537,59 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
     return getAllAssignedRefs(wrestlerId).map((ref) => getAssignmentLabel(ref.split(":")[0]));
   }
 
-  function removeWrestlerFromAssignments(wrestlerId, options = {}) {
-    const preserveMedia = Boolean(options.preserveMedia);
+  function slotTypesConflict(leftType, rightType) {
+    if (leftType === rightType && (leftType === "coach" || leftType === "franchiseStars")) {
+      return true;
+    }
+    if (isMatchSlotType(leftType) && isMatchSlotType(rightType)) {
+      return true;
+    }
+    if (isTrainingSlotType(leftType) && isTrainingSlotType(rightType)) {
+      return true;
+    }
+    if (isRecoverySlotType(leftType) && isRecoverySlotType(rightType)) {
+      return true;
+    }
+    if ((isRecoverySlotType(leftType) && (isMatchSlotType(rightType) || isTrainingSlotType(rightType)))
+      || (isRecoverySlotType(rightType) && (isMatchSlotType(leftType) || isTrainingSlotType(leftType)))) {
+      return true;
+    }
+    return false;
+  }
+
+  function getConflictingAssignedRefs(wrestlerId, targetSlotType, targetSlotIndex = null) {
+    const refs = [];
     iterateManagedSlots((slotType, slotIndex) => {
-      if (preserveMedia && slotType === "media") {
+      const ref = getSlotRef(slotType, slotIndex);
+      if (ref === getSlotRef(targetSlotType, targetSlotIndex)) {
+        return;
+      }
+      if (getSlotWrestlerId(slotType, slotIndex) !== wrestlerId) {
+        return;
+      }
+      if (slotTypesConflict(slotType, targetSlotType)) {
+        refs.push(ref);
+      }
+    });
+    return refs;
+  }
+
+  function getExclusiveAssignedRefs(wrestlerId) {
+    return getAllAssignedRefs(wrestlerId).filter((ref) => {
+      const slotType = ref.split(":")[0];
+      return isMatchSlotType(slotType) || isTrainingSlotType(slotType) || isRecoverySlotType(slotType);
+    });
+  }
+
+  function removeWrestlerFromAssignments(wrestlerId, options = {}) {
+    const preserveRefs = new Set(Array.isArray(options.preserveRefs) ? options.preserveRefs : []);
+    const onlyConflictsWith = options.onlyConflictsWith || "";
+    iterateManagedSlots((slotType, slotIndex) => {
+      const ref = getSlotRef(slotType, slotIndex);
+      if (preserveRefs.has(ref)) {
+        return;
+      }
+      if (onlyConflictsWith && !slotTypesConflict(slotType, onlyConflictsWith)) {
         return;
       }
       if (getSlotWrestlerId(slotType, slotIndex) === wrestlerId) {
@@ -383,18 +613,10 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
     if (slotType === "sideFighters") {
       if (wrestler.status === "injured") return { ok: false, reason: "부상 선수는 사이드 경기에 나설 수 없습니다." };
       if ((wrestler.condition || 0) < 30) return { ok: false, reason: "컨디션 30% 이상만 배치할 수 있습니다." };
-      if (getSlotWrestlerId("media", null) === wrestler.id) return { ok: false, reason: "미디어 담당은 사이드 경기와 중복할 수 없습니다." };
       return { ok: true };
     }
     if (slotType === "franchiseStars") {
       if (!isHighGrade(wrestler.grade)) return { ok: false, reason: "A급 이상만 프랜차이즈 슬롯에 배치할 수 있습니다." };
-      return { ok: true };
-    }
-    if (slotType === "media") {
-      if ((wrestler.stats?.charisma || 0) < 40) return { ok: false, reason: "카리스마 40 이상이 필요합니다." };
-      if (getExclusiveAssignedRefs(wrestler.id).some((ref) => ref.startsWith("sideFighters"))) {
-        return { ok: false, reason: "사이드 경기 출전 선수는 미디어 담당과 중복할 수 없습니다." };
-      }
       return { ok: true };
     }
     if (slotType === "training" || slotType === "specialTraining") {
@@ -421,11 +643,9 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
     if (!validation.ok) {
       return validation;
     }
-    if (slotType !== "media") {
-      const refs = getExclusiveAssignedRefs(wrestlerId).filter((ref) => ref !== getSlotRef(slotType, slotIndex));
-      if (refs.length) {
-        return { ok: true, moveFrom: refs[0] };
-      }
+    const refs = getConflictingAssignedRefs(wrestlerId, slotType, slotIndex);
+    if (refs.length) {
+      return { ok: true, moveFrom: refs[0], conflictingRefs: refs };
     }
     return { ok: true };
   }
@@ -455,31 +675,23 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
       ];
     }
     if (slotType === "franchiseStars") {
+      const effect = getFranchiseGradeEffect(wrestler.grade);
       return [
         "프랜차이즈 스타",
-        `주당 팬 수익: +${formatNumber((wrestler.stats?.charisma || 0) * 15)} G`,
-        `인기도: +${Math.max(1, Math.floor((wrestler.stats?.fame || 0) / 10))}/주`,
-        "Hype 베이스: +10",
-        "경기 출전 불가"
-      ];
-    }
-    if (slotType === "media") {
-      return [
-        "미디어 담당",
-        "다음 주 사이드 경기 수익 ×1.3",
-        "라이벌 강도 +5",
-        "메인 경기 / 훈련과 중복 가능",
-        "사이드 경기와는 중복 불가"
+        `고정 수익: +${formatNumber(effect.income)} G`,
+        `전체 경기 선수: 전 스탯 +${effect.aura}`,
+        "A급 이상만 배치",
+        "경기와 중복 가능"
       ];
     }
     if (slotType === "training" || slotType === "specialTraining") {
-      const statKey = getSlotEntry(slotType, slotIndex)?.statKey || "power";
-      const gain = slotType === "specialTraining" ? 8 : 4;
+      const effect = getTrainingSlotEffect(slotType, slotIndex);
       return [
-        slotType === "specialTraining" ? "특훈" : "강화 훈련",
-        `${TRAINING_STAT_LABELS[statKey]}: ${wrestler.stats?.[statKey] || 0} → ${Math.min(getAdjustedStatCap(wrestler), (wrestler.stats?.[statKey] || 0) + gain)}`,
-        `컨디션 소모: -${slotType === "specialTraining" ? 25 : 10}%`,
-        "이번 주 경기 불가"
+        effect?.label || (slotType === "specialTraining" ? "특훈" : "훈련"),
+        effect?.bonusText || "능력치 버프",
+        `주 종료 후 컨디션 -${effect?.conditionCost || 0}%`,
+        "경기 / 프랜차이즈와 중복 가능",
+        "훈련 슬롯끼리만 중복 불가"
       ];
     }
     if (slotType === "rest") {
@@ -499,6 +711,34 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
       ];
     }
     return [];
+  }
+
+  function getManagedGuestGrade(total) {
+    if (total >= 780) return "LEGEND";
+    if (total >= 520) return "S";
+    if (total >= 380) return "A";
+    if (total >= 240) return "B";
+    return "C";
+  }
+
+  function buildManagedGuestStats(total, style) {
+    const weights = {
+      powerhouse: { power: 1.22, stamina: 1.08, technique: 0.78, charisma: 0.84, fame: 1.0 },
+      technician: { power: 0.88, stamina: 1.0, technique: 1.18, charisma: 0.9, fame: 1.04 },
+      showman: { power: 0.92, stamina: 0.96, technique: 0.9, charisma: 1.18, fame: 1.04 }
+    }[style] || { power: 1, stamina: 1, technique: 1, charisma: 1, fame: 1 };
+    const entries = Object.entries(weights);
+    const weightSum = entries.reduce((sum, [, value]) => sum + value, 0);
+    const stats = {};
+    let runningTotal = 0;
+    entries.forEach(([key, value], index) => {
+      const amount = index === entries.length - 1
+        ? total - runningTotal
+        : Math.max(18, Math.floor((total * value) / weightSum));
+      stats[key] = amount;
+      runningTotal += amount;
+    });
+    return stats;
   }
 
   function renderSlotPreview(slotElement, wrestlerId) {
@@ -533,47 +773,189 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
     }
   }
 
-  function createGuestOpponentForSlot(slotIndex, fighter) {
+  function hashManagementOpponentSeed(value) {
+    let hash = 0;
+    const text = String(value || "");
+    for (let index = 0; index < text.length; index += 1) {
+      hash = ((hash << 5) - hash) + text.charCodeAt(index);
+      hash |= 0;
+    }
+    return Math.abs(hash);
+  }
+
+  function getManagementOpponentTemplatePool(grade, excludedTemplateIds = []) {
+    const excluded = new Set((excludedTemplateIds || []).filter(Boolean));
+    const gradePool = wrestlerPool.filter((wrestler) => wrestler?.grade === grade && !excluded.has(wrestler.id));
+    if (gradePool.length) {
+      return gradePool;
+    }
+    const fallbackPool = wrestlerPool.filter((wrestler) => !excluded.has(wrestler.id));
+    return fallbackPool.length ? fallbackPool : wrestlerPool.slice();
+  }
+
+  function pickManagementOpponentTemplate(slotKey, grade, excludedTemplateIds = []) {
+    const pool = getManagementOpponentTemplatePool(grade, excludedTemplateIds);
+    if (!pool.length) {
+      return null;
+    }
+    return pool[hashManagementOpponentSeed(`${slotKey}:${grade}:${gameState.week}`) % pool.length];
+  }
+
+  function createGuestOpponentForSlot(slotIndex) {
     const managementMap = ensureManagementMapState();
     const slotKey = `slot_${slotIndex + 1}`;
     const existingId = managementMap.sideGuests?.[slotKey];
     if (existingId && guestPool[existingId]) {
       return guestPool[existingId];
     }
-    const [name, nickname] = SIDE_GUEST_NAMES[(gameState.week + slotIndex) % SIDE_GUEST_NAMES.length];
-    const styleKeys = ["powerhouse", "technician", "showman"];
-    const style = styleKeys[(slotIndex + gameState.week) % styleKeys.length];
-    const fighterAverage = Math.max(30, Math.round(getWrestlerPower(fighter)));
-    const total = clamp(Math.floor(fighterAverage * 5 * (0.92 + (slotIndex * 0.06))), 140, 700);
+    const currentOpponent = circuitApi.getCurrentCircuitOpponent?.() || null;
+    const baseTotal = Math.max(150, Number(currentOpponent?.total || (170 + (gameState.week * 8))));
+    const total = clamp(Math.round(baseTotal * (0.72 + (slotIndex * 0.08))), 140, 760);
+    const grade = getManagedGuestGrade(total);
+    const existingTemplateIds = Object.entries(managementMap.sideGuests || {})
+      .filter(([key]) => key !== slotKey)
+      .map(([, guestId]) => guestPool[guestId]?.templateId)
+      .filter(Boolean);
+    if (currentOpponent?.templateId) {
+      existingTemplateIds.push(currentOpponent.templateId);
+    }
+    const template = pickManagementOpponentTemplate(`weekly_side_${slotKey}`, grade, existingTemplateIds);
+    const style = template?.style || ["powerhouse", "technician", "showman"][(slotIndex + gameState.week) % 3];
     const guestId = `guest_w${gameState.week}_s${slotIndex + 1}`;
     const opponent = createWrestler({
       id: guestId,
-      templateId: guestId,
-      name,
-      nickname,
-      grade: fighter.grade || "C",
+      templateId: template?.id || guestId,
+      name: template?.name || `Guest ${slotIndex + 1}`,
+      nickname: template?.nickname || "주간 도전자",
+      grade,
       style,
       alignment: "heel",
       age: 26 + slotIndex,
       condition: 100,
       salary: 0,
       contractWeeks: 999,
-      stats: {
-        power: clamp(Math.round(total * 0.22), 18, 100),
-        stamina: clamp(Math.round(total * 0.2), 18, 100),
-        technique: clamp(Math.round(total * 0.2), 18, 100),
-        charisma: clamp(Math.round(total * 0.19), 18, 100),
-        fame: clamp(Math.round(total * 0.19), 18, 100)
-      },
-      spriteColor: getGradeColor(fighter.grade || "C"),
-      finisher: "Road House Slam",
+      stats: buildManagedGuestStats(total, style),
+      spriteSheet: template?.spriteSheet || null,
+      battleSpriteSheet: template?.battleSpriteSheet || null,
+      spriteFrames: Number.isFinite(template?.spriteFrames) ? template.spriteFrames : 1,
+      battleSpriteFrames: Number.isFinite(template?.battleSpriteFrames) ? template.battleSpriteFrames : 1,
+      portraitMode: typeof template?.portraitMode === "boolean" ? template.portraitMode : true,
+      spriteColor: template?.spriteColor || getGradeColor(grade),
+      finisher: template?.finisher || "Road House Slam",
       status: "idle"
     });
     opponent.isGuest = true;
-    opponent.grade = fighter.grade || "C";
+    opponent.grade = grade;
+    opponent.total = total;
     guestPool[guestId] = opponent;
     managementMap.sideGuests[slotKey] = guestId;
     return opponent;
+  }
+
+  function createDisplayOpponentFromCircuit(opponent) {
+    if (!opponent) {
+      return null;
+    }
+    return createWrestler({
+      id: opponent.id,
+      templateId: opponent.templateId || opponent.id,
+      name: opponent.name,
+      nickname: opponent.nickname,
+      grade: opponent.grade,
+      stats: structuredClone(opponent.stats),
+      style: opponent.style,
+      alignment: "heel",
+      age: 28 + Number(opponent.circuitIndex || 0),
+      salary: 0,
+      contractWeeks: 999,
+      wins: 0,
+      losses: 0,
+      condition: 100,
+      finisher: opponent.finisher,
+      spriteSheet: opponent.spriteSheet || null,
+      battleSpriteSheet: opponent.battleSpriteSheet || null,
+      spriteFrames: Number.isFinite(opponent.spriteFrames) ? opponent.spriteFrames : 1,
+      battleSpriteFrames: Number.isFinite(opponent.battleSpriteFrames) ? opponent.battleSpriteFrames : 1,
+      portraitMode: Boolean(opponent.portraitMode),
+      spriteColor: opponent.spriteColor || getGradeColor(opponent.grade),
+      status: "idle"
+    });
+  }
+
+  function getManagedOpponentForSlot(slotType, slotIndex = null) {
+    if (slotType === "mainEventer") {
+      return createDisplayOpponentFromCircuit(circuitApi.getCurrentCircuitOpponent?.() || null);
+    }
+    if (slotType === "sideFighters") {
+      return createGuestOpponentForSlot(slotIndex);
+    }
+    return null;
+  }
+
+  function getManagedMatchWinRate(slotType, wrestler, opponent) {
+    if (!wrestler || !opponent) {
+      return null;
+    }
+    if (slotType === "mainEventer") {
+      const mainOpponent = circuitApi.getCurrentCircuitOpponent?.() || null;
+      return mainOpponent ? Number(circuitApi.estimateWinRate?.(wrestler, mainOpponent) || 0) : null;
+    }
+    const wrestlerPower = getWrestlerPower(wrestler);
+    const opponentPower = getWrestlerPower(opponent);
+    return clamp(Math.round(50 + ((wrestlerPower - opponentPower) * 1.1)), 5, 95);
+  }
+
+  function createManagedOpponentCardHtml(opponent, options = {}) {
+    if (!opponent) {
+      return `
+        <article class="management-opponent-card empty">
+          <div class="management-opponent-top">
+            <div class="management-opponent-stage">${options.label || "상대"}</div>
+          </div>
+          <div class="management-opponent-empty">상대 정보 없음</div>
+        </article>
+      `;
+    }
+    const wrestlerId = getSlotWrestlerId(options.slotType, options.slotIndex);
+    const wrestler = wrestlerId ? findWrestlerById(wrestlerId) : null;
+    const winRate = getManagedMatchWinRate(options.slotType, wrestler, opponent);
+    return `
+      <article class="management-opponent-card ${options.slotType === "mainEventer" ? "main" : ""}">
+        <div class="management-opponent-top">
+          <div class="management-opponent-stage">${options.label || "상대"}</div>
+          <div class="management-opponent-grade">${opponent.grade}급</div>
+        </div>
+        <div class="management-opponent-core">
+          <div class="management-opponent-visual">
+            <div class="sprite-box" style="${getWrestlerVisualStyle(opponent, "width:58px;height:58px;")}"></div>
+          </div>
+          <div class="management-opponent-copy">
+            <div class="management-opponent-name">${opponent.name}</div>
+            <div class="management-opponent-meta">${opponent.nickname || getStyleMeta(opponent.style).label}</div>
+            <div class="management-opponent-power">PWR ${formatAverage(getWrestlerPower(opponent))}${winRate != null ? ` · 예상 ${winRate}%` : ""}</div>
+          </div>
+        </div>
+      </article>
+    `;
+  }
+
+  function createManagementBookingRowHtml(slotType, slotIndex, options = {}) {
+    const opponent = getManagedOpponentForSlot(slotType, slotIndex);
+    return `
+      <article class="management-match-row ${slotType === "mainEventer" ? "main" : ""}">
+        <div class="management-match-stage">
+          <div class="management-match-stage-label">${options.stageLabel || "라운드"}</div>
+          <div class="management-match-stage-note">${options.stageNote || ""}</div>
+        </div>
+        <div class="management-match-player">
+          ${createSlotHtml(slotType, slotIndex, { slotLabel: options.slotLabel, ruleText: options.ruleText })}
+        </div>
+        <div class="management-match-divider">VS</div>
+        <div class="management-match-opponent">
+          ${createManagedOpponentCardHtml(opponent, { label: options.opponentLabel, slotType, slotIndex })}
+        </div>
+      </article>
+    `;
   }
 
   function clearGuestPool() {
@@ -610,7 +992,7 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
         slot.mode = "free";
         return;
       }
-      const guest = createGuestOpponentForSlot(index, fighter);
+      const guest = createGuestOpponentForSlot(index);
       slot.wrestlerAId = fighterId;
       slot.wrestlerBId = guest.id;
       slot.opponentId = guest.id;
@@ -630,6 +1012,7 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
       gameState.weeklyCard = slots;
     };
     syncWeeklyCardToSchedule();
+    syncManagementConfirmationState();
   }
 
   function autoClearInvalidAssignments() {
@@ -665,21 +1048,20 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
       window.alert(validation.reason);
       return false;
     }
-    if (slotType !== "media") {
-      removeWrestlerFromAssignments(wrestlerId, { preserveMedia: true });
-    } else if (getSlotWrestlerId("media", null) === wrestlerId) {
-      return true;
-    }
+    removeWrestlerFromAssignments(wrestlerId, {
+      preserveRefs: [getSlotRef(slotType, slotIndex)],
+      onlyConflictsWith: slotType
+    });
     const existingOccupant = getSlotWrestlerId(slotType, slotIndex);
     if (existingOccupant && existingOccupant !== wrestlerId) {
-      removeWrestlerFromAssignments(existingOccupant);
+      removeWrestlerFromAssignments(existingOccupant, {
+        preserveRefs: [],
+        onlyConflictsWith: slotType
+      });
     }
     setSlotWrestlerId(slotType, slotIndex, wrestlerId);
     ensureManagementMapState().forfeitMain = false;
     syncManagementMapToWeeklySchedule();
-    if (slotType === "training" || slotType === "specialTraining") {
-      openTrainingStatModal(slotType, slotIndex, wrestler);
-    }
     return true;
   }
 
@@ -784,7 +1166,7 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
       window.alert("메인 이벤터 슬롯이 비어 있습니다. 메인 선수를 배치하거나 메인 경기 포기를 선택해야 합니다.");
       return;
     }
-    gameState.managementMap.confirmedWeek = gameState.week;
+    syncManagementConfirmationState();
     gameState.managementMap.lastWarnings = warnings.slice(0, 8);
     syncManagementMapToWeeklySchedule();
     renderActiveTab();
@@ -811,6 +1193,7 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
   function getWeeklyForecastLines() {
     const lines = [];
     const assignments = getMapAssignments();
+    const franchise = getFranchiseSlotEffect(assignments);
     const restRecovery = getRestLevelData().recovery;
     const treatedBonus = getTreatmentLevelData().conditionBonus;
     if (assignments.mainEventer) {
@@ -826,6 +1209,14 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
         const nextCondition = clamp((wrestler.condition || 0) - 15 + 15, 0, 100);
         lines.push(`${wrestler.name}: 사이드 경기 후 약 ${nextCondition}%`);
       }
+    });
+    getTrainingAssignmentsSummary(assignments).forEach((entry) => {
+      const wrestler = findWrestlerById(entry.wrestlerId);
+      if (!wrestler) {
+        return;
+      }
+      const nextCondition = clamp((wrestler.condition || 0) - entry.effect.conditionCost + 15, 0, 100);
+      lines.push(`${wrestler.name}: ${entry.effect.label} · ${entry.effect.bonusText} · 다음 주 약 ${nextCondition}%`);
     });
     assignments.rest.forEach((wrestlerId) => {
       const wrestler = findWrestlerById(wrestlerId);
@@ -846,6 +1237,9 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
         lines.push(`⚠️ ${wrestler.name}은 3주 연속 메인 출전으로 회복 -30 페널티 대상입니다.`);
       }
     }
+    if (franchise) {
+      lines.push(`${franchise.wrestler.name}: 간판 효과 +${formatNumber(franchise.income)}G / 경기 선수 전스탯 +${franchise.aura}`);
+    }
     return lines.slice(0, 6);
   }
 
@@ -854,66 +1248,21 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
       return;
     }
     const assignments = getMapAssignments();
-    let incomeBonus = 0;
-    let fameBonus = 0;
-    let extraSideIncome = 0;
-    assignments.franchiseStars.forEach((wrestlerId) => {
-      const wrestler = findWrestlerById(wrestlerId);
-      if (!wrestler) {
-        return;
-      }
-      incomeBonus += (wrestler.stats?.charisma || 0) * 15;
-      fameBonus += Math.max(1, Math.floor((wrestler.stats?.fame || 0) / 10));
-    });
-    const mediaWrestler = assignments.media ? findWrestlerById(assignments.media) : null;
-    if (mediaWrestler) {
-      pendingWeeklySummary.results.forEach((result) => {
-        if (result.kind === "side") {
-          const bonus = Math.floor(result.income * 0.3);
-          result.income += bonus;
-          extraSideIncome += bonus;
-        }
-      });
+    const franchise = getFranchiseSlotEffect(assignments);
+    const incomeBonus = franchise?.income || 0;
+    pendingWeeklySummary.totalIncome += incomeBonus;
+    if (incomeBonus > 0) {
+      pendingWeeklySummary.bonusLines.push(`프랜차이즈 수익 +${formatNumber(incomeBonus)} G`);
+      pendingWeeklySummary.bonusLines.push(`${franchise.wrestler.name} 간판 효과: 경기 선수 전스탯 +${franchise.aura}`);
     }
-    pendingWeeklySummary.totalIncome += incomeBonus + extraSideIncome;
-    pendingWeeklySummary.fameAfter = Math.max(0, pendingWeeklySummary.fameAfter + fameBonus);
-    pendingWeeklySummary.bonusLines.push(`운영 맵 수익 보너스 +${formatNumber(incomeBonus + extraSideIncome)} G`);
-    if (fameBonus > 0) {
-      pendingWeeklySummary.bonusLines.push(`프랜차이즈 스타 효과로 인기도 +${fameBonus}`);
-    }
-    if (mediaWrestler) {
-      pendingWeeklySummary.bonusLines.push(`${mediaWrestler.name}의 미디어 노출로 사이드 경기 수익 ×1.3 적용`);
-    }
-    gameState.gold += incomeBonus + extraSideIncome;
-    gameState.fame = Math.max(0, gameState.fame + fameBonus);
-  }
-
-  function applyTrainingGrowthForAssignment(wrestler, statKey, amount) {
-    if (!wrestler || !wrestler.stats) {
-      return null;
-    }
-    const before = wrestler.stats[statKey] || 0;
-    const cap = getAdjustedStatCap(wrestler);
-    wrestler.stats[statKey] = clamp(before + amount, 1, cap);
-    return {
-      wrestlerId: wrestler.id,
-      wrestlerName: wrestler.name,
-      facilityKey: amount >= 8 ? "특훈" : "강화 훈련",
-      statKey,
-      gain: wrestler.stats[statKey] - before
-    };
+    gameState.gold += incomeBonus;
   }
 
   function applyManagementWeekAdvanceEffects(previousAssignments) {
     const notes = [];
-    const growthEntries = [];
     const restRecovery = getRestLevelData().recovery;
     const treatmentMeta = getTreatmentLevelData();
     const conditionBaseRecovery = circuitApi.getWeeklyConditionRecoveryAmount?.() || 15;
-
-    const coachId = previousAssignments.coach?.[0] || null;
-    const coach = coachId ? (gameState.coaches || []).find((entry) => entry.id === coachId) : null;
-    const coachStatKey = coach ? getCoachStatKey(coach) : null;
 
     previousAssignments.rest.forEach((wrestlerId) => {
       const wrestler = findWrestlerById(wrestlerId);
@@ -939,31 +1288,13 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
       notes.push(`${wrestler.name}이 집중 치료 효과를 받았습니다.`);
     });
 
-    previousAssignments.training.forEach((entry) => {
+    getTrainingAssignmentsSummary(previousAssignments).forEach((entry) => {
       const wrestler = findWrestlerById(entry.wrestlerId);
       if (!wrestler) {
         return;
       }
-      const growth = applyTrainingGrowthForAssignment(wrestler, entry.statKey, 4 + (coach ? 2 : 0) + (coachStatKey === entry.statKey ? 4 : 0));
-      wrestler.condition = clamp((wrestler.condition || 0) - 10, 0, 100);
-      if (growth && growth.gain > 0) {
-        growthEntries.push(growth);
-      }
-    });
-
-    previousAssignments.specialTraining.forEach((entry, index) => {
-      const wrestler = findWrestlerById(entry.wrestlerId);
-      if (!wrestler) {
-        return;
-      }
-      const growth = applyTrainingGrowthForAssignment(wrestler, entry.statKey, 8 + (coach ? 2 : 0) + (coachStatKey === entry.statKey ? 4 : 0));
-      wrestler.condition = clamp((wrestler.condition || 0) - 25, 0, 100);
-      if ((wrestler.stats?.[entry.statKey] || 0) >= 100) {
-        clearSlot("specialTraining", index);
-      }
-      if (growth && growth.gain > 0) {
-        growthEntries.push(growth);
-      }
+      wrestler.condition = clamp((wrestler.condition || 0) - entry.effect.conditionCost, 0, 100);
+      notes.push(`${wrestler.name}이 ${entry.effect.label} 버프를 유지하고 컨디션 -${entry.effect.conditionCost}%를 소모했습니다.`);
     });
 
     const currentMainId = previousAssignments.mainEventer || "";
@@ -981,7 +1312,7 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
       .filter((entry) => typeof entry === "string")
       .slice(-6);
     gameState.managementMap.lastAdvanceNotes = notes.slice(0, 8);
-    return growthEntries;
+    return [];
   }
 
   function capturePreviousAssignments() {
@@ -993,7 +1324,7 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
     ensureManagementMapState();
     autoClearInvalidAssignments();
     if (!isCurrentWeekConfirmed()) {
-      window.alert("이번 주 배치를 먼저 확정해야 경기를 시작할 수 있습니다.");
+      window.alert("메인 이벤트 슬롯에 선수를 배치해야 경기를 시작할 수 있습니다.");
       return;
     }
     syncManagementMapToWeeklySchedule();
@@ -1118,21 +1449,17 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
     const sideCount = assignments.sideFighters.filter(Boolean).length;
     const baseSideIncome = Math.max(180, Math.floor(((currentOpponent?.reward?.gold || 800) * 0.4)));
     const sideIncome = sideCount * baseSideIncome;
-    const franchiseIncome = assignments.franchiseStars.reduce((sum, wrestlerId) => {
-      const wrestler = wrestlerId ? findWrestlerById(wrestlerId) : null;
-      return sum + (wrestler ? ((wrestler.stats?.charisma || 0) * 15) : 0);
-    }, 0);
-    const mediaBonus = assignments.media ? Math.floor(sideIncome * 0.3) : 0;
-    const expectedIncome = baseMainIncome + sideIncome + franchiseIncome + mediaBonus;
+    const franchiseIncome = getFranchiseSlotEffect(assignments)?.income || 0;
+    const trainingConditionCost = getTrainingAssignmentsSummary(assignments)
+      .reduce((sum, entry) => sum + entry.effect.conditionCost, 0);
+    const expectedIncome = baseMainIncome + sideIncome + franchiseIncome;
     const conditionCost = (assignments.mainEventer ? 25 : 0)
       + (sideCount * 15)
-      + (assignments.training.filter((entry) => entry?.wrestlerId).length * 10)
-      + (assignments.specialTraining.filter((entry) => entry?.wrestlerId).length * 25);
+      + trainingConditionCost;
     const hypeChange = (assignments.mainEventer ? 8 : 0)
       + (sideCount * 2)
-      + (assignments.franchiseStars.filter(Boolean).length * 5)
-      + (assignments.media ? 3 : 0)
-      + (assignments.training.filter((entry) => entry?.wrestlerId).length)
+      + (assignments.franchiseStars.filter(Boolean).length * 4)
+      + (getTrainingAssignmentsSummary(assignments).length)
       - (ensureManagementMapState().forfeitMain ? 5 : 0);
 
     return {
@@ -1141,6 +1468,17 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
       conditionCost,
       hypeChange
     };
+  }
+
+  function getManagementUpgradeImagePath(action) {
+    const fileName = MANAGEMENT_UPGRADE_ART[action];
+    return fileName ? encodeURI(`data/images/SHOW LOGISTICS/${fileName}.png`) : "";
+  }
+
+  function syncManagementConfirmationState() {
+    const managementMap = ensureManagementMapState();
+    const hasReadyMain = Boolean(managementMap.assignments.mainEventer || managementMap.forfeitMain);
+    managementMap.confirmedWeek = hasReadyMain ? gameState.week : 0;
   }
 
   function createZoneHeaderHtml(kicker, title, subtitle, statsText) {
@@ -1158,17 +1496,16 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
 
   function getManagementRosterCardHtml(wrestler) {
     const roleTags = getWrestlerRoleTags(wrestler.id);
-    const assignedExclusive = getExclusiveAssignedRefs(wrestler.id).length > 0;
     const isDragged = dragState.wrestlerId === wrestler.id && dragState.active;
     return `
-      <article class="management-roster-card ${assignedExclusive ? "assigned" : ""} ${isDragged ? "dragging-source" : ""}" data-wrestler-id="${wrestler.id}" data-assigned="${assignedExclusive ? "true" : "false"}">
+      <article class="management-roster-card ${isDragged ? "dragging-source" : ""}" data-wrestler-id="${wrestler.id}" data-assigned="false">
         <div class="management-roster-visual">
           <div class="sprite-box" style="${getWrestlerVisualStyle(wrestler, "width:44px;height:44px;")}"></div>
         </div>
         <div class="management-roster-name">${wrestler.name}</div>
         <div class="management-roster-meta">${wrestler.grade}급 · ${getStyleMeta(wrestler.style).label}<br>PWR ${formatAverage(getWrestlerPower(wrestler))}</div>
         ${renderManagementConditionHtml(wrestler)}
-        ${roleTags.length ? `<div class="management-roster-assigned">배치: ${roleTags.join(", ")}</div>` : `<div class="management-roster-assigned">대기 중</div>`}
+        ${roleTags.length ? `<div class="management-roster-assigned">운영: ${roleTags.join(", ")}</div>` : `<div class="management-roster-assigned">배치 없음</div>`}
         <div class="management-roster-actions">
           <button class="management-mini-button" data-action="open-wrestler-detail" data-wrestler-id="${wrestler.id}">상세</button>
         </div>
@@ -1185,11 +1522,47 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
     return validation.ok ? "" : "management-slot-warning";
   }
 
+  function createFranchiseSlotHtml(slotIndex = 0) {
+    const slotType = "franchiseStars";
+    const wrestlerId = getSlotWrestlerId(slotType, slotIndex);
+    const wrestler = wrestlerId ? findWrestlerById(wrestlerId) : null;
+    const ref = getSlotRef(slotType, slotIndex);
+    if (!wrestler) {
+      return `
+        <div class="management-slot management-franchise-slot ${getSlotWarningClass(slotType, slotIndex)}" data-slot-type="${slotType}" data-slot-index="${slotIndex}" data-slot-ref="${ref}">
+          <div class="management-franchise-photo empty"></div>
+          <div class="management-franchise-copy">
+            <div class="management-franchise-name">프랜차이즈 스타</div>
+            <div class="management-franchise-effect">드래그해서 배치</div>
+          </div>
+        </div>
+      `;
+    }
+    const effect = getFranchiseGradeEffect(wrestler.grade);
+    return `
+      <div class="management-slot management-franchise-slot filled ${getSlotWarningClass(slotType, slotIndex)}" data-slot-type="${slotType}" data-slot-index="${slotIndex}" data-slot-ref="${ref}">
+        <button class="management-slot-remove" data-action="remove-management-slot" data-slot-type="${slotType}" data-slot-index="${slotIndex}">×</button>
+        <div class="management-franchise-photo">
+          <div class="sprite-box" style="${getWrestlerVisualStyle(wrestler, "width:100%;height:100%;background-position:center 12%;")}"></div>
+        </div>
+        <div class="management-franchise-copy">
+          <div class="management-franchise-name">${wrestler.name}</div>
+          <div class="management-franchise-effect">주간 +${formatNumber(effect.income)}G · 전스탯 +${effect.aura}</div>
+        </div>
+      </div>
+    `;
+  }
+
   function createSlotHtml(slotType, slotIndex = null, options = {}) {
+    if (slotType === "franchiseStars") {
+      return createFranchiseSlotHtml(slotIndex ?? 0);
+    }
     const wrestlerId = getSlotWrestlerId(slotType, slotIndex);
     const slotLabel = options.slotLabel || getAssignmentLabel(slotType);
     const wrestler = wrestlerId ? findWrestlerById(wrestlerId) : null;
     const ref = getSlotRef(slotType, slotIndex);
+    const trainingEffect = isTrainingSlotType(slotType) ? getTrainingSlotEffect(slotType, slotIndex) : null;
+    const franchiseEffect = slotType === "franchiseStars" && wrestler ? getFranchiseGradeEffect(wrestler.grade) : null;
     if (slotType === "coach") {
       const coach = wrestlerId ? (gameState.coaches || []).find((entry) => entry.id === wrestlerId) : null;
       if (coach) {
@@ -1222,17 +1595,16 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
       `;
     }
     const tags = getWrestlerRoleTags(wrestler.id).map((label) => `<span class="management-slot-tag">${label}</span>`).join("");
-    const actionButton = slotType === "training" || slotType === "specialTraining"
-      ? `<button class="management-slot-action" data-action="edit-training-stat" data-slot-type="${slotType}" data-slot-index="${slotIndex}">${TRAINING_STAT_LABELS[getSlotEntry(slotType, slotIndex)?.statKey || "power"]}</button>`
-      : "";
+    const effectMeta = trainingEffect?.bonusText
+      || (franchiseEffect ? `고정 ${formatNumber(franchiseEffect.income)}G · 전스탯 +${franchiseEffect.aura}` : "");
     return `
       <div class="management-slot filled ${getSlotWarningClass(slotType, slotIndex)}" data-slot-type="${slotType}" data-slot-index="${slotIndex ?? ""}" data-slot-ref="${ref}">
         <button class="management-slot-remove" data-action="remove-management-slot" data-slot-type="${slotType}" data-slot-index="${slotIndex ?? ""}">×</button>
-        ${actionButton}
         <div class="sprite-box" style="${getWrestlerVisualStyle(wrestler, "width:50px;height:50px;")}"></div>
         <div class="management-slot-title">${slotLabel}</div>
         <div class="management-slot-name">${wrestler.name}</div>
         ${formatConditionBadge(wrestler)}
+        ${effectMeta ? `<div class="management-slot-meta">${effectMeta}</div>` : ""}
         <div class="management-slot-tags">${tags}</div>
       </div>
     `;
@@ -1244,60 +1616,73 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
     const caps = getSlotCapacities();
     const currentOpponent = circuitApi.getCurrentCircuitOpponent?.() || null;
     const managementMap = ensureManagementMapState();
-    const confirmChip = isCurrentWeekConfirmed()
-      ? `<span class="management-confirm-chip">✅ Week ${gameState.week} 배치 확정</span>`
-      : `<span class="management-status-note">⚠️ 아직 이번 주 배치가 확정되지 않았습니다.</span>`;
+    const assignments = managementMap.assignments || getMapAssignments();
+    const franchiseSlot = getFranchiseSlotEffect();
+    const franchiseSummary = franchiseSlot
+      ? `고정 ${formatNumber(franchiseSlot.income)}G · 전스탯 +${franchiseSlot.aura}`
+      : "프랜차이즈 1명";
+    const trainingSlotHtml = Array.from({ length: caps.training }, (_, index) => {
+      const blueprint = getTrainingSlotBlueprint("training", index);
+      return createSlotHtml("training", index, {
+        slotLabel: blueprint?.label || `훈련 ${index + 1}`,
+        ruleText: blueprint ? `${formatStatBonusText(blueprint.statBonuses)} · 경기 중복 가능` : "훈련 배치"
+      });
+    }).join("");
+    const specialTrainingHtml = caps.specialTraining
+      ? createSlotHtml("specialTraining", 0, {
+        slotLabel: getTrainingSlotBlueprint("specialTraining", 0)?.label || "특훈",
+        ruleText: `${formatStatBonusText(getTrainingSlotBlueprint("specialTraining", 0)?.statBonuses || {})} · 경기 중복 가능`
+      })
+      : `<div class="management-slot"><div class="management-slot-icon">${SLOT_ICONS.specialTraining}</div><div class="management-slot-title">스타 클래스</div><div class="management-slot-rule">체육관 3레벨 + 3000G 해금</div></div>`;
+    const canStartWeek = Boolean(assignments.mainEventer || managementMap.forfeitMain);
     const rosterCards = gameState.roster.map((wrestler) => getManagementRosterCardHtml(wrestler)).join("");
+    const bookingRows = [
+      createManagementBookingRowHtml("mainEventer", null, {
+        stageLabel: "메인 이벤트",
+        stageNote: currentOpponent ? `${currentOpponent.circuitLabel || "서킷"} 메인 매치` : "최종 클리어",
+        slotLabel: "메인",
+        ruleText: "컨디션 50% 이상",
+        opponentLabel: currentOpponent?.name || "메인 상대"
+      }),
+      ...Array.from({ length: caps.sideFighters }, (_, index) => createManagementBookingRowHtml("sideFighters", index, {
+        stageLabel: `라운드 ${index + 1}`,
+        stageNote: "사이드 매치",
+        slotLabel: `라운드 ${index + 1}`,
+        ruleText: "컨디션 30% 이상",
+        opponentLabel: `상대 ${index + 1}`
+      }))
+    ].join("");
     mainDynamicContentEl.innerHTML = `
       <div class="management-map-shell">
-        <div class="management-map-top">
-          <section class="management-zone ring">
-            ${createZoneHeaderHtml("🥊 RING ZONE", "링 구역", "메인 경기와 사이드 매치를 편성합니다.", `메인 1회 / 사이드 ${caps.sideFighters}회`)}
-            <div class="management-zone-grid">
-              <div class="management-slot-group">
-                <div class="management-slot-group-label">메인 이벤터</div>
-                <div class="management-slot-strip">
-                  ${createSlotHtml("mainEventer", null, { slotLabel: "메인 이벤터", ruleText: "컨디션 50% 이상만 가능" })}
-                </div>
-              </div>
-              <div class="management-slot-group">
-                <div class="management-slot-group-label">사이드 파이터</div>
-                <div class="management-slot-strip">
-                  ${Array.from({ length: caps.sideFighters }, (_, index) => createSlotHtml("sideFighters", index, { slotLabel: `사이드 ${index + 1}`, ruleText: "컨디션 30% 이상 · 수익 40%" })).join("")}
-                </div>
-              </div>
+        <section class="management-booking-board">
+          <div class="management-bottom-header">
+            <div>
+              <div class="management-bottom-title">이번 주 카드 배치</div>
+              <div class="management-bottom-subtitle">메인 이벤트와 각 라운드를 한 줄씩 보고, 내 카드를 드래그해서 바로 배치합니다.</div>
             </div>
-          </section>
+            <div class="management-booking-actions">
+              <button class="management-weekly-button primary management-start-button" data-action="start-managed-week" ${canStartWeek ? "" : "disabled"}>경기 시작</button>
+            </div>
+          </div>
+          <div class="management-match-list">
+            ${bookingRows}
+          </div>
+        </section>
+        <div class="management-map-top">
           <section class="management-zone brand">
-            ${createZoneHeaderHtml("⭐ BRAND ZONE", "간판 구역", "간판 선수와 미디어 노출로 흥행 기반을 만듭니다.", `프랜차이즈 ${caps.franchiseStars} / 미디어 1`)}
+            ${createZoneHeaderHtml("⭐ BRAND", "간판 구역", "프랜차이즈 스타 한 명으로 주간 고정 수익과 경기 버프를 만듭니다.", franchiseSummary)}
             <div class="management-zone-grid">
-              <div class="management-slot-group">
-                <div class="management-slot-group-label">프랜차이즈 스타</div>
-                <div class="management-slot-strip">
-                  ${Array.from({ length: caps.franchiseStars }, (_, index) => createSlotHtml("franchiseStars", index, { slotLabel: index === 0 ? "프랜차이즈" : `프랜차이즈 ${index + 1}`, ruleText: "A급 이상 · 경기와 중복 불가" })).join("")}
-                </div>
-              </div>
-              <div class="management-slot-group">
-                <div class="management-slot-group-label">미디어 담당</div>
-                <div class="management-slot-strip">
-                  ${createSlotHtml("media", null, { slotLabel: "미디어", ruleText: "카리스마 40+ · 사이드와 중복 불가" })}
-                </div>
-              </div>
+              ${createSlotHtml("franchiseStars", 0)}
             </div>
           </section>
           <section class="management-zone training">
-            ${createZoneHeaderHtml("🏋 TRAINING ZONE", "훈련 구역", "주간 능력치 강화와 특훈, 코치 보조를 설정합니다.", `강화 ${caps.training} / 특훈 ${caps.specialTraining} / 코치 ${caps.coach}`)}
+            ${createZoneHeaderHtml("🏋 TRAINING", "훈련 구역", "주간 버프 슬롯입니다. 영구 성장 대신 이번 주 전투 보너스만 적용됩니다.", `훈련 ${caps.training} / 특훈 ${caps.specialTraining} / 코치 ${caps.coach}`)}
             <div class="management-zone-grid">
               <div class="management-slot-group">
-                <div class="management-slot-group-label">강화 훈련</div>
+                <div class="management-slot-group-label">주간 버프 슬롯</div>
                 <div class="management-slot-strip">
-                  ${Array.from({ length: caps.training }, (_, index) => createSlotHtml("training", index, { slotLabel: `강화 ${index + 1}`, ruleText: "주당 선택 스탯 +4 · 컨디션 -10%" })).join("")}
-                </div>
-              </div>
-              <div class="management-slot-group">
-                <div class="management-slot-group-label">특훈</div>
-                <div class="management-slot-strip">
-                  ${caps.specialTraining ? createSlotHtml("specialTraining", 0, { slotLabel: "특훈", ruleText: "선택 스탯 +8 · 컨디션 -25%" }) : `<div class="management-slot"><div class="management-slot-icon">${SLOT_ICONS.specialTraining}</div><div class="management-slot-title">특훈</div><div class="management-slot-rule">체육관 3레벨 + 3000G 해금</div></div>`}
+                  ${trainingSlotHtml}
+                  ${specialTrainingHtml}
                 </div>
               </div>
               <div class="management-slot-group">
@@ -1309,7 +1694,7 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
             </div>
           </section>
           <section class="management-zone recovery">
-            ${createZoneHeaderHtml("✚ RECOVERY ZONE", "회복 구역", "휴식과 집중 치료로 다음 주 컨디션을 조절합니다.", `휴식 ${caps.rest} / 치료 ${caps.treatment}`)}
+            ${createZoneHeaderHtml("✚ RECOVERY", "회복 구역", "휴식과 집중 치료는 경기/훈련과 겹칠 수 없습니다.", `휴식 ${caps.rest} / 치료 ${caps.treatment}`)}
             <div class="management-zone-grid">
               <div class="management-slot-group">
                 <div class="management-slot-group-label">휴식</div>
@@ -1330,21 +1715,11 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
           <div class="management-bottom-header">
             <div>
               <div class="management-bottom-title">선수 카드 목록</div>
-              <div class="management-bottom-subtitle">하단 카드를 드래그해서 슬롯에 배치하세요. 배치된 선수는 흐리게 표시됩니다.</div>
+              <div class="management-bottom-subtitle">드래그로 배치하세요. 훈련은 경기/프랜차이즈와 중복 가능하지만, 훈련끼리와 회복 슬롯은 서로 겹치지 않습니다.</div>
             </div>
-            ${confirmChip}
           </div>
           <div class="management-roster-strip">
             ${rosterCards || '<div class="placeholder-box">보유 선수가 없습니다.</div>'}
-          </div>
-          <div class="management-actions-bar">
-            <div class="management-status-note">
-              ${currentOpponent ? `다음 상대: ${currentOpponent.name} · 보상 ${circuitApi.getCircuitRewardText?.(currentOpponent.reward) || ""}` : "월드 챔피언십을 클리어했습니다."}
-            </div>
-            <div style="display:flex;gap:10px;flex-wrap:wrap;">
-              <button class="management-confirm-button" data-action="confirm-management-map">이번 주 배치 확정</button>
-              <button class="management-weekly-button" data-action="toggle-main-forfeit">${managementMap.forfeitMain ? "메인 경기 포기 취소" : "이번 주 메인 경기 포기"}</button>
-            </div>
           </div>
         </section>
       </div>
@@ -1352,28 +1727,19 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
     `;
   }
 
-  function createUpgradeRow(title, desc, action, disabled = false, buttonText = "업그레이드") {
+  function createUpgradeRow(title, costLabel, action, disabled = false) {
+    const artPath = getManagementUpgradeImagePath(action);
     return `
-      <div class="management-upgrade-row">
-        <div class="management-upgrade-top">
-          <div class="management-side-title" style="margin:0;">${title}</div>
-          <button class="management-upgrade-button" data-action="${action}" ${disabled ? "disabled" : ""}>${buttonText}</button>
-        </div>
-        <div class="management-side-text">${desc}</div>
-      </div>
+      <button class="management-upgrade-row ${disabled ? "is-disabled" : ""}" data-action="${action}" ${disabled ? "disabled" : ""}>
+        <div class="management-upgrade-art"${artPath ? ` style="background-image:url('${artPath}');"` : ""}></div>
+        <div class="management-upgrade-label">${title}</div>
+        <div class="management-upgrade-cost">${costLabel}</div>
+      </button>
     `;
   }
 
   function renderManagementSidePanel() {
     ensureManagementMapState();
-    const assignments = getMapAssignments();
-    const currentOpponent = circuitApi.getCurrentCircuitOpponent?.() || null;
-    const mainWrestler = assignments.mainEventer ? findWrestlerById(assignments.mainEventer) : null;
-    const winRate = mainWrestler && currentOpponent ? circuitApi.estimateWinRate?.(mainWrestler, currentOpponent) || 0 : 0;
-    const forecastSummary = getManagementForecastSummary();
-    const warnings = ensureManagementMapState().lastWarnings || [];
-    const forecastLines = getWeeklyForecastLines();
-    const caps = getSlotCapacities();
     const sideFightLevel = ensureManagementMapState().upgrades.sideFightLevel;
     const restLevel = ensureManagementMapState().upgrades.restLevel;
     const treatmentLevel = ensureManagementMapState().upgrades.treatmentLevel;
@@ -1381,86 +1747,40 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
     const nextRestUpgrade = REST_LEVELS[restLevel + 1] || null;
     const nextTreatmentUpgrade = TREATMENT_LEVELS[treatmentLevel + 1] || null;
     sideListEl.innerHTML = `
-      <div class="management-side-stack">
-        <section class="management-side-card management-week-summary">
-          <div class="management-summary-kicker">이번 주 예상</div>
-          <div class="management-summary-grid">
-            <div class="management-summary-row">
-              <span>메인 승률</span>
-              <strong class="management-summary-value ${forecastSummary.mainWinRate >= 60 ? "positive" : forecastSummary.mainWinRate >= 40 ? "warning" : "negative"}">${mainWrestler && currentOpponent ? `${forecastSummary.mainWinRate}% ${forecastSummary.mainWinRate >= 50 ? "↑" : "↓"}` : "미배치"}</strong>
-            </div>
-            <div class="management-summary-row">
-              <span>예상 수익</span>
-              <strong class="management-summary-value">${formatNumber(forecastSummary.expectedIncome)} G</strong>
-            </div>
-            <div class="management-summary-row">
-              <span>컨디션 소모</span>
-              <strong class="management-summary-value warning">-${forecastSummary.conditionCost}%</strong>
-            </div>
-            <div class="management-summary-row">
-              <span>Hype 변화</span>
-              <strong class="management-summary-value ${forecastSummary.hypeChange >= 0 ? "positive" : "negative"}">${forecastSummary.hypeChange >= 0 ? "+" : ""}${forecastSummary.hypeChange}</strong>
-            </div>
-          </div>
-          <div style="display:grid;gap:10px;margin-top:14px;">
-            <button class="management-confirm-button confirm-button-main ${isCurrentWeekConfirmed() ? "confirmed" : ""}" data-action="confirm-management-map">${isCurrentWeekConfirmed() ? "이번 주 배치 확정 완료" : "이번 주 배치 확정"}</button>
-            <button class="management-weekly-button" data-action="toggle-main-forfeit">${ensureManagementMapState().forfeitMain ? "메인 경기 포기 취소" : "이번 주 메인 경기 포기"}</button>
-          </div>
-        </section>
-        <section class="management-side-card">
-          <div class="management-side-title">주간 준비 상태</div>
-          <div class="management-side-text">${mainWrestler && currentOpponent ? `${mainWrestler.name} vs ${currentOpponent.name}<br>예상 승률 ${winRate}%` : (ensureManagementMapState().forfeitMain ? "메인 경기 포기 예정" : "메인 이벤터를 배치해야 합니다.")}</div>
-          <div class="management-side-text" style="margin-top:8px;">사이드 경기 ${assignments.sideFighters.filter(Boolean).length}/${caps.sideFighters} · 배치 확정 ${isCurrentWeekConfirmed() ? "완료" : "필요"}</div>
-          <div style="display:grid;gap:8px;margin-top:12px;">
-            <button class="management-weekly-button primary" data-action="start-managed-week" ${isCurrentWeekConfirmed() && (assignments.mainEventer || ensureManagementMapState().forfeitMain) ? "" : "disabled"}>이번 주 경기 시작</button>
-            <button class="management-weekly-button" data-action="open-main-analysis" ${currentOpponent ? "" : "disabled"}>상대 분석</button>
-          </div>
-        </section>
-        <section class="management-side-card">
+      <div class="management-side-stack compact">
+        <section class="management-side-card management-upgrade-panel">
           <div class="management-side-title">업그레이드</div>
-          <div class="management-upgrade-list">
+          <div class="management-upgrade-list management-upgrade-gallery">
             ${createUpgradeRow(
-              "경기 편성 확대",
-              nextSideUpgrade ? `현재 ${caps.sideFighters}슬롯 → 다음 ${nextSideUpgrade.slots}슬롯 / 비용 ${formatNumber(nextSideUpgrade.cost)} G` : `최대 레벨 도달 (${caps.sideFighters}슬롯)`,
+              "사이드 확대",
+              nextSideUpgrade ? `${formatNumber(nextSideUpgrade.cost)}G` : "MAX",
               "upgrade-side-slots",
               !nextSideUpgrade
             )}
             ${createUpgradeRow(
-              "선수단 숙소 개선",
-              nextRestUpgrade ? `현재 ${REST_LEVELS[restLevel].slots}칸 +${REST_LEVELS[restLevel].recovery}% → 다음 ${nextRestUpgrade.slots}칸 +${nextRestUpgrade.recovery}% / ${formatNumber(nextRestUpgrade.cost)} G` : `최대 레벨 도달 (${REST_LEVELS[restLevel].slots}칸)`,
+              "숙소",
+              nextRestUpgrade ? `${formatNumber(nextRestUpgrade.cost)}G` : "MAX",
               "upgrade-rest-slots",
               !nextRestUpgrade
             )}
             ${createUpgradeRow(
-              "의무실 확장",
-              nextTreatmentUpgrade ? `현재 ${TREATMENT_LEVELS[treatmentLevel].slots}칸 → 다음 ${nextTreatmentUpgrade.slots}칸 / ${formatNumber(nextTreatmentUpgrade.cost)} G` : "최대 레벨 도달",
+              "의무실",
+              nextTreatmentUpgrade ? `${formatNumber(nextTreatmentUpgrade.cost)}G` : "MAX",
               "upgrade-treatment-slots",
               !nextTreatmentUpgrade
             )}
             ${createUpgradeRow(
-              "특훈 해금",
-              ensureManagementMapState().upgrades.specialTrainingUnlocked ? "특훈 슬롯 해금 완료" : `체육관 3레벨 필요 / 비용 ${formatNumber(3000)} G`,
+              "스타 클래스",
+              ensureManagementMapState().upgrades.specialTrainingUnlocked ? "해금 완료" : `${formatNumber(3000)}G`,
               "unlock-special-training",
               ensureManagementMapState().upgrades.specialTrainingUnlocked
             )}
             ${createUpgradeRow(
-              "코치 슬롯 해금",
-              ensureManagementMapState().upgrades.coachUnlocked ? "코치 슬롯 해금 완료" : `은퇴 코치 배치 가능 / 비용 ${formatNumber(2500)} G`,
+              "코치",
+              ensureManagementMapState().upgrades.coachUnlocked ? "해금 완료" : `${formatNumber(2500)}G`,
               "unlock-coach-slot",
               ensureManagementMapState().upgrades.coachUnlocked
             )}
-          </div>
-        </section>
-        <section class="management-side-card">
-          <div class="management-side-title">다음 주 예고</div>
-          <div class="management-warning-list">
-            ${(forecastLines.length ? forecastLines : ["배치를 완료하면 다음 주 영향이 표시됩니다."]).map((line) => `<div class="management-list-line">${line}</div>`).join("")}
-          </div>
-        </section>
-        <section class="management-side-card">
-          <div class="management-side-title">배치 경고</div>
-          <div class="management-warning-list">
-            ${(warnings.length ? warnings : ["현재 자동 경고 없음"]).map((line) => `<div class="${warnings.length ? "management-warning-line" : "management-list-line"}">${line}</div>`).join("")}
           </div>
         </section>
       </div>
@@ -1514,8 +1834,8 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
     const rosterButton = document.querySelector('.tab-button[data-tab="roster"]');
     const rosterIcon = rosterButton?.querySelector(".nav-tab-icon");
     const rosterLabel = rosterButton?.querySelector(".nav-tab-label");
-    if (rosterIcon) rosterIcon.textContent = "🗺";
-    if (rosterLabel) rosterLabel.textContent = "운영 맵";
+    if (rosterIcon) rosterIcon.textContent = "👥";
+    if (rosterLabel) rosterLabel.textContent = "로스터";
 
     const cardsButton = document.querySelector('.tab-button[data-tab="cards"]');
     const cardsIcon = cardsButton?.querySelector(".nav-tab-icon");
@@ -1692,15 +2012,6 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
         removeSlotAssignment(button.dataset.slotType, button.dataset.slotIndex === "" ? null : Number(button.dataset.slotIndex));
       });
     });
-    Array.from(mainDynamicContentEl.querySelectorAll('[data-action="edit-training-stat"]')).forEach((button) => {
-      button.addEventListener("click", (event) => {
-        event.stopPropagation();
-        const slotType = button.dataset.slotType;
-        const slotIndex = Number(button.dataset.slotIndex);
-        const wrestler = findWrestlerById(getSlotWrestlerId(slotType, slotIndex));
-        openTrainingStatModal(slotType, slotIndex, wrestler);
-      });
-    });
     Array.from(mainDynamicContentEl.querySelectorAll('[data-action="open-coach-modal"]')).forEach((button) => {
       button.addEventListener("click", () => openCoachAssignModal(Number(button.dataset.slotIndex)));
     });
@@ -1713,7 +2024,7 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
     Array.from(sideListEl.querySelectorAll('[data-action^="upgrade-"], [data-action^="unlock-"]')).forEach((button) => {
       button.addEventListener("click", () => handleUpgradeAction(button.dataset.action));
     });
-    sideListEl.querySelector('[data-action="start-managed-week"]')?.addEventListener("click", startWeeklyMatches);
+    mainDynamicContentEl.querySelector('[data-action="start-managed-week"]')?.addEventListener("click", startWeeklyMatches);
     sideListEl.querySelector('[data-action="open-main-analysis"]')?.addEventListener("click", () => circuitApi.openOpponentAnalysisModal?.());
   }
 
@@ -1747,19 +2058,15 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
     attachManagementMapEvents();
   };
 
-  TAB_CONTENT.roster.mainTitle = "🗺 단체 운영 맵";
-  TAB_CONTENT.roster.mainSubtitle = () => `Week ${gameState.week} · 배치 확정 ${isCurrentWeekConfirmed() ? "완료" : "필요"}`;
-  TAB_CONTENT.roster.sideTitle = "운영 현황";
-  TAB_CONTENT.roster.sideSubtitle = "업그레이드, 경고, 다음 주 예고를 확인합니다.";
-  TAB_CONTENT.roster.mainInfo = [
-    { label: "메인 이벤터", value: () => findWrestlerById(getMapAssignments().mainEventer)?.name || (ensureManagementMapState().forfeitMain ? "포기 예정" : "미배치") },
-    { label: "사이드 경기", value: () => `${getMapAssignments().sideFighters.filter(Boolean).length}/${getSlotCapacities().sideFighters}` },
-    { label: "휴식 슬롯", value: () => `${getMapAssignments().rest.filter(Boolean).length}/${getSlotCapacities().rest}` }
-  ];
+  TAB_CONTENT.roster.mainTitle = "👥 로스터";
+  TAB_CONTENT.roster.mainSubtitle = () => `Week ${gameState.week} · 로스터 편성`;
+  TAB_CONTENT.roster.sideTitle = "로스터";
+  TAB_CONTENT.roster.sideSubtitle = "";
+  TAB_CONTENT.roster.mainInfo = [];
   TAB_CONTENT.cards.mainTitle = () => `⚔️ Week ${gameState.week} 주간 운영`;
-  TAB_CONTENT.cards.mainSubtitle = () => `${circuitApi.getCurrentCircuitOpponent?.()?.name || "서킷 완료"} · 배치 확정 ${isCurrentWeekConfirmed() ? "완료" : "필요"}`;
+  TAB_CONTENT.cards.mainSubtitle = () => `${circuitApi.getCurrentCircuitOpponent?.()?.name || "서킷 완료"} · 운영 편성`;
   TAB_CONTENT.cards.sideTitle = "주간 실행";
-  TAB_CONTENT.cards.sideSubtitle = "상대 분석과 경기 시작, 업그레이드를 관리합니다.";
+  TAB_CONTENT.cards.sideSubtitle = "업그레이드를 관리합니다.";
   TAB_CONTENT.cards.mainInfo = [
     { label: "현재 랭킹", value: () => `${circuitApi.getCircuitProgressState?.().currentRank || 1}위` },
     { label: "메인 승률", value: () => {
@@ -1767,11 +2074,17 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
       const wrestler = findWrestlerById(getMapAssignments().mainEventer);
       return opponent && wrestler ? `${circuitApi.estimateWinRate?.(wrestler, opponent) || 0}%` : "미배치";
     } },
-    { label: "사이드 수", value: () => `${getMapAssignments().sideFighters.filter(Boolean).length}경기` }
+    { label: "훈련 배치", value: () => `${getTrainingAssignmentsSummary().length}명` }
   ];
   TAB_CONTENT.cards.mainTitle = TAB_CONTENT.roster.mainTitle;
   TAB_CONTENT.cards.mainSubtitle = TAB_CONTENT.roster.mainSubtitle;
   TAB_CONTENT.cards.sideTitle = TAB_CONTENT.roster.sideTitle;
   TAB_CONTENT.cards.sideSubtitle = TAB_CONTENT.roster.sideSubtitle;
   TAB_CONTENT.cards.mainInfo = TAB_CONTENT.roster.mainInfo;
+  window.__RING_DYNASTY_MANAGEMENT_BUFFS__ = {
+    getBattleReadyStats: getManagementBattleReadyStats,
+    getBattleBonusesForWrestler: getManagementBattleBonusesForWrestler,
+    getTrainingAssignmentsSummary,
+    getFranchiseSlotEffect
+  };
 }

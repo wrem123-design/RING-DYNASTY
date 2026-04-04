@@ -1,0 +1,27 @@
+{
+  "set_name": "dont_use_batch_01_2_2",
+  "atlas_path": "data/images/dont use this files/2-2.png",
+  "output_dir": "data/images/wrestlers/custom/dont_use_batch_01",
+  "manifest_path": "data/custom/custom_sprite_manifest.js",
+  "registry_path": "data/custom/custom_sprite_registry.json",
+  "report_path": "data/custom/reports/dont_use_batch_01_2_2_report.json",
+  "detect": {
+    "min_alpha": 8,
+    "min_pixels_per_column": 8,
+    "merge_gap": 24,
+    "padding": 10,
+    "trim": true
+  },
+  "slots": [
+    {
+      "box": { "x": 746, "y": 0, "width": 232, "height": 377 },
+      "wrestler_id": "shawn_michaels",
+      "name": "Shawn Michaels",
+      "nickname": "The Heartbreak Kid",
+      "grade": "S",
+      "popularity": 92,
+      "finisher": "Sweet Chin Music",
+      "style": "showman"
+    }
+  ]
+}

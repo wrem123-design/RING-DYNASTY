@@ -305,10 +305,25 @@ if (!window.__RING_DYNASTY_PPV_INVADERS__) {
     };
   }
 
+  function getManagedBattleStatsLocal(wrestler, baseStats) {
+    const api = window.__RING_DYNASTY_MANAGEMENT_BUFFS__;
+    return api?.getBattleReadyStats ? api.getBattleReadyStats(wrestler, baseStats) : baseStats;
+  }
+
   function buildBattleReadyWrestlerLocal(wrestler) {
+    if (!wrestler) {
+      return wrestler;
+    }
+    if (wrestler.managementBattleReady) {
+      return createWrestler({
+        ...structuredClone(wrestler),
+        stats: structuredClone(wrestler.stats || {})
+      });
+    }
     return createWrestler({
       ...structuredClone(wrestler),
-      stats: getConditionAdjustedStatsLocal(wrestler)
+      stats: getManagedBattleStatsLocal(wrestler, getConditionAdjustedStatsLocal(wrestler)),
+      managementBattleReady: true
     });
   }
 
@@ -354,9 +369,10 @@ if (!window.__RING_DYNASTY_PPV_INVADERS__) {
   }
 
   function getPpvGapAnalysis(hero, invader) {
-    const heroTotal = Math.round(sumWrestlerStats(hero));
+    const heroStats = getManagedBattleStatsLocal(hero, getConditionAdjustedStatsLocal(hero));
+    const heroTotal = Math.round(Object.values(heroStats).reduce((sum, value) => sum + value, 0));
     const gap = heroTotal - invader.total;
-    const weeklyTrainingGain = 16;
+    const weeklyTrainingGain = Math.max(0, heroTotal - Math.round(sumWrestlerStats(hero)));
     return {
       heroTotal,
       invaderTotal: invader.total,
@@ -372,7 +388,7 @@ if (!window.__RING_DYNASTY_PPV_INVADERS__) {
     if (ensurePpvInvaderState().prepTreatmentIds.includes(hero.id)) {
       hero.condition = clamp((hero.condition || 0) + 10, 0, 100);
       heroBattle.condition = hero.condition;
-      heroBattle.stats = getConditionAdjustedStatsLocal(hero);
+      heroBattle.stats = getManagedBattleStatsLocal(hero, getConditionAdjustedStatsLocal(hero));
       abilityLines.push("PPV 집중 관리 효과: 메인 선수 컨디션 +10%");
     }
     switch (invader.id) {
@@ -400,7 +416,7 @@ if (!window.__RING_DYNASTY_PPV_INVADERS__) {
       case "ppv_6_ghost_reaper":
         hero.condition = clamp((hero.condition || 0) - 20, 0, 100);
         heroBattle.condition = hero.condition;
-        heroBattle.stats = getConditionAdjustedStatsLocal(hero);
+        heroBattle.stats = getManagedBattleStatsLocal(hero, getConditionAdjustedStatsLocal(hero));
         abilityLines.push("⚡ Ghost Reaper의 특수 능력 발동! 경기 시작 전 컨디션 -20%");
         break;
       case "ppv_7_undying_legend":
@@ -474,35 +490,13 @@ if (!window.__RING_DYNASTY_PPV_INVADERS__) {
   }
 
   function applyPpvCompanyBonuses(summary) {
-    const assignments = gameState.managementMap?.assignments || {};
-    let incomeBonus = 0;
-    let fameBonus = 0;
-    (assignments.franchiseStars || []).forEach((wrestlerId) => {
-      const wrestler = findWrestlerById(wrestlerId);
-      if (!wrestler) {
-        return;
-      }
-      const multiplier = isPpvWeek(summary.week) ? 2 : 1;
-      incomeBonus += (wrestler.stats?.charisma || 0) * 15 * multiplier;
-      fameBonus += Math.max(1, Math.floor((wrestler.stats?.fame || 0) / 10));
-    });
-    const mediaWrestler = assignments.media ? findWrestlerById(assignments.media) : null;
-    if (mediaWrestler) {
-      summary.results.forEach((result) => {
-        if (result.kind === "side") {
-          const bonus = Math.floor(result.income * 0.3);
-          result.income += bonus;
-          summary.totalIncome += bonus;
-        }
-      });
-      summary.bonusLines.push(`${mediaWrestler.name}의 미디어 효과로 사이드 수익 ×1.3`);
-    }
+    const managementApi = window.__RING_DYNASTY_MANAGEMENT_BUFFS__;
+    const franchise = managementApi?.getFranchiseSlotEffect ? managementApi.getFranchiseSlotEffect() : null;
+    const incomeBonus = franchise ? franchise.income * (isPpvWeek(summary.week) ? 2 : 1) : 0;
     if (incomeBonus > 0) {
       summary.totalIncome += incomeBonus;
-      summary.bonusLines.push(`간판 슬롯 보너스 +${formatNumber(incomeBonus)} G`);
-    }
-    if (fameBonus > 0) {
-      summary.fameDelta += fameBonus;
+      summary.bonusLines.push(`${franchise.wrestler.name} 간판 수익 +${formatNumber(incomeBonus)} G`);
+      summary.bonusLines.push(`프랜차이즈 오라: 경기 선수 전스탯 +${franchise.aura}`);
     }
   }
 
@@ -810,7 +804,6 @@ if (!window.__RING_DYNASTY_PPV_INVADERS__) {
   const baseRenderHomeMainContent = renderHomeMainContent;
   renderHomeMainContent = function () {
     baseRenderHomeMainContent();
-    injectPpvBannerIntoHome();
   };
 
   const baseRenderCardsMainContent = renderCardsMainContent;
@@ -861,17 +854,6 @@ if (!window.__RING_DYNASTY_PPV_INVADERS__) {
   const baseRenderHomeSidePanel = renderHomeSidePanel;
   renderHomeSidePanel = function () {
     baseRenderHomeSidePanel();
-    const phase = getInvaderPhase();
-    if (phase === "normal") {
-      return;
-    }
-    const invader = getActiveInvader();
-    sideListEl.insertAdjacentHTML("afterbegin", `
-      <div class="side-card" style="border-color:${phase === "ppv" ? "#f1c40f" : "#e67e22"};">
-        <div class="side-card-title">PPV 침략자</div>
-        <div class="side-card-desc">${invader.name}<br>${invader.abilityName}<br>${phase === "ppv" ? "오늘 밤 침략자가 메인 경기를 장악합니다." : `${getWeeksUntilInvaderPpv()}주 후 침략자 도착`}</div>
-      </div>
-    `);
   };
 
   function recruitInvader(invaderId, method) {

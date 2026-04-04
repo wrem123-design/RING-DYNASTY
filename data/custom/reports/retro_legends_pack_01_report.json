@@ -1,0 +1,127 @@
+{
+  "set_name": "retro_legends_pack_01",
+  "atlas_path": "C:\\Users\\wwgww\\Desktop\\새 폴더\\배경제거\\1-1.png",
+  "atlas_size": {
+    "width": 2048,
+    "height": 390
+  },
+  "output_dir": "data/images/wrestlers/custom/retro_legends_pack_01",
+  "manifest_path": "data/custom/custom_sprite_manifest.js",
+  "registry_path": "data/custom/custom_sprite_registry.json",
+  "slots": [
+    {
+      "order": 1,
+      "wrestler_id": "randy_savage",
+      "name": "Randy Savage",
+      "sprite_path": "data/images/wrestlers/custom/retro_legends_pack_01/randy_savage.png",
+      "source_box": {
+        "x": 3,
+        "y": 7,
+        "width": 342,
+        "height": 383
+      },
+      "trim_offset": {
+        "x": 10,
+        "y": 10,
+        "width": 322,
+        "height": 373
+      },
+      "registered_template": false
+    },
+    {
+      "order": 2,
+      "wrestler_id": "andre_the_giant",
+      "name": "Andre The Giant",
+      "sprite_path": "data/images/wrestlers/custom/retro_legends_pack_01/andre_the_giant.png",
+      "source_box": {
+        "x": 385,
+        "y": 0,
+        "width": 259,
+        "height": 390
+      },
+      "trim_offset": {
+        "x": 10,
+        "y": 6,
+        "width": 239,
+        "height": 384
+      },
+      "registered_template": true
+    },
+    {
+      "order": 3,
+      "wrestler_id": "roddy_piper",
+      "name": "Roddy Piper",
+      "sprite_path": "data/images/wrestlers/custom/retro_legends_pack_01/roddy_piper.png",
+      "source_box": {
+        "x": 742,
+        "y": 13,
+        "width": 235,
+        "height": 377
+      },
+      "trim_offset": {
+        "x": 10,
+        "y": 10,
+        "width": 215,
+        "height": 367
+      },
+      "registered_template": true
+    },
+    {
+      "order": 4,
+      "wrestler_id": "ultimate_warrior",
+      "name": "Ultimate Warrior",
+      "sprite_path": "data/images/wrestlers/custom/retro_legends_pack_01/ultimate_warrior.png",
+      "source_box": {
+        "x": 1066,
+        "y": 5,
+        "width": 250,
+        "height": 385
+      },
+      "trim_offset": {
+        "x": 9,
+        "y": 10,
+        "width": 231,
+        "height": 375
+      },
+      "registered_template": false
+    },
+    {
+      "order": 5,
+      "wrestler_id": "ric_flair",
+      "name": "Ric Flair",
+      "sprite_path": "data/images/wrestlers/custom/retro_legends_pack_01/ric_flair.png",
+      "source_box": {
+        "x": 1416,
+        "y": 9,
+        "width": 240,
+        "height": 381
+      },
+      "trim_offset": {
+        "x": 10,
+        "y": 10,
+        "width": 220,
+        "height": 371
+      },
+      "registered_template": true
+    },
+    {
+      "order": 6,
+      "wrestler_id": "dusty_rhodes",
+      "name": "Dusty Rhodes",
+      "sprite_path": "data/images/wrestlers/custom/retro_legends_pack_01/dusty_rhodes.png",
+      "source_box": {
+        "x": 1750,
+        "y": 14,
+        "width": 251,
+        "height": 376
+      },
+      "trim_offset": {
+        "x": 10,
+        "y": 10,
+        "width": 231,
+        "height": 366
+      },
+      "registered_template": true
+    }
+  ]
+}

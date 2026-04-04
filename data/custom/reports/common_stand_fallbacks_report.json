@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-04-04T17:13:16.556Z",
+  "count": 3,
+  "assignments": [
+    {
+      "wrestler_id": "nia_jax",
+      "grade": "A",
+      "fallback_source_id": "dexter_lumis",
+      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png"
+    },
+    {
+      "wrestler_id": "r_truth",
+      "grade": "A",
+      "fallback_source_id": "brooks_jensen",
+      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/brooks_jensen.png"
+    },
+    {
+      "wrestler_id": "solo_sikoa",
+      "grade": "A",
+      "fallback_source_id": "akira_tozawa",
+      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png"
+    }
+  ]
+}

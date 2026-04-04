@@ -1,0 +1,32 @@
+{
+  "set_name": "dont_use_batch_01_1_3",
+  "atlas_path": "D:\\Games\\RING DYNASTY\\data\\images\\dont use this files\\1-3.png",
+  "atlas_size": {
+    "width": 2048,
+    "height": 401
+  },
+  "output_dir": "data/images/wrestlers/custom/dont_use_batch_01",
+  "manifest_path": "data/custom/custom_sprite_manifest.js",
+  "registry_path": "data/custom/custom_sprite_registry.json",
+  "slots": [
+    {
+      "order": 1,
+      "wrestler_id": "booker_t",
+      "name": "Booker T",
+      "sprite_path": "data/images/wrestlers/custom/dont_use_batch_01/booker_t.png",
+      "source_box": {
+        "x": 1415,
+        "y": 13,
+        "width": 247,
+        "height": 388
+      },
+      "trim_offset": {
+        "x": 10,
+        "y": 10,
+        "width": 227,
+        "height": 378
+      },
+      "registered_template": true
+    }
+  ]
+}

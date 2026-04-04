@@ -1,0 +1,73 @@
+{
+  "set_name": "retro_legends_pack_01",
+  "atlas_path": "C:/Users/wwgww/Desktop/새 폴더/배경제거/1-1.png",
+  "output_dir": "data/images/wrestlers/custom/retro_legends_pack_01",
+  "manifest_path": "data/custom/custom_sprite_manifest.js",
+  "registry_path": "data/custom/custom_sprite_registry.json",
+  "report_path": "data/custom/reports/retro_legends_pack_01_report.json",
+  "detect": {
+    "min_alpha": 8,
+    "min_pixels_per_column": 8,
+    "merge_gap": 24,
+    "padding": 10,
+    "trim": true
+  },
+  "slots": [
+    {
+      "wrestler_id": "randy_savage",
+      "name": "Randy Savage",
+      "nickname": "Macho Man",
+      "grade": "S",
+      "popularity": 96,
+      "finisher": "Flying Elbow Drop"
+    },
+    {
+      "wrestler_id": "andre_the_giant",
+      "name": "Andre The Giant",
+      "nickname": "The Eighth Wonder",
+      "grade": "LEGEND",
+      "popularity": 98,
+      "finisher": "Giant Press Slam",
+      "style": "powerhouse",
+      "register_template": true
+    },
+    {
+      "wrestler_id": "roddy_piper",
+      "name": "Roddy Piper",
+      "nickname": "Rowdy",
+      "grade": "S",
+      "popularity": 94,
+      "finisher": "Sleeper Hold",
+      "style": "showman",
+      "register_template": true
+    },
+    {
+      "wrestler_id": "ultimate_warrior",
+      "name": "Ultimate Warrior",
+      "nickname": "The Warrior",
+      "grade": "S",
+      "popularity": 95,
+      "finisher": "Warrior Splash"
+    },
+    {
+      "wrestler_id": "ric_flair",
+      "name": "Ric Flair",
+      "nickname": "Nature Boy",
+      "grade": "LEGEND",
+      "popularity": 97,
+      "finisher": "Figure Four Leglock",
+      "style": "showman",
+      "register_template": true
+    },
+    {
+      "wrestler_id": "dusty_rhodes",
+      "name": "Dusty Rhodes",
+      "nickname": "The American Dream",
+      "grade": "S",
+      "popularity": 94,
+      "finisher": "Bionic Elbow",
+      "style": "showman",
+      "register_template": true
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "set_name": "dont_use_batch_01_1_2",
+  "atlas_path": "D:\\Games\\RING DYNASTY\\data\\images\\dont use this files\\1-2.png",
+  "atlas_size": {
+    "width": 2048,
+    "height": 377
+  },
+  "output_dir": "data/images/wrestlers/custom/dont_use_batch_01",
+  "manifest_path": "data/custom/custom_sprite_manifest.js",
+  "registry_path": "data/custom/custom_sprite_registry.json",
+  "slots": [
+    {
+      "order": 1,
+      "wrestler_id": "bret_hart",
+      "name": "Bret Hart",
+      "sprite_path": "data/images/wrestlers/custom/dont_use_batch_01/bret_hart.png",
+      "source_box": {
+        "x": 47,
+        "y": 0,
+        "width": 242,
+        "height": 377
+      },
+      "trim_offset": {
+        "x": 10,
+        "y": 9,
+        "width": 222,
+        "height": 365
+      },
+      "registered_template": true
+    },
+    {
+      "order": 2,
+      "wrestler_id": "yokozuna",
+      "name": "Yokozuna",
+      "sprite_path": "data/images/wrestlers/custom/dont_use_batch_01/yokozuna.png",
+      "source_box": {
+        "x": 1409,
+        "y": 1,
+        "width": 261,
+        "height": 376
+      },
+      "trim_offset": {
+        "x": 10,
+        "y": 10,
+        "width": 241,
+        "height": 362
+      },
+      "registered_template": true
+    }
+  ]
+}

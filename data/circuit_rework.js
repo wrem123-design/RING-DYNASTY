@@ -90,20 +90,96 @@ if (!window.__RING_DYNASTY_CIRCUIT_REWORK__) {
     }
   ];
 
-  const CIRCUIT_OPPONENTS = CIRCUIT_LADDER.flatMap((circuit, circuitIndex) => circuit.opponents.map((opponent, localIndex) => ({
-    ...opponent,
-    circuitId: circuit.id,
-    circuitLabel: circuit.label,
-    circuitIndex,
-    localRank: localIndex + 1,
-    globalRank: (circuitIndex * 5) + localIndex + 1,
-    grade: opponent.total >= 780 ? "LEGEND" : opponent.total >= 520 ? "S" : opponent.total >= 380 ? "A" : opponent.total >= 240 ? "B" : "C",
-    stats: buildCircuitStats(opponent.total, opponent.style),
-    bossRewardText: circuit.bossRewardText
-  })));
+  const CIRCUIT_WEAKNESS_STYLE = {
+    powerhouse: "technician",
+    technician: "showman",
+    showman: "powerhouse"
+  };
+
+  const hashCircuitSeed = (value) => {
+    let hash = 0;
+    const text = String(value || "");
+    for (let index = 0; index < text.length; index += 1) {
+      hash = ((hash << 5) - hash) + text.charCodeAt(index);
+      hash |= 0;
+    }
+    return Math.abs(hash);
+  };
+
+  const getCircuitOpponentGrade = (total) => (
+    total >= 780 ? "LEGEND" : total >= 520 ? "S" : total >= 380 ? "A" : total >= 240 ? "B" : "C"
+  );
+
+  const getCircuitTemplatePool = (grade, excludedTemplateIds = []) => {
+    const excluded = new Set((excludedTemplateIds || []).filter(Boolean));
+    const gradePool = wrestlerPool.filter((wrestler) => wrestler?.grade === grade && !excluded.has(wrestler.id));
+    if (gradePool.length) {
+      return gradePool;
+    }
+    const fallbackPool = wrestlerPool.filter((wrestler) => !excluded.has(wrestler.id));
+    return fallbackPool.length ? fallbackPool : wrestlerPool.slice();
+  };
+
+  const pickCircuitTemplateForSlot = (slotKey, grade, excludedTemplateIds = []) => {
+    const pool = getCircuitTemplatePool(grade, excludedTemplateIds);
+    if (!pool.length) {
+      return null;
+    }
+    return pool[hashCircuitSeed(`${slotKey}:${grade}`) % pool.length];
+  };
+
+  let circuitOpponentsCache = null;
+  let circuitOpponentsCacheKey = "";
+
+  const buildCircuitOpponents = () => {
+    const usedCircuitTemplateIds = new Set();
+    return CIRCUIT_LADDER.flatMap((circuit, circuitIndex) => circuit.opponents.map((opponent, localIndex) => {
+      const grade = getCircuitOpponentGrade(opponent.total);
+      const template = pickCircuitTemplateForSlot(`${circuit.id}:${opponent.id}`, grade, Array.from(usedCircuitTemplateIds));
+      if (template?.id) {
+        usedCircuitTemplateIds.add(template.id);
+      }
+      const style = template?.style || opponent.style;
+      return {
+        ...opponent,
+        name: template?.name || opponent.name,
+        nickname: template?.nickname || opponent.nickname,
+        style,
+        weaknessStyle: CIRCUIT_WEAKNESS_STYLE[style] || opponent.weaknessStyle,
+        finisher: template?.finisher || opponent.finisher,
+        templateId: template?.id || opponent.id,
+        spriteSheet: template?.spriteSheet || null,
+        battleSpriteSheet: template?.battleSpriteSheet || null,
+        spriteFrames: Number.isFinite(template?.spriteFrames) ? template.spriteFrames : 1,
+        battleSpriteFrames: Number.isFinite(template?.battleSpriteFrames) ? template.battleSpriteFrames : 1,
+        portraitMode: typeof template?.portraitMode === "boolean" ? template.portraitMode : true,
+        spriteColor: template?.spriteColor || getGradeColor(grade),
+        circuitId: circuit.id,
+        circuitLabel: circuit.label,
+        circuitIndex,
+        localRank: localIndex + 1,
+        globalRank: (circuitIndex * 5) + localIndex + 1,
+        grade,
+        stats: buildCircuitStats(opponent.total, style),
+        bossRewardText: circuit.bossRewardText
+      };
+    }));
+  };
+
+  const getCircuitOpponents = () => {
+    const nextCacheKey = wrestlerPool.map((wrestler) => wrestler.id).join("|");
+    if (!Array.isArray(circuitOpponentsCache) || circuitOpponentsCacheKey !== nextCacheKey) {
+      circuitOpponentsCache = buildCircuitOpponents();
+      circuitOpponentsCacheKey = nextCacheKey;
+    }
+    return circuitOpponentsCache;
+  };
 
   const getCircuitRankFloor = (rank) => (Math.floor((Math.max(1, rank) - 1) / 5) * 5) + 1;
-  const getCircuitOpponentByRank = (rank) => CIRCUIT_OPPONENTS.find((opponent) => opponent.globalRank === clamp(rank, 1, 25)) || CIRCUIT_OPPONENTS[0];
+  const getCircuitOpponentByRank = (rank) => {
+    const opponents = getCircuitOpponents();
+    return opponents.find((opponent) => opponent.globalRank === clamp(rank, 1, 25)) || opponents[0];
+  };
   const getCircuitProgressState = () => {
     if (!gameState.weeklySchedule || typeof gameState.weeklySchedule !== "object") {
       gameState.weeklySchedule = createEmptyWeeklySchedule();
@@ -209,7 +285,7 @@ if (!window.__RING_DYNASTY_CIRCUIT_REWORK__) {
 
   const createCircuitBattleWrestler = (opponent) => createWrestler({
     id: opponent.id,
-    templateId: opponent.id,
+    templateId: opponent.templateId || opponent.id,
     name: opponent.name,
     nickname: opponent.nickname,
     grade: opponent.grade,
@@ -223,20 +299,61 @@ if (!window.__RING_DYNASTY_CIRCUIT_REWORK__) {
     losses: 0,
     condition: 100,
     finisher: opponent.finisher,
-    spriteColor: getGradeColor(opponent.grade),
+    spriteSheet: opponent.spriteSheet || null,
+    battleSpriteSheet: opponent.battleSpriteSheet || null,
+    spriteFrames: Number.isFinite(opponent.spriteFrames) ? opponent.spriteFrames : 1,
+    battleSpriteFrames: Number.isFinite(opponent.battleSpriteFrames) ? opponent.battleSpriteFrames : 1,
+    portraitMode: Boolean(opponent.portraitMode),
+    spriteColor: opponent.spriteColor || getGradeColor(opponent.grade),
     status: "match"
   });
 
-  const buildBattleReadyWrestler = (wrestler) => createWrestler({
-    ...structuredClone(wrestler),
-    stats: getConditionAdjustedStats(wrestler)
-  });
+  const getManagementBattleStats = (wrestler, baseStats) => {
+    const api = window.__RING_DYNASTY_MANAGEMENT_BUFFS__;
+    return api?.getBattleReadyStats ? api.getBattleReadyStats(wrestler, baseStats) : baseStats;
+  };
+
+  const buildBattleReadyWrestler = (wrestler) => {
+    if (!wrestler) {
+      return wrestler;
+    }
+    if (wrestler.managementBattleReady) {
+      return createWrestler({
+        ...structuredClone(wrestler),
+        stats: structuredClone(wrestler.stats || {})
+      });
+    }
+    return createWrestler({
+      ...structuredClone(wrestler),
+      stats: getManagementBattleStats(wrestler, getConditionAdjustedStats(wrestler)),
+      managementBattleReady: true
+    });
+  };
 
   const getEffectivePowerValue = (wrestler) => {
     if (!wrestler) {
       return 0;
     }
-    const stats = wrestler.stats ? getConditionAdjustedStats(wrestler) : {};
+    const stats = wrestler.managementBattleReady
+      ? structuredClone(wrestler.stats || {})
+      : (wrestler.stats ? getConditionAdjustedStats(wrestler) : {});
+    return (
+      (stats.power || 0)
+      + (stats.stamina || 0)
+      + (stats.technique || 0)
+      + (stats.charisma || 0)
+      + (stats.fame || 0)
+    ) / 5;
+  };
+
+  const getBattleEffectivePowerValue = (wrestler) => {
+    if (!wrestler) {
+      return 0;
+    }
+    const baseStats = wrestler.managementBattleReady
+      ? structuredClone(wrestler.stats || {})
+      : (wrestler.stats ? getConditionAdjustedStats(wrestler) : {});
+    const stats = wrestler.managementBattleReady ? baseStats : getManagementBattleStats(wrestler, baseStats);
     return (
       (stats.power || 0)
       + (stats.stamina || 0)
@@ -255,9 +372,9 @@ if (!window.__RING_DYNASTY_CIRCUIT_REWORK__) {
     if (!wrestler || !opponent) {
       return 0;
     }
-    const wrestlerPower = getEffectivePowerValue(wrestler);
+    const wrestlerPower = getBattleEffectivePowerValue(wrestler);
     const opponentProxy = createCircuitBattleWrestler(opponent);
-    const opponentPower = getEffectivePowerValue(opponentProxy);
+    const opponentPower = getBattleEffectivePowerValue(opponentProxy);
     const conditionMeta = getConditionTierMeta(wrestler.condition || 100);
     const styleBonus = getStyleAdvantageBonus(wrestler.style, opponent.style);
     const weaknessBonus = opponent.weaknessStyle === wrestler.style ? 12 : 0;
@@ -489,7 +606,7 @@ if (!window.__RING_DYNASTY_CIRCUIT_REWORK__) {
   };
 
   const openOpponentAnalysisModal = (opponentId = getCurrentCircuitOpponent()?.id) => {
-    const opponent = CIRCUIT_OPPONENTS.find((entry) => entry.id === opponentId);
+    const opponent = getCircuitOpponents().find((entry) => entry.id === opponentId);
     if (!opponent) {
       return;
     }
@@ -743,105 +860,95 @@ if (!window.__RING_DYNASTY_CIRCUIT_REWORK__) {
   };
 
   getHomeMatchPreviewLines = function () {
-    const progress = getCircuitProgressMeta();
-    const opponent = getCurrentCircuitOpponent();
-    const ace = getMainAssignedWrestler();
-    return [
-      progress.progressLabel,
-      opponent ? `다음 상대: ${opponent.name}` : "월드 챔피언십 완료",
-      ace && opponent ? `에이스 ${ace.name} · 예상 승률 ${estimateWinRate(ace, opponent)}%` : "메인 경기 선수 배치 필요",
-      `사이드 경기 ${getReadySideMatches().length}/2`
-    ];
+    const readyMatches = getReadyMatches().map((slot) => {
+      const wrestlerA = findWrestlerById(slot.wrestlerAId);
+      const wrestlerB = findWrestlerById(slot.wrestlerBId);
+      if (!wrestlerA || !wrestlerB) {
+        return null;
+      }
+      return `${wrestlerA.name} VS ${wrestlerB.name}`;
+    }).filter(Boolean);
+    return readyMatches.length ? readyMatches : ["이번 주 아직 편성된 경기가 없습니다"];
   };
 
   renderHomeMainContent = function () {
-    const progress = getCircuitProgressMeta();
-    const opponent = getCurrentCircuitOpponent();
-    const ace = getMainAssignedWrestler();
+    const showCard = getShowCardSummary();
+    const bestCard = getBestCardSummary();
+    const contractSummary = getContractAlertSummary();
+    const monthlyPayroll = getMonthlyPayrollEstimate();
+    const summaryNet = pendingWeeklySummary
+      ? formatNumber((pendingWeeklySummary.totalIncome || 0) - (pendingWeeklySummary.salaryTotal || 0))
+      : null;
+    const homeSupportText = pendingWeeklySummary
+      ? `직전 쇼 순이익 ${summaryNet}G · 관중 ${formatNumber(pendingWeeklySummary.totalAudience || 0)}명`
+      : "저장 데이터로 바로 이어집니다. 핵심 비용과 계약만 짧게 확인합니다.";
     mainDynamicContentEl.innerHTML = `
-      <div class="home-canvas-wrap">
-        <div class="canvas-shell">
-          <button class="canvas-skip-button ${matchAnimationState.running ? "" : "hidden"}" id="canvasSkipButton">스킵</button>
-          <canvas id="matchCanvas" width="640" height="560"></canvas>
+      <div class="home-stack">
+        <section>
+          <div class="home-overview-card">
+            <div class="home-overview-top">
+              <div>
+                <div class="hero-eyebrow">Home Control</div>
+                <h3 class="hero-headline">홈 요약</h3>
+                <p class="hero-support">${homeSupportText}</p>
+              </div>
+            </div>
+            <div class="home-summary-grid">
+              <article class="home-summary-card">
+                <div class="home-summary-label">최고 카드</div>
+                <div class="home-summary-value">${bestCard.name}</div>
+                <div class="home-summary-note">${bestCard.note}</div>
+              </article>
+              <article class="home-summary-card">
+                <div class="home-summary-label">월 지출 예상</div>
+                <div class="home-summary-value">${formatNumber(monthlyPayroll)}G</div>
+                <div class="home-summary-note">주급 ${formatNumber(getWeeklySalaryTotal())}G x 4주</div>
+              </article>
+              <article class="home-summary-card">
+                <div class="home-summary-label">계약 임박</div>
+                <div class="home-summary-value">${contractSummary.value}</div>
+                <div class="home-summary-note">${contractSummary.note}</div>
+              </article>
+            </div>
+          </div>
+          <div class="home-canvas-wrap">
+            <div class="canvas-shell">
+              <button class="canvas-skip-button ${matchAnimationState.running ? "" : "hidden"}" id="canvasSkipButton">스킵</button>
+              <canvas id="matchCanvas" width="640" height="560"></canvas>
+              <div class="arena-overlay">
+                ${showCard.readyMatches ? "" : `
+                  <div class="arena-bottom-bar">
+                    <div class="arena-bottom-grid">
+                      <button class="arena-action-button" data-nav-tab="roster" style="grid-column:1 / -1;justify-self:start;">로스터에서 카드 편성</button>
+                    </div>
+                  </div>
+                `}
+              </div>
+            </div>
+          </div>
         </div>
-        ${titleScreenVisible ? `
-          <div class="title-screen-box">
-            <div class="title-screen-logo">RING DYNASTY</div>
-            <div class="panel-subtitle">랭킹 사다리를 오르며 월드 챔피언십 정상에 도전하세요.</div>
-            <div class="title-screen-actions">
-              <button class="title-screen-button" id="startGameButton">새 게임 시작</button>
-              <button class="title-screen-button" id="continueGameButton" ${titleScreenHasSave ? "" : "disabled"}>이어하기</button>
-            </div>
-          </div>
-        ` : `
-          <div class="home-preview-box">
-            <div style="font-weight:700;color:#f1c40f;margin-bottom:8px;">현재 위치</div>
-            <div>${progress.progressLabel}</div>
-            <div class="hype-bar" style="margin:10px 0 12px;">
-              <div class="hype-fill" style="width:${progress.progressPercent}%;"></div>
-            </div>
-            <div>⚔️ 다음 상대: ${opponent ? opponent.name : "모든 서킷 클리어"}</div>
-            <div>보상: ${opponent ? getCircuitRewardText(opponent.reward) : "프레스티지 도전 가능"}</div>
-            <div>${ace && opponent ? `에이스 ${ace.name} · 예상 승률 ${estimateWinRate(ace, opponent)}%` : "메인 경기 선수 미배치"}</div>
-            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
-              <button class="booking-button auto" data-action="open-main-analysis">상대 분석</button>
-              <button class="booking-button start" data-action="goto-cards-tab">편성하러 가기</button>
-            </div>
-          </div>
-        `}
-      </div>
+      </section>
+    </div>
     `;
     const skipButton = document.getElementById("canvasSkipButton");
     if (skipButton) {
       skipButton.addEventListener("click", skipMatchAnimation);
     }
-    const startGameButton = document.getElementById("startGameButton");
-    if (startGameButton) {
-      startGameButton.addEventListener("click", startNewGameFromTitle);
-    }
-    const continueGameButton = document.getElementById("continueGameButton");
-    if (continueGameButton) {
-      continueGameButton.addEventListener("click", continueFromTitle);
-    }
-    const analysisButton = mainDynamicContentEl.querySelector('[data-action="open-main-analysis"]');
-    if (analysisButton) {
-      analysisButton.addEventListener("click", () => openOpponentAnalysisModal());
-    }
-    const goCardsButton = mainDynamicContentEl.querySelector('[data-action="goto-cards-tab"]');
-    if (goCardsButton) {
-      goCardsButton.addEventListener("click", () => {
-        activeTab = "cards";
-        renderActiveTab();
+    Array.from(mainDynamicContentEl.querySelectorAll("[data-nav-tab]")).forEach((button) => {
+      button.addEventListener("click", () => {
+        const nextTab = button.dataset.navTab;
+        if (!nextTab) {
+          return;
+        }
+        activeTab = nextTab;
+        render();
       });
-    }
+    });
     drawCurrentCanvasFrame(performance.now());
   };
 
   renderHomeSidePanel = function () {
-    const progress = getCircuitProgressMeta();
-    const opponent = getCurrentCircuitOpponent();
-    const recommended = opponent ? getRecommendedWrestlerForOpponent(opponent) : null;
-    const progressState = getCircuitProgressState();
-    sideListEl.innerHTML = `
-      <div class="hype-panel">
-        <div class="side-card">
-          <div class="side-card-title">진행도 패널</div>
-          <div class="side-card-desc">${progress.progressLabel}<br>보스까지 ${opponent ? 6 - opponent.localRank : 0}경기 남음<br>보상: ${progress.rewardText}</div>
-        </div>
-        <div class="side-card">
-          <div class="side-card-title">다음 상대</div>
-          <div class="side-card-desc">${opponent ? `${opponent.name} (${opponent.localRank}위)` : "최종 보스 격파 완료"}<br>${opponent ? `예상 난이도 ${getOpponentDifficultyText(opponent, recommended)}` : "프레스티지 도전 가능"}</div>
-        </div>
-        <div class="side-card">
-          <div class="side-card-title">추천 선수</div>
-          <div class="side-card-desc">${recommended && opponent ? `${recommended.name} · 예상 승률 ${estimateWinRate(recommended, opponent)}%` : "추천 가능한 선수가 없습니다."}</div>
-        </div>
-        <div class="side-card">
-          <div class="side-card-title">랭킹 흐름</div>
-          <div class="side-card-desc">연승 ${progressState.consecutiveWins} · 연패 ${progressState.consecutiveLosses}<br>${progressState.revengeAvailable ? "즉시 재도전 가능" : "재도전 대기 없음"}</div>
-        </div>
-      </div>
-    `;
+    sideListEl.innerHTML = "";
   };
 
   createBookedSlotHtml = function (slotIndex, sideKey, wrestlerId) {
@@ -1273,7 +1380,7 @@ if (!window.__RING_DYNASTY_CIRCUIT_REWORK__) {
 
   const runMainCircuitMatch = (summary, battlePackages, options = {}) => {
     const opponent = options.opponentId
-      ? CIRCUIT_OPPONENTS.find((entry) => entry.id === options.opponentId)
+      ? getCircuitOpponents().find((entry) => entry.id === options.opponentId)
       : getCurrentCircuitOpponent();
     const wrestler = findWrestlerById(summary.mainWrestlerId);
     if (!opponent) {
@@ -1533,7 +1640,7 @@ if (!window.__RING_DYNASTY_CIRCUIT_REWORK__) {
 
   window.__RING_DYNASTY_CIRCUIT_API__ = {
     CIRCUIT_LADDER,
-    CIRCUIT_OPPONENTS,
+    getCircuitOpponents,
     estimateWinRate,
     getCircuitRewardText,
     getCircuitProgressState,
@@ -1552,13 +1659,9 @@ if (!window.__RING_DYNASTY_CIRCUIT_REWORK__) {
 
   TAB_CONTENT.home.mainTitle = "메인 무대";
   TAB_CONTENT.home.mainSubtitle = () => `Week ${gameState.week} · 서킷 ${getCircuitProgressMeta().progressLabel}`;
-  TAB_CONTENT.home.sideTitle = "진행도";
-  TAB_CONTENT.home.sideSubtitle = "현재 랭킹과 다음 상대를 확인합니다.";
-  TAB_CONTENT.home.mainInfo = [
-    { label: "현재 랭킹", value: () => `${getCircuitProgressState().currentRank}위` },
-    { label: "메인 경기", value: () => getMainAssignedWrestler() ? getMainAssignedWrestler().name : "미배치" },
-    { label: "사이드 경기", value: () => `${getReadySideMatches().length} / 2` }
-  ];
+  TAB_CONTENT.home.sideTitle = "";
+  TAB_CONTENT.home.sideSubtitle = "";
+  TAB_CONTENT.home.mainInfo = [];
   TAB_CONTENT.cards.mainTitle = () => `⚔️ Week ${gameState.week} 경기 편성`;
   TAB_CONTENT.cards.mainSubtitle = () => `메인 경기 1회 필수 · 사이드 경기 ${getReadySideMatches().length}/2`;
   TAB_CONTENT.cards.sideTitle = "서킷 정보";

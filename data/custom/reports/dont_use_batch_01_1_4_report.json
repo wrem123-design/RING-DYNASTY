@@ -1,0 +1,32 @@
+{
+  "set_name": "dont_use_batch_01_1_4",
+  "atlas_path": "D:\\Games\\RING DYNASTY\\data\\images\\dont use this files\\1-4.png",
+  "atlas_size": {
+    "width": 2048,
+    "height": 402
+  },
+  "output_dir": "data/images/wrestlers/custom/dont_use_batch_01",
+  "manifest_path": "data/custom/custom_sprite_manifest.js",
+  "registry_path": "data/custom/custom_sprite_registry.json",
+  "slots": [
+    {
+      "order": 1,
+      "wrestler_id": "the_fiend",
+      "name": "The Fiend",
+      "sprite_path": "data/images/wrestlers/custom/dont_use_batch_01/the_fiend.png",
+      "source_box": {
+        "x": 1065,
+        "y": 0,
+        "width": 263,
+        "height": 402
+      },
+      "trim_offset": {
+        "x": 10,
+        "y": 7,
+        "width": 243,
+        "height": 391
+      },
+      "registered_template": true
+    }
+  ]
+}

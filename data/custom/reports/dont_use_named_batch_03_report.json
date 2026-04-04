@@ -1,0 +1,315 @@
+{
+  "set_name": "dont_use_named_batch_03",
+  "source_dir": "D:\\Games\\RING DYNASTY\\data\\images\\dont use this files",
+  "output_dir": "data/images/wrestlers/custom/dont_use_named_batch_03",
+  "extras_dir": "data/images/wrestlers/custom/extras/dont_use_named_batch_03",
+  "registered_ids": [
+    "dominik_mysterio",
+    "trick_williams",
+    "braun_strowman",
+    "nikki_bella",
+    "oba_femi",
+    "shinsuke_nakamura",
+    "logan_paul",
+    "ronda_rousey",
+    "tiffany_stratton",
+    "damian_priest",
+    "bad_bunny"
+  ],
+  "files": [
+    {
+      "atlas_path": "D:\\Games\\RING DYNASTY\\data\\images\\dont use this files\\dominik_mysterio(중복 사용안함),  dominik_mysterio, trick_williams, braun_strowman, nikki_bella, oba_femi.png",
+      "atlas_size": {
+        "width": 2048,
+        "height": 394
+      },
+      "slots": [
+        {
+          "order": 1,
+          "raw_label": "dominik_mysterio(중복 사용안함)",
+          "label": "dominik_mysterio",
+          "duplicate_flag": true,
+          "resolved_id": "dominik_mysterio",
+          "resolved_name": "Dominik Mysterio",
+          "sprite_path": "data/images/wrestlers/custom/extras/dont_use_named_batch_03/dominik_mysterio_dominik_mysterio_trick_williams_braun_strowman_nikki_bella_oba_femi_dominik_mysterio_1.png",
+          "source_box": {
+            "x": 50,
+            "y": 5,
+            "width": 239,
+            "height": 389
+          },
+          "trim_offset": {
+            "x": 8,
+            "y": 8,
+            "width": 224,
+            "height": 379
+          },
+          "registered": false,
+          "reason": "duplicate"
+        },
+        {
+          "order": 2,
+          "raw_label": "dominik_mysterio",
+          "label": "dominik_mysterio",
+          "duplicate_flag": false,
+          "resolved_id": "dominik_mysterio",
+          "resolved_name": "Dominik Mysterio",
+          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_03/dominik_mysterio.png",
+          "source_box": {
+            "x": 396,
+            "y": 6,
+            "width": 238,
+            "height": 388
+          },
+          "trim_offset": {
+            "x": 8,
+            "y": 8,
+            "width": 222,
+            "height": 378
+          },
+          "registered": true,
+          "reason": "registered"
+        },
+        {
+          "order": 3,
+          "raw_label": "trick_williams",
+          "label": "trick_williams",
+          "duplicate_flag": false,
+          "resolved_id": "trick_williams",
+          "resolved_name": "Trick Williams",
+          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_03/trick_williams.png",
+          "source_box": {
+            "x": 737,
+            "y": 4,
+            "width": 241,
+            "height": 390
+          },
+          "trim_offset": {
+            "x": 8,
+            "y": 8,
+            "width": 225,
+            "height": 381
+          },
+          "registered": true,
+          "reason": "registered"
+        },
+        {
+          "order": 4,
+          "raw_label": "braun_strowman",
+          "label": "braun_strowman",
+          "duplicate_flag": false,
+          "resolved_id": "braun_strowman",
+          "resolved_name": "Braun Strowman",
+          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_03/braun_strowman.png",
+          "source_box": {
+            "x": 1066,
+            "y": 2,
+            "width": 253,
+            "height": 392
+          },
+          "trim_offset": {
+            "x": 8,
+            "y": 7,
+            "width": 237,
+            "height": 384
+          },
+          "registered": true,
+          "reason": "registered"
+        },
+        {
+          "order": 5,
+          "raw_label": "nikki_bella",
+          "label": "nikki_bella",
+          "duplicate_flag": false,
+          "resolved_id": "nikki_bella",
+          "resolved_name": "Nikki Bella",
+          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_03/nikki_bella.png",
+          "source_box": {
+            "x": 1425,
+            "y": 4,
+            "width": 233,
+            "height": 390
+          },
+          "trim_offset": {
+            "x": 7,
+            "y": 8,
+            "width": 218,
+            "height": 382
+          },
+          "registered": true,
+          "reason": "registered"
+        },
+        {
+          "order": 6,
+          "raw_label": "oba_femi",
+          "label": "oba_femi",
+          "duplicate_flag": false,
+          "resolved_id": "oba_femi",
+          "resolved_name": "Oba Femi",
+          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_03/oba_femi.png",
+          "source_box": {
+            "x": 1756,
+            "y": 4,
+            "width": 245,
+            "height": 390
+          },
+          "trim_offset": {
+            "x": 8,
+            "y": 8,
+            "width": 229,
+            "height": 381
+          },
+          "registered": true,
+          "reason": "registered"
+        }
+      ]
+    },
+    {
+      "atlas_path": "D:\\Games\\RING DYNASTY\\data\\images\\dont use this files\\shinsuke_nakamura, logan_paul, ronda_rousey, tiffany_stratton, damian_priest, bad_bunny.png",
+      "atlas_size": {
+        "width": 2048,
+        "height": 395
+      },
+      "slots": [
+        {
+          "order": 1,
+          "raw_label": "shinsuke_nakamura",
+          "label": "shinsuke_nakamura",
+          "duplicate_flag": false,
+          "resolved_id": "shinsuke_nakamura",
+          "resolved_name": "Shinsuke Nakamura",
+          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_03/shinsuke_nakamura.png",
+          "source_box": {
+            "x": 53,
+            "y": 4,
+            "width": 236,
+            "height": 391
+          },
+          "trim_offset": {
+            "x": 8,
+            "y": 8,
+            "width": 220,
+            "height": 381
+          },
+          "registered": true,
+          "reason": "registered"
+        },
+        {
+          "order": 2,
+          "raw_label": "logan_paul",
+          "label": "logan_paul",
+          "duplicate_flag": false,
+          "resolved_id": "logan_paul",
+          "resolved_name": "Logan Paul",
+          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_03/logan_paul.png",
+          "source_box": {
+            "x": 398,
+            "y": 6,
+            "width": 235,
+            "height": 389
+          },
+          "trim_offset": {
+            "x": 7,
+            "y": 8,
+            "width": 220,
+            "height": 379
+          },
+          "registered": true,
+          "reason": "registered"
+        },
+        {
+          "order": 3,
+          "raw_label": "ronda_rousey",
+          "label": "ronda_rousey",
+          "duplicate_flag": false,
+          "resolved_id": "ronda_rousey",
+          "resolved_name": "Ronda Rousey",
+          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_03/ronda_rousey.png",
+          "source_box": {
+            "x": 744,
+            "y": 10,
+            "width": 232,
+            "height": 385
+          },
+          "trim_offset": {
+            "x": 7,
+            "y": 8,
+            "width": 217,
+            "height": 375
+          },
+          "registered": true,
+          "reason": "registered"
+        },
+        {
+          "order": 4,
+          "raw_label": "tiffany_stratton",
+          "label": "tiffany_stratton",
+          "duplicate_flag": false,
+          "resolved_id": "tiffany_stratton",
+          "resolved_name": "Tiffany Stratton",
+          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_03/tiffany_stratton.png",
+          "source_box": {
+            "x": 1086,
+            "y": 6,
+            "width": 226,
+            "height": 389
+          },
+          "trim_offset": {
+            "x": 8,
+            "y": 8,
+            "width": 210,
+            "height": 378
+          },
+          "registered": true,
+          "reason": "registered"
+        },
+        {
+          "order": 5,
+          "raw_label": "damian_priest",
+          "label": "damian_priest",
+          "duplicate_flag": false,
+          "resolved_id": "damian_priest",
+          "resolved_name": "Damian Priest",
+          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_03/damian_priest.png",
+          "source_box": {
+            "x": 1420,
+            "y": 7,
+            "width": 237,
+            "height": 388
+          },
+          "trim_offset": {
+            "x": 8,
+            "y": 8,
+            "width": 221,
+            "height": 378
+          },
+          "registered": true,
+          "reason": "registered"
+        },
+        {
+          "order": 6,
+          "raw_label": "bad_bunny",
+          "label": "bad_bunny",
+          "duplicate_flag": false,
+          "resolved_id": "bad_bunny",
+          "resolved_name": "Bad Bunny",
+          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_03/bad_bunny.png",
+          "source_box": {
+            "x": 1762,
+            "y": 4,
+            "width": 233,
+            "height": 391
+          },
+          "trim_offset": {
+            "x": 7,
+            "y": 8,
+            "width": 218,
+            "height": 381
+          },
+          "registered": true,
+          "reason": "registered"
+        }
+      ]
+    }
+  ]
+}
