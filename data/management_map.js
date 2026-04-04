@@ -1633,15 +1633,6 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
       window.alert(issues[0]);
       return;
     }
-    syncManagementConfirmationState();
-    if (!isCurrentWeekConfirmed()) {
-      syncManagementMapToWeeklySchedule();
-      syncManagementConfirmationState();
-      if (!isCurrentWeekConfirmed()) {
-        window.alert("모든 경기 슬롯을 맞게 배치해야 경기를 시작할 수 있습니다.");
-        return;
-      }
-    }
     syncManagementMapToWeeklySchedule();
     baseStartWeeklyMatches();
     applyManagementMapBonusesToSummary();
@@ -1998,7 +1989,9 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
         ruleText: `${formatStatBonusText(getTrainingSlotBlueprint("specialTraining", 0)?.statBonuses || {})} · 경기 중복 가능`
       })
       : `<div class="management-slot"><div class="management-slot-icon">${SLOT_ICONS.specialTraining}</div><div class="management-slot-title">스타 클래스</div><div class="management-slot-rule">체육관 3레벨 + 3000G 해금</div></div>`;
-    const canStartWeek = getWeeklyMatchAssignmentIssues(assignments, managementMap).length === 0;
+    const weeklyIssues = getWeeklyMatchAssignmentIssues(assignments, managementMap);
+    const canStartWeek = weeklyIssues.length === 0;
+    const startIssueText = weeklyIssues[0] || "";
     const rosterSort = getManagementRosterSortKey();
     const rosterCards = getSortedManagementRoster().map((wrestler) => getManagementRosterCardHtml(wrestler)).join("");
     const bookingRows = [
@@ -2026,7 +2019,8 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
               <div class="management-bottom-subtitle">메인 이벤트와 각 라운드를 한 줄씩 보고, 내 카드를 드래그해서 바로 배치합니다.</div>
             </div>
             <div class="management-booking-actions">
-              <button class="management-weekly-button primary management-start-button" data-action="start-managed-week" ${canStartWeek ? "" : "disabled"}>경기 시작</button>
+              ${startIssueText ? `<div class="management-start-issue">${startIssueText}</div>` : ""}
+              <button class="management-weekly-button primary management-start-button ${canStartWeek ? "" : "is-blocked"}" data-action="start-managed-week" ${canStartWeek ? "" : 'aria-disabled="true"'}>경기 시작</button>
             </div>
           </div>
           <div class="management-match-list">

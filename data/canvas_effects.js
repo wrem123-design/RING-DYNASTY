@@ -69,20 +69,20 @@
       { l1: "[B]가 링 바닥에 쓰러졌다!", l2: "다운! [A]가 기회를 노린다!" }
     ],
     pin_attempt: [
-      { l1: "[A]가 [B]를 덮친다!", l2: "핀폴 시도! 하나...!" },
-      { l1: "[A]가 핀폴을 노린다!", l2: "심판의 손이 내려간다! 하나...!" }
+      { l1: "[A]가 [B]를 덮친다!", l2: "핀폴 시도! 1...!" },
+      { l1: "[A]가 핀폴을 노린다!", l2: "심판의 손이 내려간다! 1...!" }
     ],
     pin_kickout_1: [
-      { l1: "하나!", l2: "[B]가 어깨를 들어올린다! 탈출!" },
-      { l1: "하나!", l2: "[B]가 1카운트에 탈출했다!" }
+      { l1: "1!", l2: "[B]가 어깨를 들어올린다! 탈출!" },
+      { l1: "1!", l2: "[B]가 1카운트에 탈출했다!" }
     ],
     pin_kickout_2: [
-      { l1: "둘!!!", l2: "[B]가 극적으로 탈출!! 2카운트 탈출!!" },
-      { l1: "둘!!!", l2: "이럴 수가!! [B]가 2에 버텼다!!!" }
+      { l1: "2!!!", l2: "[B]가 극적으로 탈출!! 2카운트 탈출!!" },
+      { l1: "2!!!", l2: "이럴 수가!! [B]가 2에 버텼다!!!" }
     ],
     pin_success: [
-      { l1: "하나!! 둘!! 셋!!!", l2: "[A] 승리!!! 경기 종료!!!" },
-      { l1: "하나... 둘... 셋!!!", l2: "게임 오버!!! [A]가 이겼다!!!" }
+      { l1: "1!! 2!! 3!!!", l2: "[A] 승리!!! 경기 종료!!!" },
+      { l1: "1... 2... 3!!!", l2: "게임 오버!!! [A]가 이겼다!!!" }
     ],
     dodge: [
       { l1: "[B]가 순간적으로 몸을 피한다!", l2: "회피 성공! [A]의 공격이 빗나갔다!" }
@@ -1254,6 +1254,13 @@
       profile.pauseDuration = 220;
       profile.shakeIntensity = 2;
     }
+    if (event.type === "block") {
+      profile.knockback = 18;
+      profile.impactDuration = 95;
+      profile.pauseDuration = 260;
+      profile.shakeIntensity = Math.max(3, profile.shakeIntensity - 2);
+      profile.color = "#bdc3c7";
+    }
     if (event.type === "finisher-counter") {
       profile.knockback = 42;
       profile.impactDuration = 180;
@@ -1272,6 +1279,7 @@
     const turn = event.turn || 1;
     const maxTurns = getEventMaxTurns(battlePackage);
     const tech = attacker?.stats?.technique || 55;
+    const fame = attacker?.stats?.fame || 55;
     let scale = 1;
     if (turn <= 10) {
       scale *= 1.18;
@@ -1284,6 +1292,13 @@
       scale *= 0.92;
     } else if (tech <= 50) {
       scale *= 1.12;
+    }
+    if (fame >= 90) {
+      scale *= 0.82;
+    } else if (fame >= 75) {
+      scale *= 0.9;
+    } else if (fame <= 45) {
+      scale *= 1.08;
     }
     scale *= BATTLE_TEMPO_MULTIPLIER;
     const defenderCritical = (defender?.currentHP || 0) / Math.max(1, defender?.maxHP || 1) < 0.3;
@@ -1400,6 +1415,9 @@
     if (event.type === "finisher" || event.type === "finisher-counter") {
       return { bg: "finisher", color: "#e74c3c" };
     }
+    if (event.type === "block") {
+      return { bg: "normal", color: "#d5d8dc" };
+    }
     if (event.isCrit) {
       return { bg: "critical", color: "#f1c40f" };
     }
@@ -1446,6 +1464,9 @@
         ? `회피!! ${defenderName}가 빠져나간다!`
         : `막혔다!! ${defenderName}가 버텨낸다!`;
     }
+    if (event.type === "block") {
+      return `가드!! ${defenderName}가 충격을 흘린다!`;
+    }
     if (event.type === "finisher-counter") {
       return `카운터!! ${attackerName}가 되받아친다!`;
     }
@@ -1468,7 +1489,7 @@
       return event.pinResult.pinText || "KICK OUT!";
     }
     if (event.pinResult?.winner) {
-      return "하나... 둘... 셋!!!";
+      return "1... 2... 3!!!";
     }
     if (event.type === "pin") {
       return `다운!! ${event.damage || 0}!!`;
@@ -1693,13 +1714,13 @@
       return;
     }
     const pinProgress = clamp((localElapsed - timing.impactStart) / Math.max(1, timing.totalDuration - timing.impactStart), 0, 1);
-    let text = "하나...";
+    let text = "1...";
     if (pinProgress >= 0.66) {
       text = event.pinResult.winner
-        ? "하나... 둘... 셋!!!"
+        ? "1... 2... 3!!!"
         : (event.pinResult.pinText || "KICK OUT!");
     } else if (pinProgress >= 0.33) {
-      text = "하나... 둘...";
+      text = "1... 2...";
     }
     ctx.save();
     ctx.fillStyle = event.pinResult.winner ? "#f1c40f" : "#ecf0f1";
@@ -1786,6 +1807,9 @@
       if (event.type === "miss") {
         effectEngine.addImpactRing(impactX, impactY, "#95a5a6", 30, 3);
         effectEngine.addFloatingText(defenderX, defenderY - 86, (event.resultText || "").includes("DODGE") ? "DODGE!" : "BLOCK!", "#95a5a6", 18, true);
+      } else if (event.type === "block") {
+        effectEngine.addImpactRing(impactX, impactY, "#bdc3c7", 34, 4);
+        effectEngine.addFloatingText(defenderX, defenderY - 86, "GUARD!", "#ecf0f1", 18, true);
       } else if (event.type === "finisher-counter") {
         effectEngine.addPowerHit(attackerX, attackerY - 90);
         effectEngine.addFloatingText(attackerX, attackerY - 114, "COUNTER!", "#e74c3c", 24, true);

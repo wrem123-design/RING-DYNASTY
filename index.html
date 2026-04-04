@@ -12040,7 +12040,7 @@
           yA = 274;
           hpA = 0;
         }
-        const pinText = phaseData.progress < 0.33 ? "1 ..." : phaseData.progress < 0.66 ? "2 ..." : `3! WINNER: ${winner.name}!`;
+        const pinText = phaseData.progress < 0.33 ? "1 ..." : phaseData.progress < 0.66 ? "2 ..." : `3! ${winner.name} 승리!`;
         drawCanvasText(ctx, pinText, 90, 24, "#ecf0f1");
       } else if (phaseData.phase === "victory") {
         const stars = 3 + (winner.grade === "LEGEND" ? 2 : 1);
@@ -12189,9 +12189,8 @@
 
     // STEP 4 전용 최대 HP를 계산한다.
     function calcMaxHP(wrestler) {
-      const base = 300;
-      const staminaBonus = wrestler.stats.stamina * 4.5;
-      const powerBonus = wrestler.stats.power * 1.2;
+      const base = 260;
+      const staminaBonus = wrestler.stats.stamina * 6.2;
       const gradeMultiplier = {
         C: 1.0,
         B: 1.2,
@@ -12200,7 +12199,7 @@
         LEGEND: 2.2
       };
 
-      return Math.floor((base + staminaBonus + powerBonus) * (gradeMultiplier[wrestler.grade] || 1));
+      return Math.floor((base + staminaBonus) * (gradeMultiplier[wrestler.grade] || 1));
     }
 
     // 경기 시작 시 전투용 임시 상태를 만든다.
@@ -12340,7 +12339,7 @@
 
     // 피니셔 게이지를 충전한다.
     function chargeFinisherGauge(battleState, amount) {
-      const gainMultiplier = 1 + (battleState.stats.charisma * 0.005);
+      const gainMultiplier = 1 + (battleState.stats.fame * 0.0025);
       const momentumPenalty = battleState.momentum <= 20 ? 0.7 : 1;
       const styleMod = battleState.styleFinisherChargeModifier || 1;
       battleState.finisherGauge = clamp(
@@ -12368,16 +12367,16 @@
     // 기본 데미지 공식을 반환한다.
     function getMoveBaseDamage(attacker, moveType) {
       if (moveType === "basic") {
-        return 15 + (attacker.stats.power * 0.8);
+        return 10 + (attacker.stats.power * 0.75);
       }
       if (moveType === "power") {
-        return 35 + (attacker.stats.power * 1.6);
+        return 24 + (attacker.stats.power * 1.5);
       }
       if (moveType === "technical") {
-        return 28 + (attacker.stats.technique * 1.4);
+        return 18 + (attacker.stats.power * 0.7) + (attacker.stats.technique * 0.55);
       }
       if (moveType === "finisher") {
-        return (35 + (attacker.stats.power * 1.6)) * 3.5;
+        return (24 + (attacker.stats.power * 1.45)) * 3.2;
       }
       return 0;
     }
@@ -12386,16 +12385,17 @@
     function calcDamage(attacker, defender, moveType) {
       const base = getMoveBaseDamage(attacker, moveType);
       const staminaMod = getStaminaModifier(attacker.currentStamina);
-      const random = 0.85 + (Math.random() * 0.30);
-      const defense = clamp(1 - (defender.stats.stamina * 0.003), 0.7, 1);
+      const powerMod = clamp(1 + ((attacker.stats.power - 60) * 0.009), 0.75, 1.45);
+      const random = 0.9 + (Math.random() * 0.25);
+      const defense = clamp(1 - (defender.stats.stamina * 0.0025), 0.72, 1);
       const styleImpact = getStyleImpactModifier(attacker.style, defender.style);
       const momentumMod = attacker.momentum > 60
-        ? 1 + ((attacker.momentum - 60) * 0.008)
-        : 1 - ((60 - attacker.momentum) * 0.005);
-      const critChance = attacker.stats.charisma * 0.004;
+        ? 1 + ((attacker.momentum - 60) * 0.006)
+        : 1 - ((60 - attacker.momentum) * 0.004);
+      const critChance = clamp(((attacker.stats.power - 55) * 0.003) + (attacker.stats.technique * 0.0015), 0.03, 0.18);
       const isCrit = Math.random() < critChance;
-      const critMod = isCrit ? 1.75 : 1;
-      const finalDamage = Math.floor(base * staminaMod * random * defense * momentumMod * critMod * styleImpact.damage);
+      const critMod = isCrit ? 1.65 : 1;
+      const finalDamage = Math.floor(base * staminaMod * powerMod * random * defense * momentumMod * critMod * styleImpact.damage);
 
       return {
         damage: Math.max(1, finalDamage),
@@ -12406,18 +12406,17 @@
 
     // 명중률을 계산한다.
     function calcAttackSuccessChance(attacker, defender) {
-      let successChance = 75;
-      successChance += attacker.stats.technique * 0.2;
-      successChance -= defender.stats.technique * 0.15;
+      let successChance = 82;
+      successChance += attacker.stats.technique * 0.08;
       successChance -= getStaminaAccuracyPenalty(attacker.currentStamina);
       successChance += getStyleImpactModifier(attacker.style, defender.style).accuracy;
       if (attacker.momentum >= 80) {
-        successChance += 8;
+        successChance += 6;
       }
       if (attacker.momentum <= 30) {
-        successChance -= 10;
+        successChance -= 8;
       }
-      return clamp(successChance, 20, 95);
+      return clamp(successChance, 45, 97);
     }
 
     // 피니셔 성공률을 계산한다.
@@ -12431,6 +12430,44 @@
       return clamp(successChance, 40, 95);
     }
 
+    function calcDodgeChance(attacker, defender) {
+      const staminaRatio = defender.currentStamina / Math.max(1, defender.maxStamina || 100);
+      let chance = 0.02;
+      chance += defender.stats.technique * 0.0018;
+      chance -= attacker.stats.technique * 0.0007;
+      chance += defender.momentum >= 70 ? 0.015 : 0;
+      chance -= attacker.momentum >= 75 ? 0.01 : 0;
+      if (staminaRatio < 0.35) {
+        chance *= 0.7;
+      }
+      return clamp(chance, 0.02, 0.18);
+    }
+
+    function calcBlockChance(attacker, defender) {
+      const staminaRatio = defender.currentStamina / Math.max(1, defender.maxStamina || 100);
+      let chance = 0.05;
+      chance += defender.stats.charisma * 0.0022;
+      chance -= attacker.stats.power * 0.0008;
+      chance += defender.momentum >= 65 ? 0.015 : 0;
+      if (staminaRatio < 0.25) {
+        chance *= 0.75;
+      }
+      return clamp(chance, 0.05, 0.28);
+    }
+
+    function resolveDefenseReaction(attacker, defender, moveType) {
+      if (moveType === "finisher" || moveType === "submission") {
+        return { type: "none", multiplier: 1 };
+      }
+      if (Math.random() < calcDodgeChance(attacker, defender)) {
+        return { type: "dodge", multiplier: 0 };
+      }
+      if (Math.random() < calcBlockChance(attacker, defender)) {
+        return { type: "block", multiplier: 0.5 };
+      }
+      return { type: "none", multiplier: 1 };
+    }
+
     function calcAttackCount(attacker, moveType) {
       if (moveType === "finisher" || moveType === "submission") {
         return 1;
@@ -12438,16 +12475,16 @@
       const tech = attacker.stats.technique || 0;
       if (tech >= 85) {
         const roll = Math.random();
-        if (roll < 0.05) {
+        if (roll < 0.02) {
           return 3;
         }
-        if (roll < 0.35) {
+        if (roll < 0.16) {
           return 2;
         }
         return 1;
       }
       if (tech >= 70) {
-        return Math.random() < 0.20 ? 2 : 1;
+        return Math.random() < 0.08 ? 2 : 1;
       }
       return 1;
     }
@@ -12506,14 +12543,37 @@
     }
 
     // 현재 턴 선공을 정한다.
-    function chooseAttackerOrder(leftState, rightState) {
-      if (leftState.momentum !== rightState.momentum) {
-        return leftState.momentum > rightState.momentum ? [leftState, rightState] : [rightState, leftState];
+    function chooseAttackerOrder(leftState, rightState, nextAttackerId = "") {
+      if (nextAttackerId === leftState.id) {
+        return [leftState, rightState];
       }
-      if (leftState.stats.technique !== rightState.stats.technique) {
-        return leftState.stats.technique > rightState.stats.technique ? [leftState, rightState] : [rightState, leftState];
+      if (nextAttackerId === rightState.id) {
+        return [rightState, leftState];
+      }
+      const leftInitiative = (leftState.stats.fame * 1.1) + (leftState.momentum * 0.2) + (leftState.currentStamina * 0.08);
+      const rightInitiative = (rightState.stats.fame * 1.1) + (rightState.momentum * 0.2) + (rightState.currentStamina * 0.08);
+      if (Math.abs(leftInitiative - rightInitiative) >= 6) {
+        return leftInitiative > rightInitiative ? [leftState, rightState] : [rightState, leftState];
       }
       return Math.random() < 0.5 ? [leftState, rightState] : [rightState, leftState];
+    }
+
+    function shouldGrantBonusTurn(attacker, defender, moveType, success) {
+      if (!success || moveType === "finisher" || moveType === "submission") {
+        return false;
+      }
+      const fameGap = (attacker.stats.fame || 0) - (defender.stats.fame || 0);
+      const staminaRatio = attacker.currentStamina / Math.max(1, attacker.maxStamina || 100);
+      let chance = 0.02;
+      chance += Math.max(0, fameGap) * 0.0022;
+      chance += attacker.stats.fame >= 85 ? 0.04 : attacker.stats.fame >= 70 ? 0.02 : 0;
+      if (staminaRatio < 0.35) {
+        chance *= 0.6;
+      }
+      if ((defender.currentHP / Math.max(1, defender.maxHP || 1)) < 0.25) {
+        chance += 0.02;
+      }
+      return Math.random() < clamp(chance, 0.02, 0.18);
     }
 
     // 턴 시작 리소스 회복을 처리한다.
@@ -12565,7 +12625,7 @@
             escapedAt: count,
             kickoutChance,
             winner: null,
-            pinText: count === 1 ? "KICK OUT!" : "KICK OUT at 2!"
+            pinText: count === 1 ? "1 카운트 탈출!" : "2 카운트 탈출!"
           };
         }
       }
@@ -12574,7 +12634,7 @@
         escapedAt: 0,
         kickoutChance,
         winner: attacker,
-        pinText: `3! WINNER: ${attacker.name}!`
+        pinText: `3! ${attacker.name} 승리!`
       };
     }
 
@@ -12678,6 +12738,7 @@
       let loserState = null;
       let finishType = "PINFALL";
       let turn = 0;
+      let nextAttackerId = "";
       let currentHype = clamp(options.startingHype ?? gameState.hype, 0, 100);
       const styleMessage = getStyleImpactModifier(leftState.style, rightState.style).text || getStyleImpactModifier(rightState.style, leftState.style).text;
       if (leftState.alignment === "heel" && rightState.alignment !== "heel") {
@@ -12693,7 +12754,7 @@
       while (!winnerState && turn < turnLimit) {
         turn += 1;
         recoverBattleResources(leftState, rightState, currentHype);
-        const [attacker, defender] = chooseAttackerOrder(leftState, rightState);
+        const [attacker, defender] = chooseAttackerOrder(leftState, rightState, nextAttackerId);
         const beforeLeft = snapshotBattleState(leftState);
         const beforeRight = snapshotBattleState(rightState);
         let moveType = chooseMove(attacker, defender);
@@ -12710,6 +12771,7 @@
         let escapeAttempted = false;
         let comboCount = 1;
         let hitDamages = [];
+        let defenseReaction = "none";
 
         if (matchType === "CAGE_MATCH" && Math.random() < 0.10) {
           escapeAttempted = true;
@@ -12754,6 +12816,7 @@
           if (winnerState) {
             break;
           }
+          nextAttackerId = defender.id;
           continue;
         }
 
@@ -12784,6 +12847,7 @@
             }
           ));
           logDebugTurn(turn, attacker, "stunned", { damage: 0, defender });
+          nextAttackerId = defender.id;
           continue;
         }
 
@@ -12814,6 +12878,7 @@
             }
           ));
           logDebugTurn(turn, attacker, "rest", { damage: 0, defender });
+          nextAttackerId = defender.id;
           continue;
         }
 
@@ -12848,6 +12913,7 @@
             }
           ));
           logDebugTurn(turn, attacker, "rest", { damage: 0, defender });
+          nextAttackerId = defender.id;
           continue;
         }
 
@@ -12870,7 +12936,7 @@
           if (!attackSucceeded) {
             success = false;
             eventType = "miss";
-            resultText = Math.random() < 0.5 ? "DODGE!" : "BLOCKED!";
+            resultText = "DODGE!";
             shiftMomentum(defender, attacker, 5, currentHype, leftState, rightState);
           } else if (moveType === "finisher") {
             usedFinisher = true;
@@ -12939,6 +13005,14 @@
               shiftMomentum(defender, attacker, 15, currentHype, leftState, rightState);
             }
           } else {
+            const defenseOutcome = resolveDefenseReaction(attacker, defender, moveType);
+            defenseReaction = defenseOutcome.type;
+            if (defenseOutcome.type === "dodge") {
+              success = false;
+              eventType = "miss";
+              resultText = "DODGE!";
+              shiftMomentum(defender, attacker, 7, currentHype, leftState, rightState);
+            } else {
             comboCount = calcAttackCount(attacker, moveType);
             attacker.currentStamina = clamp(attacker.currentStamina - MOVE_COSTS[moveType] - ((comboCount - 1) * 4), 0, attacker.maxStamina);
             hitDamages = [];
@@ -12951,6 +13025,11 @@
               damage += hitDamage;
               hitDamages.push(hitDamage);
               isCrit = isCrit || damageResult.isCrit;
+            }
+            if (defenseOutcome.type === "block") {
+              eventType = "block";
+              hitDamages = hitDamages.map((value) => Math.max(1, Math.floor(value * defenseOutcome.multiplier)));
+              damage = hitDamages.reduce((sum, value) => sum + value, 0);
             }
             if (attacker.alignment === "heel" && moveType !== "technical" && Math.random() < 0.15) {
               cheapShotUsed = true;
@@ -12969,8 +13048,8 @@
             attacker.attackCount += comboCount;
             chargeFinisherGauge(attacker, damage * 0.08);
             chargeFinisherGauge(defender, damage * 0.04);
-            resultText = `→ ${damage} 데미지${comboCount > 1 ? ` / ${comboCount}연타` : ""}${isCrit ? " (치명타)" : ""}${cheapShotUsed ? " / 반칙 공격!" : ""}${cheapShotCaught ? " / 발각! Hype -8" : ""}`;
-            shiftMomentum(attacker, defender, isCrit ? 10 : 5, currentHype, leftState, rightState);
+            resultText = `${defenseOutcome.type === "block" ? "BLOCK! " : "→ "}${damage} 데미지${comboCount > 1 ? ` / ${comboCount}연타` : ""}${isCrit ? " (치명타)" : ""}${cheapShotUsed ? " / 반칙 공격!" : ""}${cheapShotCaught ? " / 발각! Hype -8" : ""}`;
+            shiftMomentum(attacker, defender, defenseOutcome.type === "block" ? 3 : (isCrit ? 10 : 5), currentHype, leftState, rightState);
 
             if (isCrit) {
               attacker.criticalHits += 1;
@@ -13015,6 +13094,7 @@
             if (cheapShotUsed && attacker.lossStreak >= 3 && attacker.alignment !== "heel") {
               attacker.pendingAlignmentTurn = "heel";
             }
+            }
           }
         }
 
@@ -13043,10 +13123,12 @@
             debugText: `${attacker.name}/${moveType}/${resultText}`,
             styleAdvantage: getStyleImpactModifier(attacker.style, defender.style).matchup > 0,
             cheapShotUsed,
-            cheapShotCaught
+            cheapShotCaught,
+            defenseReaction
           }
         );
         battleEvents.push(event);
+        nextAttackerId = shouldGrantBonusTurn(attacker, defender, moveType, success) ? attacker.id : defender.id;
         logDebugTurn(turn, attacker, moveType, { damage, isCrit, defender });
       }
 

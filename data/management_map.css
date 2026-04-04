@@ -523,6 +523,22 @@
   min-width: 124px;
 }
 
+.management-start-button.is-blocked {
+  background: linear-gradient(135deg, #5d6673, #3a424d);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.management-start-issue {
+  max-width: 300px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: rgba(231, 76, 60, 0.12);
+  border: 1px solid rgba(231, 76, 60, 0.22);
+  color: #ffb5ae;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
 .management-bottom-title {
   font-size: 13px;
   font-weight: 700;
