@@ -1922,6 +1922,10 @@
       border-radius: 22px;
     }
 
+    .home-canvas-wrap .canvas-shell {
+      max-width: 70%;
+    }
+
     #matchCanvas {
       display: block;
       width: 100%;
@@ -4471,6 +4475,10 @@
       .arena-bottom-bar {
         margin: auto -10px -10px;
         padding: 50px 10px 10px;
+      }
+
+      .home-canvas-wrap .canvas-shell {
+        max-width: 100%;
       }
 
       .arena-info-box,
@@ -11492,7 +11500,6 @@
                   ${showCard.readyMatches ? "" : `
                     <div class="arena-bottom-bar">
                       <div class="arena-bottom-grid">
-                        <button class="arena-action-button" data-nav-tab="roster" style="grid-column:1 / -1;justify-self:start;">로스터에서 카드 편성</button>
                       </div>
                     </div>
                   `}
@@ -13196,7 +13203,6 @@
                   ${showCard.readyMatches ? "" : `
                     <div class="arena-bottom-bar">
                       <div class="arena-bottom-grid">
-                        <button class="arena-action-button" data-nav-tab="roster" style="grid-column:1 / -1;justify-self:start;">로스터에서 카드 편성</button>
                       </div>
                     </div>
                   `}
@@ -17352,7 +17358,7 @@
         ensureMissionRefreshes();
         notifyMissionCompletionIfNeeded();
         renderResources();
-        if (activeTab !== "home") {
+        if (activeTab !== "home" && activeTab !== "roster") {
           renderActiveTab();
         } else {
           renderTabBadges();

@@ -496,7 +496,9 @@ if (!window.__RING_DYNASTY_PPV_INVADERS__) {
     if (incomeBonus > 0) {
       summary.totalIncome += incomeBonus;
       summary.bonusLines.push(`${franchise.wrestler.name} 간판 수익 +${formatNumber(incomeBonus)} G`);
-      summary.bonusLines.push(`프랜차이즈 오라: 경기 선수 전스탯 +${franchise.aura}`);
+      if (franchise.specialEffect) {
+        summary.bonusLines.push(`${franchise.wrestler.name} 간판 효과: ${franchise.specialEffect.label} · ${franchise.specialEffect.bonusText}`);
+      }
     }
   }
 

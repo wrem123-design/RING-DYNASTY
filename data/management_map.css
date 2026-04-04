@@ -311,6 +311,24 @@
   border-radius: 999px;
 }
 
+.management-slot-lock {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(231, 76, 60, 0.18);
+  border: 1px solid rgba(231, 76, 60, 0.4);
+  color: #ffb3a9;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.management-slot-locked {
+  box-shadow: inset 0 0 0 1px rgba(231, 76, 60, 0.2);
+}
+
 .management-slot-tags {
   display: flex;
   flex-wrap: wrap;
@@ -522,17 +540,45 @@
   padding: 2px 2px 8px;
 }
 
+.management-sort-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.management-sort-control span {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(236, 240, 241, 0.78);
+}
+
+.management-sort-control select {
+  min-width: 110px;
+  border: 0;
+  outline: 0;
+  border-radius: 10px;
+  padding: 6px 10px;
+  background: rgba(12, 14, 20, 0.92);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
 .management-roster-card {
   position: relative;
-  width: 84px;
-  flex: 0 0 84px;
-  min-height: 120px;
-  border-radius: 10px;
-  padding: 5px 5px 4px;
-  background: #1a1a2e;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  width: 98px;
+  flex: 0 0 98px;
+  min-height: 154px;
+  border-radius: 14px;
+  padding: 8px 7px 6px;
+  background: linear-gradient(180deg, rgba(24, 26, 38, 0.98), rgba(11, 13, 20, 0.96));
+  border: 2px solid rgba(255, 255, 255, 0.16);
   display: grid;
-  gap: 5px;
+  gap: 6px;
   cursor: grab;
   user-select: none;
   -webkit-user-select: none;
@@ -540,6 +586,35 @@
   -webkit-touch-callout: none;
   touch-action: none;
   transition: transform 0.15s ease, border-color 0.15s ease, opacity 0.18s ease, box-shadow 0.18s ease;
+  overflow: hidden;
+}
+
+.management-roster-card.grade-c {
+  background: linear-gradient(180deg, #181a21, #0d0f15);
+  border-color: rgba(80, 86, 98, 0.88);
+}
+
+.management-roster-card.grade-b {
+  background: linear-gradient(180deg, #d1d4da, #9499a3);
+  border-color: rgba(244, 246, 250, 0.92);
+  color: #11151d;
+}
+
+.management-roster-card.grade-a {
+  background: linear-gradient(180deg, #1f5c35, #0d2d1c);
+  border-color: rgba(92, 204, 133, 0.95);
+}
+
+.management-roster-card.grade-s {
+  background: linear-gradient(180deg, #7f6520, #3f2f09);
+  border-color: rgba(246, 211, 101, 0.98);
+  box-shadow: 0 0 0 1px rgba(246, 211, 101, 0.22), 0 14px 28px rgba(0, 0, 0, 0.24);
+}
+
+.management-roster-card.grade-legend {
+  background: linear-gradient(180deg, #a64d12, #4f1f05);
+  border-color: rgba(255, 160, 72, 0.98);
+  box-shadow: 0 0 0 1px rgba(255, 160, 72, 0.22), 0 16px 30px rgba(0, 0, 0, 0.28);
 }
 
 .management-roster-card:hover {
@@ -569,12 +644,35 @@
 }
 
 .management-roster-card.dragging-source {
-  opacity: 0.18;
+  opacity: 0.72;
+  transform: scale(0.98);
+  border-color: rgba(231, 76, 60, 0.68);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
 }
 
 .management-roster-visual {
   display: flex;
   justify-content: center;
+  align-items: center;
+  min-height: 76px;
+}
+
+.management-roster-grade {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  z-index: 2;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.35));
+}
+
+.management-roster-grade-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .management-roster-name {
@@ -582,12 +680,35 @@
   font-weight: 800;
   line-height: 1.25;
   min-height: 24px;
+  text-align: center;
 }
 
-.management-roster-meta {
-  font-size: 8px;
-  color: rgba(236, 240, 241, 0.72);
-  line-height: 1.35;
+.management-roster-power {
+  font-size: 13px;
+  font-weight: 900;
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+.management-roster-power.is-low {
+  color: #9aa0aa;
+}
+
+.management-roster-power.is-mid {
+  color: #ffffff;
+}
+
+.management-roster-power.is-high {
+  color: #f1c40f;
+}
+
+.management-roster-power.is-elite {
+  color: #ff5b57;
+}
+
+.management-roster-card.grade-b .management-roster-name,
+.management-roster-card.grade-b .management-condition-text {
+  color: #11151d;
 }
 
 .management-roster-assigned {
@@ -602,7 +723,7 @@
 
 .management-roster-actions .management-mini-button {
   width: 100%;
-  padding: 5px 6px;
+  padding: 4px 6px;
   font-size: 9px;
 }
 
@@ -876,6 +997,12 @@
   color: rgba(236, 240, 241, 0.72);
 }
 
+.management-upgrade-effect {
+  font-size: 10px;
+  line-height: 1.35;
+  color: rgba(255, 226, 138, 0.9);
+}
+
 .management-warning-list {
   display: grid;
   gap: 6px;
@@ -969,14 +1096,20 @@
 .management-drag-ghost {
   position: fixed;
   z-index: 1250;
-  width: 104px;
+  width: 112px;
   border-radius: 10px;
   padding: 8px;
-  background: rgba(10, 15, 24, 0.94);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(16, 20, 34, 0.97);
+  border: 1px solid rgba(231, 76, 60, 0.32);
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.34);
   pointer-events: none;
-  opacity: 0.9;
+  opacity: 0.96;
+}
+
+.management-drag-ghost-visual {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 6px;
 }
 
 .management-confirm-chip {

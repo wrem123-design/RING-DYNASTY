@@ -919,7 +919,6 @@ if (!window.__RING_DYNASTY_CIRCUIT_REWORK__) {
                 ${showCard.readyMatches ? "" : `
                   <div class="arena-bottom-bar">
                     <div class="arena-bottom-grid">
-                      <button class="arena-action-button" data-nav-tab="roster" style="grid-column:1 / -1;justify-self:start;">로스터에서 카드 편성</button>
                     </div>
                   </div>
                 `}

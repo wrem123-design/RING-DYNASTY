@@ -14,6 +14,8 @@
   const SCENE_FLOOR_Y = 342;
   const FIGHTER_DRAW_WIDTH = 160;
   const FIGHTER_DRAW_HEIGHT = 240;
+  const CUSTOM_STAND_GROUND_OFFSET = 18;
+  const CUSTOM_STAND_DOWN_OFFSET = 8;
   const LEFT_FIGHTER_BASE_X = 220;
   const RIGHT_FIGHTER_BASE_X = CANVAS_WIDTH - 220;
   const COMMENTARY_TEXT_LEFT = 54;
@@ -1646,8 +1648,9 @@
     const drawWidth = standImage.width * scale;
     const drawHeight = standImage.height * scale;
 
+    const groundOffset = pose.down ? CUSTOM_STAND_DOWN_OFFSET : CUSTOM_STAND_GROUND_OFFSET;
     ctx.save();
-    ctx.translate(pose.x, pose.y);
+    ctx.translate(pose.x, pose.y + groundOffset);
     if (side === "right") {
       ctx.scale(-1, 1);
     }
