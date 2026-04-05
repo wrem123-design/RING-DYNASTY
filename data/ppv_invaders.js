@@ -817,7 +817,6 @@ if (!window.__RING_DYNASTY_PPV_INVADERS__) {
   const baseRenderRosterMainContent = renderRosterMainContent;
   renderRosterMainContent = function () {
     baseRenderRosterMainContent();
-    injectPpvInfoIntoManagement();
   };
 
   function decoratePpvManagementSidePanel() {

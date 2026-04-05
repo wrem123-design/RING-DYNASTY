@@ -394,15 +394,15 @@
       background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.018)),
         var(--card-strong);
-      border-radius: 18px;
-      padding: 13px 14px 12px;
+      border-radius: 16px;
+      padding: 10px 12px 9px;
       border: 1px solid rgba(255, 255, 255, 0.09);
       box-shadow: var(--shadow);
-      min-height: 104px;
+      min-height: 74px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 10px;
+      gap: 6px;
       isolation: isolate;
       transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
       animation: riseIn 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -454,14 +454,14 @@
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      gap: 14px;
-      margin-bottom: 10px;
+      gap: 10px;
+      margin-bottom: 4px;
     }
 
     .resource-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 14px;
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
       display: grid;
       place-items: center;
       background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03));
@@ -474,8 +474,8 @@
     }
 
     .resource-icon img {
-      width: 24px;
-      height: 24px;
+      width: 18px;
+      height: 18px;
       object-fit: contain;
       filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.28));
       pointer-events: none;
@@ -498,7 +498,7 @@
     }
 
     .resource-label {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       color: var(--muted);
       letter-spacing: 0.08em;
@@ -539,12 +539,18 @@
     }
 
     .resource-value {
-      font-size: clamp(24px, 2vw, 32px);
+      font-size: clamp(18px, 1.55vw, 24px);
       font-weight: 900;
       letter-spacing: 0.03em;
       transform-origin: center bottom;
       display: inline-block;
       line-height: 1;
+    }
+
+    .resource-note {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.35;
     }
 
     .resource-value.gold {
@@ -1120,6 +1126,54 @@
 
     .inline-asset-badge.alignment-badge.neutral {
       border-color: rgba(149, 165, 166, 0.3);
+    }
+
+    .compact-indicator-row {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .compact-indicator {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.05);
+      font-size: 12px;
+      line-height: 1;
+      color: #ecf0f1;
+      flex-shrink: 0;
+    }
+
+    .compact-indicator.condition.cold {
+      color: #ff8f8f;
+      border-color: rgba(231, 76, 60, 0.32);
+    }
+
+    .compact-indicator.condition.low {
+      color: #ffbf69;
+      border-color: rgba(243, 156, 18, 0.32);
+    }
+
+    .compact-indicator.condition.neutral {
+      color: #bdc3c7;
+      border-color: rgba(189, 195, 199, 0.2);
+    }
+
+    .compact-indicator.condition.good {
+      color: #7bed9f;
+      border-color: rgba(46, 204, 113, 0.28);
+    }
+
+    .compact-indicator.condition.hot {
+      color: #2ecc71;
+      border-color: rgba(46, 204, 113, 0.42);
+      box-shadow: 0 0 12px rgba(46, 204, 113, 0.18);
     }
 
     .power-score {
@@ -1913,17 +1967,120 @@
       box-shadow: var(--shadow-lift);
     }
 
+    .home-battle-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.42fr) minmax(280px, 0.58fr);
+      gap: 14px;
+      align-items: stretch;
+    }
+
     .canvas-shell {
       position: relative;
       width: 100%;
       max-width: 100%;
-      margin: 0 auto;
+      margin: 0;
       overflow: hidden;
       border-radius: 22px;
     }
 
     .home-canvas-wrap .canvas-shell {
-      max-width: 70%;
+      max-width: 100%;
+    }
+
+    .battle-action-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 16px;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
+        rgba(8, 18, 29, 0.9);
+      box-shadow: var(--shadow-lift);
+    }
+
+    .battle-action-card {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .battle-action-kicker {
+      margin-bottom: 6px;
+      color: rgba(247, 241, 227, 0.56);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .battle-action-title {
+      color: #eef2f6;
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .battle-action-note {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .battle-action-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .battle-action-button {
+      width: 100%;
+      padding: 13px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(18, 22, 30, 0.16)),
+        rgba(8, 12, 20, 0.9);
+      color: #eef2f6;
+      text-align: left;
+      transition: transform 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+    }
+
+    .battle-action-button:hover:not(:disabled) {
+      transform: translateY(-1px);
+      border-color: rgba(95, 207, 255, 0.45);
+    }
+
+    .battle-action-button.selected {
+      border-color: rgba(255, 184, 92, 0.6);
+      background:
+        linear-gradient(180deg, rgba(255, 184, 92, 0.14), rgba(18, 22, 30, 0.2)),
+        rgba(8, 12, 20, 0.95);
+      box-shadow: 0 0 0 1px rgba(255, 184, 92, 0.2);
+    }
+
+    .battle-action-button:disabled {
+      opacity: 0.56;
+      cursor: default;
+    }
+
+    .battle-action-button-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 4px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .battle-action-button-copy {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
     }
 
     #matchCanvas {
@@ -4329,6 +4486,7 @@
       .resource-bar,
       .main-info-grid,
       .content-grid,
+      .home-battle-layout,
       .brand-meta-grid,
       .status-mini-grid,
       .gacha-ticket-buy-row,
@@ -4536,8 +4694,8 @@
     }
 
     .header-save-reset-button:hover {
-      background: rgba(231, 76, 60, 0.18);
-      border-color: rgba(231, 76, 60, 0.44);
+      background: rgba(95, 207, 255, 0.18);
+      border-color: rgba(95, 207, 255, 0.44);
       transform: translateY(-1px);
     }
 
@@ -4547,15 +4705,94 @@
       pointer-events: none;
     }
 
+    .sound-settings-modal {
+      max-width: 560px;
+    }
+
+    .sound-options-panel {
+      display: grid;
+      gap: 16px;
+    }
+
+    .sound-toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .sound-toggle-row input {
+      width: 18px;
+      height: 18px;
+      accent-color: #5fcfff;
+      flex-shrink: 0;
+    }
+
+    .sound-toggle-note {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .sound-option-group {
+      display: grid;
+      gap: 12px;
+    }
+
+    .sound-option-row {
+      display: grid;
+      gap: 8px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .sound-option-copy {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 13px;
+    }
+
+    .sound-option-label {
+      font-weight: 700;
+      color: #eef2f6;
+    }
+
+    .sound-option-value {
+      color: #5fcfff;
+      font-weight: 800;
+      font-family: "Courier New", monospace;
+    }
+
+    .sound-option-range {
+      width: 100%;
+      accent-color: #5fcfff;
+    }
+
+    .sound-option-footnote {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
     .resource-bar {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 8px;
     }
 
     .resource-card {
-      min-height: 0;
-      padding: 14px;
-      gap: 8px;
+      min-height: 72px;
+      padding: 9px 12px 8px;
+      gap: 6px;
       justify-content: flex-start;
     }
 
@@ -4569,8 +4806,8 @@
 
     .resource-note {
       color: var(--muted);
-      font-size: 12px;
-      line-height: 1.4;
+      font-size: 11px;
+      line-height: 1.3;
     }
 
     .home-stack {
@@ -5049,11 +5286,14 @@
             <option value="0.8">80%</option>
             <option value="0.7">70%</option>
           </select>
-          <button class="header-save-reset-button" id="headerResetSaveButton" type="button" title="저장 데이터 초기화" aria-label="저장 데이터 초기화">
+          <button class="header-save-reset-button" id="headerSoundOptionsButton" type="button" title="사운드 옵션" aria-label="사운드 옵션">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M4 4h12l4 4v12H4z"></path>
-              <path d="M8 4v6h8V4"></path>
-              <path d="M9 18h6"></path>
+              <path d="M4 7h8"></path>
+              <path d="M4 17h16"></path>
+              <path d="M16 7h4"></path>
+              <path d="M8 17h4"></path>
+              <circle cx="12" cy="7" r="2"></circle>
+              <circle cx="16" cy="17" r="2"></circle>
             </svg>
           </button>
         </div>
@@ -5078,21 +5318,10 @@
         <div class="resource-card-head">
           <div class="resource-icon"><img src="data/images/icon/calendar.png" alt="오늘" draggable="false"></div>
           <div class="resource-card-copy">
-            <div class="resource-label">오늘</div>
-            <div class="resource-note">실제 현재 날짜</div>
+            <div class="resource-label">날짜 / 주차</div>
           </div>
         </div>
-        <div class="resource-value fame" id="dateValue">0000.00.00</div>
-      </article>
-      <article class="resource-card ticket-card">
-        <div class="resource-card-head">
-          <div class="resource-icon"><img src="data/images/icon/1pick.png" alt="이번 카드" draggable="false"></div>
-          <div class="resource-card-copy">
-            <div class="resource-label">이번 카드</div>
-            <div class="resource-note" id="showCardNote">아직 편성되지 않음</div>
-          </div>
-        </div>
-        <div class="resource-value tickets" id="showCardValue">0 / 0</div>
+        <div class="resource-value fame" id="dateValue">0000.00.00 · 0주차</div>
       </article>
       <article class="resource-card gold-card">
         <div class="resource-card-head">
@@ -5187,6 +5416,21 @@
     const STORAGE_KEY = "ring_dynasty_step1_save";
     const UI_SCALE_OPTIONS = Object.freeze([1, 0.9, 0.8, 0.7]);
     const DEFAULT_UI_SCALE = 1;
+    const DEFAULT_SOUND_SETTINGS = Object.freeze({
+      muted: false,
+      masterVolume: 0.8,
+      bgmVolume: 0.55,
+      sfxVolume: 0.85,
+      stageBgmSelections: {}
+    });
+    const BATTLE_BGM_FILES = Object.freeze(["bgm_01.wav", "bgm_02.wav", "bgm_03.wav", "bgm_04.wav"]);
+    const BATTLE_SFX_FILES = Object.freeze({
+      basic: "basic.mp3",
+      power: "power.mp3",
+      technical: "technical.mp3",
+      finisher: "finisher.mp3",
+      critical: "critical.mp3"
+    });
     const BATTLE_ANIMATION_TIMINGS = Object.freeze({
       intro: 1600,
       event: 900,
@@ -5200,6 +5444,39 @@
       }
       const matchedValue = UI_SCALE_OPTIONS.find((option) => Math.abs(option - nextValue) < 0.001);
       return matchedValue || DEFAULT_UI_SCALE;
+    }
+
+    function clampVolume(rawValue, fallback = 1) {
+      const nextValue = Number(rawValue);
+      if (!Number.isFinite(nextValue)) {
+        return clampVolume(fallback, 1);
+      }
+      return clamp(nextValue, 0, 1);
+    }
+
+    function sanitizeStageBgmSelections(rawSelections) {
+      const safeSelections = {};
+      if (!rawSelections || typeof rawSelections !== "object") {
+        return safeSelections;
+      }
+      Object.entries(rawSelections).forEach(([stageKey, fileName]) => {
+        if (!/^\d+$/.test(stageKey) || !BATTLE_BGM_FILES.includes(fileName)) {
+          return;
+        }
+        safeSelections[stageKey] = fileName;
+      });
+      return safeSelections;
+    }
+
+    function sanitizeSoundSettings(rawSoundSettings) {
+      const safe = rawSoundSettings && typeof rawSoundSettings === "object" ? rawSoundSettings : {};
+      return {
+        muted: Boolean(safe.muted),
+        masterVolume: clampVolume(safe.masterVolume, DEFAULT_SOUND_SETTINGS.masterVolume),
+        bgmVolume: clampVolume(safe.bgmVolume, DEFAULT_SOUND_SETTINGS.bgmVolume),
+        sfxVolume: clampVolume(safe.sfxVolume, DEFAULT_SOUND_SETTINGS.sfxVolume),
+        stageBgmSelections: sanitizeStageBgmSelections(safe.stageBgmSelections)
+      };
     }
 
     function getBattleTurnLimit(matchType = "") {
@@ -5300,6 +5577,15 @@
         tooltip: "쇼맨은 테크니션에게 강합니다"
       }
     };
+
+    const CONDITION_STEP_META = {
+      "-5": { value: -5, icon: "⇊", label: "최악", className: "cold" },
+      "-2": { value: -2, icon: "↓", label: "저조", className: "low" },
+      "0": { value: 0, icon: "→", label: "보통", className: "neutral" },
+      "2": { value: 2, icon: "↑", label: "호조", className: "good" },
+      "5": { value: 5, icon: "⇈", label: "절정", className: "hot" }
+    };
+    const CONDITION_STEP_VALUES = [-5, -2, 0, 2, 5];
 
     const ALIGNMENT_META = {
       face: {
@@ -5508,7 +5794,6 @@
           gachaRate: 0,
           offlineMulti: 0,
           wrestlerSlots: 0,
-          pityReduce: 0,
           startReputation: 0,
           legendChance: 0
         }
@@ -7068,6 +7353,28 @@
       `;
     }
 
+    function getConditionMeta(value = 0) {
+      if (Number.isFinite(value) && CONDITION_STEP_META[String(value)]) {
+        return CONDITION_STEP_META[String(value)];
+      }
+      const fallback = CONDITION_STEP_VALUES.reduce((closest, current) => (
+        Math.abs(current - value) < Math.abs(closest - value) ? current : closest
+      ), 0);
+      return CONDITION_STEP_META[String(fallback)] || CONDITION_STEP_META["0"];
+    }
+
+    function getWrestlerConditionModifier(wrestler, dateKey = getLocalDateKey(new Date())) {
+      if (!wrestler) {
+        return 0;
+      }
+      const seed = `${dateKey}_${wrestler.templateId || wrestler.id || wrestler.name || "unknown"}_${wrestler.joinedWeek || 0}`;
+      return CONDITION_STEP_VALUES[hashString(seed) % CONDITION_STEP_VALUES.length];
+    }
+
+    function getWrestlerConditionMeta(wrestler, dateKey = getLocalDateKey(new Date())) {
+      return getConditionMeta(getWrestlerConditionModifier(wrestler, dateKey));
+    }
+
     function getStyleMatchup(leftStyle, rightStyle) {
       if (leftStyle === rightStyle) {
         return 0;
@@ -7078,6 +7385,20 @@
         technician: "powerhouse"
       };
       return winsAgainst[leftStyle] === rightStyle ? 1 : -1;
+    }
+
+    function getWrestlerStyleStatModifier(wrestler, opponent = null) {
+      if (!wrestler || !opponent) {
+        return 0;
+      }
+      const matchup = getStyleMatchup(wrestler.style, opponent.style);
+      if (matchup > 0) {
+        return 10;
+      }
+      if (matchup < 0) {
+        return -10;
+      }
+      return 0;
     }
 
     function getStyleImpactModifier(attackerStyle, defenderStyle) {
@@ -7096,6 +7417,66 @@
       return `<span class="inline-asset-badge style-badge ${style}" title="${meta.tooltip}">${meta.icon}<span>${meta.label}</span></span>`;
     }
 
+    function getCompactIndicatorHtml(icon, title, extraClass = "") {
+      const className = ["compact-indicator", extraClass].filter(Boolean).join(" ");
+      return `<span class="${className}" title="${title}">${icon}</span>`;
+    }
+
+    function getCompactStyleIconHtml(style) {
+      const meta = getStyleMeta(style);
+      return `<span class="compact-indicator style ${style}" title="${meta.tooltip}">${meta.icon}</span>`;
+    }
+
+    function getCompactConditionIconHtml(wrestler) {
+      const meta = getWrestlerConditionMeta(wrestler);
+      const valueText = meta.value > 0 ? `+${meta.value}` : `${meta.value}`;
+      return `<span class="compact-indicator condition ${meta.className}" title="오늘 컨디션 ${meta.label} (${valueText})">${meta.icon}</span>`;
+    }
+
+    function getCompactAlignmentIconHtml(alignment) {
+      const meta = getAlignmentMeta(alignment);
+      return `<span class="compact-indicator alignment ${alignment}" title="${meta.label}">${meta.icon}</span>`;
+    }
+
+    function getCompactAgeIconHtml(age) {
+      const meta = getAgeStageMeta(age);
+      return `<span class="compact-indicator age" title="${meta.label}">${meta.short}</span>`;
+    }
+
+    function getCompactWrestlerIndicatorsHtml(wrestler, options = {}) {
+      const {
+        includeAlignment = true,
+        includeAge = false
+      } = options;
+      if (!wrestler) {
+        return "";
+      }
+      const icons = [
+        getCompactStyleIconHtml(wrestler.style),
+        getCompactConditionIconHtml(wrestler)
+      ];
+      if (includeAlignment) {
+        icons.push(getCompactAlignmentIconHtml(wrestler.alignment));
+      }
+      if (includeAge) {
+        icons.push(getCompactAgeIconHtml(wrestler.age));
+      }
+      return `<span class="compact-indicator-row">${icons.join("")}</span>`;
+    }
+
+    function getEffectiveWrestlerStats(wrestler, opponent = null) {
+      const baseStats = wrestler?.stats || wrestlerTemplate.stats;
+      const conditionModifier = getWrestlerConditionModifier(wrestler);
+      const styleModifier = getWrestlerStyleStatModifier(wrestler, opponent);
+      return {
+        power: clamp((baseStats.power || 0) + conditionModifier + styleModifier, 1, 100),
+        stamina: clamp((baseStats.stamina || 0) + conditionModifier + styleModifier, 1, 100),
+        technique: clamp((baseStats.technique || 0) + conditionModifier + styleModifier, 1, 100),
+        charisma: clamp((baseStats.charisma || 0) + conditionModifier + styleModifier, 1, 100),
+        fame: clamp((baseStats.fame || 0) + conditionModifier + styleModifier, 1, 100)
+      };
+    }
+
     function getStyleMatchupIndicatorHtml(leftWrestler, rightWrestler) {
       if (!leftWrestler || !rightWrestler) {
         return "";
@@ -7107,8 +7488,8 @@
       const leftIcon = leftMatchup > 0 ? "✅" : leftMatchup < 0 ? "⚠️" : "➖";
       const rightIcon = rightMatchup > 0 ? "✅" : rightMatchup < 0 ? "⚠️" : "➖";
       return `
-        <div style="grid-column:1 / -1;color:#bdc3c7;font-size:12px;" title="${leftMeta.tooltip}">
-          ${leftMeta.icon} ${leftWrestler.name} ${leftIcon} vs ${rightMeta.icon} ${rightWrestler.name} ${rightIcon}
+        <div style="grid-column:1 / -1;color:#bdc3c7;font-size:12px;" title="상성 우세 시 전체 능력치 +10, 불리 시 -10">
+          ${leftMeta.icon} ${leftWrestler.name} ${leftIcon}${leftMatchup > 0 ? " +10" : leftMatchup < 0 ? " -10" : ""} vs ${rightMeta.icon} ${rightWrestler.name} ${rightIcon}${rightMatchup > 0 ? " +10" : rightMatchup < 0 ? " -10" : ""}
         </div>
       `;
     }
@@ -7452,9 +7833,8 @@
       match: { text: "🟡 경기중", className: "match" }
     };
 
-    const GRADE_FRAGMENT_KEYS = ["A", "S", "LEGEND"];
+    const GRADE_FRAGMENT_KEYS = ["S", "LEGEND"];
     const GRADE_FRAGMENT_LABELS = {
-      A: "A급 조각",
       S: "S급 조각",
       LEGEND: "레전드 조각"
     };
@@ -7468,7 +7848,6 @@
 
     function createEmptyGradeFragments() {
       return {
-        A: 0,
         S: 0,
         LEGEND: 0
       };
@@ -7579,6 +7958,7 @@
         fame: startFame,
         tickets: 3,
         uiScale: DEFAULT_UI_SCALE,
+        soundSettings: structuredClone(DEFAULT_SOUND_SETTINGS),
         week: 1,
         stage: 1,
         hype: 50,
@@ -7623,9 +8003,9 @@
         legacy,
         pitySystem: {
           pityCount: 0,
-          pityB: 10,
-          pityA: 50,
-          pityLegend: 200
+          pityB: 0,
+          pityA: 0,
+          pityLegend: 0
         },
         pendingGachaSession: null,
         freeAgents: [],
@@ -7750,7 +8130,7 @@
         mainTitle: "🎰 레슬러 가챠",
         mainSubtitle: () => "뽑기권으로 신규 레슬러를 영입하고, 중복은 조각으로 교환합니다.",
         sideTitle: "가챠 정보",
-        sideSubtitle: "확률, 천장, 조각 현황을 확인합니다.",
+        sideSubtitle: "확률과 조각 현황을 확인합니다.",
         placeholder: "🛒 여기에 상점 상품 목록과 뽑기 UI가 들어올 예정입니다",
         mainInfo: [
           { label: "보유 골드", value: () => `${formatNumber(gameState.gold)} G` },
@@ -7795,15 +8175,13 @@
     // DOM 참조를 미리 보관한다.
     const goldValueEl = document.getElementById("goldValue");
     const dateValueEl = document.getElementById("dateValue");
-    const showCardValueEl = document.getElementById("showCardValue");
-    const showCardNoteEl = document.getElementById("showCardNote");
     const payrollValueEl = document.getElementById("payrollValue");
     const payrollNoteEl = document.getElementById("payrollNote");
     const stageBadgeEl = document.getElementById("stageBadge");
     const stageProgressTextEl = document.getElementById("stageProgressText");
     const stageProgressFillEl = document.getElementById("stageProgressFill");
     const headerUiScaleSelectEl = document.getElementById("headerUiScaleSelect");
-    const headerResetSaveButtonEl = document.getElementById("headerResetSaveButton");
+    const headerSoundOptionsButtonEl = document.getElementById("headerSoundOptionsButton");
     const mainPanelTitleEl = document.getElementById("mainPanelTitle");
     const mainPanelSubtitleEl = document.getElementById("mainPanelSubtitle");
     const sidePanelTitleEl = document.getElementById("sidePanelTitle");
@@ -7830,6 +8208,7 @@
     let pendingWeeklySummary = null;
     let pendingGachaRewards = null;
     let pendingGachaRosterReleaseSelection = [];
+    let battleCommandState = { selectedByTurn: {}, lastPanelKey: "" };
     let titleScreenVisible = true;
     let titleScreenHasSave = false;
     let canvasAnimationFrameId = null;
@@ -7868,9 +8247,25 @@
       effectOutroBattle: null,
       lastCanvasTime: 0
     };
+    const battlePlaybackState = {
+      battleIndex: -1,
+      phase: "idle",
+      phaseStartTime: 0,
+      sequenceCursor: 0,
+      currentSourceEventIndex: -1,
+      selectedCommandKey: "",
+      renderEvent: null
+    };
     const hiddenDragPreviewCanvas = document.createElement("canvas");
     hiddenDragPreviewCanvas.width = 1;
     hiddenDragPreviewCanvas.height = 1;
+    const battleSoundState = {
+      bgmAudio: null,
+      bgmStage: 0,
+      bgmFile: "",
+      bgmPausedByCanvas: false,
+      sfxCache: new Map()
+    };
 
     // 숫자를 보기 좋게 포맷한다.
     function formatNumber(value) {
@@ -7895,20 +8290,20 @@
     }
 
     const BASE_GACHA_RATE_PERCENT = {
-      C: 50.0,
-      B: 38.0,
-      A: 7.0,
-      S: 3.4,
-      LEGEND: 1.6
+      C: 60.0,
+      B: 34.0,
+      A: 3.5,
+      S: 1.7,
+      LEGEND: 0.8
     };
 
     function getCurrentGachaRatePercentages() {
       const rateLevel = getLegacyUpgradeLevel("gachaRate");
-      const legendBonus = getLegacyUpgradeLevel("legendChance") * 0.5;
-      const legendRate = BASE_GACHA_RATE_PERCENT.LEGEND + legendBonus + (rateLevel * 0.2);
-      const sRate = BASE_GACHA_RATE_PERCENT.S + (rateLevel * 0.15);
-      const aRate = BASE_GACHA_RATE_PERCENT.A + (rateLevel * 0.1);
-      const bRate = BASE_GACHA_RATE_PERCENT.B + (rateLevel * 0.05);
+      const legendBonus = getLegacyUpgradeLevel("legendChance") * 0.2;
+      const legendRate = BASE_GACHA_RATE_PERCENT.LEGEND + legendBonus + (rateLevel * 0.05);
+      const sRate = BASE_GACHA_RATE_PERCENT.S + (rateLevel * 0.08);
+      const aRate = BASE_GACHA_RATE_PERCENT.A + (rateLevel * 0.12);
+      const bRate = BASE_GACHA_RATE_PERCENT.B + (rateLevel * 0.1);
       const cRate = Math.max(0, 100 - (legendRate + sRate + aRate + bRate));
       return {
         C: cRate,
@@ -7920,11 +8315,10 @@
     }
 
     function getBasePityTargets(legacyState = gameState.legacy) {
-      const reduce = Number(legacyState?.upgrades?.pityReduce || 0) * 5;
       return {
-        pityB: Math.max(5, 10 - reduce),
-        pityA: Math.max(20, 50 - reduce),
-        pityLegend: Math.max(80, 200 - (reduce * 2))
+        pityB: 0,
+        pityA: 0,
+        pityLegend: 0
       };
     }
 
@@ -7968,12 +8362,11 @@
     function getLegacyUpgradeDefs() {
       return [
         { key: "startGold", name: "빠른 출발", cost: 1, maxLevel: 10, desc: "시작 골드 +500" },
-        { key: "gachaRate", name: "행운의 손", cost: 2, maxLevel: 5, desc: "상위 가챠 확률 강화" },
+        { key: "gachaRate", name: "행운의 손", cost: 2, maxLevel: 5, desc: "A급 이상 확률 소폭 강화" },
         { key: "offlineMulti", name: "불야성 단체", cost: 1, maxLevel: 10, desc: "오프라인 수익 +10%" },
-        { key: "legendChance", name: "레전드의 유산", cost: 5, maxLevel: 3, desc: "레전드 확률 +0.5%" },
+        { key: "legendChance", name: "레전드의 유산", cost: 5, maxLevel: 3, desc: "레전드 확률 +0.2%" },
         { key: "startReputation", name: "더 큰 무대", cost: 3, maxLevel: 5, desc: "시작 인기도 +50" },
-        { key: "wrestlerSlots", name: "확장 로스터", cost: 2, maxLevel: 5, desc: "로스터 슬롯 +2" },
-        { key: "pityReduce", name: "조기 천장", cost: 2, maxLevel: 5, desc: "모든 천장 -5" }
+        { key: "wrestlerSlots", name: "확장 로스터", cost: 2, maxLevel: 5, desc: "로스터 슬롯 +2" }
       ];
     }
 
@@ -7981,7 +8374,6 @@
       const legacy = structuredClone(legacyState || createDefaultLegacy());
       ensureLegacyExclusiveUnlocked(legacy);
       const baseState = createDefaultState();
-      const pityTargets = getBasePityTargets(legacy);
       baseState.legacy = legacy;
       baseState.roster = createStarterRoster(legacy);
       baseState.gold = 500 + (legacy.upgrades.startGold * 500);
@@ -7989,9 +8381,9 @@
       baseState.rosterLimit = 12 + (legacy.upgrades.wrestlerSlots * 2);
       baseState.pitySystem = {
         pityCount: 0,
-        pityB: pityTargets.pityB,
-        pityA: pityTargets.pityA,
-        pityLegend: pityTargets.pityLegend
+        pityB: 0,
+        pityA: 0,
+        pityLegend: 0
       };
       return baseState;
     }
@@ -8032,8 +8424,12 @@
       return STATUS_META[wrestler.status] || STATUS_META.idle;
     }
     // 레슬러 전투력과 승률을 계산한다.
-    function getWrestlerPower(wrestler) {
-      const total = wrestler.stats.power + wrestler.stats.stamina + wrestler.stats.technique + wrestler.stats.charisma + wrestler.stats.fame;
+    function getWrestlerPower(wrestler, opponent = null) {
+      if (!wrestler) {
+        return 0;
+      }
+      const effectiveStats = getEffectiveWrestlerStats(wrestler, opponent);
+      const total = effectiveStats.power + effectiveStats.stamina + effectiveStats.technique + effectiveStats.charisma + effectiveStats.fame;
       return total / 5;
     }
 
@@ -8437,9 +8833,8 @@
 
     function getFragmentCostByGrade(grade) {
       return {
-        A: 100,
-        S: 150,
-        LEGEND: 260
+        S: 300,
+        LEGEND: 520
       }[grade] || 100;
     }
 
@@ -8467,7 +8862,7 @@
       return {
         C: 0,
         B: 0,
-        A: 12,
+        A: 0,
         S: 35,
         LEGEND: 100
       }[grade] || 0;
@@ -8475,8 +8870,7 @@
 
     function getGradeFragmentConvertRequirement(fromGrade) {
       return {
-        A: { targetGrade: "S", cost: 8 },
-        S: { targetGrade: "LEGEND", cost: 6 }
+        S: { targetGrade: "LEGEND", cost: 12 }
       }[fromGrade] || null;
     }
 
@@ -8539,65 +8933,26 @@
       return wrestlerPool.find((wrestler) => wrestler.id === templateId) || null;
     }
 
-    function rollGuaranteedBPlusGrade() {
-      const rates = getCurrentGachaRatePercentages();
-      const total = Math.max(0.0001, rates.B + rates.A + rates.S + rates.LEGEND);
-      const roll = Math.random();
-      const legendThreshold = rates.LEGEND / total;
-      const sThreshold = legendThreshold + (rates.S / total);
-      const aThreshold = sThreshold + (rates.A / total);
-      if (roll < legendThreshold) {
-        return "LEGEND";
-      }
-      if (roll < sThreshold) {
-        return "S";
-      }
-      if (roll < aThreshold) {
-        return "A";
-      }
-      return "B";
-    }
-
     function performSingleGachaRoll() {
-      const pityTargets = getBasePityTargets();
       gameState.pitySystem.pityCount += 1;
-      gameState.pitySystem.pityB -= 1;
-      gameState.pitySystem.pityA -= 1;
-      gameState.pitySystem.pityLegend -= 1;
 
       let grade;
-      let pityLabel = "";
-
-      if (gameState.pitySystem.pityLegend <= 0) {
+      const rates = getCurrentGachaRatePercentages();
+      const roll = Math.random();
+      const legendRate = rates.LEGEND / 100;
+      const sRate = rates.S / 100;
+      const aRate = rates.A / 100;
+      const bRate = rates.B / 100;
+      if (roll < legendRate) {
         grade = "LEGEND";
-        pityLabel = "LEGEND 천장";
-        gameState.pitySystem.pityLegend = pityTargets.pityLegend;
-      } else if (gameState.pitySystem.pityA <= 0) {
-        grade = Math.random() < 0.2 ? "LEGEND" : "A";
-        pityLabel = "A급 이상 천장";
-        gameState.pitySystem.pityA = pityTargets.pityA;
-      } else if (gameState.pitySystem.pityB <= 0) {
-        grade = rollGuaranteedBPlusGrade();
-        pityLabel = "B급 이상 천장";
-        gameState.pitySystem.pityB = pityTargets.pityB;
+      } else if (roll < legendRate + sRate) {
+        grade = "S";
+      } else if (roll < legendRate + sRate + aRate) {
+        grade = "A";
+      } else if (roll < legendRate + sRate + aRate + bRate) {
+        grade = "B";
       } else {
-        const roll = Math.random();
-        const rates = getCurrentGachaRatePercentages();
-        const legendRate = rates.LEGEND / 100;
-        const sRate = rates.S / 100;
-        const aRate = rates.A / 100;
-        const bRate = rates.B / 100;
-        if (roll < legendRate) {
-          grade = "LEGEND";
-        } else if (roll < legendRate + sRate) {
-          grade = "S";
-        } else if (roll < legendRate + sRate + aRate) {
-          grade = "A";
-        } else if (roll < legendRate + sRate + aRate + bRate) {
-          grade = "B";
-        } else {
-          grade = "C";
-        }
+        grade = "C";
       }
 
       const pool = wrestlerPool.filter((wrestler) => wrestler.grade === grade);
@@ -8618,7 +8973,7 @@
         templateId: selected.id,
         isDuplicate,
         grade,
-        pityLabel,
+        pityLabel: "",
         fragmentReward: getDuplicateFragmentReward(grade),
         overflowReward: getRosterOverflowFragmentReward(grade)
       };
@@ -8690,7 +9045,9 @@
       const summary = createEmptyGradeFragments();
       const table = wrestlers.map((wrestler) => {
         const reward = getReleaseFragmentReward(wrestler);
-        summary[wrestler.grade] += reward.amount;
+        if (GRADE_FRAGMENT_KEYS.includes(wrestler.grade) && reward.amount > 0) {
+          summary[wrestler.grade] += reward.amount;
+        }
         return {
           wrestler,
           reward
@@ -8707,7 +9064,9 @@
         fragments
       });
       gameState.releaseLog = gameState.releaseLog.slice(0, 20);
-      gameState.releasedFragmentTotals[wrestler.grade] = Number(gameState.releasedFragmentTotals[wrestler.grade] || 0) + Math.max(0, Math.floor(fragments));
+      if (GRADE_FRAGMENT_KEYS.includes(wrestler.grade)) {
+        gameState.releasedFragmentTotals[wrestler.grade] = Number(gameState.releasedFragmentTotals[wrestler.grade] || 0) + Math.max(0, Math.floor(fragments));
+      }
     }
 
     function releaseRosterMembers(wrestlerIds) {
@@ -9315,12 +9674,6 @@
       gameState.legacy.upgrades[upgradeKey] = currentLevel + 1;
       if (upgradeKey === "wrestlerSlots") {
         gameState.rosterLimit = getRosterLimitFromState();
-      }
-      if (upgradeKey === "pityReduce") {
-        const pityTargets = getBasePityTargets();
-        gameState.pitySystem.pityB = Math.min(gameState.pitySystem.pityB, pityTargets.pityB);
-        gameState.pitySystem.pityA = Math.min(gameState.pitySystem.pityA, pityTargets.pityA);
-        gameState.pitySystem.pityLegend = Math.min(gameState.pitySystem.pityLegend, pityTargets.pityLegend);
       }
       render();
       saveGameState();
@@ -10130,7 +10483,7 @@
       const year = date.getFullYear();
       const month = String(date.getMonth() + 1).padStart(2, "0");
       const day = String(date.getDate()).padStart(2, "0");
-      return `${year}.${month}.${day}`;
+      return `${year}.${month}.${day} · ${gameState.week}주차`;
     }
 
     function getStageProgressInfo(stage = gameState.stage, fame = gameState.fame) {
@@ -10707,7 +11060,7 @@
         ? rawState.releaseLog.slice(-20).map((entry) => ({
             week: Number.isFinite(entry?.week) ? Math.max(1, Math.floor(entry.week)) : 1,
             wrestlerName: typeof entry?.wrestlerName === "string" ? entry.wrestlerName : "Unknown",
-            grade: GRADE_FRAGMENT_KEYS.includes(entry?.grade) ? entry.grade : "C",
+            grade: typeof entry?.grade === "string" ? entry.grade : "C",
             fragments: Number.isFinite(entry?.fragments) ? Math.max(0, Math.floor(entry.fragments)) : 0
           }))
         : [];
@@ -10733,19 +11086,18 @@
             }
           }
         : defaults.legacy;
-      const pityTargets = getBasePityTargets(legacy);
       const pitySystem = rawState.pitySystem && typeof rawState.pitySystem === "object"
         ? {
             pityCount: Number.isFinite(rawState.pitySystem.pityCount) ? Math.max(0, Math.floor(rawState.pitySystem.pityCount)) : 0,
-            pityB: Number.isFinite(rawState.pitySystem.pityB) ? clamp(Math.floor(rawState.pitySystem.pityB), 0, pityTargets.pityB) : pityTargets.pityB,
-            pityA: Number.isFinite(rawState.pitySystem.pityA) ? clamp(Math.floor(rawState.pitySystem.pityA), 0, pityTargets.pityA) : pityTargets.pityA,
-            pityLegend: Number.isFinite(rawState.pitySystem.pityLegend) ? clamp(Math.floor(rawState.pitySystem.pityLegend), 0, pityTargets.pityLegend) : pityTargets.pityLegend
+            pityB: 0,
+            pityA: 0,
+            pityLegend: 0
           }
         : {
             pityCount: 0,
-            pityB: pityTargets.pityB,
-            pityA: pityTargets.pityA,
-            pityLegend: pityTargets.pityLegend
+            pityB: 0,
+            pityA: 0,
+            pityLegend: 0
           };
 
       return {
@@ -10753,6 +11105,7 @@
         fame: Number.isFinite(rawState.fame) ? Math.max(0, Math.floor(rawState.fame)) : defaults.fame,
         tickets: Number.isFinite(rawState.tickets) ? Math.max(0, Math.floor(rawState.tickets)) : defaults.tickets,
         uiScale: normalizeUiScale(rawState.uiScale),
+        soundSettings: sanitizeSoundSettings(rawState.soundSettings),
         week: Number.isFinite(rawState.week) ? Math.max(1, Math.floor(rawState.week)) : defaults.week,
         stage: Number.isFinite(rawState.stage) ? Math.min(4, Math.max(1, Math.floor(rawState.stage))) : defaults.stage,
         hype: Number.isFinite(rawState.hype) ? clamp(Math.floor(rawState.hype), 0, 100) : 50,
@@ -11008,6 +11361,239 @@
       }
     }
 
+    function ensureSoundSettings() {
+      if (!gameState || typeof gameState !== "object") {
+        return structuredClone(DEFAULT_SOUND_SETTINGS);
+      }
+      gameState.soundSettings = sanitizeSoundSettings(gameState.soundSettings);
+      return gameState.soundSettings;
+    }
+
+    function getBattleAudioPath(fileName) {
+      return fileName ? `data/sounds/${fileName}` : "";
+    }
+
+    function getResolvedBgmVolume() {
+      const settings = ensureSoundSettings();
+      return settings.muted ? 0 : clampVolume(settings.masterVolume, DEFAULT_SOUND_SETTINGS.masterVolume) * clampVolume(settings.bgmVolume, DEFAULT_SOUND_SETTINGS.bgmVolume);
+    }
+
+    function getResolvedSfxVolume() {
+      const settings = ensureSoundSettings();
+      return settings.muted ? 0 : clampVolume(settings.masterVolume, DEFAULT_SOUND_SETTINGS.masterVolume) * clampVolume(settings.sfxVolume, DEFAULT_SOUND_SETTINGS.sfxVolume);
+    }
+
+    function getVolumePercentText(value) {
+      return `${Math.round(clampVolume(value) * 100)}%`;
+    }
+
+    function getStageBattleBgmFile(stage = gameState?.stage || 1) {
+      const settings = ensureSoundSettings();
+      const stageKey = String(Math.max(1, Math.floor(stage || 1)));
+      let selectedFile = settings.stageBgmSelections[stageKey];
+      if (BATTLE_BGM_FILES.includes(selectedFile)) {
+        return selectedFile;
+      }
+      selectedFile = BATTLE_BGM_FILES[Math.floor(Math.random() * BATTLE_BGM_FILES.length)] || "";
+      if (!selectedFile) {
+        return "";
+      }
+      settings.stageBgmSelections[stageKey] = selectedFile;
+      if (gameState) {
+        gameState.soundSettings = settings;
+      }
+      return selectedFile;
+    }
+
+    function syncBattleBgmVolume() {
+      if (!battleSoundState.bgmAudio) {
+        return;
+      }
+      battleSoundState.bgmAudio.volume = getResolvedBgmVolume();
+      battleSoundState.bgmAudio.muted = ensureSoundSettings().muted;
+    }
+
+    function stopBattleBgm() {
+      if (!battleSoundState.bgmAudio) {
+        return;
+      }
+      battleSoundState.bgmAudio.pause();
+      battleSoundState.bgmAudio.currentTime = 0;
+      battleSoundState.bgmAudio = null;
+      battleSoundState.bgmStage = 0;
+      battleSoundState.bgmFile = "";
+      battleSoundState.bgmPausedByCanvas = false;
+    }
+
+    function startBattleBgm() {
+      const stage = Math.max(1, Math.floor(gameState?.stage || 1));
+      const fileName = getStageBattleBgmFile(stage);
+      if (!fileName) {
+        return;
+      }
+      if (battleSoundState.bgmAudio && battleSoundState.bgmStage === stage && battleSoundState.bgmFile === fileName) {
+        syncBattleBgmVolume();
+        battleSoundState.bgmPausedByCanvas = false;
+        battleSoundState.bgmAudio.play().catch(() => {});
+        return;
+      }
+      stopBattleBgm();
+      const audio = new Audio(getBattleAudioPath(fileName));
+      audio.loop = true;
+      audio.preload = "auto";
+      audio.playsInline = true;
+      battleSoundState.bgmAudio = audio;
+      battleSoundState.bgmStage = stage;
+      battleSoundState.bgmFile = fileName;
+      battleSoundState.bgmPausedByCanvas = false;
+      syncBattleBgmVolume();
+      audio.play().catch(() => {});
+      if (gameState) {
+        silentSaveGameState();
+      }
+    }
+
+    function pauseBattleBgm() {
+      if (!battleSoundState.bgmAudio || battleSoundState.bgmAudio.paused) {
+        return;
+      }
+      battleSoundState.bgmAudio.pause();
+      battleSoundState.bgmPausedByCanvas = true;
+    }
+
+    function resumeBattleBgm() {
+      if (!battleSoundState.bgmAudio || !battleSoundState.bgmPausedByCanvas || activeTab !== "home" || !matchAnimationState.running) {
+        return;
+      }
+      syncBattleBgmVolume();
+      battleSoundState.bgmPausedByCanvas = false;
+      battleSoundState.bgmAudio.play().catch(() => {
+        battleSoundState.bgmPausedByCanvas = true;
+      });
+    }
+
+    function playBattleSfxFromFile(type) {
+      const fileName = BATTLE_SFX_FILES[type] || BATTLE_SFX_FILES.basic;
+      if (!fileName) {
+        return false;
+      }
+      const resolvedVolume = getResolvedSfxVolume();
+      if (resolvedVolume <= 0) {
+        return true;
+      }
+      let baseAudio = battleSoundState.sfxCache.get(fileName);
+      if (!baseAudio) {
+        baseAudio = new Audio(getBattleAudioPath(fileName));
+        baseAudio.preload = "auto";
+        baseAudio.playsInline = true;
+        battleSoundState.sfxCache.set(fileName, baseAudio);
+      }
+      const audio = baseAudio.cloneNode();
+      audio.volume = resolvedVolume;
+      audio.muted = ensureSoundSettings().muted;
+      audio.play().catch(() => {});
+      return true;
+    }
+
+    function primeBattleAudioAssets() {
+      BATTLE_BGM_FILES.forEach((fileName) => {
+        const audio = new Audio(getBattleAudioPath(fileName));
+        audio.preload = "auto";
+        audio.load();
+      });
+      Object.values(BATTLE_SFX_FILES).forEach((fileName) => {
+        if (!fileName || battleSoundState.sfxCache.has(fileName)) {
+          return;
+        }
+        const audio = new Audio(getBattleAudioPath(fileName));
+        audio.preload = "auto";
+        audio.playsInline = true;
+        audio.load();
+        battleSoundState.sfxCache.set(fileName, audio);
+      });
+    }
+
+    function buildSoundSliderMarkup(settingKey, label) {
+      const settings = ensureSoundSettings();
+      const value = clampVolume(settings[settingKey], DEFAULT_SOUND_SETTINGS[settingKey]);
+      return `
+        <label class="sound-option-row" for="soundRange_${settingKey}">
+          <span class="sound-option-copy">
+            <span class="sound-option-label">${label}</span>
+            <span class="sound-option-value" id="soundValue_${settingKey}">${getVolumePercentText(value)}</span>
+          </span>
+          <input class="sound-option-range" id="soundRange_${settingKey}" type="range" min="0" max="100" step="1" value="${Math.round(value * 100)}" data-sound-setting="${settingKey}">
+        </label>
+      `;
+    }
+
+    function bindSoundOptionControls() {
+      const settings = ensureSoundSettings();
+      const muteCheckbox = document.getElementById("soundMuteToggle");
+      if (muteCheckbox) {
+        muteCheckbox.checked = settings.muted;
+        muteCheckbox.addEventListener("change", () => {
+          settings.muted = Boolean(muteCheckbox.checked);
+          syncBattleBgmVolume();
+          silentSaveGameState();
+        });
+      }
+      Array.from(document.querySelectorAll("[data-sound-setting]")).forEach((input) => {
+        input.addEventListener("input", () => {
+          const key = input.dataset.soundSetting;
+          if (!["masterVolume", "bgmVolume", "sfxVolume"].includes(key)) {
+            return;
+          }
+          settings[key] = clampVolume(Number(input.value) / 100, DEFAULT_SOUND_SETTINGS[key]);
+          const valueEl = document.getElementById(`soundValue_${key}`);
+          if (valueEl) {
+            valueEl.textContent = getVolumePercentText(settings[key]);
+          }
+          syncBattleBgmVolume();
+          silentSaveGameState();
+        });
+      });
+      const resetSaveButton = document.getElementById("soundSettingsResetSaveButton");
+      if (resetSaveButton) {
+        resetSaveButton.addEventListener("click", () => {
+          closeModal();
+          resetSavedDataWithConfirm();
+        });
+      }
+    }
+
+    function openSoundOptionsModal() {
+      const settings = ensureSoundSettings();
+      openModal(`
+        <div class="modal-header">
+          <div>
+            <h3 class="modal-title">사운드 옵션</h3>
+            <p class="modal-subtitle">전투 배경음과 효과음만 제어합니다. BGM은 스테이지별로 1곡이 선택되어 전투 중 반복 재생됩니다.</p>
+          </div>
+        </div>
+        <div class="sound-options-panel">
+          <label class="sound-toggle-row" for="soundMuteToggle">
+            <span>
+              <strong>전체 음소거</strong>
+              <span class="sound-toggle-note">전투 BGM과 효과음을 모두 끕니다.</span>
+            </span>
+            <input id="soundMuteToggle" type="checkbox" ${settings.muted ? "checked" : ""}>
+          </label>
+          <div class="sound-option-group">
+            ${buildSoundSliderMarkup("masterVolume", "전체 음량")}
+            ${buildSoundSliderMarkup("bgmVolume", "전투 BGM")}
+            ${buildSoundSliderMarkup("sfxVolume", "전투 효과음")}
+          </div>
+          <div class="sound-option-footnote">현재 스테이지 ${Math.max(1, Math.floor(gameState?.stage || 1))} BGM: ${getStageBattleBgmFile(gameState?.stage || 1)}</div>
+        </div>
+        <div class="modal-actions">
+          <button class="modal-action-button cancel" id="soundSettingsResetSaveButton">저장 데이터 초기화</button>
+          <button class="modal-action-button confirm" data-modal-close>닫기</button>
+        </div>
+      `, { className: "sound-settings-modal" });
+      bindSoundOptionControls();
+    }
+
     function getWrestlerVisualStyle(wrestler, extra = "") {
       const spriteSheet = getResolvedPortraitSpriteSheet(wrestler);
       const backgroundImage = spriteSheet
@@ -11018,18 +11604,11 @@
 
     function renderResources() {
       const ppvInfo = getPpvInfo();
-      const showCard = getShowCardSummary();
       const payroll = getMonthlyPayrollEstimate();
       const stageProgress = getStageProgressInfo();
       animateNumberIfChanged(goldValueEl, "gold", gameState.gold);
       if (dateValueEl) {
         dateValueEl.textContent = getCurrentUiDateText();
-      }
-      if (showCardValueEl) {
-        showCardValueEl.textContent = `${showCard.value}경기`;
-      }
-      if (showCardNoteEl) {
-        showCardNoteEl.textContent = showCard.note;
       }
       if (payrollValueEl) {
         payrollValueEl.textContent = `${formatNumber(payroll)}G`;
@@ -11137,9 +11716,7 @@
                 <div class="roster-card-power">PWR ${formatAverage(getWrestlerPower(wrestler))}</div>
               </div>
               <div class="roster-inline-badges">
-                <span>${getStyleBadgeHtml(wrestler.style)}</span>
-                <span>${getAlignmentBadgeHtml(wrestler.alignment)}</span>
-                <span>${getAgeStageBadgeHtml(wrestler.age)}</span>
+                ${getCompactWrestlerIndicatorsHtml(wrestler, { includeAlignment: true, includeAge: true })}
               </div>
               <div class="roster-card-meta">
                 <span>나이 ${wrestler.age}세</span>
@@ -11313,7 +11890,7 @@
               <div class="free-agent-meta">
                 "${wrestler.nickname}"<br>
                 전투력 ${formatAverage(getWrestlerPower(wrestler))} · 비용 ${formatNumber(recruitCost)}G<br>
-                ${getStyleMeta(wrestler.style).icon} ${getStyleMeta(wrestler.style).label} · ${getAlignmentMeta(wrestler.alignment).icon} ${getAlignmentMeta(wrestler.alignment).label}
+                ${getCompactWrestlerIndicatorsHtml(wrestler, { includeAlignment: true, includeAge: false })}
               </div>
             </div>
             <button class="hire-button" data-action="hire" data-wrestler-id="${wrestler.id}" ${disabled ? "disabled" : ""}>영입</button>
@@ -11331,7 +11908,8 @@
               <div class="free-agent-meta">
                 유망주 · ${wrestler.age}세 ${getAgeStageMeta(wrestler.age).short}<br>
                 잠재력 ${getPotentialStarsText(wrestler.potentialStars || 0)} · 비용 ${formatNumber(recruitCost)}G<br>
-                현재 전투력 ${formatAverage(getWrestlerPower(wrestler))} · ${isPotentialRevealUnlocked() ? getPotentialCapLabel(wrestler) : "잠재력 상세는 스카우트 팀 레벨 2에서 공개"}
+                현재 전투력 ${formatAverage(getWrestlerPower(wrestler))} · ${isPotentialRevealUnlocked() ? getPotentialCapLabel(wrestler) : "잠재력 상세는 스카우트 팀 레벨 2에서 공개"}<br>
+                ${getCompactWrestlerIndicatorsHtml(wrestler, { includeAlignment: true, includeAge: false })}
               </div>
             </div>
             <button class="hire-button" data-action="hire-prospect" data-wrestler-id="${wrestler.id}" ${disabled ? "disabled" : ""}>영입</button>
@@ -11453,58 +12031,18 @@
     }
 
     function renderHomeMainContent() {
-      const showCard = getShowCardSummary();
-      const bestCard = getBestCardSummary();
-      const contractSummary = getContractAlertSummary();
-      const monthlyPayroll = getMonthlyPayrollEstimate();
-      const summaryNet = pendingWeeklySummary
-        ? formatNumber((pendingWeeklySummary.totalIncome || 0) - (pendingWeeklySummary.salaryTotal || 0))
-        : null;
-      const homeSupportText = pendingWeeklySummary
-        ? `직전 쇼 순이익 ${summaryNet}G · 관중 ${formatNumber(pendingWeeklySummary.totalAudience || 0)}명`
-        : "저장 데이터로 바로 이어집니다. 핵심 비용과 계약만 짧게 확인합니다.";
       mainDynamicContentEl.innerHTML = `
         <div class="home-stack">
           <section>
-            <div class="home-overview-card">
-              <div class="home-overview-top">
-                <div>
-                  <div class="hero-eyebrow">Home Control</div>
-                  <h3 class="hero-headline">홈 요약</h3>
-                  <p class="hero-support">${homeSupportText}</p>
+            <div class="home-battle-layout">
+              <div class="home-canvas-wrap">
+                <div class="canvas-shell">
+                  <button class="canvas-skip-button ${matchAnimationState.running ? "" : "hidden"}" id="canvasSkipButton">스킵</button>
+                  <canvas id="matchCanvas" width="640" height="560"></canvas>
+                  <div class="arena-overlay"></div>
                 </div>
               </div>
-              <div class="home-summary-grid">
-                <article class="home-summary-card">
-                  <div class="home-summary-label">최고 카드</div>
-                  <div class="home-summary-value">${bestCard.name}</div>
-                  <div class="home-summary-note">${bestCard.note}</div>
-                </article>
-                <article class="home-summary-card">
-                  <div class="home-summary-label">월 지출 예상</div>
-                  <div class="home-summary-value">${formatNumber(monthlyPayroll)}G</div>
-                  <div class="home-summary-note">주급 ${formatNumber(getWeeklySalaryTotal())}G x 4주</div>
-                </article>
-                <article class="home-summary-card">
-                  <div class="home-summary-label">계약 임박</div>
-                  <div class="home-summary-value">${contractSummary.value}</div>
-                  <div class="home-summary-note">${contractSummary.note}</div>
-                </article>
-              </div>
-            </div>
-            <div class="home-canvas-wrap">
-              <div class="canvas-shell">
-                <button class="canvas-skip-button ${matchAnimationState.running ? "" : "hidden"}" id="canvasSkipButton">스킵</button>
-                <canvas id="matchCanvas" width="640" height="560"></canvas>
-                <div class="arena-overlay">
-                  ${showCard.readyMatches ? "" : `
-                    <div class="arena-bottom-bar">
-                      <div class="arena-bottom-grid">
-                      </div>
-                    </div>
-                  `}
-                </div>
-              </div>
+              <aside class="battle-action-panel" id="battleActionPanel"></aside>
             </div>
           </section>
         </div>
@@ -11525,6 +12063,7 @@
         });
       });
 
+      updateBattleActionPanel(true);
       drawCurrentCanvasFrame(performance.now());
     }
 
@@ -11602,7 +12141,7 @@
 
     function isCustomStandSprite(entity) {
       const spritePath = normalizeSpriteAssetPath(getResolvedStandSpriteSheet(entity));
-      return spritePath.includes("data/images/wrestlers/custom/");
+      return spritePath.includes("data/images/wrestlers/");
     }
 
     function drawImageFittedToFrame(ctx, img, x, y, width, height, options = {}) {
@@ -11822,7 +12361,22 @@
         ctx.fillText(wrestler.name, x, y + 24);
         return;
       }
-      drawWrestler(ctx, x, y, wrestler.spriteColor, wrestler.grade, frame, state, wrestler.name);
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.fillStyle = wrestler.spriteColor || "#7f8c8d";
+      ctx.beginPath();
+      ctx.arc(0, -92, 22, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillRect(-24, -68, 48, 78);
+      ctx.fillRect(-36, -56, 12, 54);
+      ctx.fillRect(24, -56, 12, 54);
+      ctx.fillRect(-22, 10, 14, 44);
+      ctx.fillRect(8, 10, 14, 44);
+      ctx.restore();
+      ctx.fillStyle = "#ecf0f1";
+      ctx.font = '10px "Courier New"';
+      ctx.textAlign = "center";
+      ctx.fillText(wrestler.name, x, y + 24);
     }
 
     function drawCrowd(ctx, intensity) {
@@ -12091,10 +12645,49 @@
         return;
       }
 
-      if (matchAnimationState.running) {
-        drawMatchAnimationFrame(ctx, now);
-      } else {
+      if (titleScreenVisible) {
+        drawTitleScreenCanvas(ctx, now);
+        updateBattleActionPanel();
+        return;
+      }
+
+      if (!matchAnimationState.running) {
         drawIdleHomeCanvas(ctx);
+        updateBattleActionPanel();
+        return;
+      }
+
+      const currentBattle = matchAnimationState.queue[matchAnimationState.matchIndex];
+      if (!currentBattle) {
+        finishMatchAnimation();
+        return;
+      }
+
+      syncBattlePlaybackState(now);
+      const frame = Math.floor(now / 16);
+      if (battlePlaybackState.phase === "intro") {
+        drawBattleIntro(ctx, currentBattle, clamp((now - battlePlaybackState.phaseStartTime) / getBattleIntroDuration(), 0, 1), frame);
+      } else if (battlePlaybackState.phase === "wait-command") {
+        drawBattleCommandStandbyFrame(ctx, currentBattle, getCurrentPlayerCommandEvent(currentBattle), frame);
+      } else if (battlePlaybackState.phase === "event-player" || battlePlaybackState.phase === "event-enemy") {
+        const event = getActiveBattlePlaybackEvent(currentBattle);
+        const timing = typeof getEventTimingProfile === "function"
+          ? getEventTimingProfile(event, currentBattle)
+          : null;
+        drawBattleEventFrame(ctx, currentBattle, event, Math.max(0, now - battlePlaybackState.phaseStartTime), frame, timing);
+        matchAnimationState.currentBattle = currentBattle;
+      } else {
+        drawBattleOutro(ctx, currentBattle, clamp((now - battlePlaybackState.phaseStartTime) / getBattleOutroDuration(), 0, 1), frame);
+      }
+      updateBattleActionPanel();
+      if (battlePlaybackState.phase === "outro" && (now - battlePlaybackState.phaseStartTime) >= getBattleOutroDuration()) {
+        matchAnimationState.matchIndex += 1;
+        if (matchAnimationState.matchIndex >= matchAnimationState.queue.length) {
+          finishMatchAnimation();
+          return;
+        }
+        matchAnimationState.currentBattle = matchAnimationState.queue[matchAnimationState.matchIndex];
+        resetBattlePlaybackState();
       }
     }
 
@@ -12103,17 +12696,25 @@
         openWeeklyResultsModal();
         return;
       }
-
+      primeBattleAudioAssets();
+      battleCommandState = { selectedByTurn: {}, lastPanelKey: "" };
+      resetBattlePlaybackState();
+      startBattleBgm();
       matchAnimationState.running = true;
       matchAnimationState.queue = matchQueue;
       matchAnimationState.matchIndex = 0;
       matchAnimationState.matchStartTime = performance.now();
+      matchAnimationState.currentBattle = matchQueue[0];
     }
 
     function finishMatchAnimation() {
+      stopBattleBgm();
+      battleCommandState.lastPanelKey = "";
+      resetBattlePlaybackState();
       matchAnimationState.running = false;
       matchAnimationState.queue = [];
       matchAnimationState.matchIndex = 0;
+      matchAnimationState.currentBattle = null;
       if (typeof matchAnimationState.finishCallback === "function") {
         const callback = matchAnimationState.finishCallback;
         matchAnimationState.finishCallback = null;
@@ -12139,6 +12740,7 @@
       if (matchAnimationState.running && !canvasLoopPausedAt) {
         canvasLoopPausedAt = performance.now();
       }
+      pauseBattleBgm();
     }
 
     function startCanvasLoop() {
@@ -12203,8 +12805,9 @@
     }
 
     // 경기 시작 시 전투용 임시 상태를 만든다.
-    function createBattleState(wrestler) {
-      const maxHP = calcMaxHP(wrestler);
+    function createBattleState(wrestler, opponent = null) {
+      const effectiveStats = getEffectiveWrestlerStats(wrestler, opponent);
+      const maxHP = calcMaxHP({ ...wrestler, stats: effectiveStats });
       const ageMeta = getAgeStageMeta(wrestler.age || 20);
       return {
         id: wrestler.id,
@@ -12248,7 +12851,7 @@
         highlightFlags: {
           criticalComeback: false
         },
-        stats: { ...wrestler.stats }
+        stats: { ...effectiveStats }
       };
     }
 
@@ -12721,8 +13324,8 @@
 
     // 전투를 완전히 계산해서 애니메이션 타임라인과 결과를 만든다.
     function runBattleSimulation(wrestlerA, wrestlerB, options = {}) {
-      const leftState = createBattleState(wrestlerA);
-      const rightState = createBattleState(wrestlerB);
+      const leftState = createBattleState(wrestlerA, wrestlerB);
+      const rightState = createBattleState(wrestlerB, wrestlerA);
       const matchType = options.matchType || "";
       const turnLimit = getBattleTurnLimit(matchType);
       const battlePaceMultiplier = matchType === "IRON_MAN_MATCH" ? 1.12 : 1.18;
@@ -13237,59 +13840,408 @@
       return readyMatches.length ? readyMatches : ["이번 주 아직 편성된 경기가 없습니다"];
     }
 
+    function getBattleCommandLabel(commandKey, snapshot = null) {
+      if (commandKey === "basic") {
+        return "기본 타격";
+      }
+      if (commandKey === "power") {
+        return "파워 무브";
+      }
+      if (commandKey === "technical") {
+        return "테크니컬";
+      }
+      if (commandKey === "submission") {
+        return "서브미션";
+      }
+      if (commandKey === "finisher") {
+        return snapshot?.finisher || "피니셔";
+      }
+      return "기본 타격";
+    }
+
+    function getBattleActionOptionsForSnapshot(attackerSnapshot, defenderSnapshot) {
+      const attacker = attackerSnapshot || {
+        style: "powerhouse",
+        currentStamina: 100,
+        maxStamina: 100,
+        finisherGauge: 0,
+        stats: { technique: 60 },
+        finisher: "피니셔"
+      };
+      const defender = defenderSnapshot || {
+        currentHP: 100,
+        maxHP: 100,
+        currentStamina: 100,
+        maxStamina: 100,
+        isDown: false,
+        stats: { technique: 55 }
+      };
+      const preferredKeys = attacker.style === "technician"
+        ? ["technical", "basic", "submission", "power", "finisher"]
+        : attacker.style === "showman"
+          ? ["technical", "power", "basic", "finisher", "submission"]
+          : ["power", "basic", "technical", "finisher", "submission"];
+      const keys = [];
+      preferredKeys.concat(["basic", "power", "technical", "submission", "finisher"]).forEach((key) => {
+        if (!keys.includes(key)) {
+          keys.push(key);
+        }
+      });
+      const enabledKeys = keys.filter((key) => canUseMove(attacker, defender, key));
+      const visibleKeys = [];
+      enabledKeys.forEach((key) => {
+        if (!visibleKeys.includes(key) && visibleKeys.length < 3) {
+          visibleKeys.push(key);
+        }
+      });
+      keys.forEach((key) => {
+        if (!visibleKeys.includes(key) && visibleKeys.length < 3) {
+          visibleKeys.push(key);
+        }
+      });
+      return visibleKeys.map((key) => ({
+        key,
+        label: getBattleCommandLabel(key, attacker),
+        enabled: canUseMove(attacker, defender, key)
+      }));
+    }
+
+    function getBattleIntroDuration() {
+      return typeof INTRO_DURATION === "number" ? INTRO_DURATION : BATTLE_ANIMATION_TIMINGS.intro;
+    }
+
+    function getBattleOutroDuration() {
+      return typeof OUTRO_DURATION === "number" ? OUTRO_DURATION : BATTLE_ANIMATION_TIMINGS.outro;
+    }
+
+    function resetBattlePlaybackState() {
+      battlePlaybackState.battleIndex = -1;
+      battlePlaybackState.phase = "idle";
+      battlePlaybackState.phaseStartTime = 0;
+      battlePlaybackState.sequenceCursor = 0;
+      battlePlaybackState.currentSourceEventIndex = -1;
+      battlePlaybackState.selectedCommandKey = "";
+      battlePlaybackState.renderEvent = null;
+    }
+
+    function findBattleEventIndex(battlePackage, startIndex, predicate) {
+      if (!battlePackage || !Array.isArray(battlePackage.battleEvents)) {
+        return -1;
+      }
+      for (let index = Math.max(0, startIndex); index < battlePackage.battleEvents.length; index += 1) {
+        const event = battlePackage.battleEvents[index];
+        if (predicate(event, index)) {
+          return index;
+        }
+      }
+      return -1;
+    }
+
+    function getBattleSourceEvent(battlePackage, eventIndex = battlePlaybackState.currentSourceEventIndex) {
+      if (!battlePackage || !Array.isArray(battlePackage.battleEvents) || eventIndex < 0) {
+        return null;
+      }
+      return battlePackage.battleEvents[eventIndex] || null;
+    }
+
+    function getCurrentPlayerCommandEvent(battlePackage) {
+      if (!battlePackage || !Array.isArray(battlePackage.battleEvents)) {
+        return null;
+      }
+      if (battlePlaybackState.currentSourceEventIndex >= 0) {
+        return getBattleSourceEvent(battlePackage, battlePlaybackState.currentSourceEventIndex);
+      }
+      const playerId = battlePackage.leftState?.id;
+      const nextIndex = findBattleEventIndex(
+        battlePackage,
+        battlePlaybackState.sequenceCursor,
+        (event) => event.attackerId === playerId
+      );
+      return nextIndex >= 0 ? battlePackage.battleEvents[nextIndex] : null;
+    }
+
+    function buildRenderableBattleEvent(event, commandKey) {
+      if (!event || !commandKey) {
+        return event;
+      }
+      const attacker = typeof getEventPreAttacker === "function" ? getEventPreAttacker(event) : null;
+      const label = getBattleCommandLabel(commandKey, attacker);
+      const renderEvent = {
+        ...event,
+        moveType: commandKey,
+        moveName: commandKey === "finisher"
+          ? (attacker?.finisher || label)
+          : (MOVE_LABELS[commandKey] || label),
+        actionText: `${attacker?.name || "선수"}의 ${label}!`,
+        __sourceEventIndex: battlePlaybackState.currentSourceEventIndex
+      };
+      delete renderEvent.__canvasTimingProfile;
+      return renderEvent;
+    }
+
+    function startBattlePlaybackSegment(now) {
+      const currentBattle = matchAnimationState.currentBattle;
+      battlePlaybackState.selectedCommandKey = "";
+      battlePlaybackState.renderEvent = null;
+      const playerId = currentBattle?.leftState?.id;
+      const playerEventIndex = findBattleEventIndex(
+        currentBattle,
+        battlePlaybackState.sequenceCursor,
+        (event) => event.attackerId === playerId
+      );
+      if (playerEventIndex < 0) {
+        battlePlaybackState.currentSourceEventIndex = -1;
+        battlePlaybackState.phase = "outro";
+        battlePlaybackState.phaseStartTime = now;
+        return;
+      }
+      battlePlaybackState.currentSourceEventIndex = playerEventIndex;
+      const playerEvent = getBattleSourceEvent(currentBattle, playerEventIndex);
+      const attacker = typeof getEventPreAttacker === "function" ? getEventPreAttacker(playerEvent) : null;
+      if (typeof applyCommentaryState === "function") {
+        applyCommentaryState(
+          `${attacker?.name || "플레이어"} 차례`,
+          "오른쪽 액션 버튼으로 기술을 선택한다.",
+          "normal",
+          "#95a5a6",
+          "#ecf0f1",
+          { line1Speed: 16, line2Speed: 24 }
+        );
+      }
+      battlePlaybackState.phase = "wait-command";
+      battlePlaybackState.phaseStartTime = now;
+    }
+
+    function startBattleEnemySegment(now) {
+      const currentBattle = matchAnimationState.currentBattle;
+      const playerId = currentBattle?.leftState?.id;
+      const enemyEventIndex = findBattleEventIndex(
+        currentBattle,
+        battlePlaybackState.currentSourceEventIndex + 1,
+        (event) => event.attackerId !== playerId
+      );
+      if (enemyEventIndex < 0) {
+        battlePlaybackState.currentSourceEventIndex = -1;
+        battlePlaybackState.phase = "outro";
+        battlePlaybackState.phaseStartTime = now;
+        return;
+      }
+      battlePlaybackState.currentSourceEventIndex = enemyEventIndex;
+      battlePlaybackState.phase = "event-enemy";
+      battlePlaybackState.phaseStartTime = now;
+      battlePlaybackState.renderEvent = getBattleSourceEvent(currentBattle, enemyEventIndex);
+    }
+
+    function getActiveBattlePlaybackEvent(battlePackage) {
+      if (battlePlaybackState.renderEvent) {
+        return battlePlaybackState.renderEvent;
+      }
+      if (battlePlaybackState.phase === "wait-command") {
+        return getCurrentPlayerCommandEvent(battlePackage);
+      }
+      return getBattleSourceEvent(battlePackage);
+    }
+
+    function syncBattlePlaybackState(now) {
+      if (!matchAnimationState.running || !matchAnimationState.currentBattle) {
+        resetBattlePlaybackState();
+        return;
+      }
+      if (battlePlaybackState.battleIndex !== matchAnimationState.matchIndex) {
+        battlePlaybackState.battleIndex = matchAnimationState.matchIndex;
+        battlePlaybackState.phase = "intro";
+        battlePlaybackState.phaseStartTime = now;
+        battlePlaybackState.sequenceCursor = 0;
+        battlePlaybackState.currentSourceEventIndex = -1;
+        battlePlaybackState.selectedCommandKey = "";
+        battlePlaybackState.renderEvent = null;
+      }
+      let guard = 0;
+      while (guard < 8) {
+        guard += 1;
+        if (battlePlaybackState.phase === "intro") {
+          if ((now - battlePlaybackState.phaseStartTime) < getBattleIntroDuration()) {
+            break;
+          }
+          startBattlePlaybackSegment(now);
+          continue;
+        }
+        if (battlePlaybackState.phase === "wait-command") {
+          break;
+        }
+        if (battlePlaybackState.phase === "event-player" || battlePlaybackState.phase === "event-enemy") {
+          const currentBattle = matchAnimationState.currentBattle;
+          const event = getActiveBattlePlaybackEvent(currentBattle);
+          const timing = typeof getEventTimingProfile === "function"
+            ? getEventTimingProfile(event, currentBattle)
+            : { totalDuration: BATTLE_ANIMATION_TIMINGS.event };
+          if ((now - battlePlaybackState.phaseStartTime) < timing.totalDuration) {
+            break;
+          }
+          if (battlePlaybackState.phase === "event-player") {
+            battlePlaybackState.selectedCommandKey = "";
+            battlePlaybackState.renderEvent = null;
+            startBattleEnemySegment(now);
+            continue;
+          }
+          battlePlaybackState.sequenceCursor = battlePlaybackState.currentSourceEventIndex + 1;
+          battlePlaybackState.currentSourceEventIndex = -1;
+          battlePlaybackState.selectedCommandKey = "";
+          battlePlaybackState.renderEvent = null;
+          startBattlePlaybackSegment(now);
+          continue;
+        }
+        break;
+      }
+    }
+
+    function drawBattleCommandStandbyFrame(ctx, battlePackage, event, frame) {
+      const leftSnapshot = event?.beforeLeft || snapshotBattleState(battlePackage.leftState);
+      const rightSnapshot = event?.beforeRight || snapshotBattleState(battlePackage.rightState);
+      const baseFloorY = typeof SCENE_FLOOR_Y === "number" ? SCENE_FLOOR_Y : 430;
+      const leftBaseX = typeof LEFT_FIGHTER_BASE_X === "number" ? LEFT_FIGHTER_BASE_X : 180;
+      const rightBaseX = typeof RIGHT_FIGHTER_BASE_X === "number" ? RIGHT_FIGHTER_BASE_X : 460;
+      const usedMainArenaImage = typeof drawBattleArena === "function"
+        ? drawBattleArena(ctx, event?.hypeAfter || gameState.hype, frame, true)
+        : false;
+      const leftPose = {
+        x: leftBaseX,
+        y: baseFloorY + (typeof getIdleBob === "function" ? getIdleBob(leftSnapshot, frame) : 0),
+        tilt: 0,
+        flash: 0,
+        state: leftSnapshot.isDown ? "down" : "idle",
+        down: Boolean(leftSnapshot.isDown)
+      };
+      const rightPose = {
+        x: rightBaseX,
+        y: baseFloorY + (typeof getIdleBob === "function" ? getIdleBob(rightSnapshot, frame) : 0),
+        tilt: 0,
+        flash: 0,
+        state: rightSnapshot.isDown ? "down" : "idle",
+        down: Boolean(rightSnapshot.isDown)
+      };
+      if (typeof renderBattleHud === "function") {
+        renderBattleHud(ctx, leftSnapshot, rightSnapshot, "COMMAND");
+      }
+      if (typeof drawCombatant === "function") {
+        drawCombatant(ctx, leftSnapshot, leftPose, frame, "left");
+        drawCombatant(ctx, rightSnapshot, rightPose, frame, "right");
+      }
+      if (typeof drawBattleArenaForeground === "function") {
+        drawBattleArenaForeground(ctx, usedMainArenaImage);
+      }
+      if (typeof showCenterText === "function" && (typeof centerTextDisplay === "undefined" || !centerTextDisplay || centerTextDisplay.text !== "YOUR TURN")) {
+        showCenterText("YOUR TURN", "#f1c40f", 34, { duration: 900, y: 156 });
+      }
+      if (typeof renderCenterText === "function") {
+        renderCenterText(ctx);
+      }
+      if (typeof renderCommentary === "function") {
+        renderCommentary(ctx);
+      }
+    }
+
+    function getBattleActionPanelContext() {
+      if (!matchAnimationState.running || !matchAnimationState.currentBattle) {
+        return {
+          panelKey: "idle",
+          options: getBattleActionOptionsForSnapshot(),
+          selectedKey: "",
+          turnKey: "",
+          selectable: false
+        };
+      }
+      const battlePackage = matchAnimationState.currentBattle;
+      const event = getCurrentPlayerCommandEvent(battlePackage)
+        || getActiveBattlePlaybackEvent(battlePackage)
+        || battlePackage.battleEvents[battlePackage.battleEvents.length - 1];
+      const attacker = event && typeof getEventPreAttacker === "function" ? getEventPreAttacker(event) : battlePackage.leftState;
+      const defender = event && typeof getEventPreDefender === "function" ? getEventPreDefender(event) : battlePackage.rightState;
+      const turnKey = `${matchAnimationState.matchIndex}:${event?.turn || 0}`;
+      return {
+        panelKey: `battle:${battlePlaybackState.phase}:${turnKey}:${battlePlaybackState.selectedCommandKey}`,
+        options: getBattleActionOptionsForSnapshot(attacker, defender),
+        selectedKey: battlePlaybackState.selectedCommandKey || battleCommandState.selectedByTurn[turnKey] || "",
+        turnKey,
+        selectable: battlePlaybackState.phase === "wait-command"
+      };
+    }
+
+    function handleBattleCommandSelection(commandKey) {
+      const battlePackage = matchAnimationState.currentBattle;
+      const event = getCurrentPlayerCommandEvent(battlePackage);
+      if (!battlePackage || !event || battlePlaybackState.phase !== "wait-command") {
+        return;
+      }
+      const selectedOption = getBattleActionOptionsForSnapshot(
+        typeof getEventPreAttacker === "function" ? getEventPreAttacker(event) : battlePackage.leftState,
+        typeof getEventPreDefender === "function" ? getEventPreDefender(event) : battlePackage.rightState
+      ).find((option) => option.key === commandKey && option.enabled);
+      if (!selectedOption) {
+        return;
+      }
+      battlePlaybackState.selectedCommandKey = commandKey;
+      battlePlaybackState.renderEvent = buildRenderableBattleEvent(event, commandKey);
+      battlePlaybackState.phase = "event-player";
+      battlePlaybackState.phaseStartTime = performance.now();
+      battleCommandState.selectedByTurn[`${matchAnimationState.matchIndex}:${event.turn || 0}`] = commandKey;
+      battleCommandState.lastPanelKey = "";
+      updateBattleActionPanel(true);
+    }
+
+    function updateBattleActionPanel(force = false) {
+      const panel = document.getElementById("battleActionPanel");
+      if (!panel) {
+        return;
+      }
+      const context = getBattleActionPanelContext();
+      if (!force && battleCommandState.lastPanelKey === context.panelKey) {
+        return;
+      }
+      battleCommandState.lastPanelKey = context.panelKey;
+      panel.innerHTML = `
+        <div class="battle-action-grid">
+          ${context.options.map((option, index) => `
+            <button
+              class="battle-action-button ${context.selectedKey === option.key ? "selected" : ""}"
+              type="button"
+              data-action="battle-command-select"
+              data-command-key="${option.key}"
+              ${(context.selectable && option.enabled) ? "" : "disabled"}
+            >
+              <div class="battle-action-button-top">
+                <span>${index + 1}. ${option.label}</span>
+                <span>${MOVE_COSTS[option.key] ?? "-"}</span>
+              </div>
+              <div class="battle-action-button-copy">${option.enabled ? "선택 후 즉시 동작 재생" : "현재 상태에서는 사용 불가"}</div>
+            </button>
+          `).join("")}
+        </div>
+      `;
+      Array.from(panel.querySelectorAll('[data-action="battle-command-select"]')).forEach((button) => {
+        button.addEventListener("click", () => {
+          const commandKey = button.dataset.commandKey || "";
+          if (!commandKey) {
+            return;
+          }
+          handleBattleCommandSelection(commandKey);
+        });
+      });
+    }
+
     function renderHomeMainContent() {
-      const showCard = getShowCardSummary();
-      const bestCard = getBestCardSummary();
-      const contractSummary = getContractAlertSummary();
-      const monthlyPayroll = getMonthlyPayrollEstimate();
-      const summaryNet = pendingWeeklySummary
-        ? formatNumber((pendingWeeklySummary.totalIncome || 0) - (pendingWeeklySummary.salaryTotal || 0))
-        : null;
-      const homeSupportText = pendingWeeklySummary
-        ? `직전 쇼 순이익 ${summaryNet}G · 관중 ${formatNumber(pendingWeeklySummary.totalAudience || 0)}명`
-        : "저장 데이터로 바로 이어집니다. 핵심 비용과 계약만 짧게 확인합니다.";
       mainDynamicContentEl.innerHTML = `
         <div class="home-stack">
           <section>
-            <div class="home-overview-card">
-              <div class="home-overview-top">
-                <div>
-                  <div class="hero-eyebrow">Home Control</div>
-                  <h3 class="hero-headline">홈 요약</h3>
-                  <p class="hero-support">${homeSupportText}</p>
+            <div class="home-battle-layout">
+              <div class="home-canvas-wrap">
+                <div class="canvas-shell">
+                  <button class="canvas-skip-button ${matchAnimationState.running ? "" : "hidden"}" id="canvasSkipButton">스킵</button>
+                  <canvas id="matchCanvas" width="640" height="560"></canvas>
+                  <div class="arena-overlay"></div>
                 </div>
               </div>
-              <div class="home-summary-grid">
-                <article class="home-summary-card">
-                  <div class="home-summary-label">최고 카드</div>
-                  <div class="home-summary-value">${bestCard.name}</div>
-                  <div class="home-summary-note">${bestCard.note}</div>
-                </article>
-                <article class="home-summary-card">
-                  <div class="home-summary-label">월 지출 예상</div>
-                  <div class="home-summary-value">${formatNumber(monthlyPayroll)}G</div>
-                  <div class="home-summary-note">주급 ${formatNumber(getWeeklySalaryTotal())}G x 4주</div>
-                </article>
-                <article class="home-summary-card">
-                  <div class="home-summary-label">계약 임박</div>
-                  <div class="home-summary-value">${contractSummary.value}</div>
-                  <div class="home-summary-note">${contractSummary.note}</div>
-                </article>
-              </div>
-            </div>
-            <div class="home-canvas-wrap">
-              <div class="canvas-shell">
-                <button class="canvas-skip-button ${matchAnimationState.running ? "" : "hidden"}" id="canvasSkipButton">스킵</button>
-                <canvas id="matchCanvas" width="640" height="560"></canvas>
-                <div class="arena-overlay">
-                  ${showCard.readyMatches ? "" : `
-                    <div class="arena-bottom-bar">
-                      <div class="arena-bottom-grid">
-                      </div>
-                    </div>
-                  `}
-                </div>
-              </div>
+              <aside class="battle-action-panel" id="battleActionPanel"></aside>
             </div>
           </section>
         </div>
@@ -13324,6 +14276,7 @@
         });
       });
 
+      updateBattleActionPanel(true);
       drawCurrentCanvasFrame(performance.now());
     }
 
@@ -13485,7 +14438,7 @@
       const spriteImage = getSpriteImage(getResolvedStandSpriteSheet(snapshot));
       const battleSpriteImage = getSpriteImage(getBattleSpritePath(snapshot));
       const totalBattleFrames = snapshot.battleSpriteFrames || 12;
-      const useStandPortrait = isCustomStandSprite(snapshot) && spriteImage && spriteImage.complete && spriteImage.width && spriteImage.height;
+      const useStandPortrait = spriteImage && spriteImage.complete && spriteImage.width && spriteImage.height;
 
       ctx.save();
       ctx.globalAlpha = opacity;
@@ -13516,7 +14469,7 @@
       } else if (spriteImage && spriteImage.complete) {
         drawWrestlerVisual(ctx, snapshot, x + shake, y, frame, state);
       } else {
-        drawWrestler(ctx, x + shake, y, snapshot.spriteColor, snapshot.grade, frame, state, snapshot.name);
+        drawWrestlerVisual(ctx, snapshot, x + shake, y, frame, state);
       }
       ctx.restore();
     }
@@ -14218,11 +15171,13 @@
 
       if (titleScreenVisible) {
         drawTitleScreenCanvas(ctx, now);
+        updateBattleActionPanel();
         return;
       }
 
       if (!matchAnimationState.running) {
         drawIdleHomeCanvas(ctx);
+        updateBattleActionPanel();
         return;
       }
 
@@ -14232,15 +15187,31 @@
         return;
       }
 
-      const battleFinished = drawBattlePackageFrame(ctx, currentBattle, now - matchAnimationState.matchStartTime, Math.floor(now / 16));
-      if (battleFinished) {
+      syncBattlePlaybackState(now);
+      const frame = Math.floor(now / 16);
+      if (battlePlaybackState.phase === "intro") {
+        drawBattleIntro(ctx, currentBattle, clamp((now - battlePlaybackState.phaseStartTime) / getBattleIntroDuration(), 0, 1), frame);
+      } else if (battlePlaybackState.phase === "wait-command") {
+        drawBattleCommandStandbyFrame(ctx, currentBattle, getCurrentPlayerCommandEvent(currentBattle), frame);
+      } else if (battlePlaybackState.phase === "event-player" || battlePlaybackState.phase === "event-enemy") {
+        const event = getActiveBattlePlaybackEvent(currentBattle);
+        const timing = typeof getEventTimingProfile === "function"
+          ? getEventTimingProfile(event, currentBattle)
+          : null;
+        drawBattleEventFrame(ctx, currentBattle, event, Math.max(0, now - battlePlaybackState.phaseStartTime), frame, timing);
+        matchAnimationState.currentBattle = currentBattle;
+      } else {
+        drawBattleOutro(ctx, currentBattle, clamp((now - battlePlaybackState.phaseStartTime) / getBattleOutroDuration(), 0, 1), frame);
+      }
+      updateBattleActionPanel();
+      if (battlePlaybackState.phase === "outro" && (now - battlePlaybackState.phaseStartTime) >= getBattleOutroDuration()) {
         matchAnimationState.matchIndex += 1;
         if (matchAnimationState.matchIndex >= matchAnimationState.queue.length) {
           finishMatchAnimation();
           return;
         }
-        matchAnimationState.matchStartTime = now;
         matchAnimationState.currentBattle = matchAnimationState.queue[matchAnimationState.matchIndex];
+        resetBattlePlaybackState();
       }
     }
 
@@ -14249,6 +15220,10 @@
         openWeeklyResultsModal();
         return;
       }
+      primeBattleAudioAssets();
+      battleCommandState = { selectedByTurn: {}, lastPanelKey: "" };
+      resetBattlePlaybackState();
+      startBattleBgm();
       matchAnimationState.running = true;
       matchAnimationState.queue = matchQueue;
       matchAnimationState.matchIndex = 0;
@@ -14257,6 +15232,9 @@
     }
 
     function finishMatchAnimation() {
+      stopBattleBgm();
+      battleCommandState.lastPanelKey = "";
+      resetBattlePlaybackState();
       matchAnimationState.running = false;
       matchAnimationState.queue = [];
       matchAnimationState.matchIndex = 0;
@@ -14286,6 +15264,7 @@
         matchAnimationState.matchStartTime += performance.now() - canvasLoopPausedAt;
       }
       canvasLoopPausedAt = 0;
+      resumeBattleBgm();
       function frame(now) {
         drawCurrentCanvasFrame(now);
         if (activeTab !== "home") {
@@ -14297,7 +15276,7 @@
       canvasAnimationFrameId = requestAnimationFrame(frame);
     }
 
-    function createBookedSlotHtml(slotIndex, sideKey, wrestlerId) {
+    function createBookedSlotHtml(slotIndex, sideKey, wrestlerId, opponentWrestler = null) {
       const wrestler = findWrestlerById(wrestlerId);
       if (!wrestler) {
         return `<div class="dropzone" data-slot-index="${slotIndex}" data-side="${sideKey}">선수를 선택하세요</div>`;
@@ -14310,7 +15289,7 @@
             <div class="sprite-box" style="${getWrestlerVisualStyle(wrestler, "width:48px;height:48px;")}"></div>
             <div style="min-width:0;">
               <div class="slot-card-name">${wrestler.name}</div>
-              <div class="slot-card-power">전투력 ${formatAverage(getWrestlerPower(wrestler))} · ${getStyleMeta(wrestler.style).icon} · ${getAlignmentMeta(wrestler.alignment).icon}</div>
+              <div class="slot-card-power">전투력 ${formatAverage(getWrestlerPower(wrestler, opponentWrestler))} · ${getCompactWrestlerIndicatorsHtml(wrestler, { includeAlignment: false, includeAge: false })}</div>
             </div>
           </div>
         </div>
@@ -14330,12 +15309,12 @@
           <div class="match-slot">
             <div>
               <div class="slot-label">슬롯 ${index + 1} · 선수 A</div>
-              ${slot.wrestlerAId ? createBookedSlotHtml(index, "A", slot.wrestlerAId) : `<div class="dropzone" data-slot-index="${index}" data-side="A">선수를 선택하세요</div>`}
+              ${slot.wrestlerAId ? createBookedSlotHtml(index, "A", slot.wrestlerAId, wrestlerB) : `<div class="dropzone" data-slot-index="${index}" data-side="A">선수를 선택하세요</div>`}
             </div>
             <div class="vs-mark">VS</div>
             <div>
               <div class="slot-label">슬롯 ${index + 1} · 선수 B</div>
-              ${slot.wrestlerBId ? createBookedSlotHtml(index, "B", slot.wrestlerBId) : `<div class="dropzone" data-slot-index="${index}" data-side="B">선수를 선택하세요</div>`}
+              ${slot.wrestlerBId ? createBookedSlotHtml(index, "B", slot.wrestlerBId, wrestlerA) : `<div class="dropzone" data-slot-index="${index}" data-side="B">선수를 선택하세요</div>`}
             </div>
             ${(slot.wrestlerAId && slot.wrestlerBId && checkRepeatMatchup(slot.wrestlerAId, slot.wrestlerBId)) ? '<div style="grid-column:1 / -1;color:#f39c12;font-size:12px;">⚠️ 반복 매치업! Hype -10</div>' : ""}
             ${getStyleMatchupIndicatorHtml(wrestlerA, wrestlerB)}
@@ -14368,7 +15347,7 @@
             <div class="sprite-box" style="${getWrestlerVisualStyle(wrestler, "width:46px;height:46px;")}"></div>
             <div class="mini-wrestler-meta">
               <div class="mini-wrestler-name">${wrestler.name}</div>
-              <div class="mini-wrestler-power">전투력 ${formatAverage(getWrestlerPower(wrestler))} · ${getStyleMeta(wrestler.style).icon} · ${getAlignmentMeta(wrestler.alignment).icon}</div>
+              <div class="mini-wrestler-power">전투력 ${formatAverage(getWrestlerPower(wrestler))} · ${getCompactWrestlerIndicatorsHtml(wrestler, { includeAlignment: false, includeAge: false })}</div>
             </div>
           </article>
         `;
@@ -14971,8 +15950,6 @@
     }
 
     function renderShopMainContent() {
-      const pity = gameState.pitySystem;
-      const pityTargets = getBasePityTargets();
       const gachaRates = getCurrentGachaRatePercentages();
       const legendRate = gachaRates.LEGEND;
       const sRate = gachaRates.S;
@@ -15028,7 +16005,7 @@
             </article>
           `;
         }).join("");
-      const gradeUpgradeCards = ["A", "S"].map((grade) => {
+      const gradeUpgradeCards = ["S"].map((grade) => {
         const rule = getGradeFragmentConvertRequirement(grade);
         if (!rule) {
           return "";
@@ -15100,11 +16077,6 @@
         `;
       }).join("");
       const projectedLegacyPoints = calcLegacyPoints();
-      const pityEntries = [
-        { key: "B", label: "B급 이상 보장", current: pity.pityB, max: pityTargets.pityB, className: "pity-b" },
-        { key: "A", label: "A급 이상 보장", current: pity.pityA, max: pityTargets.pityA, className: "pity-a" },
-        { key: "LEGEND", label: "LEGEND 보장", current: pity.pityLegend, max: pityTargets.pityLegend, className: "pity-legend" }
-      ];
       const subtabNav = `
         <div class="shop-subtab-bar">
           <button class="shop-subtab ${activeSubtab === "gacha" ? "active" : ""}" data-action="switch-shop-subtab" data-subtab="gacha">🎰 뽑기</button>
@@ -15122,7 +16094,7 @@
               ${getEconomyIconHtml("singlePick", "ui-inline-icon lg", "티켓")}
               <span class="ticket-count-number-value">${formatNumber(gameState.tickets)}</span>
             </div>
-            <div class="ticket-count-support">뽑기권으로 신규 레슬러를 영입하고, 10연 뽑기로 B급 이상을 확정 확보하세요.</div>
+            <div class="ticket-count-support">뽑기권으로 신규 레슬러를 영입하고, 중복은 조각으로 바꿔 다음 확정 소환을 준비합니다.</div>
           </div>
           <div class="gacha-ticket-buy-row">
             <button class="gacha-buy-button" data-action="buy-ticket-single" ${gameState.gold >= 500 ? "" : "disabled"}>
@@ -15145,28 +16117,10 @@
           </div>
           <div class="gacha-rate-pity-row">
             <article class="gacha-rate-card">
-              <div class="gacha-rate-title">확률 / 보장</div>
+              <div class="gacha-rate-title">확률</div>
               <div class="gacha-rate-main">C ${cRate.toFixed(1)}% · B ${bRate.toFixed(1)}% · A ${aRate.toFixed(1)}% · S ${sRate.toFixed(1)}% · LEGEND ${legendRate.toFixed(1)}%</div>
-              <div class="gacha-rate-note">10연 뽑기는 B급 이상 확정입니다. 천장 진행도는 오른쪽에서 바로 확인합니다.</div>
+              <div class="gacha-rate-note">천장 없이 표기된 확률 그대로 뽑기 결과가 결정됩니다.</div>
             </article>
-            <div class="pity-stack inline">
-              ${pityEntries.map((entry) => {
-                const progress = getPityProgress(entry.current, entry.max);
-                return `
-                  <article class="pity-card">
-                    <div class="pity-bar-container">
-                      <div class="pity-label">
-                        <span class="pity-label-main">${getUiIconImgHtml(getGradeIconPath(entry.key), "ui-inline-icon", entry.label)}${entry.label}</span>
-                        <span>${entry.current}회 남음</span>
-                      </div>
-                      <div class="pity-bar">
-                        <div class="pity-bar-fill ${entry.className} ${progress >= 90 ? "near-cap" : ""}" style="width:${progress}%;"></div>
-                      </div>
-                    </div>
-                  </article>
-                `;
-              }).join("")}
-            </div>
           </div>
         </div>
       `;
@@ -15176,7 +16130,7 @@
             <div class="section-heading">
               <div>
                 <h3 class="section-heading-title">${getEconomyIconHtml("piece", "ui-inline-icon lg", "조각")}등급 조각 보관함</h3>
-                <p>등급 조각을 모아 확정 소환하고, A/S 조각은 상위 등급으로 승급할 수 있습니다.</p>
+                <p>S급과 레전드 조각만 보관되며, 필요한 수량을 모으면 확정 소환할 수 있습니다.</p>
               </div>
             </div>
             <div class="fragment-grade-grid">${gradeFragmentCards}</div>
@@ -15194,10 +16148,10 @@
             <div class="section-heading">
               <div>
                 <h3 class="section-heading-title">${getEconomyIconHtml("piece", "ui-inline-icon lg", "조각")}조각 승급 교환</h3>
-                <p>A급 조각은 S급으로, S급 조각은 레전드 조각으로 승급할 수 있습니다.</p>
+                <p>S급 조각 12개를 레전드 조각 1개로 승급할 수 있습니다.</p>
               </div>
             </div>
-            <div class="fragment-grid">${gradeUpgradeCards}</div>
+            <div class="fragment-grid">${gradeUpgradeCards || '<div class="countdown-box">현재 가능한 승급 교환이 없습니다.</div>'}</div>
           </div>
         </div>
       `;
@@ -15242,8 +16196,6 @@
     }
 
     function renderShopSidePanel() {
-      const pity = gameState.pitySystem;
-      const pityTargets = getBasePityTargets();
       const gachaRates = getCurrentGachaRatePercentages();
       const legendRate = gachaRates.LEGEND;
       const sRate = gachaRates.S;
@@ -15260,12 +16212,12 @@
       const subtabCards = activeSubtab === "gacha"
         ? `
           <div class="side-card">
-            <div class="side-card-title">확률 / 천장</div>
-            <div class="side-card-desc">C ${cRate.toFixed(1)}% · B ${bRate.toFixed(1)}% · A ${aRate.toFixed(1)}% · S ${sRate.toFixed(1)}% · LEGEND ${legendRate.toFixed(1)}%<br>누적 ${pity.pityCount}회 · B ${pity.pityB}/${pityTargets.pityB} · A ${pity.pityA}/${pityTargets.pityA} · LEGEND ${pity.pityLegend}/${pityTargets.pityLegend}</div>
+            <div class="side-card-title">확률</div>
+            <div class="side-card-desc">C ${cRate.toFixed(1)}% · B ${bRate.toFixed(1)}% · A ${aRate.toFixed(1)}% · S ${sRate.toFixed(1)}% · LEGEND ${legendRate.toFixed(1)}%<br>누적 뽑기 ${formatNumber(gameState.pitySystem.pityCount)}회</div>
           </div>
           <div class="side-card">
             <div class="side-card-title">구매 가이드</div>
-            <div class="side-card-desc">10연 뽑기는 B급 이상 보장으로 안정성이 높습니다. 레거시의 행운의 손과 조기 천장을 올리면 기대값이 더 좋아집니다.</div>
+            <div class="side-card-desc">천장 없이 표기 확률대로만 뽑기가 진행됩니다. 상위 등급은 낮은 확률이므로 티켓과 조각을 함께 관리하는 편이 안정적입니다.</div>
           </div>
         `
         : `
@@ -15275,7 +16227,7 @@
           </div>
           <div class="side-card">
             <div class="side-card-title">조각 규칙</div>
-            <div class="side-card-desc">등급 조각은 확정 소환용, 특정 선수 조각은 A급 이상 전용 영입/강화용입니다. A→S, S→LEGEND 승급 교환도 가능합니다.</div>
+            <div class="side-card-desc">등급 조각은 S급과 레전드만 존재합니다. 특정 선수 조각은 A급 이상 전용 영입/강화용이며, S급 조각 12개로 레전드 조각 1개를 만들 수 있습니다.</div>
           </div>
           <div class="side-card">
             <div class="side-card-title">로스터 상태</div>
@@ -16896,6 +17848,8 @@
               <div class="detail-info-card"><div class="detail-info-label">주급</div><div class="detail-info-value">${formatNumber(wrestler.salary)}G</div></div>
               <div class="detail-info-card"><div class="detail-info-label">필살기</div><div class="detail-info-value">${wrestler.finisher}</div></div>
               <div class="detail-info-card"><div class="detail-info-label">상태</div><div class="detail-info-value">${status.text}</div></div>
+              <div class="detail-info-card"><div class="detail-info-label">스타일</div><div class="detail-info-value">${getStyleMeta(wrestler.style).icon} ${getStyleMeta(wrestler.style).label}</div></div>
+              <div class="detail-info-card"><div class="detail-info-label">오늘 컨디션</div><div class="detail-info-value">${getWrestlerConditionMeta(wrestler).icon} ${getWrestlerConditionMeta(wrestler).label} (${getWrestlerConditionModifier(wrestler) > 0 ? "+" : ""}${getWrestlerConditionModifier(wrestler)})</div></div>
               <div class="detail-info-card"><div class="detail-info-label">역할</div><div class="detail-info-value">${getAlignmentMeta(wrestler.alignment).icon} ${getAlignmentMeta(wrestler.alignment).label}</div></div>
               <div class="detail-info-card"><div class="detail-info-label">성장 단계</div><div class="detail-info-value">${ageStage.label}</div></div>
               <div class="detail-info-card"><div class="detail-info-label">잠재력</div><div class="detail-info-value">${getPotentialStarsText(wrestler.potentialStars || 0)}</div></div>
@@ -17439,7 +18393,6 @@
         addWeeklyStat("goldEarned", income);
         ensureMissionRefreshes();
         notifyMissionCompletionIfNeeded();
-        renderResources();
         if (activeTab !== "home" && activeTab !== "roster") {
           renderActiveTab();
         } else {
@@ -17466,7 +18419,13 @@
       }
     });
 
+    window.addEventListener("pointerdown", () => {
+      renderResources();
+      updateBattleActionPanel();
+    });
+
     window.addEventListener("beforeunload", () => {
+      stopBattleBgm();
       finalizePendingGachaRewardsForSave();
       silentSaveGameState();
     });
@@ -17490,9 +18449,9 @@
         });
         headerUiScaleSelectEl.dataset.bound = "true";
       }
-      if (headerResetSaveButtonEl && !headerResetSaveButtonEl.dataset.bound) {
-        headerResetSaveButtonEl.addEventListener("click", resetSavedDataWithConfirm);
-        headerResetSaveButtonEl.dataset.bound = "true";
+      if (headerSoundOptionsButtonEl && !headerSoundOptionsButtonEl.dataset.bound) {
+        headerSoundOptionsButtonEl.addEventListener("click", openSoundOptionsModal);
+        headerSoundOptionsButtonEl.dataset.bound = "true";
       }
       setupTabs();
       setupGlobalDragCleanup();

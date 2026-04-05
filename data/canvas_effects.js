@@ -251,6 +251,9 @@
   }
 
   function playHitSound(type) {
+    if (typeof window.playBattleSfxFromFile === "function" && window.playBattleSfxFromFile(type)) {
+      return;
+    }
     const audioContext = ensureBattleAudioContext();
     if (!audioContext || audioContext.state !== "running") {
       return;
@@ -1657,7 +1660,7 @@
 
   function drawCombatant(ctx, snapshot, pose, frame, side) {
     const standImage = getSpriteImage(getResolvedStandSpriteSheet(snapshot));
-    const useCustomStand = isCustomStandSprite(snapshot) && standImage && standImage.complete && standImage.width && standImage.height;
+    const useCustomStand = standImage && standImage.complete && standImage.width && standImage.height;
     drawCombatantShadow(ctx, pose);
     if (!useCustomStand) {
       drawBattleWrestler(ctx, snapshot, pose.x, pose.y - 8, frame, pose.state, side === "right");
@@ -1742,7 +1745,9 @@
 
   function triggerBattleEventEffects(battlePackage, event, timing, impactX, impactY, attackerX, attackerY, defenderX, defenderY) {
     ensureBattleEffectState();
-    const eventIndex = battlePackage.battleEvents.indexOf(event);
+    const eventIndex = Number.isFinite(event?.__sourceEventIndex)
+      ? event.__sourceEventIndex
+      : battlePackage.battleEvents.indexOf(event);
     if (matchAnimationState.effectBattle === battlePackage && matchAnimationState.effectEventIndex === eventIndex) {
       return;
     }
@@ -1777,7 +1782,8 @@
       );
     }
 
-    effectEngine.scheduleAction(timing.impactStart, () => {
+    const effectTriggerTime = Math.max(0, timing.impactStart - 40);
+    effectEngine.scheduleAction(effectTriggerTime, () => {
       if (event.type === "rest") {
         effectEngine.addFloatingText(attackerX, attackerY - 70, "RECOVER", "#2ecc71", 16, true);
         applyCommentaryState(getWindupText(attacker?.name || "", defender?.name || "", event), getImpactText(attacker?.name || "", defender?.name || "", event), "normal", "#95a5a6", "#2ecc71", { skipLine1: true, line2Speed: 38 });
