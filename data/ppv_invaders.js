@@ -535,6 +535,9 @@ if (!window.__RING_DYNASTY_PPV_INVADERS__) {
       runManagedSideMatch(slot, summary, battlePackages, 1);
     });
     applyPpvCompanyBonuses(summary);
+    if (typeof applyPromotionBrandIncomeBonus === "function") {
+      summary.promotionBrandBonus = applyPromotionBrandIncomeBonus(summary);
+    }
     summary.fameAfter = Math.max(0, gameState.fame + summary.fameDelta);
     gameState.gold += summary.totalIncome;
     gameState.fame = summary.fameAfter;
@@ -626,6 +629,9 @@ if (!window.__RING_DYNASTY_PPV_INVADERS__) {
       summary.bonusLines.push("용기 있는 도전 보상: 일반 뽑기권 1장");
     }
     summary.fameAfter = Math.max(0, gameState.fame + summary.fameDelta);
+    if (typeof applyPromotionBrandIncomeBonus === "function") {
+      summary.promotionBrandBonus = applyPromotionBrandIncomeBonus(summary);
+    }
     gameState.gold += Math.max(0, summary.totalIncome);
     gameState.fame = summary.fameAfter;
     summary.matchCount = summary.results.length;

@@ -11,7 +11,7 @@ python scripts/import_sprite_atlas.py --config data/custom/retro_legends_pack_01
 
 The script will:
 - detect each sprite region
-- crop every wrestler into `data/images/wrestlers/custom/...`
+- crop every wrestler into `data/images/wrestlers/custom/manifest_sprites
 - merge every pack into `data/custom/custom_sprite_registry.json`
 - rewrite `data/custom/custom_sprite_manifest.js`
 - create a report JSON with the detected coordinates

@@ -5,7 +5,7 @@
     "width": 2048,
     "height": 390
   },
-  "output_dir": "data/images/wrestlers/custom/retro_legends_pack_01",
+  "output_dir": "data/images/wrestlers/custom/manifest_sprites",
   "manifest_path": "data/custom/custom_sprite_manifest.js",
   "registry_path": "data/custom/custom_sprite_registry.json",
   "slots": [
@@ -13,7 +13,7 @@
       "order": 1,
       "wrestler_id": "randy_savage",
       "name": "Randy Savage",
-      "sprite_path": "data/images/wrestlers/custom/retro_legends_pack_01/randy_savage.png",
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/retro_legends_pack_01_randy_savage.png",
       "source_box": {
         "x": 3,
         "y": 7,
@@ -32,7 +32,7 @@
       "order": 2,
       "wrestler_id": "andre_the_giant",
       "name": "Andre The Giant",
-      "sprite_path": "data/images/wrestlers/custom/retro_legends_pack_01/andre_the_giant.png",
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/andre_the_giant.png",
       "source_box": {
         "x": 385,
         "y": 0,
@@ -51,7 +51,7 @@
       "order": 3,
       "wrestler_id": "roddy_piper",
       "name": "Roddy Piper",
-      "sprite_path": "data/images/wrestlers/custom/retro_legends_pack_01/roddy_piper.png",
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/roddy_piper.png",
       "source_box": {
         "x": 742,
         "y": 13,
@@ -70,7 +70,7 @@
       "order": 4,
       "wrestler_id": "ultimate_warrior",
       "name": "Ultimate Warrior",
-      "sprite_path": "data/images/wrestlers/custom/retro_legends_pack_01/ultimate_warrior.png",
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/retro_legends_pack_01_ultimate_warrior.png",
       "source_box": {
         "x": 1066,
         "y": 5,
@@ -89,7 +89,7 @@
       "order": 5,
       "wrestler_id": "ric_flair",
       "name": "Ric Flair",
-      "sprite_path": "data/images/wrestlers/custom/retro_legends_pack_01/ric_flair.png",
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/retro_legends_pack_01_ric_flair.png",
       "source_box": {
         "x": 1416,
         "y": 9,
@@ -108,7 +108,7 @@
       "order": 6,
       "wrestler_id": "dusty_rhodes",
       "name": "Dusty Rhodes",
-      "sprite_path": "data/images/wrestlers/custom/retro_legends_pack_01/dusty_rhodes.png",
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dusty_rhodes.png",
       "source_box": {
         "x": 1750,
         "y": 14,

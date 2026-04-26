@@ -5,7 +5,7 @@
     "width": 2048,
     "height": 402
   },
-  "output_dir": "data/images/wrestlers/custom/dont_use_batch_01",
+  "output_dir": "data/images/wrestlers/custom/manifest_sprites",
   "manifest_path": "data/custom/custom_sprite_manifest.js",
   "registry_path": "data/custom/custom_sprite_registry.json",
   "slots": [
@@ -13,7 +13,7 @@
       "order": 1,
       "wrestler_id": "the_fiend",
       "name": "The Fiend",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_batch_01/the_fiend.png",
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/the_fiend.png",
       "source_box": {
         "x": 1065,
         "y": 0,

@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gacha Card Tuner</title>
+  <style>
+    :root {
+      --overall-top: 7.2;
+      --overall-right: 8.4;
+      --overall-width: 21.5;
+      --overall-height: 9.5;
+      --overall-font: 34;
+      --style-top: 21.4;
+      --style-right: 12.7;
+      --style-size: 14.8;
+      --style-img-scale: 112;
+      --portrait-top: 14.5;
+      --portrait-right: 14.5;
+      --portrait-bottom: 33.2;
+      --portrait-left: 13.2;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #070a10;
+      color: #edf2f7;
+      font-family: Arial, sans-serif;
+      display: grid;
+      grid-template-columns: minmax(360px, 560px) minmax(360px, 1fr);
+      gap: 24px;
+      padding: 24px;
+    }
+
+    .stage {
+      display: grid;
+      place-items: start center;
+      gap: 16px;
+    }
+
+    .card {
+      position: relative;
+      width: min(520px, 92vw);
+      aspect-ratio: 5 / 7;
+      background: var(--template) center/100% 100% no-repeat #010102;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,.55);
+    }
+
+    .portrait {
+      position: absolute;
+      top: calc(var(--portrait-top) * 1%);
+      right: calc(var(--portrait-right) * 1%);
+      bottom: calc(var(--portrait-bottom) * 1%);
+      left: calc(var(--portrait-left) * 1%);
+      background: transparent url("data/images/wrestlers/carlito.png") center bottom/cover no-repeat;
+      outline: 1px dashed rgba(0,255,255,.75);
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      background: var(--overlay) center/100% 100% no-repeat;
+      pointer-events: none;
+    }
+
+    .overall,
+    .style {
+      position: absolute;
+      z-index: 4;
+      cursor: move;
+      outline: 2px solid rgba(50, 220, 255, .9);
+      outline-offset: 1px;
+      touch-action: none;
+    }
+
+    .overall {
+      top: calc(var(--overall-top) * 1%);
+      right: calc(var(--overall-right) * 1%);
+      width: calc(var(--overall-width) * 1%);
+      height: calc(var(--overall-height) * 1%);
+      display: grid;
+      place-items: center;
+      color: #fff2de;
+      font-weight: 900;
+      font-size: calc(var(--overall-font) * 1px);
+      line-height: 1;
+      text-shadow: 0 2px 8px rgba(0,0,0,.8);
+    }
+
+    .style {
+      top: calc(var(--style-top) * 1%);
+      right: calc(var(--style-right) * 1%);
+      width: calc(var(--style-size) * 1%);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+    }
+
+    .style img {
+      width: calc(var(--style-img-scale) * 1%);
+      height: calc(var(--style-img-scale) * 1%);
+      object-fit: contain;
+      filter: drop-shadow(0 2px 5px rgba(0,0,0,.5));
+    }
+
+    .name {
+      position: absolute;
+      z-index: 4;
+      left: 15%;
+      right: 15%;
+      bottom: 11.4%;
+      text-align: center;
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: .03em;
+    }
+
+    .panel {
+      background: #101827;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 14px;
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+
+    h1 { margin: 0 0 4px; font-size: 22px; }
+    p { margin: 0; color: #aab6c5; line-height: 1.5; }
+
+    .row {
+      display: grid;
+      grid-template-columns: 140px 1fr 64px;
+      gap: 10px;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    input[type="range"] { width: 100%; }
+    select, button, textarea {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,.12);
+      background: #162235;
+      color: #edf2f7;
+      border-radius: 8px;
+      padding: 9px 10px;
+      font: inherit;
+    }
+
+    textarea {
+      min-height: 220px;
+      resize: vertical;
+      font-family: Consolas, monospace;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .group {
+      display: grid;
+      gap: 8px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+  </style>
+</head>
+<body>
+  <main class="stage">
+    <div class="card" id="card">
+      <div class="portrait"></div>
+      <div class="overlay"></div>
+      <div class="overall" id="overall">42</div>
+      <div class="style" id="style"><img id="styleImg" alt=""></div>
+      <div class="name">CARLITO</div>
+    </div>
+    <p>파란 박스가 실제 조정 대상입니다. 오버롤 숫자나 아이콘을 마우스로 드래그해 위치를 잡으세요.</p>
+  </main>
+
+  <aside class="panel">
+    <h1>뽑기 카드 위치 튜너</h1>
+    <p>값은 모두 카드 크기 기준 퍼센트입니다. 조정 후 아래 CSS 값을 알려주면 바로 본 게임에 반영할 수 있습니다.</p>
+
+    <label>등급
+      <select id="grade">
+        <option value="c">C</option>
+        <option value="b">B</option>
+        <option value="a">A</option>
+        <option value="s">S</option>
+        <option value="legend">LEGEND</option>
+      </select>
+    </label>
+
+    <label>스타일
+      <select id="styleSelect">
+        <option value="powerhouse">파워하우스</option>
+        <option value="technician">테크니션</option>
+        <option value="showman">쇼맨</option>
+      </select>
+    </label>
+
+    <div class="group" id="controls"></div>
+    <button id="reset">초기값으로</button>
+    <textarea id="output" spellcheck="false"></textarea>
+  </aside>
+
+  <script>
+    const defaults = {
+      "overall-top": 7.2,
+      "overall-right": 8.4,
+      "overall-width": 21.5,
+      "overall-height": 9.5,
+      "overall-font": 34,
+      "style-top": 21.4,
+      "style-right": 12.7,
+      "style-size": 14.8,
+      "style-img-scale": 112,
+      "portrait-top": 14.5,
+      "portrait-right": 14.5,
+      "portrait-bottom": 33.2,
+      "portrait-left": 13.2
+    };
+
+    const ranges = {
+      "overall-top": [0, 20, .1],
+      "overall-right": [0, 24, .1],
+      "overall-width": [8, 32, .1],
+      "overall-height": [5, 16, .1],
+      "overall-font": [16, 52, 1],
+      "style-top": [10, 34, .1],
+      "style-right": [4, 24, .1],
+      "style-size": [8, 24, .1],
+      "style-img-scale": [60, 170, 1],
+      "portrait-top": [5, 25, .1],
+      "portrait-right": [5, 28, .1],
+      "portrait-bottom": [20, 45, .1],
+      "portrait-left": [5, 28, .1]
+    };
+
+    const labels = {
+      "overall-top": "오버롤 top",
+      "overall-right": "오버롤 right",
+      "overall-width": "오버롤 width",
+      "overall-height": "오버롤 height",
+      "overall-font": "오버롤 글자",
+      "style-top": "아이콘 top",
+      "style-right": "아이콘 right",
+      "style-size": "아이콘 박스",
+      "style-img-scale": "아이콘 이미지",
+      "portrait-top": "선수 top",
+      "portrait-right": "선수 right",
+      "portrait-bottom": "선수 bottom",
+      "portrait-left": "선수 left"
+    };
+
+    const state = { ...defaults, ...JSON.parse(localStorage.getItem("gachaCardTune") || "{}") };
+    const controls = document.getElementById("controls");
+
+    Object.entries(defaults).forEach(([key]) => {
+      const [min, max, step] = ranges[key];
+      const row = document.createElement("label");
+      row.className = "row";
+      row.innerHTML = `<span>${labels[key]}</span><input id="${key}" type="range" min="${min}" max="${max}" step="${step}"><span id="${key}-value"></span>`;
+      controls.append(row);
+    });
+
+    function apply() {
+      Object.entries(state).forEach(([key, value]) => {
+        document.documentElement.style.setProperty(`--${key}`, value);
+        const input = document.getElementById(key);
+        const text = document.getElementById(`${key}-value`);
+        if (input) input.value = value;
+        if (text) text.textContent = Number(value).toFixed(String(value).includes(".") ? 1 : 0);
+      });
+      const grade = document.getElementById("grade").value;
+      const style = document.getElementById("styleSelect").value;
+      document.querySelector(".card").style.setProperty("--template", `url('data/images/ui/generated/gacha_card_templates/gacha_result_${grade}.png?v=20260425')`);
+      document.querySelector(".card").style.setProperty("--overlay", `url('data/images/ui/generated/gacha_card_templates/gacha_result_${grade}_overlay.png?v=20260425')`);
+      document.getElementById("styleImg").src = `data/images/ui/generated/gacha_style_badges/${style}.png?v=20260425`;
+      localStorage.setItem("gachaCardTune", JSON.stringify(state));
+      writeOutput();
+    }
+
+    function writeOutput() {
+      document.getElementById("output").value =
+`.gacha-card-overall {
+  top: ${state["overall-top"]}%;
+  right: ${state["overall-right"]}%;
+  width: ${state["overall-width"]}%;
+  height: ${state["overall-height"]}%;
+  font-size: ${state["overall-font"]}px;
+}
+
+.gacha-card-style-badge {
+  top: ${state["style-top"]}%;
+  right: ${state["style-right"]}%;
+  width: ${state["style-size"]}%;
+}
+
+.gacha-card-style-badge img {
+  width: ${state["style-img-scale"]}%;
+  height: ${state["style-img-scale"]}%;
+}
+
+.gacha-portrait.full {
+  inset: ${state["portrait-top"]}% ${state["portrait-right"]}% ${state["portrait-bottom"]}% ${state["portrait-left"]}%;
+}`;
+    }
+
+    controls.addEventListener("input", (event) => {
+      if (event.target.id in state) {
+        state[event.target.id] = Number(event.target.value);
+        apply();
+      }
+    });
+
+    document.getElementById("grade").addEventListener("change", apply);
+    document.getElementById("styleSelect").addEventListener("change", apply);
+    document.getElementById("reset").addEventListener("click", () => {
+      Object.assign(state, defaults);
+      apply();
+    });
+
+    function bindDrag(el, keys) {
+      let start = null;
+      el.addEventListener("pointerdown", (event) => {
+        event.preventDefault();
+        el.setPointerCapture(event.pointerId);
+        const rect = document.getElementById("card").getBoundingClientRect();
+        start = {
+          x: event.clientX,
+          y: event.clientY,
+          rect,
+          top: state[keys.top],
+          right: state[keys.right]
+        };
+      });
+      el.addEventListener("pointermove", (event) => {
+        if (!start) return;
+        const dx = ((event.clientX - start.x) / start.rect.width) * 100;
+        const dy = ((event.clientY - start.y) / start.rect.height) * 100;
+        state[keys.top] = Number((start.top + dy).toFixed(1));
+        state[keys.right] = Number((start.right - dx).toFixed(1));
+        apply();
+      });
+      el.addEventListener("pointerup", () => { start = null; });
+      el.addEventListener("pointercancel", () => { start = null; });
+    }
+
+    bindDrag(document.getElementById("overall"), { top: "overall-top", right: "overall-right" });
+    bindDrag(document.getElementById("style"), { top: "style-top", right: "style-right" });
+    apply();
+  </script>
+</body>
+</html>

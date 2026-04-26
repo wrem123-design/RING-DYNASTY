@@ -6,631 +6,631 @@
       "wrestler_id": "al_snow",
       "grade": "C",
       "fallback_source_id": "andre_chase",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/andre_chase.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/andre_chase.png"
     },
     {
       "wrestler_id": "alba_fyre",
       "grade": "C",
       "fallback_source_id": "andre_chase",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/andre_chase.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/andre_chase.png"
     },
     {
       "wrestler_id": "alberto_del_rio",
       "grade": "B",
       "fallback_source_id": "johnny_gargano",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/johnny_gargano.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/johnny_gargano.png"
     },
     {
       "wrestler_id": "andrade",
       "grade": "C",
       "fallback_source_id": "dexter_lumis",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dexter_lumis.png"
     },
     {
       "wrestler_id": "angelo_dawkins",
       "grade": "C",
       "fallback_source_id": "charlie_dempsey",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/charlie_dempsey.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/charlie_dempsey.png"
     },
     {
       "wrestler_id": "austin_theory",
       "grade": "C",
       "fallback_source_id": "dexter_lumis",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dexter_lumis.png"
     },
     {
       "wrestler_id": "ava",
       "grade": "C",
       "fallback_source_id": "charlie_dempsey",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/charlie_dempsey.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/charlie_dempsey.png"
     },
     {
       "wrestler_id": "b_fab",
       "grade": "C",
       "fallback_source_id": "dijak",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dijak.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dijak.png"
     },
     {
       "wrestler_id": "big_bill",
       "grade": "C",
       "fallback_source_id": "andre_chase",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/andre_chase.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/andre_chase.png"
     },
     {
       "wrestler_id": "bo_dallas",
       "grade": "C",
       "fallback_source_id": "grayson_waller",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/grayson_waller.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/grayson_waller.png"
     },
     {
       "wrestler_id": "brie_bella",
       "grade": "C",
       "fallback_source_id": "brooks_jensen",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/brooks_jensen.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/brooks_jensen.png"
     },
     {
       "wrestler_id": "bubba_ray_dudley",
       "grade": "C",
       "fallback_source_id": "grayson_waller",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/grayson_waller.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/grayson_waller.png"
     },
     {
       "wrestler_id": "candice_lerae",
       "grade": "B",
       "fallback_source_id": "brooks_jensen",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/brooks_jensen.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/brooks_jensen.png"
     },
     {
       "wrestler_id": "carlito",
       "grade": "C",
       "fallback_source_id": "dexter_lumis",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dexter_lumis.png"
     },
     {
       "wrestler_id": "carmelo_hayes",
       "grade": "B",
       "fallback_source_id": "brooks_jensen",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/brooks_jensen.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/brooks_jensen.png"
     },
     {
       "wrestler_id": "chad_gable",
       "grade": "B",
       "fallback_source_id": "akira_tozawa",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/akira_tozawa.png"
     },
     {
       "wrestler_id": "channing_stacks_lorenzo",
       "grade": "B",
       "fallback_source_id": "andre_chase",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/andre_chase.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/andre_chase.png"
     },
     {
       "wrestler_id": "chelsea_green",
       "grade": "C",
       "fallback_source_id": "dexter_lumis",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dexter_lumis.png"
     },
     {
       "wrestler_id": "corey_graves",
       "grade": "B",
       "fallback_source_id": "dexter_lumis",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dexter_lumis.png"
     },
     {
       "wrestler_id": "d_von_dudley",
       "grade": "C",
       "fallback_source_id": "charlie_dempsey",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/charlie_dempsey.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/charlie_dempsey.png"
     },
     {
       "wrestler_id": "dakota_kai",
       "grade": "C",
       "fallback_source_id": "akira_tozawa",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/akira_tozawa.png"
     },
     {
       "wrestler_id": "dana_brooke",
       "grade": "C",
       "fallback_source_id": "brooks_jensen",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/brooks_jensen.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/brooks_jensen.png"
     },
     {
       "wrestler_id": "daphanie_lashaunn",
       "grade": "C",
       "fallback_source_id": "grayson_waller",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/grayson_waller.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/grayson_waller.png"
     },
     {
       "wrestler_id": "dave_bautista",
       "grade": "C",
       "fallback_source_id": "brooks_jensen",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/brooks_jensen.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/brooks_jensen.png"
     },
     {
       "wrestler_id": "dion_lennox",
       "grade": "C",
       "fallback_source_id": "dexter_lumis",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dexter_lumis.png"
     },
     {
       "wrestler_id": "dragon_lee",
       "grade": "C",
       "fallback_source_id": "dexter_lumis",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dexter_lumis.png"
     },
     {
       "wrestler_id": "enzo_amore",
       "grade": "B",
       "fallback_source_id": "dijak",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dijak.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dijak.png"
     },
     {
       "wrestler_id": "eric_bischoff",
       "grade": "C",
       "fallback_source_id": "akira_tozawa",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/akira_tozawa.png"
     },
     {
       "wrestler_id": "ethan_page",
       "grade": "C",
       "fallback_source_id": "dexter_lumis",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dexter_lumis.png"
     },
     {
       "wrestler_id": "giulia",
       "grade": "B",
       "fallback_source_id": "akira_tozawa",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/akira_tozawa.png"
     },
     {
       "wrestler_id": "hikuleo",
       "grade": "C",
       "fallback_source_id": "dijak",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dijak.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dijak.png"
     },
     {
       "wrestler_id": "humberto_carrillo",
       "grade": "C",
       "fallback_source_id": "grayson_waller",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/grayson_waller.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/grayson_waller.png"
     },
     {
       "wrestler_id": "ilja_dragunov",
       "grade": "B",
       "fallback_source_id": "akira_tozawa",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/akira_tozawa.png"
     },
     {
       "wrestler_id": "ivy_nile",
       "grade": "C",
       "fallback_source_id": "charlie_dempsey",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/charlie_dempsey.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/charlie_dempsey.png"
     },
     {
       "wrestler_id": "jacob_fatu",
       "grade": "B",
       "fallback_source_id": "johnny_gargano",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/johnny_gargano.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/johnny_gargano.png"
     },
     {
       "wrestler_id": "jacy_jayne",
       "grade": "C",
       "fallback_source_id": "charlie_dempsey",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/charlie_dempsey.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/charlie_dempsey.png"
     },
     {
       "wrestler_id": "jasper_troy",
       "grade": "C",
       "fallback_source_id": "brooks_jensen",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/brooks_jensen.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/brooks_jensen.png"
     },
     {
       "wrestler_id": "je_von_evans",
       "grade": "C",
       "fallback_source_id": "akira_tozawa",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/akira_tozawa.png"
     },
     {
       "wrestler_id": "jeff_cobb",
       "grade": "C",
       "fallback_source_id": "dexter_lumis",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dexter_lumis.png"
     },
     {
       "wrestler_id": "jim_duggan",
       "grade": "C",
       "fallback_source_id": "brooks_jensen",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/brooks_jensen.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/brooks_jensen.png"
     },
     {
       "wrestler_id": "jimmy_uso",
       "grade": "C",
       "fallback_source_id": "akira_tozawa",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/akira_tozawa.png"
     },
     {
       "wrestler_id": "joe_gacy",
       "grade": "C",
       "fallback_source_id": "charlie_dempsey",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/charlie_dempsey.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/charlie_dempsey.png"
     },
     {
       "wrestler_id": "jorge_gonzalez",
       "grade": "C",
       "fallback_source_id": "akira_tozawa",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/akira_tozawa.png"
     },
     {
       "wrestler_id": "josh_briggs",
       "grade": "C",
       "fallback_source_id": "andre_chase",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/andre_chase.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/andre_chase.png"
     },
     {
       "wrestler_id": "kairi_sane",
       "grade": "C",
       "fallback_source_id": "dexter_lumis",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dexter_lumis.png"
     },
     {
       "wrestler_id": "kaitlyn",
       "grade": "C",
       "fallback_source_id": "dexter_lumis",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dexter_lumis.png"
     },
     {
       "wrestler_id": "karrion_kross",
       "grade": "B",
       "fallback_source_id": "charlie_dempsey",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/charlie_dempsey.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/charlie_dempsey.png"
     },
     {
       "wrestler_id": "kylie_rae",
       "grade": "C",
       "fallback_source_id": "dijak",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dijak.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dijak.png"
     },
     {
       "wrestler_id": "lance_cade",
       "grade": "C",
       "fallback_source_id": "charlie_dempsey",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/charlie_dempsey.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/charlie_dempsey.png"
     },
     {
       "wrestler_id": "lash_legend",
       "grade": "C",
       "fallback_source_id": "dexter_lumis",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dexter_lumis.png"
     },
     {
       "wrestler_id": "lexis_king",
       "grade": "B",
       "fallback_source_id": "grayson_waller",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/grayson_waller.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/grayson_waller.png"
     },
     {
       "wrestler_id": "lou_albano",
       "grade": "C",
       "fallback_source_id": "akira_tozawa",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/akira_tozawa.png"
     },
     {
       "wrestler_id": "ludwig_kaiser",
       "grade": "C",
       "fallback_source_id": "akira_tozawa",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/akira_tozawa.png"
     },
     {
       "wrestler_id": "lyra_valkyria",
       "grade": "C",
       "fallback_source_id": "grayson_waller",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/grayson_waller.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/grayson_waller.png"
     },
     {
       "wrestler_id": "mariah_may",
       "grade": "C",
       "fallback_source_id": "johnny_gargano",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/johnny_gargano.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/johnny_gargano.png"
     },
     {
       "wrestler_id": "matt_bloom",
       "grade": "C",
       "fallback_source_id": "akira_tozawa",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/akira_tozawa.png"
     },
     {
       "wrestler_id": "matt_hardy",
       "grade": "C",
       "fallback_source_id": "akira_tozawa",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/akira_tozawa.png"
     },
     {
       "wrestler_id": "maxxine_dupri",
       "grade": "B",
       "fallback_source_id": "charlie_dempsey",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/charlie_dempsey.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/charlie_dempsey.png"
     },
     {
       "wrestler_id": "mia_yim",
       "grade": "B",
       "fallback_source_id": "grayson_waller",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/grayson_waller.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/grayson_waller.png"
     },
     {
       "wrestler_id": "michin",
       "grade": "C",
       "fallback_source_id": "charlie_dempsey",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/charlie_dempsey.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/charlie_dempsey.png"
     },
     {
       "wrestler_id": "montez_ford",
       "grade": "C",
       "fallback_source_id": "andre_chase",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/andre_chase.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/andre_chase.png"
     },
     {
       "wrestler_id": "muhammad_hassan",
       "grade": "C",
       "fallback_source_id": "grayson_waller",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/grayson_waller.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/grayson_waller.png"
     },
     {
       "wrestler_id": "myles_borne",
       "grade": "B",
       "fallback_source_id": "grayson_waller",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/grayson_waller.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/grayson_waller.png"
     },
     {
       "wrestler_id": "naomi",
       "grade": "B",
       "fallback_source_id": "charlie_dempsey",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/charlie_dempsey.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/charlie_dempsey.png"
     },
     {
       "wrestler_id": "natalya_neidhart",
       "grade": "C",
       "fallback_source_id": "charlie_dempsey",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/charlie_dempsey.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/charlie_dempsey.png"
     },
     {
       "wrestler_id": "nick_aldis",
       "grade": "C",
       "fallback_source_id": "dexter_lumis",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dexter_lumis.png"
     },
     {
       "wrestler_id": "nikki_cross",
       "grade": "C",
       "fallback_source_id": "akira_tozawa",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/akira_tozawa.png"
     },
     {
       "wrestler_id": "noam_dar",
       "grade": "C",
       "fallback_source_id": "dijak",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dijak.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dijak.png"
     },
     {
       "wrestler_id": "omos",
       "grade": "C",
       "fallback_source_id": "dexter_lumis",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dexter_lumis.png"
     },
     {
       "wrestler_id": "orlando_jordan",
       "grade": "B",
       "fallback_source_id": "dexter_lumis",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dexter_lumis.png"
     },
     {
       "wrestler_id": "otis",
       "grade": "C",
       "fallback_source_id": "dexter_lumis",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dexter_lumis.png"
     },
     {
       "wrestler_id": "pat_mcafee",
       "grade": "B",
       "fallback_source_id": "johnny_gargano",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/johnny_gargano.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/johnny_gargano.png"
     },
     {
       "wrestler_id": "paul_heyman",
       "grade": "B",
       "fallback_source_id": "dexter_lumis",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dexter_lumis.png"
     },
     {
       "wrestler_id": "paul_london",
       "grade": "C",
       "fallback_source_id": "dexter_lumis",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dexter_lumis.png"
     },
     {
       "wrestler_id": "pete_dunne",
       "grade": "C",
       "fallback_source_id": "akira_tozawa",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/akira_tozawa.png"
     },
     {
       "wrestler_id": "piper_niven",
       "grade": "C",
       "fallback_source_id": "akira_tozawa",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/akira_tozawa.png"
     },
     {
       "wrestler_id": "powerhouse_hobbs",
       "grade": "C",
       "fallback_source_id": "dijak",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dijak.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dijak.png"
     },
     {
       "wrestler_id": "raquel_rodriguez",
       "grade": "B",
       "fallback_source_id": "andre_chase",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/andre_chase.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/andre_chase.png"
     },
     {
       "wrestler_id": "raul_mendoza",
       "grade": "C",
       "fallback_source_id": "dijak",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dijak.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dijak.png"
     },
     {
       "wrestler_id": "raven",
       "grade": "C",
       "fallback_source_id": "andre_chase",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/andre_chase.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/andre_chase.png"
     },
     {
       "wrestler_id": "rene_dupree",
       "grade": "C",
       "fallback_source_id": "johnny_gargano",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/johnny_gargano.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/johnny_gargano.png"
     },
     {
       "wrestler_id": "rey_fenix",
       "grade": "B",
       "fallback_source_id": "brooks_jensen",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/brooks_jensen.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/brooks_jensen.png"
     },
     {
       "wrestler_id": "ricky_starks",
       "grade": "C",
       "fallback_source_id": "johnny_gargano",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/johnny_gargano.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/johnny_gargano.png"
     },
     {
       "wrestler_id": "ridge_holland",
       "grade": "B",
       "fallback_source_id": "johnny_gargano",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/johnny_gargano.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/johnny_gargano.png"
     },
     {
       "wrestler_id": "roxanne_perez",
       "grade": "B",
       "fallback_source_id": "dijak",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dijak.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dijak.png"
     },
     {
       "wrestler_id": "ryan_nemeth",
       "grade": "B",
       "fallback_source_id": "dijak",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dijak.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dijak.png"
     },
     {
       "wrestler_id": "santos_escobar",
       "grade": "C",
       "fallback_source_id": "charlie_dempsey",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/charlie_dempsey.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/charlie_dempsey.png"
     },
     {
       "wrestler_id": "saraya_bevis",
       "grade": "C",
       "fallback_source_id": "brooks_jensen",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/brooks_jensen.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/brooks_jensen.png"
     },
     {
       "wrestler_id": "scarlett_bordeaux",
       "grade": "C",
       "fallback_source_id": "akira_tozawa",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/akira_tozawa.png"
     },
     {
       "wrestler_id": "sean_waltman",
       "grade": "C",
       "fallback_source_id": "andre_chase",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/andre_chase.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/andre_chase.png"
     },
     {
       "wrestler_id": "shawn_spears",
       "grade": "C",
       "fallback_source_id": "akira_tozawa",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/akira_tozawa.png"
     },
     {
       "wrestler_id": "sonya_deville",
       "grade": "C",
       "fallback_source_id": "grayson_waller",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/grayson_waller.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/grayson_waller.png"
     },
     {
       "wrestler_id": "spike_dudley",
       "grade": "B",
       "fallback_source_id": "andre_chase",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/andre_chase.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/andre_chase.png"
     },
     {
       "wrestler_id": "stephanie_mcmahon",
       "grade": "C",
       "fallback_source_id": "dexter_lumis",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dexter_lumis.png"
     },
     {
       "wrestler_id": "stephanie_vaquer",
       "grade": "B",
       "fallback_source_id": "grayson_waller",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/grayson_waller.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/grayson_waller.png"
     },
     {
       "wrestler_id": "stevie_richards",
       "grade": "B",
       "fallback_source_id": "andre_chase",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/andre_chase.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/andre_chase.png"
     },
     {
       "wrestler_id": "tama_tonga",
       "grade": "C",
       "fallback_source_id": "dexter_lumis",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dexter_lumis.png"
     },
     {
       "wrestler_id": "tanga_loa",
       "grade": "C",
       "fallback_source_id": "grayson_waller",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/grayson_waller.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/grayson_waller.png"
     },
     {
       "wrestler_id": "tank_ledger",
       "grade": "C",
       "fallback_source_id": "andre_chase",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/andre_chase.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/andre_chase.png"
     },
     {
       "wrestler_id": "teddy_long",
       "grade": "C",
       "fallback_source_id": "johnny_gargano",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/johnny_gargano.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/johnny_gargano.png"
     },
     {
       "wrestler_id": "tenille_dashwood",
       "grade": "C",
       "fallback_source_id": "dexter_lumis",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dexter_lumis.png"
     },
     {
       "wrestler_id": "the_honky_tonk_man",
       "grade": "B",
       "fallback_source_id": "akira_tozawa",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/akira_tozawa.png"
     },
     {
       "wrestler_id": "tommaso_ciampa",
       "grade": "B",
       "fallback_source_id": "dexter_lumis",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dexter_lumis.png"
     },
     {
       "wrestler_id": "tony_d_angelo",
       "grade": "B",
       "fallback_source_id": "grayson_waller",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/grayson_waller.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/grayson_waller.png"
     },
     {
       "wrestler_id": "zelina_vega",
       "grade": "C",
       "fallback_source_id": "johnny_gargano",
-      "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/johnny_gargano.png"
+      "sprite_path": "data/images/wrestlers/custom/manifest_sprites/johnny_gargano.png"
     }
   ]
 }

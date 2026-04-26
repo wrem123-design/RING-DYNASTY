@@ -1,7 +1,7 @@
 {
   "set_name": "dont_use_batch_01_1_2",
   "atlas_path": "data/images/dont use this files/1-2.png",
-  "output_dir": "data/images/wrestlers/custom/dont_use_batch_01",
+  "output_dir": "data/images/wrestlers/custom/manifest_sprites",
   "manifest_path": "data/custom/custom_sprite_manifest.js",
   "registry_path": "data/custom/custom_sprite_registry.json",
   "report_path": "data/custom/reports/dont_use_batch_01_1_2_report.json",

@@ -150,8 +150,10 @@ if (!window.__RING_DYNASTY_CIRCUIT_REWORK__) {
         templateId: template?.id || opponent.id,
         spriteSheet: template?.spriteSheet || null,
         battleSpriteSheet: template?.battleSpriteSheet || null,
+        attackSpriteSheet: template?.attackSpriteSheet || null,
         spriteFrames: Number.isFinite(template?.spriteFrames) ? template.spriteFrames : 1,
         battleSpriteFrames: Number.isFinite(template?.battleSpriteFrames) ? template.battleSpriteFrames : 1,
+        attackSpriteFrames: Number.isFinite(template?.attackSpriteFrames) ? template.attackSpriteFrames : 4,
         portraitMode: typeof template?.portraitMode === "boolean" ? template.portraitMode : true,
         spriteColor: template?.spriteColor || getGradeColor(grade),
         circuitId: circuit.id,
@@ -301,8 +303,10 @@ if (!window.__RING_DYNASTY_CIRCUIT_REWORK__) {
     finisher: opponent.finisher,
     spriteSheet: opponent.spriteSheet || null,
     battleSpriteSheet: opponent.battleSpriteSheet || null,
+    attackSpriteSheet: opponent.attackSpriteSheet || null,
     spriteFrames: Number.isFinite(opponent.spriteFrames) ? opponent.spriteFrames : 1,
     battleSpriteFrames: Number.isFinite(opponent.battleSpriteFrames) ? opponent.battleSpriteFrames : 1,
+    attackSpriteFrames: Number.isFinite(opponent.attackSpriteFrames) ? opponent.attackSpriteFrames : 4,
     portraitMode: Boolean(opponent.portraitMode),
     spriteColor: opponent.spriteColor || getGradeColor(opponent.grade),
     status: "match"
@@ -712,8 +716,10 @@ if (!window.__RING_DYNASTY_CIRCUIT_REWORK__) {
       spriteColor: adjusted.spriteColor,
       spriteSheet: adjusted.spriteSheet,
       battleSpriteSheet: adjusted.battleSpriteSheet || null,
+      attackSpriteSheet: typeof getAttackSpritePath === "function" ? getAttackSpritePath(adjusted) || null : adjusted.attackSpriteSheet || null,
       spriteFrames: adjusted.spriteFrames,
       battleSpriteFrames: adjusted.battleSpriteFrames || 12,
+      attackSpriteFrames: adjusted.attackSpriteFrames || 4,
       portraitMode: adjusted.portraitMode,
       maxHP,
       currentHP: maxHP,
@@ -872,6 +878,11 @@ if (!window.__RING_DYNASTY_CIRCUIT_REWORK__) {
   };
 
   renderHomeMainContent = function () {
+    const booking = typeof ensureDivisionBookingState === "function" ? ensureDivisionBookingState() : null;
+    if (booking?.showState?.segments?.length && !matchAnimationState.running && typeof renderHomeShowSceneMainContent === "function") {
+      renderHomeShowSceneMainContent();
+      return;
+    }
     const showCard = getShowCardSummary();
     const bestCard = getBestCardSummary();
     const contractSummary = getContractAlertSummary();
@@ -911,19 +922,22 @@ if (!window.__RING_DYNASTY_CIRCUIT_REWORK__) {
               </article>
             </div>
           </div>
-          <div class="home-canvas-wrap">
-            <div class="canvas-shell">
-              <button class="canvas-skip-button ${matchAnimationState.running ? "" : "hidden"}" id="canvasSkipButton">스킵</button>
-              <canvas id="matchCanvas" width="640" height="560"></canvas>
-              <div class="arena-overlay">
-                ${showCard.readyMatches ? "" : `
-                  <div class="arena-bottom-bar">
-                    <div class="arena-bottom-grid">
+          <div class="home-battle-layout">
+            <div class="home-canvas-wrap">
+              <div class="canvas-shell">
+                <button class="canvas-skip-button ${matchAnimationState.running ? "" : "hidden"}" id="canvasSkipButton">스킵</button>
+                <canvas id="matchCanvas" width="640" height="560"></canvas>
+                <div class="arena-overlay">
+                  ${showCard.readyMatches ? "" : `
+                    <div class="arena-bottom-bar">
+                      <div class="arena-bottom-grid">
+                      </div>
                     </div>
-                  </div>
-                `}
+                  `}
+                </div>
               </div>
             </div>
+            <aside class="battle-action-panel" id="battleActionPanel">${typeof getBattleActionPanelFallbackHtml === "function" ? getBattleActionPanelFallbackHtml() : ""}</aside>
           </div>
         </div>
       </section>
@@ -1151,8 +1165,22 @@ if (!window.__RING_DYNASTY_CIRCUIT_REWORK__) {
     if (!showExhaustionConfirmIfNeeded(wrestler)) {
       return;
     }
-    clearScheduledWrestler(wrestlerId);
     if (!gameState.weeklySchedule.mainMatch.wrestlerId) {
+      const restriction = typeof getBookingMatchRestriction === "function"
+        ? getBookingMatchRestriction(wrestler, getCurrentCircuitOpponent())
+        : { ok: true };
+      if (!restriction.ok) {
+        window.alert(restriction.reason);
+        return;
+      }
+      const mainRequirementFailure = typeof getWrestlerMainEventRequirementFailure === "function"
+        ? getWrestlerMainEventRequirementFailure(wrestler)
+        : "";
+      if (mainRequirementFailure) {
+        window.alert(mainRequirementFailure);
+        return;
+      }
+      clearScheduledWrestler(wrestlerId);
       gameState.weeklySchedule.mainMatch.wrestlerId = wrestlerId;
       gameState.weeklySchedule.mainMatch.forfeit = false;
     } else {
@@ -1162,12 +1190,21 @@ if (!window.__RING_DYNASTY_CIRCUIT_REWORK__) {
         return;
       }
       if (!openSlot.wrestlerAId) {
+        clearScheduledWrestler(wrestlerId);
         openSlot.wrestlerAId = wrestlerId;
       } else {
         if (openSlot.wrestlerAId === wrestlerId) {
           window.alert("같은 선수는 한 사이드 경기에 중복 배치할 수 없습니다.");
           return;
         }
+        const restriction = typeof getBookingMatchRestriction === "function"
+          ? getBookingMatchRestriction(findWrestlerById(openSlot.wrestlerAId), wrestler)
+          : { ok: true };
+        if (!restriction.ok) {
+          window.alert(restriction.reason);
+          return;
+        }
+        clearScheduledWrestler(wrestlerId);
         openSlot.wrestlerBId = wrestlerId;
       }
     }
@@ -1195,18 +1232,36 @@ if (!window.__RING_DYNASTY_CIRCUIT_REWORK__) {
 
   autoFillWeeklyCard = function () {
     const available = getAvailableCardRoster().slice().sort((left, right) => {
-      const rightValue = (right.condition || 0) + getWrestlerPower(right);
-      const leftValue = (left.condition || 0) + getWrestlerPower(left);
+      const getAutoScore = (wrestler) => {
+        const jitterSeed = typeof hashString === "function" ? hashString(`${gameState.week}:${wrestler.id}:circuit-auto-book`) : 0;
+        return (((wrestler.condition || 0) + getWrestlerPower(wrestler)) * 0.8) + (((jitterSeed % 17) - 8) * 1.8);
+      };
+      const rightValue = getAutoScore(right);
+      const leftValue = getAutoScore(left);
       return rightValue - leftValue;
     });
     gameState.weeklySchedule = createEmptyWeeklySchedule();
-    const mainPick = available.shift();
+    const takeCompatible = (opponent = null, options = {}) => {
+      const index = available.findIndex((candidate) => {
+        if (options.mainEvent && typeof canUseWrestlerInMainEvent === "function" && !canUseWrestlerInMainEvent(candidate)) {
+          return false;
+        }
+        return typeof getBookingMatchRestriction !== "function" || getBookingMatchRestriction(candidate, opponent).ok;
+      });
+      if (index < 0) {
+        return null;
+      }
+      return available.splice(index, 1)[0];
+    };
+    const mainPick = takeCompatible(getCurrentCircuitOpponent(), { mainEvent: true });
     if (mainPick) {
       gameState.weeklySchedule.mainMatch.wrestlerId = mainPick.id;
+    } else if (typeof showToast === "function") {
+      showToast("이번 주 메인 이벤트 조건을 만족하는 자동 편성 후보가 없습니다.", "info");
     }
     gameState.weeklySchedule.sideMatches.forEach((slot) => {
-      const left = available.shift();
-      const right = available.shift();
+      const left = takeCompatible();
+      const right = takeCompatible(left);
       slot.wrestlerAId = left?.id || null;
       slot.wrestlerBId = right?.id || null;
     });
@@ -1465,6 +1520,28 @@ if (!window.__RING_DYNASTY_CIRCUIT_REWORK__) {
       window.alert("메인 경기 에이스 선수를 배치해야 합니다.");
       return;
     }
+    if (mainWrestler && typeof getBookingMatchRestriction === "function") {
+      const restriction = getBookingMatchRestriction(mainWrestler, opponent);
+      if (!restriction.ok) {
+        window.alert(`메인 경기 편성 오류: ${restriction.reason}`);
+        return;
+      }
+    }
+    if (mainWrestler && typeof getWrestlerMainEventRequirementFailure === "function") {
+      const mainRequirementFailure = getWrestlerMainEventRequirementFailure(mainWrestler);
+      if (mainRequirementFailure) {
+        window.alert(`메인 경기 편성 오류: ${mainRequirementFailure}`);
+        return;
+      }
+    }
+    const invalidSideMatch = getReadySideMatches()
+      .map((slot, index) => ({ index, wrestlerA: findWrestlerById(slot.wrestlerAId), wrestlerB: findWrestlerById(slot.wrestlerBId) }))
+      .find((entry) => typeof getBookingMatchRestriction === "function" && !getBookingMatchRestriction(entry.wrestlerA, entry.wrestlerB).ok);
+    if (invalidSideMatch) {
+      const restriction = getBookingMatchRestriction(invalidSideMatch.wrestlerA, invalidSideMatch.wrestlerB);
+      window.alert(`사이드 경기 ${invalidSideMatch.index + 1} 편성 오류: ${restriction.reason}`);
+      return;
+    }
     const summary = {
       week: gameState.week,
       results: [],
@@ -1503,6 +1580,9 @@ if (!window.__RING_DYNASTY_CIRCUIT_REWORK__) {
       summary.warningLines.push(`스폰서 페널티 -${formatNumber(getCircuitProgressState().sponsorPenalty)} G`);
     }
     summary.totalIncome = Math.max(0, Math.floor(summary.totalIncome * summary.weeklyIncomeMultiplier));
+    if (typeof applyPromotionBrandIncomeBonus === "function") {
+      summary.promotionBrandBonus = applyPromotionBrandIncomeBonus(summary);
+    }
     summary.fameAfter = Math.max(0, gameState.fame + summary.fameDelta);
     gameState.gold += summary.totalIncome;
     gameState.fame = summary.fameAfter;
@@ -1660,7 +1740,11 @@ if (!window.__RING_DYNASTY_CIRCUIT_REWORK__) {
   TAB_CONTENT.home.mainSubtitle = () => `Week ${gameState.week} · 서킷 ${getCircuitProgressMeta().progressLabel}`;
   TAB_CONTENT.home.sideTitle = "";
   TAB_CONTENT.home.sideSubtitle = "";
-  TAB_CONTENT.home.mainInfo = [];
+  TAB_CONTENT.home.mainInfo = [
+    { label: "최고 카드", value: () => getBestCardSummary().name },
+    { label: "월 지출 예상", value: () => `${formatNumber(getMonthlyPayrollEstimate())}G` },
+    { label: "계약 임박", value: () => getContractAlertSummary(2, 3).value }
+  ];
   TAB_CONTENT.cards.mainTitle = () => `⚔️ Week ${gameState.week} 경기 편성`;
   TAB_CONTENT.cards.mainSubtitle = () => `메인 경기 1회 필수 · 사이드 경기 ${getReadySideMatches().length}/2`;
   TAB_CONTENT.cards.sideTitle = "서킷 정보";

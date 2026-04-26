@@ -1,12 +1,12 @@
 {
   "sprites": {
     "randy_savage": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/randy_savage.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/randy_savage.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "andre_the_giant": {
-      "spriteSheet": "data/images/wrestlers/custom/retro_legends_pack_01/andre_the_giant.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/andre_the_giant.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -17,7 +17,7 @@
       }
     },
     "roddy_piper": {
-      "spriteSheet": "data/images/wrestlers/custom/retro_legends_pack_01/roddy_piper.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/roddy_piper.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -28,17 +28,17 @@
       }
     },
     "ultimate_warrior": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/ultimate_warrior.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/ultimate_warrior.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "ric_flair": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/ric_flair.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/ric_flair.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "dusty_rhodes": {
-      "spriteSheet": "data/images/wrestlers/custom/retro_legends_pack_01/dusty_rhodes.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/dusty_rhodes.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -49,7 +49,7 @@
       }
     },
     "bret_hart": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_batch_01/bret_hart.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/bret_hart.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -60,7 +60,7 @@
       }
     },
     "yokozuna": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_batch_01/yokozuna.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/yokozuna.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -71,12 +71,12 @@
       }
     },
     "booker_t": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/booker_t.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/name_edit_booker_t.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "the_fiend": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_batch_01/the_fiend.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/the_fiend.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -87,162 +87,162 @@
       }
     },
     "shawn_michaels": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_batch_01/shawn_michaels.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/shawn_michaels.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "aj_styles": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/aj_styles.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/aj_styles.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "bianca_belair": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/bianca_belair.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/bianca_belair.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "edge": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/edge.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/edge.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "tripleh": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/tripleh.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/tripleh.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "ryback": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/ryback.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/ryback.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "tyler_bate": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/tyler_bate.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/tyler_bate.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "goldberg": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/goldberg.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/goldberg.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "gunther": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/gunther.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/gunther.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "the_rock": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/the_rock.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/the_rock.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "randy_orton": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/randy_orton.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/randy_orton.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "rey_mysterio": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/rey_mysterio.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/rey_mysterio.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "roman_reigns": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/roman_reigns.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/roman_reigns.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "rhea_ripley": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/rhea_ripley.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/rhea_ripley.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "mankind": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/mankind.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/mankind.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "batista": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/batista.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/batista.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "brock_lesnar": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/brock_lesnar.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/brock_lesnar.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "bron_breakker": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/bron_breakker.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/bron_breakker.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "big_show": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/big_show.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/big_show.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "seth_rollins": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/seth_rollins.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/seth_rollins.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "scott_hall": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/scott_hall.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/scott_hall.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "stone_cold_steve_austin": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/stone_cold_steve_austin.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/stone_cold_steve_austin.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "sting": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/sting.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/sting.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "the_undertaker": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/the_undertaker.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/the_undertaker.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "john_cena": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/john_cena.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/john_cena.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "kevin_nash": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/kevin_nash.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/kevin_nash.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "kurt_angle": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/kurt_angle.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/kurt_angle.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "kane": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/kane.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/kane.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "kevin_owens": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/kevin_owens.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/kevin_owens.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "chris_jericho": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/chris_jericho.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/chris_jericho.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "hulk_hogan": {
-      "spriteSheet": "data/images/wrestlers/custom/name edit/hulk_hogan.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/hulk_hogan.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "cm_punk": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/cm_punk.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/cm_punk.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -253,7 +253,7 @@
       }
     },
     "cody_rhodes": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/cody_rhodes.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/cody_rhodes.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -264,7 +264,7 @@
       }
     },
     "becky_lynch": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/becky_lynch.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/becky_lynch.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -275,7 +275,7 @@
       }
     },
     "charlotte_flair": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/charlotte_flair.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/charlotte_flair.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -286,7 +286,7 @@
       }
     },
     "bryan_danielson": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/bryan_danielson.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/bryan_danielson.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -297,7 +297,7 @@
       }
     },
     "la_knight": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/la_knight.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/la_knight.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -308,7 +308,7 @@
       }
     },
     "asuka": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/asuka.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/asuka.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -319,7 +319,7 @@
       }
     },
     "iyo_sky": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/iyo_sky.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/iyo_sky.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -330,29 +330,17 @@
       }
     },
     "grayson_waller": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/grayson_waller.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/grayson_waller.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sourceBox": {
-        "x": 1414,
-        "y": 7,
-        "width": 244,
-        "height": 398
-      }
+      "spriteFrames": 1
     },
     "johnny_gargano": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/johnny_gargano.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/johnny_gargano.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sourceBox": {
-        "x": 1748,
-        "y": 6,
-        "width": 251,
-        "height": 397
-      }
+      "spriteFrames": 1
     },
     "liv_morgan": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/liv_morgan.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/liv_morgan.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -363,7 +351,7 @@
       }
     },
     "sheamus": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/sheamus.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/sheamus.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -374,7 +362,7 @@
       }
     },
     "alexa_bliss": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/alexa_bliss.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/alexa_bliss.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -385,7 +373,7 @@
       }
     },
     "dean_ambrose": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dean_ambrose.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/dean_ambrose.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -396,29 +384,17 @@
       }
     },
     "akira_tozawa": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/akira_tozawa.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sourceBox": {
-        "x": 1419,
-        "y": 34,
-        "width": 233,
-        "height": 384
-      }
+      "spriteFrames": 1
     },
     "andre_chase": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/andre_chase.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/andre_chase.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sourceBox": {
-        "x": 1758,
-        "y": 23,
-        "width": 230,
-        "height": 395
-      }
+      "spriteFrames": 1
     },
     "mick_foley": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/mick_foley.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/mick_foley.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -429,7 +405,7 @@
       }
     },
     "drew_mcintyre": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/drew_mcintyre.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/drew_mcintyre.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -440,7 +416,7 @@
       }
     },
     "jey_uso": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/jey_uso.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/jey_uso.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -451,7 +427,7 @@
       }
     },
     "bayley": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/bayley.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/bayley.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -462,29 +438,17 @@
       }
     },
     "brooks_jensen": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/brooks_jensen.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/brooks_jensen.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sourceBox": {
-        "x": 1414,
-        "y": 0,
-        "width": 248,
-        "height": 391
-      }
+      "spriteFrames": 1
     },
     "charlie_dempsey": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/charlie_dempsey.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/charlie_dempsey.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sourceBox": {
-        "x": 1755,
-        "y": 0,
-        "width": 245,
-        "height": 389
-      }
+      "spriteFrames": 1
     },
     "sami_zayn": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/sami_zayn.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/sami_zayn.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -495,7 +459,7 @@
       }
     },
     "finn_balor": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/finn_balor.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/finn_balor.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -506,7 +470,7 @@
       }
     },
     "jade_cargill": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/jade_cargill.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/jade_cargill.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -517,7 +481,7 @@
       }
     },
     "jeff_hardy": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/jeff_hardy.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/jeff_hardy.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -528,29 +492,17 @@
       }
     },
     "dexter_lumis": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/dexter_lumis.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sourceBox": {
-        "x": 1410,
-        "y": 21,
-        "width": 249,
-        "height": 390
-      }
+      "spriteFrames": 1
     },
     "dijak": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dijak.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/dijak.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sourceBox": {
-        "x": 1755,
-        "y": 25,
-        "width": 241,
-        "height": 386
-      }
+      "spriteFrames": 1
     },
     "dominik_mysterio": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_03/dominik_mysterio.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/dominik_mysterio.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -561,7 +513,7 @@
       }
     },
     "trick_williams": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_03/trick_williams.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/trick_williams.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -572,7 +524,7 @@
       }
     },
     "braun_strowman": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_03/braun_strowman.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/braun_strowman.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -583,7 +535,7 @@
       }
     },
     "nikki_bella": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_03/nikki_bella.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/nikki_bella.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -594,7 +546,7 @@
       }
     },
     "oba_femi": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_03/oba_femi.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/oba_femi.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -605,7 +557,7 @@
       }
     },
     "shinsuke_nakamura": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_03/shinsuke_nakamura.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/shinsuke_nakamura.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -616,7 +568,7 @@
       }
     },
     "logan_paul": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_03/logan_paul.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/logan_paul.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -627,7 +579,7 @@
       }
     },
     "ronda_rousey": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_03/ronda_rousey.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/ronda_rousey.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -638,7 +590,7 @@
       }
     },
     "tiffany_stratton": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_03/tiffany_stratton.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/tiffany_stratton.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -649,7 +601,7 @@
       }
     },
     "damian_priest": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_03/damian_priest.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/damian_priest.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -660,7 +612,7 @@
       }
     },
     "bad_bunny": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_03/bad_bunny.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/bad_bunny.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "sourceBox": {
@@ -671,652 +623,544 @@
       }
     },
     "al_snow": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/andre_chase.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/al_snow.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "andre_chase"
+      "spriteFrames": 1
     },
     "alba_fyre": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/andre_chase.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/alba_fyre.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "andre_chase"
+      "spriteFrames": 1
     },
     "alberto_del_rio": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/johnny_gargano.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/alberto_del_rio.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "johnny_gargano"
+      "spriteFrames": 1
     },
     "andrade": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/andrade.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dexter_lumis"
+      "spriteFrames": 1
     },
     "angelo_dawkins": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/charlie_dempsey.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/angelo_dawkins.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "charlie_dempsey"
+      "spriteFrames": 1
     },
     "austin_theory": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/austin_theory.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dexter_lumis"
+      "spriteFrames": 1
     },
     "ava": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/charlie_dempsey.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/ava.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "charlie_dempsey"
+      "spriteFrames": 1
     },
     "b_fab": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dijak.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/b_fab.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dijak"
+      "spriteFrames": 1
     },
     "big_bill": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/andre_chase.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/big_bill.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "andre_chase"
+      "spriteFrames": 1
     },
     "bo_dallas": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/grayson_waller.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/bo_dallas.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "grayson_waller"
+      "spriteFrames": 1
     },
     "brie_bella": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/brooks_jensen.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/brie_bella.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "brooks_jensen"
+      "spriteFrames": 1
     },
     "bubba_ray_dudley": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/grayson_waller.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/bubba_ray_dudley.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "grayson_waller"
+      "spriteFrames": 1
     },
     "candice_lerae": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/brooks_jensen.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/candice_lerae.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "brooks_jensen"
+      "spriteFrames": 1
     },
     "carlito": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/carlito.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dexter_lumis"
+      "spriteFrames": 1
     },
     "carmelo_hayes": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/brooks_jensen.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/carmelo_hayes.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "brooks_jensen"
+      "spriteFrames": 1
     },
     "chad_gable": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/chad_gable.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "akira_tozawa"
+      "spriteFrames": 1
     },
     "channing_stacks_lorenzo": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/andre_chase.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/channing_stacks_lorenzo.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "andre_chase"
+      "spriteFrames": 1
     },
     "chelsea_green": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/chelsea_green.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dexter_lumis"
+      "spriteFrames": 1
     },
     "corey_graves": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/corey_graves.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dexter_lumis"
+      "spriteFrames": 1
     },
     "d_von_dudley": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/charlie_dempsey.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/d_von_dudley.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "charlie_dempsey"
+      "spriteFrames": 1
     },
     "dakota_kai": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/dakota_kai.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "akira_tozawa"
+      "spriteFrames": 1
     },
     "dana_brooke": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/brooks_jensen.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/dana_brooke.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "brooks_jensen"
+      "spriteFrames": 1
     },
     "daphanie_lashaunn": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/grayson_waller.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/daphanie_lashaunn.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "grayson_waller"
+      "spriteFrames": 1
     },
     "dave_bautista": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/brooks_jensen.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/dave_bautista.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "brooks_jensen"
+      "spriteFrames": 1
     },
     "dion_lennox": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/dion_lennox.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dexter_lumis"
+      "spriteFrames": 1
     },
     "dragon_lee": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/dragon_lee.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dexter_lumis"
+      "spriteFrames": 1
     },
     "enzo_amore": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dijak.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/enzo_amore.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dijak"
+      "spriteFrames": 1
     },
     "eric_bischoff": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/eric_bischoff.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "akira_tozawa"
+      "spriteFrames": 1
     },
     "ethan_page": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/ethan_page.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dexter_lumis"
+      "spriteFrames": 1
     },
     "giulia": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/giulia.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "akira_tozawa"
+      "spriteFrames": 1
     },
     "hikuleo": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dijak.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/hikuleo.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dijak"
+      "spriteFrames": 1
     },
     "humberto_carrillo": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/grayson_waller.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/humberto_carrillo.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "grayson_waller"
+      "spriteFrames": 1
     },
     "ilja_dragunov": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/ilja_dragunov.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "akira_tozawa"
+      "spriteFrames": 1
     },
     "ivy_nile": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/charlie_dempsey.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/ivy_nile.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "charlie_dempsey"
+      "spriteFrames": 1
     },
     "jacob_fatu": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/johnny_gargano.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/jacob_fatu.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "johnny_gargano"
+      "spriteFrames": 1
     },
     "jacy_jayne": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/charlie_dempsey.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/jacy_jayne.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "charlie_dempsey"
+      "spriteFrames": 1
     },
     "jasper_troy": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/brooks_jensen.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/jasper_troy.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "brooks_jensen"
+      "spriteFrames": 1
     },
     "je_von_evans": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/je_von_evans.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "akira_tozawa"
+      "spriteFrames": 1
     },
     "jeff_cobb": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/jeff_cobb.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dexter_lumis"
+      "spriteFrames": 1
     },
     "jim_duggan": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/brooks_jensen.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/jim_duggan.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "brooks_jensen"
+      "spriteFrames": 1
     },
     "jimmy_uso": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/jimmy_uso.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "akira_tozawa"
+      "spriteFrames": 1
     },
     "joe_gacy": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/charlie_dempsey.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/joe_gacy.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "charlie_dempsey"
+      "spriteFrames": 1
     },
     "jorge_gonzalez": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/jorge_gonzalez.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "akira_tozawa"
+      "spriteFrames": 1
     },
     "josh_briggs": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/andre_chase.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/josh_briggs.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "andre_chase"
+      "spriteFrames": 1
     },
     "kairi_sane": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/kairi_sane.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dexter_lumis"
+      "spriteFrames": 1
     },
     "kaitlyn": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/kaitlyn.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dexter_lumis"
+      "spriteFrames": 1
     },
     "karrion_kross": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/charlie_dempsey.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/karrion_kross.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "charlie_dempsey"
+      "spriteFrames": 1
     },
     "kylie_rae": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dijak.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/kylie_rae.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dijak"
+      "spriteFrames": 1
     },
     "lance_cade": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/charlie_dempsey.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/lance_cade.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "charlie_dempsey"
+      "spriteFrames": 1
     },
     "lash_legend": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/lash_legend.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dexter_lumis"
+      "spriteFrames": 1
     },
     "lexis_king": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/grayson_waller.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/lexis_king.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "grayson_waller"
+      "spriteFrames": 1
     },
     "lou_albano": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/lou_albano.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "akira_tozawa"
+      "spriteFrames": 1
     },
     "ludwig_kaiser": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/ludwig_kaiser.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "akira_tozawa"
+      "spriteFrames": 1
     },
     "lyra_valkyria": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/grayson_waller.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/lyra_valkyria.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "grayson_waller"
+      "spriteFrames": 1
     },
     "mariah_may": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/johnny_gargano.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/mariah_may.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "johnny_gargano"
+      "spriteFrames": 1
     },
     "matt_bloom": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/matt_bloom.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "akira_tozawa"
+      "spriteFrames": 1
     },
     "matt_hardy": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/matt_hardy.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "akira_tozawa"
+      "spriteFrames": 1
     },
     "maxxine_dupri": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/charlie_dempsey.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/maxxine_dupri.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "charlie_dempsey"
+      "spriteFrames": 1
     },
     "mia_yim": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/grayson_waller.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/mia_yim.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "grayson_waller"
+      "spriteFrames": 1
     },
     "michin": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/charlie_dempsey.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/michin.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "charlie_dempsey"
+      "spriteFrames": 1
     },
     "montez_ford": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/andre_chase.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/montez_ford.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "andre_chase"
+      "spriteFrames": 1
     },
     "muhammad_hassan": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/grayson_waller.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/muhammad_hassan.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "grayson_waller"
+      "spriteFrames": 1
     },
     "myles_borne": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/grayson_waller.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/myles_borne.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "grayson_waller"
+      "spriteFrames": 1
     },
     "naomi": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/charlie_dempsey.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/naomi.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "charlie_dempsey"
+      "spriteFrames": 1
     },
     "natalya_neidhart": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/charlie_dempsey.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/natalya_neidhart.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "charlie_dempsey"
+      "spriteFrames": 1
     },
     "nick_aldis": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/nick_aldis.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dexter_lumis"
+      "spriteFrames": 1
     },
     "nikki_cross": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/nikki_cross.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "akira_tozawa"
+      "spriteFrames": 1
     },
     "noam_dar": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dijak.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/noam_dar.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dijak"
+      "spriteFrames": 1
     },
     "omos": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/omos.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dexter_lumis"
+      "spriteFrames": 1
     },
     "orlando_jordan": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/orlando_jordan.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dexter_lumis"
+      "spriteFrames": 1
     },
     "otis": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/otis.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dexter_lumis"
+      "spriteFrames": 1
     },
     "pat_mcafee": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/johnny_gargano.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/pat_mcafee.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "johnny_gargano"
+      "spriteFrames": 1
     },
     "paul_heyman": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/paul_heyman.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dexter_lumis"
+      "spriteFrames": 1
     },
     "paul_london": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/paul_london.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dexter_lumis"
+      "spriteFrames": 1
     },
     "pete_dunne": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/pete_dunne.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "akira_tozawa"
+      "spriteFrames": 1
     },
     "piper_niven": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/piper_niven.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "akira_tozawa"
+      "spriteFrames": 1
     },
     "powerhouse_hobbs": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dijak.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/powerhouse_hobbs.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dijak"
+      "spriteFrames": 1
     },
     "raquel_rodriguez": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/andre_chase.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/raquel_rodriguez.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "andre_chase"
+      "spriteFrames": 1
     },
     "raul_mendoza": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dijak.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/raul_mendoza.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dijak"
+      "spriteFrames": 1
     },
     "raven": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/andre_chase.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/raven.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "andre_chase"
+      "spriteFrames": 1
     },
     "rene_dupree": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/johnny_gargano.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/rene_dupree.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "johnny_gargano"
+      "spriteFrames": 1
     },
     "rey_fenix": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/brooks_jensen.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/rey_fenix.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "brooks_jensen"
+      "spriteFrames": 1
     },
     "ricky_starks": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/johnny_gargano.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/ricky_starks.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "johnny_gargano"
+      "spriteFrames": 1
     },
     "ridge_holland": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/johnny_gargano.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/ridge_holland.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "johnny_gargano"
+      "spriteFrames": 1
     },
     "roxanne_perez": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dijak.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/roxanne_perez.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dijak"
+      "spriteFrames": 1
     },
     "ryan_nemeth": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dijak.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/ryan_nemeth.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dijak"
+      "spriteFrames": 1
     },
     "santos_escobar": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/charlie_dempsey.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/santos_escobar.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "charlie_dempsey"
+      "spriteFrames": 1
     },
     "saraya_bevis": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/brooks_jensen.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/saraya_bevis.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "brooks_jensen"
+      "spriteFrames": 1
     },
     "scarlett_bordeaux": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/scarlett_bordeaux.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "akira_tozawa"
+      "spriteFrames": 1
     },
-    "sean_waltman": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/andre_chase.png",
+    "xpac": {
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/xpac.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "andre_chase"
+      "spriteFrames": 1
     },
     "shawn_spears": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/shawn_spears.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "akira_tozawa"
+      "spriteFrames": 1
     },
     "sonya_deville": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/grayson_waller.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/sonya_deville.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "grayson_waller"
+      "spriteFrames": 1
     },
     "spike_dudley": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/andre_chase.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/spike_dudley.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "andre_chase"
+      "spriteFrames": 1
     },
     "stephanie_mcmahon": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/stephanie_mcmahon.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dexter_lumis"
+      "spriteFrames": 1
     },
     "stephanie_vaquer": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/grayson_waller.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/stephanie_vaquer.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "grayson_waller"
+      "spriteFrames": 1
     },
     "stevie_richards": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/andre_chase.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/stevie_richards.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "andre_chase"
+      "spriteFrames": 1
     },
     "tama_tonga": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/tama_tonga.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dexter_lumis"
+      "spriteFrames": 1
     },
     "tanga_loa": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/grayson_waller.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/tanga_loa.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "grayson_waller"
+      "spriteFrames": 1
     },
     "tank_ledger": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/andre_chase.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/tank_ledger.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "andre_chase"
+      "spriteFrames": 1
     },
     "teddy_long": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/johnny_gargano.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/teddy_long.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "johnny_gargano"
+      "spriteFrames": 1
     },
     "tenille_dashwood": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/tenille_dashwood.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dexter_lumis"
+      "spriteFrames": 1
     },
     "the_honky_tonk_man": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/the_honky_tonk_man.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "akira_tozawa"
+      "spriteFrames": 1
     },
     "tommaso_ciampa": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/tommaso_ciampa.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dexter_lumis"
+      "spriteFrames": 1
     },
     "tony_d_angelo": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/grayson_waller.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/tony_d_angelo.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "grayson_waller"
+      "spriteFrames": 1
     },
     "zelina_vega": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/johnny_gargano.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/zelina_vega.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "johnny_gargano"
+      "spriteFrames": 1
     },
     "nia_jax": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/nia_jax.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "dexter_lumis"
+      "spriteFrames": 1
     },
     "r_truth": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/brooks_jensen.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/r_truth.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "brooks_jensen"
+      "spriteFrames": 1
     },
     "solo_sikoa": {
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/solo_sikoa.png",
       "portraitMode": true,
-      "spriteFrames": 1,
-      "sharedFallbackSourceId": "akira_tozawa"
+      "spriteFrames": 1
     }
   },
   "templates": {
@@ -1324,7 +1168,7 @@
       "id": "andre_the_giant",
       "name": "Andre The Giant",
       "nickname": "The Eighth Wonder",
-      "spriteSheet": "data/images/wrestlers/custom/retro_legends_pack_01/andre_the_giant.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/andre_the_giant.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "grade": "LEGEND",
@@ -1336,7 +1180,7 @@
       "id": "roddy_piper",
       "name": "Roddy Piper",
       "nickname": "Rowdy",
-      "spriteSheet": "data/images/wrestlers/custom/retro_legends_pack_01/roddy_piper.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/roddy_piper.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "grade": "S",
@@ -1348,7 +1192,7 @@
       "id": "ric_flair",
       "name": "Ric Flair",
       "nickname": "Nature Boy",
-      "spriteSheet": "data/images/wrestlers/custom/name edit/ric_flair.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/ric_flair.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "grade": "LEGEND",
@@ -1360,7 +1204,7 @@
       "id": "dusty_rhodes",
       "name": "Dusty Rhodes",
       "nickname": "The American Dream",
-      "spriteSheet": "data/images/wrestlers/custom/retro_legends_pack_01/dusty_rhodes.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/dusty_rhodes.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "grade": "S",
@@ -1372,7 +1216,7 @@
       "id": "bret_hart",
       "name": "Bret Hart",
       "nickname": "The Hitman",
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_batch_01/bret_hart.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/bret_hart.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "grade": "S",
@@ -1384,7 +1228,7 @@
       "id": "yokozuna",
       "name": "Yokozuna",
       "nickname": "The Sumo Legend",
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_batch_01/yokozuna.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/yokozuna.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "grade": "LEGEND",
@@ -1396,7 +1240,7 @@
       "id": "booker_t",
       "name": "Booker T",
       "nickname": "Five-Time Champion",
-      "spriteSheet": "data/images/wrestlers/custom/name edit/booker_t.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/name_edit_booker_t.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "grade": "S",
@@ -1408,7 +1252,7 @@
       "id": "the_fiend",
       "name": "The Fiend",
       "nickname": "Let Me In",
-      "spriteSheet": "data/images/wrestlers/custom/dont_use_batch_01/the_fiend.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/the_fiend.png",
       "portraitMode": true,
       "spriteFrames": 1,
       "grade": "LEGEND",
@@ -1419,14 +1263,14 @@
     "ryback": {
       "id": "ryback",
       "name": "Ryback",
-      "spriteSheet": "data/images/wrestlers/custom/name edit/ryback.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/ryback.png",
       "portraitMode": true,
       "spriteFrames": 1
     },
     "tyler_bate": {
       "id": "tyler_bate",
       "name": "Tyler Bate",
-      "spriteSheet": "data/images/wrestlers/custom/name edit/tyler_bate.png",
+      "spriteSheet": "data/images/wrestlers/custom/manifest_sprites/tyler_bate.png",
       "portraitMode": true,
       "spriteFrames": 1
     }
@@ -1434,7 +1278,7 @@
   "sets": {
     "retro_legends_pack_01": {
       "atlas_path": "C:\\Users\\wwgww\\Desktop\\새 폴더\\배경제거\\1-1.png",
-      "output_dir": "data/images/wrestlers/custom/retro_legends_pack_01",
+      "output_dir": "data/images/wrestlers/custom/manifest_sprites",
       "report_path": "data/custom/reports/retro_legends_pack_01_report.json",
       "wrestler_ids": [
         "randy_savage",
@@ -1447,7 +1291,7 @@
     },
     "dont_use_batch_01_1_2": {
       "atlas_path": "D:\\Games\\RING DYNASTY\\data\\images\\dont use this files\\1-2.png",
-      "output_dir": "data/images/wrestlers/custom/dont_use_batch_01",
+      "output_dir": "data/images/wrestlers/custom/manifest_sprites",
       "report_path": "data/custom/reports/dont_use_batch_01_1_2_report.json",
       "wrestler_ids": [
         "bret_hart",
@@ -1456,7 +1300,7 @@
     },
     "dont_use_batch_01_1_3": {
       "atlas_path": "D:\\Games\\RING DYNASTY\\data\\images\\dont use this files\\1-3.png",
-      "output_dir": "data/images/wrestlers/custom/dont_use_batch_01",
+      "output_dir": "data/images/wrestlers/custom/manifest_sprites",
       "report_path": "data/custom/reports/dont_use_batch_01_1_3_report.json",
       "wrestler_ids": [
         "booker_t"
@@ -1464,7 +1308,7 @@
     },
     "dont_use_batch_01_1_4": {
       "atlas_path": "D:\\Games\\RING DYNASTY\\data\\images\\dont use this files\\1-4.png",
-      "output_dir": "data/images/wrestlers/custom/dont_use_batch_01",
+      "output_dir": "data/images/wrestlers/custom/manifest_sprites",
       "report_path": "data/custom/reports/dont_use_batch_01_1_4_report.json",
       "wrestler_ids": [
         "the_fiend"
@@ -1472,14 +1316,14 @@
     },
     "dont_use_batch_01_2_2": {
       "atlas_path": "D:\\Games\\RING DYNASTY\\data\\images\\dont use this files\\2-2.png",
-      "output_dir": "data/images/wrestlers/custom/dont_use_batch_01",
+      "output_dir": "data/images/wrestlers/custom/manifest_sprites",
       "report_path": "data/custom/reports/dont_use_batch_01_2_2_report.json",
       "wrestler_ids": [
         "shawn_michaels"
       ]
     },
     "name_edit_batch_01": {
-      "source_dir": "data/images/wrestlers/custom/name edit",
+      "source_dir": "data/images/wrestlers/custom/manifest_sprites",
       "wrestler_ids": [
         "aj_styles",
         "batista",
@@ -1519,8 +1363,8 @@
     },
     "dont_use_named_batch_02": {
       "source_dir": "data/images/dont use this files",
-      "output_dir": "data/images/wrestlers/custom/dont_use_named_batch_02",
-      "extras_dir": "data/images/wrestlers/custom/extras/dont_use_named_batch_02",
+      "output_dir": "data/images/wrestlers/custom/manifest_sprites",
+      "extras_dir": "data/images/wrestlers/custom/manifest_sprites",
       "report_path": "data/custom/reports/dont_use_named_batch_02_report.json",
       "wrestler_ids": [
         "cm_punk",
@@ -1553,14 +1397,14 @@
         "dijak"
       ],
       "extra_outputs": [
-        "data/images/wrestlers/custom/extras/dont_use_named_batch_02/cm_cody_rhodes_3.png",
-        "data/images/wrestlers/custom/extras/dont_use_named_batch_02/cm_charlotte_flair_6.png"
+        "data/images/wrestlers/custom/manifest_sprites/cm_cody_rhodes_3.png",
+        "data/images/wrestlers/custom/manifest_sprites/cm_charlotte_flair_6.png"
       ]
     },
     "dont_use_named_batch_03": {
       "source_dir": "data/images/dont use this files",
-      "output_dir": "data/images/wrestlers/custom/dont_use_named_batch_03",
-      "extras_dir": "data/images/wrestlers/custom/extras/dont_use_named_batch_03",
+      "output_dir": "data/images/wrestlers/custom/manifest_sprites",
+      "extras_dir": "data/images/wrestlers/custom/manifest_sprites",
       "report_path": "data/custom/reports/dont_use_named_batch_03_report.json",
       "wrestler_ids": [
         "dominik_mysterio",
@@ -1576,7 +1420,7 @@
         "bad_bunny"
       ],
       "extra_outputs": [
-        "data/images/wrestlers/custom/extras/dont_use_named_batch_03/dominik_mysterio_dominik_mysterio_trick_williams_braun_strowman_nikki_bella_oba_femi_dominik_mysterio_1.png"
+        "data/images/wrestlers/custom/manifest_sprites/dominik_mysterio_dominik_mysterio_trick_williams_braun_strowman_nikki_bella_oba_femi_dominik_mysterio_1.png"
       ]
     },
     "bc_common_fallbacks": {
@@ -1671,7 +1515,7 @@
         "santos_escobar",
         "saraya_bevis",
         "scarlett_bordeaux",
-        "sean_waltman",
+        "xpac",
         "shawn_spears",
         "sonya_deville",
         "spike_dudley",

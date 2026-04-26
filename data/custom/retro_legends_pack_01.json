@@ -1,7 +1,7 @@
 {
   "set_name": "retro_legends_pack_01",
   "atlas_path": "C:/Users/wwgww/Desktop/새 폴더/배경제거/1-1.png",
-  "output_dir": "data/images/wrestlers/custom/retro_legends_pack_01",
+  "output_dir": "data/images/wrestlers/custom/manifest_sprites",
   "manifest_path": "data/custom/custom_sprite_manifest.js",
   "registry_path": "data/custom/custom_sprite_registry.json",
   "report_path": "data/custom/reports/retro_legends_pack_01_report.json",

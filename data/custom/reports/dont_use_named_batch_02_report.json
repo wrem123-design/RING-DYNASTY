@@ -1,8 +1,8 @@
 {
   "set_name": "dont_use_named_batch_02",
   "source_dir": "D:\\Games\\RING DYNASTY\\data\\images\\dont use this files",
-  "output_dir": "data/images/wrestlers/custom/dont_use_named_batch_02",
-  "extras_dir": "data/images/wrestlers/custom/extras/dont_use_named_batch_02",
+  "output_dir": "data/images/wrestlers/custom/manifest_sprites",
+  "extras_dir": "data/images/wrestlers/custom/manifest_sprites",
   "registered_ids": [
     "cm_punk",
     "cody_rhodes",
@@ -48,7 +48,7 @@
           "duplicate_flag": false,
           "resolved_id": "cm_punk",
           "resolved_name": "CM Punk",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/cm_punk.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/cm_punk.png",
           "source_box": {
             "x": 53,
             "y": 7,
@@ -71,7 +71,7 @@
           "duplicate_flag": false,
           "resolved_id": "cody_rhodes",
           "resolved_name": "Cody Rhodes",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/cody_rhodes.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/cody_rhodes.png",
           "source_box": {
             "x": 396,
             "y": 8,
@@ -94,7 +94,7 @@
           "duplicate_flag": true,
           "resolved_id": "cody_rhodes",
           "resolved_name": "Cody Rhodes",
-          "sprite_path": "data/images/wrestlers/custom/extras/dont_use_named_batch_02/cm_cody_rhodes_3.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/cm_cody_rhodes_3.png",
           "source_box": {
             "x": 740,
             "y": 10,
@@ -117,7 +117,7 @@
           "duplicate_flag": false,
           "resolved_id": "becky_lynch",
           "resolved_name": "Becky Lynch",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/becky_lynch.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/becky_lynch.png",
           "source_box": {
             "x": 1086,
             "y": 1,
@@ -140,7 +140,7 @@
           "duplicate_flag": false,
           "resolved_id": "charlotte_flair",
           "resolved_name": "Charlotte Flair",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/charlotte_flair.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/charlotte_flair.png",
           "source_box": {
             "x": 1417,
             "y": 10,
@@ -163,7 +163,7 @@
           "duplicate_flag": true,
           "resolved_id": "charlotte_flair",
           "resolved_name": "Charlotte Flair",
-          "sprite_path": "data/images/wrestlers/custom/extras/dont_use_named_batch_02/cm_charlotte_flair_6.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/cm_charlotte_flair_6.png",
           "source_box": {
             "x": 1754,
             "y": 12,
@@ -195,7 +195,7 @@
           "duplicate_flag": false,
           "resolved_id": "bryan_danielson",
           "resolved_name": "Bryan Danielson",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/bryan_danielson.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/bryan_danielson.png",
           "source_box": {
             "x": 46,
             "y": 7,
@@ -218,7 +218,7 @@
           "duplicate_flag": false,
           "resolved_id": "la_knight",
           "resolved_name": "LA Knight",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/la_knight.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/la_knight.png",
           "source_box": {
             "x": 388,
             "y": 1,
@@ -241,7 +241,7 @@
           "duplicate_flag": false,
           "resolved_id": "asuka",
           "resolved_name": "Asuka",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/asuka.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/asuka.png",
           "source_box": {
             "x": 739,
             "y": 1,
@@ -264,7 +264,7 @@
           "duplicate_flag": false,
           "resolved_id": "iyo_sky",
           "resolved_name": "IYO SKY",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/iyo_sky.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/iyo_sky.png",
           "source_box": {
             "x": 1086,
             "y": 7,
@@ -287,7 +287,7 @@
           "duplicate_flag": false,
           "resolved_id": "grayson_waller",
           "resolved_name": "Grayson Waller",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/grayson_waller.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/grayson_waller.png",
           "source_box": {
             "x": 1414,
             "y": 7,
@@ -310,7 +310,7 @@
           "duplicate_flag": false,
           "resolved_id": "johnny_gargano",
           "resolved_name": "Johnny Gargano",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/johnny_gargano.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/johnny_gargano.png",
           "source_box": {
             "x": 1748,
             "y": 6,
@@ -342,7 +342,7 @@
           "duplicate_flag": false,
           "resolved_id": "liv_morgan",
           "resolved_name": "Liv Morgan",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/liv_morgan.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/liv_morgan.png",
           "source_box": {
             "x": 58,
             "y": 18,
@@ -365,7 +365,7 @@
           "duplicate_flag": false,
           "resolved_id": "sheamus",
           "resolved_name": "Sheamus",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/sheamus.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/sheamus.png",
           "source_box": {
             "x": 386,
             "y": 6,
@@ -388,7 +388,7 @@
           "duplicate_flag": false,
           "resolved_id": "alexa_bliss",
           "resolved_name": "Alexa Bliss",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/alexa_bliss.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/alexa_bliss.png",
           "source_box": {
             "x": 747,
             "y": 11,
@@ -411,7 +411,7 @@
           "duplicate_flag": false,
           "resolved_id": "dean_ambrose",
           "resolved_name": "Dean Ambrose",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dean_ambrose.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dean_ambrose.png",
           "source_box": {
             "x": 1078,
             "y": 19,
@@ -434,7 +434,7 @@
           "duplicate_flag": false,
           "resolved_id": "akira_tozawa",
           "resolved_name": "Akira Tozawa",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/akira_tozawa.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/akira_tozawa.png",
           "source_box": {
             "x": 1419,
             "y": 34,
@@ -457,7 +457,7 @@
           "duplicate_flag": false,
           "resolved_id": "andre_chase",
           "resolved_name": "Andre Chase",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/andre_chase.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/andre_chase.png",
           "source_box": {
             "x": 1758,
             "y": 23,
@@ -489,7 +489,7 @@
           "duplicate_flag": false,
           "resolved_id": "mick_foley",
           "resolved_name": "Mick Foley",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/mick_foley.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/mick_foley.png",
           "source_box": {
             "x": 50,
             "y": 0,
@@ -512,7 +512,7 @@
           "duplicate_flag": false,
           "resolved_id": "drew_mcintyre",
           "resolved_name": "Drew McIntyre",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/drew_mcintyre.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/drew_mcintyre.png",
           "source_box": {
             "x": 396,
             "y": 1,
@@ -535,7 +535,7 @@
           "duplicate_flag": false,
           "resolved_id": "jey_uso",
           "resolved_name": "Jey Uso",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/jey_uso.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/jey_uso.png",
           "source_box": {
             "x": 744,
             "y": 4,
@@ -558,7 +558,7 @@
           "duplicate_flag": false,
           "resolved_id": "bayley",
           "resolved_name": "Bayley",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/bayley.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/bayley.png",
           "source_box": {
             "x": 1086,
             "y": 0,
@@ -581,7 +581,7 @@
           "duplicate_flag": false,
           "resolved_id": "brooks_jensen",
           "resolved_name": "Brooks Jensen",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/brooks_jensen.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/brooks_jensen.png",
           "source_box": {
             "x": 1414,
             "y": 0,
@@ -604,7 +604,7 @@
           "duplicate_flag": false,
           "resolved_id": "charlie_dempsey",
           "resolved_name": "Charlie Dempsey",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/charlie_dempsey.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/charlie_dempsey.png",
           "source_box": {
             "x": 1755,
             "y": 0,
@@ -636,7 +636,7 @@
           "duplicate_flag": false,
           "resolved_id": "sami_zayn",
           "resolved_name": "Sami Zayn",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/sami_zayn.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/sami_zayn.png",
           "source_box": {
             "x": 41,
             "y": 14,
@@ -659,7 +659,7 @@
           "duplicate_flag": false,
           "resolved_id": "finn_balor",
           "resolved_name": "Finn Balor",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/finn_balor.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/finn_balor.png",
           "source_box": {
             "x": 371,
             "y": 0,
@@ -682,7 +682,7 @@
           "duplicate_flag": false,
           "resolved_id": "jade_cargill",
           "resolved_name": "Jade Cargill",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/jade_cargill.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/jade_cargill.png",
           "source_box": {
             "x": 734,
             "y": 10,
@@ -705,7 +705,7 @@
           "duplicate_flag": false,
           "resolved_id": "jeff_hardy",
           "resolved_name": "Jeff Hardy",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/jeff_hardy.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/jeff_hardy.png",
           "source_box": {
             "x": 1074,
             "y": 12,
@@ -728,7 +728,7 @@
           "duplicate_flag": false,
           "resolved_id": "dexter_lumis",
           "resolved_name": "Dexter Lumis",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dexter_lumis.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dexter_lumis.png",
           "source_box": {
             "x": 1410,
             "y": 21,
@@ -751,7 +751,7 @@
           "duplicate_flag": false,
           "resolved_id": "dijak",
           "resolved_name": "Dijak",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_02/dijak.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dijak.png",
           "source_box": {
             "x": 1755,
             "y": 25,

@@ -1660,8 +1660,47 @@
 
   function drawCombatant(ctx, snapshot, pose, frame, side) {
     const standImage = getSpriteImage(getResolvedStandSpriteSheet(snapshot));
+    const attackPath = typeof getAttackSpritePath === "function" ? getAttackSpritePath(snapshot) : snapshot?.attackSpriteSheet;
+    const attackImage = getSpriteImage(attackPath);
+    const attackFrames = snapshot?.attackSpriteFrames || 4;
+    const useAttackSprite = (typeof isAttackSpriteState === "function" ? isAttackSpriteState(pose.state) : pose.state === "attack" || pose.state === "finisher")
+      && attackImage && attackImage.complete && attackImage.width && attackImage.height;
     const useCustomStand = standImage && standImage.complete && standImage.width && standImage.height;
     drawCombatantShadow(ctx, pose);
+    if (useAttackSprite) {
+      const hpRatio = clamp(snapshot.currentHP / Math.max(1, snapshot.maxHP), 0, 1);
+      const safeFrameCount = Math.max(1, Math.floor(attackFrames));
+      const frameWidth = attackImage.width / safeFrameCount;
+      const frameIndex = Math.floor(frame / (pose.state === "finisher" ? 4 : 5)) % safeFrameCount;
+      const scale = Math.min(FIGHTER_DRAW_WIDTH / frameWidth, FIGHTER_DRAW_HEIGHT / attackImage.height);
+      const drawWidth = frameWidth * scale;
+      const drawHeight = attackImage.height * scale;
+
+      ctx.save();
+      ctx.translate(pose.x, pose.y + CUSTOM_STAND_GROUND_OFFSET);
+      if (side === "right") {
+        ctx.scale(-1, 1);
+      }
+      ctx.rotate((pose.tilt * Math.PI) / 180);
+      if (pose.flash > 0) {
+        ctx.filter = `brightness(${1 + (pose.flash * 2.8)})`;
+      } else if (hpRatio < 0.4) {
+        ctx.filter = `saturate(${Math.max(24, Math.round(hpRatio * 220))}%)`;
+      }
+      ctx.drawImage(
+        attackImage,
+        frameWidth * frameIndex,
+        0,
+        frameWidth,
+        attackImage.height,
+        -(drawWidth / 2),
+        -drawHeight,
+        drawWidth,
+        drawHeight
+      );
+      ctx.restore();
+      return;
+    }
     if (!useCustomStand) {
       drawBattleWrestler(ctx, snapshot, pose.x, pose.y - 8, frame, pose.state, side === "right");
       return;
@@ -2258,14 +2297,44 @@
       return;
     }
 
-    const currentBattle = matchAnimationState.queue[matchAnimationState.matchIndex];
+    const currentEntry = matchAnimationState.queue[matchAnimationState.matchIndex];
+    const currentBattle = matchAnimationState.currentBattle || (
+      typeof resolveMatchQueueEntryForAnimation === "function"
+        ? resolveMatchQueueEntryForAnimation(currentEntry)
+        : currentEntry
+    );
     if (!currentBattle) {
       finishMatchAnimation();
       return;
     }
+    matchAnimationState.currentBattle = currentBattle;
 
-    const battleFinished = drawBattlePackageFrame(ctx, currentBattle, now - matchAnimationState.matchStartTime, Math.floor(now / 16));
-    if (battleFinished) {
+    if (typeof syncBattlePlaybackState === "function") {
+      syncBattlePlaybackState(now);
+    }
+    const frame = Math.floor(now / 16);
+    if (battlePlaybackState?.phase === "intro") {
+      drawBattleIntro(ctx, currentBattle, clamp((now - battlePlaybackState.phaseStartTime) / getBattleIntroDuration(), 0, 1), frame);
+    } else if (battlePlaybackState?.phase === "wait-command" && typeof drawBattleCommandStandbyFrame === "function") {
+      drawBattleCommandStandbyFrame(ctx, currentBattle, getCurrentPlayerCommandEvent(currentBattle), frame);
+    } else if (battlePlaybackState?.phase === "event-player" || battlePlaybackState?.phase === "event-enemy") {
+      const event = getActiveBattlePlaybackEvent(currentBattle);
+      const timing = typeof getEventTimingProfile === "function"
+        ? getEventTimingProfile(event, currentBattle)
+        : null;
+      drawBattleEventFrame(ctx, currentBattle, event, Math.max(0, now - battlePlaybackState.phaseStartTime), frame, timing);
+      matchAnimationState.currentBattle = currentBattle;
+    } else {
+      drawBattleOutro(ctx, currentBattle, clamp((now - battlePlaybackState.phaseStartTime) / getBattleOutroDuration(), 0, 1), frame);
+    }
+    if (typeof updateBattleActionPanel === "function") {
+      updateBattleActionPanel();
+    }
+
+    if (battlePlaybackState?.phase === "outro" && (now - battlePlaybackState.phaseStartTime) >= getBattleOutroDuration()) {
+      if (typeof isWeeklyMatchContext === "function" && isWeeklyMatchContext(currentEntry) && typeof applyBattlePackageToWeeklySession === "function") {
+        applyBattlePackageToWeeklySession(currentEntry, currentBattle);
+      }
       matchAnimationState.matchIndex += 1;
       if (matchAnimationState.matchIndex >= matchAnimationState.queue.length) {
         finishMatchAnimation();
@@ -2274,7 +2343,12 @@
       effectEngine.reset();
       resetBattleEffectState();
       matchAnimationState.matchStartTime = now;
-      matchAnimationState.currentBattle = matchAnimationState.queue[matchAnimationState.matchIndex];
+      matchAnimationState.currentBattle = typeof resolveMatchQueueEntryForAnimation === "function"
+        ? resolveMatchQueueEntryForAnimation(matchAnimationState.queue[matchAnimationState.matchIndex])
+        : matchAnimationState.queue[matchAnimationState.matchIndex];
+      if (typeof resetBattlePlaybackState === "function") {
+        resetBattlePlaybackState();
+      }
     }
   };
 }());

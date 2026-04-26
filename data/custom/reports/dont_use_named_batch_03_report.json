@@ -1,8 +1,8 @@
 {
   "set_name": "dont_use_named_batch_03",
   "source_dir": "D:\\Games\\RING DYNASTY\\data\\images\\dont use this files",
-  "output_dir": "data/images/wrestlers/custom/dont_use_named_batch_03",
-  "extras_dir": "data/images/wrestlers/custom/extras/dont_use_named_batch_03",
+  "output_dir": "data/images/wrestlers/custom/manifest_sprites",
+  "extras_dir": "data/images/wrestlers/custom/manifest_sprites",
   "registered_ids": [
     "dominik_mysterio",
     "trick_williams",
@@ -31,7 +31,7 @@
           "duplicate_flag": true,
           "resolved_id": "dominik_mysterio",
           "resolved_name": "Dominik Mysterio",
-          "sprite_path": "data/images/wrestlers/custom/extras/dont_use_named_batch_03/dominik_mysterio_dominik_mysterio_trick_williams_braun_strowman_nikki_bella_oba_femi_dominik_mysterio_1.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dominik_mysterio_dominik_mysterio_trick_williams_braun_strowman_nikki_bella_oba_femi_dominik_mysterio_1.png",
           "source_box": {
             "x": 50,
             "y": 5,
@@ -54,7 +54,7 @@
           "duplicate_flag": false,
           "resolved_id": "dominik_mysterio",
           "resolved_name": "Dominik Mysterio",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_03/dominik_mysterio.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/dominik_mysterio.png",
           "source_box": {
             "x": 396,
             "y": 6,
@@ -77,7 +77,7 @@
           "duplicate_flag": false,
           "resolved_id": "trick_williams",
           "resolved_name": "Trick Williams",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_03/trick_williams.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/trick_williams.png",
           "source_box": {
             "x": 737,
             "y": 4,
@@ -100,7 +100,7 @@
           "duplicate_flag": false,
           "resolved_id": "braun_strowman",
           "resolved_name": "Braun Strowman",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_03/braun_strowman.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/braun_strowman.png",
           "source_box": {
             "x": 1066,
             "y": 2,
@@ -123,7 +123,7 @@
           "duplicate_flag": false,
           "resolved_id": "nikki_bella",
           "resolved_name": "Nikki Bella",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_03/nikki_bella.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/nikki_bella.png",
           "source_box": {
             "x": 1425,
             "y": 4,
@@ -146,7 +146,7 @@
           "duplicate_flag": false,
           "resolved_id": "oba_femi",
           "resolved_name": "Oba Femi",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_03/oba_femi.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/oba_femi.png",
           "source_box": {
             "x": 1756,
             "y": 4,
@@ -178,7 +178,7 @@
           "duplicate_flag": false,
           "resolved_id": "shinsuke_nakamura",
           "resolved_name": "Shinsuke Nakamura",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_03/shinsuke_nakamura.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/shinsuke_nakamura.png",
           "source_box": {
             "x": 53,
             "y": 4,
@@ -201,7 +201,7 @@
           "duplicate_flag": false,
           "resolved_id": "logan_paul",
           "resolved_name": "Logan Paul",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_03/logan_paul.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/logan_paul.png",
           "source_box": {
             "x": 398,
             "y": 6,
@@ -224,7 +224,7 @@
           "duplicate_flag": false,
           "resolved_id": "ronda_rousey",
           "resolved_name": "Ronda Rousey",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_03/ronda_rousey.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/ronda_rousey.png",
           "source_box": {
             "x": 744,
             "y": 10,
@@ -247,7 +247,7 @@
           "duplicate_flag": false,
           "resolved_id": "tiffany_stratton",
           "resolved_name": "Tiffany Stratton",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_03/tiffany_stratton.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/tiffany_stratton.png",
           "source_box": {
             "x": 1086,
             "y": 6,
@@ -270,7 +270,7 @@
           "duplicate_flag": false,
           "resolved_id": "damian_priest",
           "resolved_name": "Damian Priest",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_03/damian_priest.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/damian_priest.png",
           "source_box": {
             "x": 1420,
             "y": 7,
@@ -293,7 +293,7 @@
           "duplicate_flag": false,
           "resolved_id": "bad_bunny",
           "resolved_name": "Bad Bunny",
-          "sprite_path": "data/images/wrestlers/custom/dont_use_named_batch_03/bad_bunny.png",
+          "sprite_path": "data/images/wrestlers/custom/manifest_sprites/bad_bunny.png",
           "source_box": {
             "x": 1762,
             "y": 4,
