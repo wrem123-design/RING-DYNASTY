@@ -130,6 +130,7 @@ if (!window.__RING_DYNASTY_CIRCUIT_REWORK__) {
 
   let circuitOpponentsCache = null;
   let circuitOpponentsCacheKey = "";
+  const circuitDisplayOpponentPool = Object.create(null);
 
   const buildCircuitOpponents = () => {
     const usedCircuitTemplateIds = new Set();
@@ -175,6 +176,57 @@ if (!window.__RING_DYNASTY_CIRCUIT_REWORK__) {
       circuitOpponentsCacheKey = nextCacheKey;
     }
     return circuitOpponentsCache;
+  };
+
+  const createCircuitDisplayWrestler = (opponent) => {
+    if (!opponent) {
+      return null;
+    }
+    if (circuitDisplayOpponentPool[opponent.id]) {
+      return circuitDisplayOpponentPool[opponent.id];
+    }
+    const display = createWrestler({
+      id: opponent.id,
+      templateId: opponent.templateId || opponent.id,
+      name: opponent.name,
+      nickname: opponent.nickname || opponent.circuitLabel || "서킷 도전자",
+      grade: opponent.grade || getCircuitOpponentGrade(opponent.total || 150),
+      stats: structuredClone(opponent.stats || buildCircuitStats(opponent.total || 150, opponent.style)),
+      style: opponent.style || "powerhouse",
+      alignment: "heel",
+      gender: opponent.gender || opponent.sex || getWrestlerGender(opponent),
+      age: 28 + Number(opponent.circuitIndex || 0),
+      salary: 0,
+      contractWeeks: 999,
+      wins: 0,
+      losses: 0,
+      condition: 100,
+      finisher: opponent.finisher || "Circuit Breaker",
+      spriteSheet: opponent.spriteSheet || null,
+      battleSpriteSheet: opponent.battleSpriteSheet || null,
+      spriteFrames: Number.isFinite(opponent.spriteFrames) ? opponent.spriteFrames : 1,
+      battleSpriteFrames: Number.isFinite(opponent.battleSpriteFrames) ? opponent.battleSpriteFrames : 1,
+      portraitMode: Boolean(opponent.portraitMode),
+      spriteColor: opponent.spriteColor || getGradeColor(opponent.grade || getCircuitOpponentGrade(opponent.total || 150)),
+      status: "idle"
+    });
+    display.isCircuitOpponent = true;
+    display.circuitSource = opponent;
+    circuitDisplayOpponentPool[opponent.id] = display;
+    return display;
+  };
+
+  const getCircuitDisplayOpponentById = (opponentId) => {
+    if (!opponentId) {
+      return null;
+    }
+    const opponent = getCircuitOpponents().find((entry) => entry.id === opponentId);
+    return opponent ? createCircuitDisplayWrestler(opponent) : null;
+  };
+
+  const baseCircuitFindWrestlerById = findWrestlerById;
+  findWrestlerById = function (wrestlerId) {
+    return baseCircuitFindWrestlerById(wrestlerId) || getCircuitDisplayOpponentById(wrestlerId) || null;
   };
 
   const getCircuitRankFloor = (rank) => (Math.floor((Math.max(1, rank) - 1) / 5) * 5) + 1;
@@ -1406,6 +1458,41 @@ if (!window.__RING_DYNASTY_CIRCUIT_REWORK__) {
     };
   };
 
+  const applyCircuitOutcomeFromBattle = (wrestler, opponent, battlePackage, summary, options = {}) => {
+    if (!wrestler || !opponent || !battlePackage?.battleResult || !summary) {
+      return null;
+    }
+    revealOpponent(opponent.id);
+    summary.mainWrestlerId = wrestler.id;
+    summary.opponentId = opponent.id;
+    summary.sideIncomeSnapshot = Number(summary.sideIncomeSnapshot || 0);
+    summary.ticketReward = Number(summary.ticketReward || 0);
+    summary.bonusLines = Array.isArray(summary.bonusLines) ? summary.bonusLines : [];
+    summary.warningLines = Array.isArray(summary.warningLines) ? summary.warningLines : [];
+    summary.injuries = Array.isArray(summary.injuries) ? summary.injuries : [];
+    summary.weeklyIncomeMultiplier = Number(summary.weeklyIncomeMultiplier || 1);
+    const won = battlePackage.battleResult.winnerId === wrestler.id;
+    summary.mainMatchLost = !won;
+    if (won) {
+      applyCircuitWinRewards(opponent, summary, Boolean(options.isRevenge));
+    } else {
+      applyCircuitLossPenalties(opponent, summary);
+    }
+    if (!options.skipRecord) {
+      recordWrestlerResult(won ? wrestler : null, won ? null : wrestler);
+    }
+    if (!options.skipConditionLoss) {
+      applyConditionLossFromBattle(wrestler, battlePackage, "main", won, summary.injuries);
+    }
+    const mainResult = createMainMatchResultEntry(wrestler, opponent, battlePackage, won, false);
+    if (won) {
+      mainResult.income = Math.floor(summary.totalIncome - summary.sideIncomeSnapshot);
+    }
+    summary.mainMatchCompleted = true;
+    summary.opponentId = opponent.id;
+    return { won, mainResult };
+  };
+
   const runSideMatch = (slot, summary, battlePackages) => {
     const left = findWrestlerById(slot.wrestlerAId);
     const right = findWrestlerById(slot.wrestlerBId);
@@ -1733,7 +1820,9 @@ if (!window.__RING_DYNASTY_CIRCUIT_REWORK__) {
     getOpponentDifficultyText,
     getWeeklyConditionRecoveryAmount,
     openOpponentAnalysisModal,
-    syncScheduleToLegacyWeeklyCard
+    syncScheduleToLegacyWeeklyCard,
+    getCircuitDisplayOpponentById,
+    applyCircuitOutcomeFromBattle
   };
 
   TAB_CONTENT.home.mainTitle = "메인 무대";

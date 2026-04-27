@@ -765,6 +765,38 @@ if (!window.__RING_DYNASTY_PPV_INVADERS__) {
     baseAdvanceToNextWeek();
   };
 
+  function getPpvBuildShowSegment(participantIds = []) {
+    const phase = getInvaderPhase();
+    if (!["build_2", "build_3"].includes(phase)) {
+      return null;
+    }
+    const preview = getInvaderPreviewInfo();
+    const invader = preview.invader;
+    const styleWeakness = invader.weaknessStyle ? getStyleMeta(invader.weaknessStyle).label : "없음";
+    const participants = Array.from(new Set((Array.isArray(participantIds) ? participantIds : []).filter(Boolean))).slice(0, 2);
+    const isFinalTease = phase === "build_3";
+    return {
+      id: `ppv_build_${phase}_${gameState.week}_${hashString(invader.id)}`,
+      type: isFinalTease ? "interference" : "interview",
+      label: "PPV 빌드업",
+      title: isFinalTease ? `${invader.name}의 음악이 끼어듭니다` : `${invader.name} 정보 입수`,
+      description: isFinalTease
+        ? `쇼 도중 조명이 꺼지고 ${invader.name}의 입장 대사가 울립니다. "${invader.quote}" PPV까지 ${preview.weeksUntil}주, 침략자의 존재감이 메인 카드 전체를 흔듭니다.`
+        : `백스테이지 리포트가 ${invader.name}의 전력을 분석합니다. 예상 전력 ${invader.total}, 약점 스타일 ${styleWeakness}. 현재 에이스와의 격차는 ${preview.gap >= 0 ? "+" : ""}${preview.gap}입니다.`,
+      reaction: clamp((gameState.hype || 50) + (isFinalTease ? 24 : 16), 45, 100),
+      participants,
+      ppvBuildPhase: phase,
+      surpriseIncident: isFinalTease,
+      allowInstantMatch: false
+    };
+  }
+
+  window.__RING_DYNASTY_PPV_INVADERS_API__ = {
+    getInvaderPhase,
+    getBuildShowSegment: getPpvBuildShowSegment,
+    shouldUseDedicatedWeeklyStart: () => ["build_1", "ppv"].includes(getInvaderPhase())
+  };
+
   function injectPpvBannerIntoHome() {
     const preview = getInvaderPreviewInfo();
     const phase = getInvaderPhase();

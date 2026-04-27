@@ -1756,6 +1756,7 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
     }
     const previousAssignments = capturePreviousAssignments();
     const salaryResult = applySalaryForWeek();
+    gameState.tickets += Math.max(0, Math.floor(Number(pendingWeeklySummary.ticketReward || 0)));
     pendingWeeklySummary.results.forEach((result) => {
       if (result.wrestlerAId && result.wrestlerBId && result.winnerId) {
         gameState.matchHistory.push({
@@ -1769,10 +1770,12 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
     gameState.matchHistory = gameState.matchHistory.slice(-100);
     const mainResult = pendingWeeklySummary.results.find((result) => result.kind === "main");
     if (mainResult) {
-      if (mainResult.winnerId === pendingWeeklySummary.mainWrestlerId) {
+      if (!pendingWeeklySummary.mainStatsAppliedDuringShow && mainResult.winnerId === pendingWeeklySummary.mainWrestlerId) {
         gameState.totalWins += 1;
       }
-      gameState.totalMatches += 1;
+      if (!pendingWeeklySummary.mainStatsAppliedDuringShow) {
+        gameState.totalMatches += 1;
+      }
     }
     gameState.history.unshift({
       week: pendingWeeklySummary.week,
@@ -1829,7 +1832,8 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
       totalAudience: 0
     });
     const triggerEnding = typeof getWorldEndingReady === "function" ? getWorldEndingReady() : false;
-    const eventData = triggerEnding ? null : (typeof rollWeeklyEvent === "function" ? rollWeeklyEvent() : null);
+    const showIncidentConsumedEventBudget = Number(pendingWeeklySummary.rdIncidentCount || 0) > 0;
+    const eventData = (triggerEnding || showIncidentConsumedEventBudget) ? null : (typeof rollWeeklyEvent === "function" ? rollWeeklyEvent() : null);
     pendingWeeklySummary = null;
     closeModal(true);
     saveGameState();

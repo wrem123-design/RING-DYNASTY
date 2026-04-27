@@ -3051,6 +3051,40 @@
       };
     }
 
+    function sanitizeRdShowContextSnapshot(context, index = 0) {
+      if (!context || typeof context !== "object") {
+        return null;
+      }
+      const slot = context.slot && typeof context.slot === "object" ? context.slot : {};
+      const wrestlerAId = slot.wrestlerAId || context.wrestlerAId || context.wrestlerA?.id || context.battleWrestlerA?.id || "";
+      const wrestlerBId = slot.wrestlerBId || context.wrestlerBId || context.wrestlerB?.id || context.battleWrestlerB?.id || "";
+      if (!wrestlerAId || !wrestlerBId) {
+        return null;
+      }
+      return {
+        kind: "weekly-context",
+        matchIndex: Number.isFinite(context.matchIndex) ? Math.max(0, Math.floor(context.matchIndex)) : index,
+        wrestlerAId,
+        wrestlerBId,
+        slot: {
+          wrestlerAId,
+          wrestlerBId,
+          titleMatch: Boolean(slot.titleMatch || context.championshipKey),
+          championshipKey: typeof (slot.championshipKey || context.championshipKey) === "string" ? (slot.championshipKey || context.championshipKey) : "",
+          matchType: typeof (slot.matchType || context.matchType) === "string" ? (slot.matchType || context.matchType) : "",
+          divisionGenerated: Boolean(slot.divisionGenerated),
+          divisionKey: typeof slot.divisionKey === "string" ? slot.divisionKey : "",
+          segmentType: typeof slot.segmentType === "string" ? slot.segmentType : ""
+        },
+        championshipKey: typeof context.championshipKey === "string" ? context.championshipKey : "",
+        defendingChampionId: typeof context.defendingChampionId === "string" ? context.defendingChampionId : "",
+        rivalryKey: typeof context.rivalryKey === "string" ? context.rivalryKey : "",
+        matchupKey: typeof context.matchupKey === "string" ? context.matchupKey : getMatchupKey(wrestlerAId, wrestlerBId),
+        matchType: typeof context.matchType === "string" ? context.matchType : "",
+        committed: Boolean(context.committed)
+      };
+    }
+
     function sanitizeDivisionBooking(rawDivisionBooking, roster = []) {
       const defaults = createDefaultDivisionBooking();
       const safe = rawDivisionBooking && typeof rawDivisionBooking === "object" ? rawDivisionBooking : {};
@@ -3097,9 +3131,19 @@
           week: Number.isFinite(safe.showState.week) ? Math.max(1, Math.floor(safe.showState.week)) : ((typeof gameState !== "undefined" ? gameState.week : 1) || 1),
           isPpv: Boolean(safe.showState.isPpv),
           showName: typeof safe.showState.showName === "string" ? safe.showState.showName : "MONDAY NIGHT RAW",
+          eventSeed: Number.isFinite(safe.showState.eventSeed) ? Math.max(0, Math.floor(safe.showState.eventSeed)) : 0,
           currentIndex: Number.isFinite(safe.showState.currentIndex) ? Math.max(0, Math.floor(safe.showState.currentIndex)) : 0,
           choiceCount: Number.isFinite(safe.showState.choiceCount) ? Math.max(0, Math.floor(safe.showState.choiceCount)) : 0,
           gmChoices: Array.isArray(safe.showState.gmChoices) ? safe.showState.gmChoices.slice(-8) : [],
+          matchContexts: Array.isArray(safe.showState.matchContexts)
+            ? safe.showState.matchContexts.map((context, index) => sanitizeRdShowContextSnapshot(context, index)).filter(Boolean).slice(0, 5)
+            : [],
+          playedMatchIndexes: Array.isArray(safe.showState.playedMatchIndexes)
+            ? Array.from(new Set(safe.showState.playedMatchIndexes.map((value) => Number(value)).filter(Number.isFinite).map((value) => Math.max(0, Math.floor(value))))).slice(0, 5)
+            : [],
+          entranceSteps: safe.showState.entranceSteps && typeof safe.showState.entranceSteps === "object"
+            ? Object.fromEntries(Object.entries(safe.showState.entranceSteps).filter(([key]) => typeof key === "string").map(([key, value]) => [key, clamp(Number(value || 0), 0, 1)]).slice(-12))
+            : {},
           segments: safe.showState.segments.filter((segment) => segment && typeof segment === "object")
         }
         : null;
@@ -4111,6 +4155,7 @@
           loserId: typeof entry?.loserId === "string" ? entry.loserId : "",
           cooldownUntilWeek: Number.isFinite(entry?.cooldownUntilWeek) ? Math.max(0, Math.floor(entry.cooldownUntilWeek)) : 0,
           rematchBlockedUntilWeek: Number.isFinite(entry?.rematchBlockedUntilWeek) ? Math.max(0, Math.floor(entry.rematchBlockedUntilWeek)) : 0,
+          lastIncidentWeek: Number.isFinite(entry?.lastIncidentWeek) ? Math.max(0, Math.floor(entry.lastIncidentWeek)) : 0,
           interferenceCount: Number.isFinite(entry?.interferenceCount) ? Math.max(0, Math.floor(entry.interferenceCount)) : 0,
           directMatchCount: Number.isFinite(entry?.directMatchCount) ? Math.max(0, Math.floor(entry.directMatchCount)) : 0,
           promoCount: Number.isFinite(entry?.promoCount) ? Math.max(0, Math.floor(entry.promoCount)) : 0,
@@ -4172,6 +4217,7 @@
       rivalry.ppvMatchType = typeof rivalry.ppvMatchType === "string" ? rivalry.ppvMatchType : "";
       rivalry.cooldownUntilWeek = Number.isFinite(rivalry.cooldownUntilWeek) ? Math.max(0, Math.floor(rivalry.cooldownUntilWeek)) : 0;
       rivalry.rematchBlockedUntilWeek = Number.isFinite(rivalry.rematchBlockedUntilWeek) ? Math.max(0, Math.floor(rivalry.rematchBlockedUntilWeek)) : 0;
+      rivalry.lastIncidentWeek = Number.isFinite(rivalry.lastIncidentWeek) ? Math.max(0, Math.floor(rivalry.lastIncidentWeek)) : 0;
       rivalry.interferenceCount = Number.isFinite(rivalry.interferenceCount) ? Math.max(0, Math.floor(rivalry.interferenceCount)) : 0;
       rivalry.directMatchCount = Number.isFinite(rivalry.directMatchCount) ? Math.max(0, Math.floor(rivalry.directMatchCount)) : 0;
       rivalry.promoCount = Number.isFinite(rivalry.promoCount) ? Math.max(0, Math.floor(rivalry.promoCount)) : 0;
@@ -10481,6 +10527,32 @@
       }
       battlePackage.interferenceChecked = true;
       const participants = [battlePackage.leftState?.id, battlePackage.rightState?.id].filter(Boolean);
+      const directCandidates = (activeRivalries || []).filter((rivalry) => {
+        if (!rivalry || rivalry.status === "finished") {
+          return false;
+        }
+        const aInMatch = participants.includes(rivalry.wrestlerAId);
+        const bInMatch = participants.includes(rivalry.wrestlerBId);
+        return aInMatch && bInMatch && Number(rivalry.heat || rivalry.intensity || 0) >= 50;
+      });
+      if (directCandidates.length) {
+        const rivalry = [...directCandidates].sort((a, b) => Number(b.heat || b.intensity || 0) - Number(a.heat || a.intensity || 0))[0];
+        const heat = Number(rivalry.heat || rivalry.intensity || 0);
+        const roll = Math.abs(hashString(`${gameState.week}:${battlePackage.leftState.id}:${battlePackage.rightState.id}:${rivalry.id || getRivalryKey(rivalry.wrestlerAId, rivalry.wrestlerBId)}:dirty`)) % 100;
+        const chance = Math.min(58, 18 + (heat * 0.25));
+        if (roll <= chance) {
+          const targetId = battlePackage.leftState.currentHP <= battlePackage.rightState.currentHP ? battlePackage.leftState.id : battlePackage.rightState.id;
+          const interfererId = targetId === rivalry.wrestlerAId ? rivalry.wrestlerBId : rivalry.wrestlerAId;
+          return {
+            rivalryId: rivalry.id,
+            rivalryKey: getRivalryKey(rivalry.wrestlerAId, rivalry.wrestlerBId),
+            targetId,
+            interfererId,
+            type: "dirty_tactic",
+            directRivalMoment: true
+          };
+        }
+      }
       const candidates = (activeRivalries || []).filter((rivalry) => {
         if (!rivalry || rivalry.status === "finished") {
           return false;
@@ -10522,11 +10594,12 @@
       }
       const beforeLeft = snapshotBattleState(battlePackage.leftState);
       const beforeRight = snapshotBattleState(battlePackage.rightState);
-      targetState.currentHP = Math.max(1, targetState.currentHP - Math.floor(targetState.maxHP * 0.28));
-      targetState.momentum = Math.max(0, targetState.momentum - 18);
-      opponentState.momentum = Math.min(100, opponentState.momentum + 14);
+      const isDirtyTactic = interference.type === "dirty_tactic";
+      targetState.currentHP = Math.max(1, targetState.currentHP - Math.floor(targetState.maxHP * (isDirtyTactic ? 0.16 : 0.28)));
+      targetState.momentum = Math.max(0, targetState.momentum - (isDirtyTactic ? 12 : 18));
+      opponentState.momentum = Math.min(100, opponentState.momentum + (isDirtyTactic ? 9 : 14));
       battlePackage.turn += 1;
-      battlePackage.currentHype = clamp(Number(battlePackage.currentHype || 0) + 12, 0, 100);
+      battlePackage.currentHype = clamp(Number(battlePackage.currentHype || 0) + (isDirtyTactic ? 8 : 12), 0, 100);
       battlePackage.battleEvents.push(createBattleEvent(
         battlePackage.turn,
         opponentState,
@@ -10538,12 +10611,12 @@
         {
           type: "interference",
           moveType: "interference",
-          moveName: "INTERFERENCE",
+          moveName: isDirtyTactic ? "CHEAP SHOT" : "INTERFERENCE",
           success: true,
           damage: 0,
           isCrit: false,
-          actionText: `[INTERFERENCE!] ${interferer.name} 난입!`,
-          resultText: `${interferer.name}가 ${targetState.name}를 방해했습니다!`,
+          actionText: isDirtyTactic ? `[RIVALRY!] ${interferer.name} 비열한 기습!` : `[INTERFERENCE!] ${interferer.name} 난입!`,
+          resultText: isDirtyTactic ? `${interferer.name}가 심판 시야 밖에서 ${targetState.name}를 흔들었습니다!` : `${interferer.name}가 ${targetState.name}를 방해했습니다!`,
           pinResult: null,
           usedFinisher: false,
           comboCount: 1,
@@ -10563,6 +10636,10 @@
         winnerId: opponentState.id,
         loserId: targetState.id
       };
+      if (isDirtyTactic) {
+        battlePackage.directRivalMoment = battlePackage.interference;
+        return battlePackage.interference;
+      }
       battlePackage.winnerState = opponentState;
       battlePackage.loserState = targetState;
       battlePackage.finishType = interference.type === "dq" ? "DQ" : "INTERFERENCE";
@@ -14326,6 +14403,47 @@
       renderActiveTab();
     }
 
+    function ensureRdOriginRivalryForSlot(slot, index = 0, reason = "weekly") {
+      if (!slot?.wrestlerAId || !slot?.wrestlerBId) {
+        return null;
+      }
+      if (getRivalryBetween(slot.wrestlerAId, slot.wrestlerBId)) {
+        return null;
+      }
+      const left = findWrestlerById(slot.wrestlerAId);
+      const right = findWrestlerById(slot.wrestlerBId);
+      if (!left || !right) {
+        return null;
+      }
+      const rivalry = createOrUpdateRivalry(left.id, right.id, slot.titleMatch ? "title" : "grudge", index === 0 ? 22 : 16);
+      const reasonText = reason === "main"
+        ? `${left.name}가 이번 주 메인 스팟을 차지하자 ${right.name}가 공개적으로 끼어들었습니다.`
+        : `${left.name}와 ${right.name}가 백스테이지에서 서로의 경기 순서를 두고 충돌했습니다.`;
+      addRivalryHistory(rivalry, {
+        week: gameState.week,
+        segmentType: "opening_promo",
+        summary: reasonText,
+        participants: [left.id, right.id],
+        heatChange: index === 0 ? 8 : 5,
+        crowdReaction: clamp(gameState.hype + (index === 0 ? 14 : 8), 0, 100)
+      });
+      rivalry.nextTrigger = index === 0 ? "메인 이벤트 직전 도발 또는 경기 중 변수가 발생할 수 있습니다." : "언더카드 이후 후속 충돌이 이어질 수 있습니다.";
+      rivalry.nextTriggerType = index === 0 ? "interference" : "backstage";
+      slot.rdStorySeeded = true;
+      slot.rdStoryReason = reasonText;
+      createStoryHook({
+        type: "origin_followup",
+        rivalryKey: getRivalryKey(left.id, right.id),
+        targetWeek: gameState.week + 1,
+        priority: index === 0 ? 82 : 68,
+        title: `${left.name} vs ${right.name} 후속 충돌`,
+        description: reasonText,
+        suggestedSegmentType: index === 0 ? "opening_promo" : "backstage",
+        participants: [left.id, right.id]
+      });
+      return rivalry;
+    }
+
     function buildDivisionWeeklyCardFromRivalries() {
       ensureWeeklyMissionState();
       const rivalries = getDivisionRivalries().filter((rivalry) => getBookingMatchRestriction(rivalry.champion, rivalry.contender).ok);
@@ -17222,11 +17340,13 @@
         return "";
       }
       const directLabel = segment.type === "interference" ? "난입 허용" : "방송에 태운다";
+      const instantDisabled = segment.allowInstantMatch === false;
+      const instantTitle = instantDisabled ? "이미 진행된 매치업이라 즉석 경기는 잠겨 있습니다." : "";
       return `
         <div class="rd-callout-choice-row incident">
-          <button class="rd-callout-choice accept" type="button" data-action="rd-incident-choice" data-choice="broadcast">${directLabel}<span>Hype 상승 · 대립 열기 상승</span></button>
-          <button class="rd-callout-choice ignore" type="button" data-action="rd-incident-choice" data-choice="security">보안 투입<span>리스크 감소 · 관중 반응 하락</span></button>
-          <button class="rd-callout-choice ambush" type="button" data-action="rd-incident-choice" data-choice="unsanctioned">즉석 경기<span>컨디션 소모 · 바로 경기 전환</span></button>
+          <button class="rd-callout-choice accept" type="button" data-action="rd-incident-choice" data-choice="broadcast">${directLabel}<span>Hype +8 · 대립 열기 +9</span></button>
+          <button class="rd-callout-choice ignore" type="button" data-action="rd-incident-choice" data-choice="security">보안 투입<span>Hype -4 · 대립 열기 -3</span></button>
+          <button class="rd-callout-choice ambush" type="button" data-action="rd-incident-choice" data-choice="unsanctioned" ${instantDisabled ? "disabled" : ""} title="${escapeHtml(instantTitle)}">즉석 경기<span>컨디션 -12 · 대립 열기 +14</span></button>
         </div>
       `;
     }
@@ -17249,13 +17369,21 @@
       return `${context.wrestlerA.name}와 ${context.wrestlerB.name}가 메인 스팟을 증명하려 합니다.`;
     }
 
-    function createRdWeeklyIncidentSegment(matchContexts = []) {
+    function createRdWeeklyIncidentSegment(matchContexts = [], options = {}) {
       const context = matchContexts[0] || matchContexts[1] || null;
       if (!context?.wrestlerA || !context?.wrestlerB) {
         return null;
       }
-      const roll = Math.abs(hashString(`${gameState.week}:${context.matchupKey}:rd-incident`)) % 100;
-      if (roll >= 72 && !context.rivalry) {
+      const booking = ensureDivisionBookingState();
+      const seed = Number.isFinite(options.seed) ? options.seed : Math.floor(Math.random() * 1000000000);
+      const roll = Math.abs(hashString(`${seed}:${gameState.week}:${context.matchupKey}:rd-incident`)) % 100;
+      const rivalryState = context.rivalry ? ensureRivalryExtendedState(context.rivalry) : null;
+      const lastRivalryIncidentWeek = Number(rivalryState?.lastIncidentWeek || 0);
+      const lastGlobalIncidentWeek = Number(booking.lastIncidentWeek || 0);
+      const onCooldown = (lastRivalryIncidentWeek && gameState.week - lastRivalryIncidentWeek < 2)
+        || (!context.rivalry && lastGlobalIncidentWeek && gameState.week - lastGlobalIncidentWeek < 1);
+      const chance = context.rivalry ? (onCooldown ? 22 : 62) : (onCooldown ? 12 : 36);
+      if (roll >= chance) {
         return null;
       }
       const type = roll < 24 ? "backstage" : roll < 48 ? "interference" : roll < 64 ? "interview" : "contract_signing";
@@ -17280,7 +17408,9 @@
         reaction: clamp(gameState.hype + 18 + (roll % 12), 40, 100),
         participants: [context.wrestlerA.id, context.wrestlerB.id].filter(Boolean),
         matchContextIndex: context.matchIndex,
-        surpriseIncident: true
+        surpriseIncident: true,
+        rivalryKey: context.rivalryKey || getRivalryKey(context.wrestlerA.id, context.wrestlerB.id),
+        allowInstantMatch: matchContexts.length > 1 || context.matchIndex !== 0
       };
     }
 
@@ -17390,6 +17520,17 @@
       }
       const rivalry = getRdCalloutRivalry(left, right, true);
       segment.incidentResolved = choice;
+      if (rivalry) {
+        ensureRivalryExtendedState(rivalry).lastIncidentWeek = gameState.week;
+      }
+      booking.lastIncidentWeek = gameState.week;
+      if (pendingWeeklySession) {
+        pendingWeeklySession.rdIncidentCount = Math.max(0, Math.floor(Number(pendingWeeklySession.rdIncidentCount || 0))) + 1;
+      }
+      if (choice === "unsanctioned" && segment.allowInstantMatch === false) {
+        choice = "broadcast";
+        segment.incidentResolved = choice;
+      }
       if (choice === "security") {
         gameState.hype = clamp(gameState.hype - 4, 0, 100);
         if (rivalry) {
@@ -17467,8 +17608,8 @@
       return `<div class="rd-step-face" style="${wrestler ? getWrestlerCardPortraitStyle(wrestler, "background-position:center bottom;background-size:contain;") : ""}"></div>`;
     }
 
-    function getRdShowSegments(matchContexts = []) {
-      const firstMatch = matchContexts[1] || matchContexts[0] || null;
+    function getRdShowSegments(matchContexts = [], options = {}) {
+      const firstMatch = matchContexts[1] || null;
       const mainMatch = matchContexts[0] || matchContexts[1] || null;
       const promoA = getRdPromoBlueprint("a");
       const promoB = getRdPromoBlueprint("b");
@@ -17480,7 +17621,23 @@
       const promoARight = firstRight || mainRight;
       const promoBLeft = mainLeft || firstLeft;
       const promoBRight = mainRight || firstRight;
-      const incidentSegment = createRdWeeklyIncidentSegment(matchContexts);
+      const incidentSegment = createRdWeeklyIncidentSegment(matchContexts, options);
+      const ppvBuildSegment = window.__RING_DYNASTY_PPV_INVADERS_API__?.getBuildShowSegment?.([
+        mainLeft?.id,
+        mainRight?.id,
+        firstLeft?.id,
+        firstRight?.id
+      ]);
+      const extraMatchSegments = matchContexts.slice(2).map((context, index) => ({
+        id: `rd_match_${index + 2}_${gameState.week}`,
+        type: "match",
+        label: `경기 ${index + 2}`,
+        title: `${context.wrestlerA.name} vs ${context.wrestlerB.name}`,
+        description: "언더카드 경기입니다. 짧은 입장 연출 후 턴제 경기로 진행됩니다.",
+        reaction: clamp(gameState.hype + 12 + index * 2, 38, 100),
+        participants: [context.wrestlerA.id, context.wrestlerB.id].filter(Boolean),
+        matchContextIndex: context.matchIndex
+      }));
       return [
         {
           id: `rd_start_${gameState.week}`,
@@ -17496,7 +17653,7 @@
           type: "matchup_preview",
           label: "매치업 예고",
           title: "오늘의 카드 공개",
-          description: "이번 주 경기는 정확히 두 경기만 편성됩니다.",
+          description: `이번 주 공식 카드는 총 ${Math.max(1, matchContexts.length)}경기입니다.`,
           reaction: clamp(gameState.hype + 12, 35, 100),
           participants: [firstLeft?.id || mainLeft?.id, firstRight?.id || mainRight?.id].filter(Boolean)
         },
@@ -17509,7 +17666,8 @@
           reaction: clamp(gameState.hype + 10 + (hashString(`p1:${gameState.week}`) % 18), 35, 100),
           participants: [promoALeft?.id, promoARight?.id].filter(Boolean)
         },
-        {
+        ...(ppvBuildSegment ? [ppvBuildSegment] : []),
+        ...(firstMatch ? [{
           id: `rd_match_1_${gameState.week}`,
           type: "match",
           label: "경기 1",
@@ -17518,7 +17676,8 @@
           reaction: clamp(gameState.hype + 15, 40, 100),
           participants: [firstMatch?.wrestlerA?.id, firstMatch?.wrestlerB?.id].filter(Boolean),
           matchContextIndex: matchContexts.indexOf(firstMatch)
-        },
+        }] : []),
+        ...extraMatchSegments,
         ...(incidentSegment ? [incidentSegment] : []),
         {
           id: `rd_promo_2_${gameState.week}`,
@@ -17623,6 +17782,9 @@
         gameState.weeklyCard[1].segmentType = "division_match";
         gameState.weeklyCard[1].matchType = "weekly_opener";
       }
+      gameState.weeklyCard.forEach((slot, index) => {
+        ensureRdOriginRivalryForSlot(slot, index, index === 0 ? "main" : "opener");
+      });
       gameState.weeklyCard = gameState.weeklyCard.slice(0, 2);
       const divisionReadySlots = (gameState.weeklyCard || []).filter((slot) => slot?.wrestlerAId && slot?.wrestlerBId).slice(0, 2);
       if (!divisionReadySlots.length) {
@@ -17650,6 +17812,20 @@
         rivalryHighlights: [],
         touchedRivalryKeys: matchContexts.map((context) => context.rivalryKey).filter(Boolean),
         rivalryTicketBonus: 0,
+        ticketReward: 0,
+        bonusLines: [],
+        warningLines: [],
+        injuries: [],
+        fameDelta: 0,
+        mainWrestlerId: matchContexts[0]?.wrestlerA?.id || "",
+        opponentId: matchContexts[0]?.wrestlerB?.id || "",
+        mainMatchLost: false,
+        mainMatchCompleted: false,
+        mainStatsAppliedDuringShow: false,
+        sideIncomeSnapshot: 0,
+        weeklyIncomeMultiplier: 1,
+        rdShowSession: true,
+        rdIncidentCount: 0,
         recoveredPreviewIds: gameState.roster
           .filter((wrestler) => wrestler.status === "injured" && wrestler.injuryWeeks > 0 && Math.max(0, wrestler.injuryWeeks - medicalHealAmount) === 0)
           .map((wrestler) => wrestler.id),
@@ -17696,8 +17872,136 @@
         alignmentBonus: getAlignmentMatchupBonus(wrestlerA, wrestlerB),
         bookingHype: calcHypeChange([{ aId: wrestlerA.id, bId: wrestlerB.id, isTitleMatch: false }]) - 5,
         matchType: ppvInfo.isPpv && matchIndex === 0 ? gameState.ppvState.featuredMatchType : "",
+        rdCircuitOpponent: wrestlerB?.circuitSource || null,
         committed: false
       };
+    }
+
+    function createRdRuntimeContextFromSnapshot(rawContext, fallbackIndex = 0, ppvInfo = getPpvInfo()) {
+      if (rawContext?.wrestlerA?.id && rawContext?.wrestlerB?.id) {
+        [rawContext.wrestlerA, rawContext.wrestlerB].forEach((wrestler) => {
+          if (wrestler && !wrestler.isGuest && !wrestler.isCircuitOpponent && !isWeeklyCpuId(wrestler.id)) {
+            wrestler.status = "match";
+          }
+        });
+        return rawContext;
+      }
+      const snapshot = sanitizeRdShowContextSnapshot(rawContext, fallbackIndex);
+      if (!snapshot) {
+        return null;
+      }
+      const slot = snapshot.slot || {};
+      const wrestlerA = findWrestlerById(slot.wrestlerAId);
+      const wrestlerB = findWrestlerById(slot.wrestlerBId);
+      if (!wrestlerA || !wrestlerB) {
+        return null;
+      }
+      if (!wrestlerA.isGuest && !wrestlerA.isCircuitOpponent && !isWeeklyCpuId(wrestlerA.id)) {
+        wrestlerA.status = "match";
+      }
+      if (!wrestlerB.isGuest && !wrestlerB.isCircuitOpponent && !isWeeklyCpuId(wrestlerB.id)) {
+        wrestlerB.status = "match";
+      }
+      const championshipKey = slot.titleMatch ? slot.championshipKey : snapshot.championshipKey || "";
+      const defendingChampionId = championshipKey ? gameState.championships[championshipKey]?.holderId : "";
+      const rivalry = getRivalryBetween(wrestlerA.id, wrestlerB.id);
+      return {
+        kind: "weekly-context",
+        matchIndex: snapshot.matchIndex,
+        slot,
+        wrestlerA,
+        wrestlerB,
+        battleWrestlerA: defendingChampionId === wrestlerA.id ? createTitleDefenseWrestler(wrestlerA) : wrestlerA,
+        battleWrestlerB: defendingChampionId === wrestlerB.id ? createTitleDefenseWrestler(wrestlerB) : wrestlerB,
+        matchupKey: snapshot.matchupKey || getMatchupKey(wrestlerA.id, wrestlerB.id),
+        championshipKey,
+        defendingChampionId,
+        rivalry,
+        rivalryKey: rivalry ? getRivalryKey(wrestlerA.id, wrestlerB.id) : snapshot.rivalryKey || "",
+        rivalryStoryText: getRivalryStoryText(rivalry),
+        rivalryHypeBonus: getRivalryHypeBonus(rivalry),
+        rivalryRevenueMultiplier: getRivalryRevenueMultiplier(rivalry),
+        rivalryBadge: rivalry && rivalry.arc_stage >= 1 ? "🔥 라이벌 매치!" : "",
+        rivalryFinisherMultiplier: rivalry && rivalry.arc_stage >= 2 ? 1.5 : 1,
+        alignmentBonus: getAlignmentMatchupBonus(wrestlerA, wrestlerB),
+        bookingHype: calcHypeChange([{ aId: wrestlerA.id, bId: wrestlerB.id, isTitleMatch: Boolean(slot.titleMatch) }]) - 5,
+        matchType: ppvInfo.isPpv && snapshot.matchIndex === 0 ? gameState.ppvState.featuredMatchType : snapshot.matchType || "",
+        rdCircuitOpponent: wrestlerB?.circuitSource || null,
+        committed: Boolean(snapshot.committed),
+        runtimeBattle: null
+      };
+    }
+
+    function hydrateRdShowStateMatchContexts(showState) {
+      if (!showState?.segments?.length) {
+        return [];
+      }
+      const ppvInfo = getPpvInfo();
+      const sourceContexts = Array.isArray(showState.matchContexts) ? showState.matchContexts : [];
+      const byIndex = new Map();
+      sourceContexts.forEach((context, index) => {
+        const hydrated = createRdRuntimeContextFromSnapshot(context, index, ppvInfo);
+        if (hydrated) {
+          byIndex.set(Number(hydrated.matchIndex || index), hydrated);
+        }
+      });
+      showState.segments.forEach((segment) => {
+        if (!(segment?.type === "match" || segment?.type === "main_event")) {
+          return;
+        }
+        const contextIndex = Number.isFinite(segment.matchContextIndex) ? Math.max(0, Math.floor(segment.matchContextIndex)) : Number(showState.currentIndex || 0);
+        if (byIndex.has(contextIndex)) {
+          return;
+        }
+        const slot = {
+          wrestlerAId: segment.participants?.[0] || "",
+          wrestlerBId: segment.participants?.[1] || "",
+          titleMatch: Boolean(segment.championshipKey),
+          championshipKey: segment.championshipKey || "",
+          matchType: segment.matchType || "",
+          divisionGenerated: true,
+          segmentType: segment.type
+        };
+        const hydrated = createRdRuntimeContextFromSnapshot({ matchIndex: contextIndex, slot }, contextIndex, ppvInfo);
+        if (hydrated) {
+          byIndex.set(contextIndex, hydrated);
+        }
+      });
+      const contexts = [];
+      Array.from(byIndex.entries()).forEach(([contextIndex, context]) => {
+        contexts[contextIndex] = context;
+      });
+      showState.matchContexts = contexts;
+      window.__divisionRuntimeShowState = showState;
+      return showState.matchContexts.filter(Boolean);
+    }
+
+    function restoreRdPendingWeeklySessionFromShowState() {
+      if (pendingWeeklySession) {
+        return true;
+      }
+      const booking = ensureDivisionBookingState();
+      const showState = booking.showState;
+      if (!showState?.segments?.length) {
+        return false;
+      }
+      const matchContexts = hydrateRdShowStateMatchContexts(showState);
+      if (!matchContexts.length) {
+        return false;
+      }
+      createRdPendingWeeklySession(matchContexts, getPpvInfo());
+      pendingWeeklySession.rdRestoredSession = true;
+      const playedIndexes = Array.isArray(showState.playedMatchIndexes) ? showState.playedMatchIndexes : [];
+      playedIndexes.forEach((contextIndex) => {
+        const context = matchContexts.find((item) => Number(item.matchIndex) === Number(contextIndex)) || matchContexts[Number(contextIndex)];
+        if (!context || context.committed) {
+          return;
+        }
+        const battlePackage = buildBattlePackageForWeeklyContext(context, pendingWeeklySession.runningHype);
+        autoResolveBattlePackage(battlePackage);
+        applyBattlePackageToWeeklySession(context, battlePackage);
+      });
+      return true;
     }
 
     function beginDivisionShowFlow() {
@@ -17729,18 +18033,20 @@
         return false;
       }
       createRdPendingWeeklySession(matchContexts, ppvInfo);
+      const showSeed = Math.floor(Math.random() * 1000000000);
       const booking = ensureDivisionBookingState();
       booking.showState = {
         week: gameState.week,
         isPpv: Boolean(ppvInfo.isPpv),
         showName: ppvInfo.isPpv ? ppvInfo.name : "MONDAY NIGHT RAW",
+        eventSeed: showSeed,
         currentIndex: 0,
         choiceCount: 0,
         gmChoices: [],
         matchContexts,
         playedMatchIndexes: [],
         entranceSteps: {},
-        segments: getRdShowSegments(matchContexts)
+        segments: getRdShowSegments(matchContexts, { seed: showSeed })
       };
       booking.activePage = "opening";
       window.__divisionRuntimeShowState = booking.showState;
@@ -17873,39 +18179,6 @@
       activeTab = "home";
       booking.activePage = "segment";
       render();
-      return;
-      if (segment.type === "match" || segment.type === "main_event") {
-        renderRdEntranceMainContent(segment);
-        return;
-      }
-      const faces = getRdSegmentFaces(segment);
-      mainDynamicContentEl.innerHTML = `
-        ${getDivisionTabsHtml("segment")}
-        <div class="show-flow-layout">
-          <section class="segment-stage scene-ring">
-            <div class="segment-scene">
-              <div class="segment-scene-header">
-                <div>
-                  <div class="segment-banner">${escapeHtml(segment.label)}</div>
-                  <div class="segment-title-line">${escapeHtml(segment.title)}</div>
-                </div>
-              </div>
-              <div class="segment-performers">
-                ${getSegmentWrestlerSpriteHtml(faces.left, "left", segment)}
-                <div class="segment-vs-stack"><div class="segment-mini-ring"></div><div class="gm-vs-text">${segment.type === "show_start" ? "RAW" : "VS"}</div></div>
-                ${getSegmentWrestlerSpriteHtml(faces.right, "right", segment)}
-              </div>
-              <div class="segment-dialogue speaker-system"><strong>SYSTEM:</strong> ${escapeHtml(segment.description || "")}</div>
-            </div>
-          </section>
-          <aside class="show-flow-card">
-            <div class="gm-panel-title">현재 순서</div>
-            <div class="segment-info-value">${Number(showState.currentIndex || 0) + 1} / ${showState.segments.length}</div>
-            <div class="segment-effect-bar">${getSegmentEffectCellsHtml(segment.reaction || 0)}</div>
-            <button class="gm-start-button" data-action="advance-show-segment" style="width:100%;margin-top:12px;">다음 세그먼트</button>
-          </aside>
-        </div>
-      `;
     }
 
     function advanceDivisionShowSegment() {
@@ -17917,6 +18190,7 @@
         render();
         return;
       }
+      restoreRdPendingWeeklySessionFromShowState();
       if (booking.activePage === "opening") {
         booking.activePage = "segment";
         booking.showState.currentIndex = 0;
@@ -17945,6 +18219,7 @@
 
     function startCurrentShowSegmentMatch() {
       const booking = ensureDivisionBookingState();
+      restoreRdPendingWeeklySessionFromShowState();
       const segment = getCurrentShowSegment();
       const contextIndex = getRdShowSegmentContextIndex(segment, booking.showState);
       const context = getRdShowSegmentMatchContext(segment, booking.showState, { persist: true });
@@ -17955,6 +18230,10 @@
       }
       if (getRdEntranceStep(booking.showState, segment) < 1) {
         advanceCurrentMatchEntrance();
+        return;
+      }
+      if ((booking.showState.playedMatchIndexes || []).includes(contextIndex)) {
+        advanceDivisionShowSegment();
         return;
       }
       booking.showState.playedMatchIndexes = Array.from(new Set([...(booking.showState.playedMatchIndexes || []), contextIndex]));
@@ -18169,21 +18448,49 @@
       return `promo promo-${String(segment.type || "ring").replace(/[^a-z0-9_-]/gi, "_")}`;
     }
 
+    const RD_CUTSCENE_BACKGROUNDS = {
+      arena: [
+        "data/images/ui/generated/show_cutscenes/raw_arena_stage.png",
+        "data/images/ui/generated/show_cutscenes/promo_arena_silhouette_v2.png"
+      ],
+      entrance: [
+        "data/images/ui/generated/show_cutscenes/raw_entrance_ramp.png",
+        "data/images/ui/generated/show_cutscenes/run_in_entrance_v2.png"
+      ],
+      backstage: [
+        "data/images/ui/generated/show_cutscenes/backstage_hallway.png",
+        "data/images/ui/generated/show_cutscenes/backstage_confrontation_v2.png"
+      ],
+      contract: [
+        "data/images/ui/generated/show_cutscenes/contract_interview_stage.png",
+        "data/images/ui/generated/show_cutscenes/contract_signing_silhouette_v2.png"
+      ]
+    };
+
+    function pickRdCutsceneBackground(paths, segment) {
+      const list = Array.isArray(paths) && paths.length ? paths : RD_CUTSCENE_BACKGROUNDS.arena;
+      const seed = `${gameState.week}:${segment?.id || ""}:${segment?.type || ""}:${segment?.title || ""}`;
+      return list[hashString(seed) % list.length];
+    }
+
     function getRdHomeSceneBackgroundPath(segment) {
       const type = String(segment?.type || "show_start");
       if (type === "match" || type === "main_event") {
-        return "data/images/ui/generated/show_cutscenes/run_in_entrance_v2.png";
+        return pickRdCutsceneBackground(RD_CUTSCENE_BACKGROUNDS.entrance, segment);
       }
       if (type === "interference") {
-        return "data/images/ui/generated/show_cutscenes/run_in_entrance_v2.png";
+        return pickRdCutsceneBackground(RD_CUTSCENE_BACKGROUNDS.entrance, segment);
       }
-      if (type === "backstage" || type === "interview") {
-        return "data/images/ui/generated/show_cutscenes/backstage_confrontation_v2.png";
+      if (type === "backstage") {
+        return pickRdCutsceneBackground(RD_CUTSCENE_BACKGROUNDS.backstage, segment);
+      }
+      if (type === "interview") {
+        return pickRdCutsceneBackground([...RD_CUTSCENE_BACKGROUNDS.backstage, ...RD_CUTSCENE_BACKGROUNDS.contract], segment);
       }
       if (type === "contract_signing") {
-        return "data/images/ui/generated/show_cutscenes/contract_signing_silhouette_v2.png";
+        return pickRdCutsceneBackground(RD_CUTSCENE_BACKGROUNDS.contract, segment);
       }
-      return "data/images/ui/generated/show_cutscenes/promo_arena_silhouette_v2.png";
+      return pickRdCutsceneBackground(RD_CUTSCENE_BACKGROUNDS.arena, segment);
     }
 
     function getRdEntranceStep(showState, segment) {
@@ -18213,7 +18520,11 @@
       let nextHandler = "window.advanceDivisionShowSegment()";
       if (segment?.type === "match" || segment?.type === "main_event") {
         const step = getRdEntranceStep(showState, segment);
-        if (step <= 0) {
+        const alreadyPlayed = (showState?.playedMatchIndexes || []).includes(getRdShowSegmentContextIndex(segment, showState));
+        if (alreadyPlayed) {
+          nextAction = Number(showState?.currentIndex || 0) >= Number(showState?.segments?.length || 1) - 1 ? "finalize-division-show" : "advance-show-segment";
+          nextHandler = nextAction === "finalize-division-show" ? "window.finalizeDivisionShow()" : "window.advanceDivisionShowSegment()";
+        } else if (step <= 0) {
           nextAction = "advance-match-entrance";
           nextHandler = "window.advanceCurrentMatchEntrance()";
         } else {
@@ -18304,7 +18615,7 @@
     }
 
     function getRdHomeMatchupCardsHtml(showState) {
-      const contexts = (showState?.matchContexts || []).slice(0, 2);
+      const contexts = (showState?.matchContexts || []).filter(Boolean).slice(0, 5);
       return `
         <div class="rd-home-match-list">
           ${contexts.map((context, index) => `
@@ -18483,6 +18794,7 @@
         renderRdDefaultHomeMainContent();
         return;
       }
+      restoreRdPendingWeeklySessionFromShowState();
       const sceneClass = getRdHomeStageClass(segment);
       const sceneBackgroundPath = getRdHomeSceneBackgroundPath(segment);
       const isMatchScene = segment.type === "match" || segment.type === "main_event";
@@ -18556,7 +18868,64 @@
       }
     }
 
+    function getRdRuntimeMatchContexts() {
+      const showContexts = ensureDivisionBookingState()?.showState?.matchContexts;
+      const sessionContexts = pendingWeeklySession?.matchContexts;
+      return (Array.isArray(sessionContexts) && sessionContexts.length ? sessionContexts : showContexts) || [];
+    }
+
+    function releaseRdPendingMatchStatuses() {
+      getRdRuntimeMatchContexts().forEach((context) => {
+        [context?.wrestlerA, context?.wrestlerB].forEach((wrestler) => {
+          if (!wrestler || wrestler.isGuest || wrestler.isCircuitOpponent || isWeeklyCpuId(wrestler.id)) {
+            return;
+          }
+          if (wrestler.status === "match") {
+            wrestler.status = "idle";
+          }
+        });
+      });
+    }
+
+    function autoResolvePendingWeeklySessionMatches() {
+      if (!pendingWeeklySession) {
+        return;
+      }
+      (pendingWeeklySession.matchContexts || []).forEach((context) => {
+        if (!context || context.committed) {
+          return;
+        }
+        const battlePackage = buildBattlePackageForWeeklyContext(context, pendingWeeklySession.runningHype);
+        autoResolveBattlePackage(battlePackage);
+        applyBattlePackageToWeeklySession(context, battlePackage);
+      });
+    }
+
     function forceExitStuckShowRuntimeForNavigation() {
+      const hasShowProgress = Boolean(
+        pendingWeeklySession?.results?.length
+        || matchAnimationState.currentBattle
+        || ensureDivisionBookingState()?.showState?.playedMatchIndexes?.length
+      );
+      if (hasShowProgress && pendingWeeklySession) {
+        autoResolvePendingWeeklySessionMatches();
+        stopCanvasLoop();
+        stopBattleBgm();
+        resetBattlePlaybackState();
+        matchAnimationState.running = false;
+        matchAnimationState.queue = [];
+        matchAnimationState.matchIndex = 0;
+        matchAnimationState.currentBattle = null;
+        matchAnimationState.effectBattle = null;
+        matchAnimationState.effectOutroBattle = null;
+        matchAnimationState.finishCallback = null;
+        if (typeof clearDivisionShowRuntimeState === "function") {
+          clearDivisionShowRuntimeState({ activePage: "result", clearWeeklyCard: true });
+        }
+        finalizePendingWeeklySession();
+        silentSaveGameState();
+        return;
+      }
       stopCanvasLoop();
       stopBattleBgm();
       resetBattlePlaybackState();
@@ -18579,6 +18948,8 @@
         window.__divisionShowFlowMode = "";
       }
       pendingWeeklySummary = null;
+      releaseRdPendingMatchStatuses();
+      pendingWeeklySession = null;
       silentSaveGameState();
     }
 
@@ -19658,6 +20029,7 @@
       const defendingChampionId = championshipKey ? gameState.championships[championshipKey]?.holderId : "";
       const repeatedMatchup = checkRepeatMatchup(wrestlerA.id, wrestlerB.id);
       let rivalry = getRivalryBetween(wrestlerA.id, wrestlerB.id);
+      const rdCircuitOpponent = wrestlerB?.circuitSource || null;
       if (!rivalry && repeatedMatchup) {
         rivalry = createOrUpdateRivalry(wrestlerA.id, wrestlerB.id, championshipKey ? "title" : "grudge", championshipKey ? 40 : 30);
       } else if (rivalry) {
@@ -19689,6 +20061,7 @@
           isTitleMatch: Boolean(slot.titleMatch)
         }]) - 5,
         matchType: ppvInfo.isPpv && matchIndex === 0 ? gameState.ppvState.featuredMatchType : "",
+        rdCircuitOpponent,
         committed: false,
         runtimeBattle: null
       };
@@ -19711,6 +20084,45 @@
         pendingWeeklySession.battlePackages.push(battlePackage);
       }
       return battlePackage;
+    }
+
+    function applyRdCircuitBattlePackageToWeeklySession(context, battlePackage) {
+      const session = pendingWeeklySession;
+      const circuitApi = window.__RING_DYNASTY_CIRCUIT_API__ || {};
+      const opponent = context?.rdCircuitOpponent || context?.wrestlerB?.circuitSource || null;
+      if (!session || !context?.wrestlerA || !opponent || typeof circuitApi.applyCircuitOutcomeFromBattle !== "function") {
+        return false;
+      }
+      const previousFameDelta = Number(session.fameDelta || 0);
+      const outcome = circuitApi.applyCircuitOutcomeFromBattle(context.wrestlerA, opponent, battlePackage, session, {
+        skipRecord: true,
+        skipConditionLoss: false
+      });
+      if (!outcome?.mainResult) {
+        return false;
+      }
+      const battleResult = battlePackage.battleResult;
+      const won = Boolean(outcome.won);
+      if (won) {
+        session.leftWins += 1;
+        context.wrestlerA.wins = Math.max(0, Math.floor(context.wrestlerA.wins || 0) + 1);
+      } else {
+        session.leftLosses += 1;
+        context.wrestlerA.losses = Math.max(0, Math.floor(context.wrestlerA.losses || 0) + 1);
+      }
+      recordWrestlerResult(context.wrestlerA, won);
+      session.fameGain += Number(session.fameDelta || 0) - previousFameDelta;
+      session.runningHype = clamp(session.runningHype + Number(battleResult.hypeGenerated || 0) + (won ? 8 : -5), 0, 100);
+      session.totalAudience += Math.floor((120 * gameState.stage) + (Number(battleResult.hypeGenerated || 0) * 28));
+      context.wrestlerA.lastBookedWeek = gameState.week;
+      context.wrestlerA.roleSatisfaction = clamp(Number(context.wrestlerA.roleSatisfaction ?? 70) + (won ? 7 : -5), 0, 100);
+      context.wrestlerA.status = context.wrestlerA.status === "injured" ? "injured" : "match";
+      outcome.mainResult.hearts = getHeartsByHype(getEffectiveHypeValue(session.runningHype));
+      outcome.mainResult.hypeAfterMatch = getEffectiveHypeValue(session.runningHype);
+      outcome.mainResult.rdCircuitShow = true;
+      session.results.push(outcome.mainResult);
+      context.committed = true;
+      return true;
     }
 
     function applyBattlePackageToWeeklySession(context, battlePackage) {
@@ -19753,6 +20165,30 @@
         }
         battleResult.interference.storyRecorded = true;
       }
+      if (battlePackage.directRivalMoment && !battlePackage.directRivalMoment.storyRecorded) {
+        const directRivalry = (gameState.rivalries || []).find((item) => (
+          item.id === battlePackage.directRivalMoment.rivalryId
+          || getRivalryKey(item.wrestlerAId, item.wrestlerBId) === battlePackage.directRivalMoment.rivalryKey
+        ));
+        if (directRivalry) {
+          ensureRivalryExtendedState(directRivalry);
+          adjustRivalryFreshness(directRivalry, "interference");
+          addRivalryHistory(directRivalry, {
+            week: gameState.week,
+            showType: session.ppvInfo?.isPpv ? "PPV" : "RAW",
+            segmentType: "interference",
+            summary: `${battlePackage.directRivalMoment.interfererName}가 경기 중 ${battlePackage.directRivalMoment.targetName}에게 비열한 수를 썼습니다.`,
+            participants: [battlePackage.directRivalMoment.interfererId, battlePackage.directRivalMoment.targetId],
+            heatChange: 7,
+            crowdReaction: clamp(session.runningHype + 8, 0, 100)
+          });
+          session.rivalryHighlights.push(`${battlePackage.directRivalMoment.interfererName}의 반칙성 도발로 ${battlePackage.directRivalMoment.targetName}와의 감정선이 더 선명해졌습니다.`);
+        }
+        battlePackage.directRivalMoment.storyRecorded = true;
+      }
+      if (context.rdCircuitOpponent && applyRdCircuitBattlePackageToWeeklySession(context, battlePackage)) {
+        return;
+      }
       const winner = battleResult.winnerId === wrestlerA.id ? wrestlerA : wrestlerB;
       const loser = winner.id === wrestlerA.id ? wrestlerB : wrestlerA;
       const winnerBattleState = battleResult.winnerId === wrestlerA.id ? battlePackage.leftState : battlePackage.rightState;
@@ -19768,6 +20204,9 @@
       loser.losses += 1;
       gameState.totalWins += 1;
       gameState.totalMatches += 1;
+      if (matchIndex === 0) {
+        session.mainStatsAppliedDuringShow = true;
+      }
       recordWrestlerResult(winner, true);
       recordWrestlerResult(loser, false);
       [wrestlerA, wrestlerB].forEach((wrestler) => {
@@ -19903,7 +20342,7 @@
     }
 
     function finalizePendingWeeklySession() {
-      if (!pendingWeeklySession) {
+      if (!pendingWeeklySession && !restoreRdPendingWeeklySessionFromShowState()) {
         return;
       }
       const session = pendingWeeklySession;
@@ -19918,6 +20357,10 @@
       session.totalIncome = Math.floor(session.totalIncome * eventRevenueMultiplier);
       const eventRevenueBonus = session.totalIncome - preEventIncome;
       const promotionBrandBonus = applyPromotionBrandIncomeBonus(session);
+      const weeklyIncomeMultiplier = Math.max(0, Number(session.weeklyIncomeMultiplier || 1));
+      if (weeklyIncomeMultiplier !== 1) {
+        session.totalIncome = Math.floor(session.totalIncome * weeklyIncomeMultiplier);
+      }
       session.fameGain += getPRWeeklyFameBonus() + getChampionshipWeeklyFameBonus();
       applyPassiveStaminaGrowthFromMatches(session.results);
 
@@ -19964,11 +20407,17 @@
         fameBefore: session.previousFame,
         fameAfter: gameState.fame,
         fameDelta: session.fameGain,
-        ticketReward: 0,
-        bonusLines: [],
-        warningLines: [],
-        injuries: [],
-        opponentId: session.matchContexts?.[0]?.wrestlerB?.id || ""
+        ticketReward: Number(session.ticketReward || 0),
+        bonusLines: Array.isArray(session.bonusLines) ? session.bonusLines : [],
+        warningLines: Array.isArray(session.warningLines) ? session.warningLines : [],
+        injuries: Array.isArray(session.injuries) ? session.injuries : [],
+        opponentId: session.opponentId || session.matchContexts?.[0]?.wrestlerB?.id || "",
+        mainWrestlerId: session.mainWrestlerId || session.matchContexts?.[0]?.wrestlerA?.id || "",
+        mainMatchLost: Boolean(session.mainMatchLost),
+        mainMatchCompleted: Boolean(session.mainMatchCompleted),
+        mainStatsAppliedDuringShow: Boolean(session.mainStatsAppliedDuringShow),
+        rdIncidentCount: Number(session.rdIncidentCount || 0),
+        rdShowSession: true
       };
       if (session.ppvInfo.isPpv && session.results.length) {
         const mvpResult = session.results.slice().sort((left, right) => ((right.battleResult?.winnerStats?.damageDealt || 0) + (right.battleResult?.hypeGenerated || 0)) - ((left.battleResult?.winnerStats?.damageDealt || 0) + (left.battleResult?.hypeGenerated || 0)))[0];
@@ -21213,7 +21662,7 @@
       const topRivalry = getDivisionRivalries()[0] || null;
       const alerts = [
         { icon: "⚠", title: contract.count ? "계약 만료 임박" : "계약 안정", note: contract.note, action: "로스터" },
-        { icon: "🛡", title: injured.length ? "부상 경고" : "부상 없음", note: injured.length ? `${injured[0].name} 상태 확인 필요` : "위험 상태 선수가 없습니다.", action: "의료 센터" },
+        { icon: "🛡", title: injured.length ? "부상 경고" : "부상 없음", note: injured.length ? `${injured[0].name} 상태 확인 필요` : "위험 상태 선수가 없습니다.", action: "" },
         { icon: "ℹ", title: "스토리 기회", note: topRivalry ? topRivalry.nextTrigger : "디비전 배정으로 스토리를 시작하세요.", action: "자세히 보기" },
         { icon: "★", title: "팬 기대 상승", note: `현재 Hype ${gameState.hype || 0}% · 이번 주 쇼 카드 기대치 확인`, action: "카드 편집" }
       ];
@@ -21225,7 +21674,7 @@
               <div class="rd-alert-row">
                 <div class="rd-alert-icon">${escapeHtml(alert.icon)}</div>
                 <div><div class="rd-alert-title">${escapeHtml(alert.title)}</div><div class="rd-alert-note">${escapeHtml(alert.note)}</div></div>
-                <button class="rd-alert-action" type="button" data-rd-home-action="open-booking">${escapeHtml(alert.action)}</button>
+                ${alert.action ? `<button class="rd-alert-action" type="button" data-rd-home-action="open-booking">${escapeHtml(alert.action)}</button>` : ""}
               </div>
             `).join("")}
           </div>
@@ -21303,6 +21752,10 @@
 
     const legacyAutoStartWeeklyMatches = startWeeklyMatches;
 
+    function shouldDeferToDedicatedWeeklyStart() {
+      return Boolean(window.__RING_DYNASTY_PPV_INVADERS_API__?.shouldUseDedicatedWeeklyStart?.());
+    }
+
     function startRdWeeklyShowFromCurrentCard() {
       if (matchAnimationState.running) {
         return true;
@@ -21310,7 +21763,8 @@
       if (typeof ensureWeeklyMissionState === "function") {
         ensureWeeklyMissionState();
       }
-      const readyMatches = getReadyMatches().slice(0, 2);
+      const maxShowMatches = Math.max(2, Math.min(5, typeof getWeeklyCardSlotCount === "function" ? getWeeklyCardSlotCount() : 3));
+      const readyMatches = getReadyMatches().slice(0, maxShowMatches);
       if (!readyMatches.length) {
         return false;
       }
@@ -21348,18 +21802,20 @@
         return false;
       }
       createRdPendingWeeklySession(matchContexts, ppvInfo);
+      const showSeed = Math.floor(Math.random() * 1000000000);
       const booking = ensureDivisionBookingState();
       booking.showState = {
         week: gameState.week,
         isPpv: Boolean(ppvInfo.isPpv),
         showName: ppvInfo.isPpv ? ppvInfo.name : "MONDAY NIGHT RAW",
+        eventSeed: showSeed,
         currentIndex: 0,
         choiceCount: 0,
         gmChoices: [],
         matchContexts,
         playedMatchIndexes: [],
         entranceSteps: {},
-        segments: getRdShowSegments(matchContexts)
+        segments: getRdShowSegments(matchContexts, { seed: showSeed })
       };
       booking.activePage = "opening";
       window.__divisionRuntimeShowState = booking.showState;
@@ -21379,6 +21835,10 @@
     };
 
     startWeeklyMatches = function () {
+      if (shouldDeferToDedicatedWeeklyStart()) {
+        legacyAutoStartWeeklyMatches();
+        return;
+      }
       if (window.__RING_DYNASTY_GM_OVERHAUL__?.activeBookingBoard) {
         if (!startRdWeeklyShowFromCurrentCard()) {
           startManualWeeklyMatches();
