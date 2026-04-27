@@ -9012,6 +9012,9 @@
     @keyframes rdEntranceWalk { 0%, 100% { transform: translateY(0) scale(1); filter: drop-shadow(0 22px 18px rgba(0,0,0,0.78)) brightness(1); } 50% { transform: translateY(-12px) scale(1.035); filter: drop-shadow(0 26px 22px rgba(255,35,24,0.25)) brightness(1.16); } }
     @keyframes rdEntranceLights { 0% { opacity: 0.78; filter: hue-rotate(0deg); } 50% { opacity: 1; filter: hue-rotate(-12deg); } 100% { opacity: 0.78; filter: hue-rotate(0deg); } }
     @keyframes rdHypePulse { 0%, 100% { filter: brightness(0.95); } 50% { filter: brightness(1.25); } }
+    @keyframes rdInterferenceStrobe { 0%, 100% { opacity: 0.24; transform: translateX(0); } 35% { opacity: 0.62; transform: translateX(-8px); } 36% { opacity: 0.12; transform: translateX(10px); } 58% { opacity: 0.72; transform: translateX(0); } }
+    @keyframes rdShadowBreath { 0%, 100% { transform: translateY(0) scale(1); filter: blur(0.2px) drop-shadow(0 24px 20px rgba(0,0,0,0.86)); } 50% { transform: translateY(-8px) scale(1.025); filter: blur(0.5px) drop-shadow(0 30px 24px rgba(255,42,34,0.24)); } }
+    @keyframes rdShadowBreathRight { 0%, 100% { transform: scaleX(-1) translateY(0) scale(1); filter: blur(0.2px) drop-shadow(0 24px 20px rgba(0,0,0,0.86)); } 50% { transform: scaleX(-1) translateY(-8px) scale(1.025); filter: blur(0.5px) drop-shadow(0 30px 24px rgba(255,42,34,0.24)); } }
     .rd-card-launch {
       min-height: 360px;
       border: 1px solid rgba(231, 76, 60, 0.42);
@@ -9054,7 +9057,7 @@
       background: #03060a;
       position: relative;
       box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04), 0 18px 38px rgba(0,0,0,0.36);
-      --rd-scene-bg: url("data/images/ui/generated/show_cutscenes/raw_arena_stage.png");
+      --rd-scene-bg: url("data/images/ui/generated/show_cutscenes/promo_arena_silhouette_v2.png");
     }
     .rd-home-stage {
       min-height: inherit;
@@ -9080,19 +9083,19 @@
     }
     .rd-home-stage > * { position: relative; z-index: 1; }
     .rd-home-stage.matchup {
-      --rd-scene-bg: url("data/images/ui/generated/show_cutscenes/raw_arena_stage.png");
+      --rd-scene-bg: url("data/images/ui/generated/show_cutscenes/promo_arena_silhouette_v2.png");
       background:
         linear-gradient(180deg, rgba(5, 8, 12, 0.28), rgba(5, 8, 12, 0.82)),
         var(--rd-scene-bg) center / cover no-repeat;
     }
     .rd-home-stage.promo {
-      --rd-scene-bg: url("data/images/ui/generated/show_cutscenes/raw_arena_stage.png");
+      --rd-scene-bg: url("data/images/ui/generated/show_cutscenes/promo_arena_silhouette_v2.png");
       background:
         linear-gradient(90deg, rgba(4, 7, 12, 0.72), rgba(88, 10, 16, 0.28), rgba(4, 7, 12, 0.78)),
         var(--rd-scene-bg) center / cover no-repeat;
     }
     .rd-home-stage.entrance {
-      --rd-scene-bg: url("data/images/ui/generated/show_cutscenes/raw_entrance_ramp.png");
+      --rd-scene-bg: url("data/images/ui/generated/show_cutscenes/run_in_entrance_v2.png");
       background:
         linear-gradient(180deg, rgba(4, 7, 12, 0.06), rgba(4, 7, 12, 0.36) 42%, rgba(4, 7, 12, 0.9)),
         var(--rd-scene-bg) center / cover no-repeat;
@@ -9102,28 +9105,33 @@
     .rd-home-stage.show-start,
     .rd-home-stage.promo-callout,
     .rd-home-stage.promo-opening_promo {
-      --rd-scene-bg: url("data/images/ui/generated/show_cutscenes/raw_arena_stage.png");
+      --rd-scene-bg: url("data/images/ui/generated/show_cutscenes/promo_arena_silhouette_v2.png");
       background:
         linear-gradient(180deg, rgba(5, 8, 12, 0.18), rgba(5, 8, 12, 0.82)),
         var(--rd-scene-bg) center / cover no-repeat;
     }
     .rd-home-stage.promo-interview {
-      --rd-scene-bg: url("data/images/ui/generated/show_cutscenes/backstage_hallway.png");
+      --rd-scene-bg: url("data/images/ui/generated/show_cutscenes/backstage_confrontation_v2.png");
       background:
         linear-gradient(90deg, rgba(5, 8, 12, 0.58), rgba(5, 8, 12, 0.18), rgba(5, 8, 12, 0.64)),
         var(--rd-scene-bg) center / cover no-repeat;
       grid-template-rows: auto minmax(300px, 0.86fr) auto;
       padding-top: clamp(18px, 3vw, 34px);
     }
-    .rd-home-stage.promo-backstage,
-    .rd-home-stage.promo-interference {
-      --rd-scene-bg: url("data/images/ui/generated/show_cutscenes/backstage_hallway.png");
+    .rd-home-stage.promo-backstage {
+      --rd-scene-bg: url("data/images/ui/generated/show_cutscenes/backstage_confrontation_v2.png");
       background:
         linear-gradient(90deg, rgba(5, 8, 12, 0.5), rgba(5, 8, 12, 0.18), rgba(5, 8, 12, 0.58)),
         var(--rd-scene-bg) center / cover no-repeat;
     }
+    .rd-home-stage.promo-interference {
+      --rd-scene-bg: url("data/images/ui/generated/show_cutscenes/run_in_entrance_v2.png");
+      background:
+        linear-gradient(90deg, rgba(5, 8, 12, 0.42), rgba(120, 8, 12, 0.12), rgba(5, 8, 12, 0.52)),
+        var(--rd-scene-bg) center / cover no-repeat;
+    }
     .rd-home-stage.promo-contract_signing {
-      --rd-scene-bg: url("data/images/ui/generated/show_cutscenes/contract_interview_stage.png");
+      --rd-scene-bg: url("data/images/ui/generated/show_cutscenes/contract_signing_silhouette_v2.png");
       background:
         linear-gradient(180deg, rgba(5, 8, 12, 0.18), rgba(5, 8, 12, 0.78)),
         var(--rd-scene-bg) center / cover no-repeat;
@@ -9153,6 +9161,13 @@
       transform: none;
       box-shadow: inset 0 0 0 999px rgba(0,0,0,0.08);
       background: linear-gradient(90deg, rgba(0,0,0,0.24), transparent 12% 88%, rgba(0,0,0,0.24)), repeating-linear-gradient(0deg, rgba(255,255,255,0.04) 0 1px, transparent 1px 36px);
+    }
+    .rd-home-stage.promo-interference::before,
+    .rd-home-stage.entrance::before {
+      animation: rdInterferenceStrobe 1.55s steps(2, end) infinite;
+      background:
+        linear-gradient(90deg, transparent 0 42%, rgba(255,255,255,0.18) 48% 52%, transparent 58%),
+        repeating-linear-gradient(90deg, rgba(255, 40, 32, 0.12) 0 5px, transparent 5px 18px);
     }
     .rd-home-stage.promo-interview::after {
       left: 10%;
@@ -9252,6 +9267,20 @@
       position: relative;
     }
     .rd-home-performers .rd-home-wrestler { animation-name: rdHomeSpriteBob; }
+    .rd-home-wrestler.generic-shadow {
+      background:
+        radial-gradient(ellipse at 50% 18%, rgba(0,0,0,0.96) 0 10%, transparent 11%),
+        radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0.98) 0 22%, transparent 23%),
+        linear-gradient(90deg, transparent 22%, rgba(0,0,0,0.94) 36% 64%, transparent 78%);
+      background-repeat: no-repeat;
+      background-size: 58% 82%, 78% 72%, 100% 80%;
+      background-position: center bottom, center bottom, center bottom;
+      opacity: 0.78;
+      animation: rdShadowBreath 1.8s ease-in-out infinite;
+    }
+    .rd-home-wrestler.generic-shadow.right {
+      animation-name: rdShadowBreathRight;
+    }
     .rd-home-wrestler.entrant {
       min-height: clamp(260px, 34vw, 410px);
       animation: rdEntranceWalk 1.6s ease-in-out infinite;
@@ -9809,7 +9838,7 @@
       min-height: 312px;
       background:
         linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.86)),
-        var(--rd-show-bg, url("data/images/ui/generated/show_cutscenes/raw_arena_stage.png")) center / cover no-repeat;
+      var(--rd-show-bg, url("data/images/ui/generated/show_cutscenes/promo_arena_silhouette_v2.png")) center / cover no-repeat;
     }
 
     .rd-show-logo-panel {

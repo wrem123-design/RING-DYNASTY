@@ -1782,6 +1782,25 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
       hype: gameState.hype
     });
     gameState.history = gameState.history.slice(0, 20);
+    gameState.lastWeekMatchups = Array.isArray(pendingWeeklySummary.matchupKeys) ? pendingWeeklySummary.matchupKeys.slice() : [];
+    if (typeof decayRivalries === "function") {
+      decayRivalries(pendingWeeklySummary.touchedRivalryKeys || []);
+    }
+    if (gameState.eventEffects?.fanDoubleWeeks > 0) {
+      gameState.eventEffects.fanDoubleWeeks -= 1;
+    }
+    if (gameState.eventEffects?.tvDealWeeks > 0) {
+      gameState.eventEffects.tvDealWeeks -= 1;
+      if (gameState.eventEffects.tvDealWeeks === 0) {
+        gameState.eventEffects.tvDealBonus = 0;
+      }
+    }
+    if (gameState.ppvState?.annualAwardBuffWeeks > 0) {
+      gameState.ppvState.annualAwardBuffWeeks -= 1;
+    }
+    if (gameState.eventEffects) {
+      gameState.eventEffects.nextWeekRevenueMultiplier = 1;
+    }
     decrementContracts();
     removeExpiredContracts();
     const recoveredIds = updateInjuryRecoveryForNewWeek();
@@ -1809,6 +1828,8 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
       matchCount: pendingWeeklySummary.matchCount,
       totalAudience: 0
     });
+    const triggerEnding = typeof getWorldEndingReady === "function" ? getWorldEndingReady() : false;
+    const eventData = triggerEnding ? null : (typeof rollWeeklyEvent === "function" ? rollWeeklyEvent() : null);
     pendingWeeklySummary = null;
     closeModal(true);
     saveGameState();
@@ -1823,8 +1844,8 @@ if (!window.__RING_DYNASTY_MANAGEMENT_MAP__) {
       expiredContractNames: [],
       agedUpNames: [],
       unlockedAchievements,
-      eventData: null,
-      triggerEnding: false
+      eventData,
+      triggerEnding
     });
   };
 

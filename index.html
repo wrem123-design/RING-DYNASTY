@@ -11234,6 +11234,17 @@
       return renderEvent;
     }
 
+    function maybeApplyLiveBattleInterference(battlePackage) {
+      if (!battlePackage || battlePackage.battleResult || battlePackage.turn < 3 || battlePackage.interferenceChecked) {
+        return null;
+      }
+      const interference = checkBattleInterferenceOpportunity(battlePackage, gameState.rivalries || []);
+      if (!interference) {
+        return null;
+      }
+      return applyBattleInterference(battlePackage, interference);
+    }
+
     function beginNextBattlePlaybackPhase(now) {
       const currentBattle = matchAnimationState.currentBattle;
       battlePlaybackState.selectedCommandKey = "";
@@ -11241,6 +11252,17 @@
       battlePlaybackState.currentSourceEventIndex = -1;
       if (!currentBattle) {
         battlePlaybackState.phase = "idle";
+        return;
+      }
+      const liveInterference = maybeApplyLiveBattleInterference(currentBattle);
+      if (liveInterference) {
+        const eventIndex = currentBattle.battleEvents.length - 1;
+        const event = currentBattle.battleEvents[eventIndex];
+        battlePlaybackState.currentSourceEventIndex = eventIndex;
+        battlePlaybackState.renderEvent = event;
+        battlePlaybackState.sequenceCursor = currentBattle.battleEvents.length;
+        battlePlaybackState.phase = "event-enemy";
+        battlePlaybackState.phaseStartTime = now;
         return;
       }
       if (currentBattle.battleResult && Array.isArray(currentBattle.battleEvents)) {
@@ -17160,6 +17182,13 @@
       return ["opening_promo", "callout"].includes(String(segment?.type || ""));
     }
 
+    function isRdIncidentChoiceSegment(segment) {
+      return ["backstage", "interference", "interview", "contract_signing"].includes(String(segment?.type || ""))
+        && !segment?.incidentResolved
+        && Array.isArray(segment?.participants)
+        && segment.participants.filter(Boolean).length >= 2;
+    }
+
     function getRdCalloutActors(segment) {
       const faces = getRdSegmentFaces(segment);
       return {
@@ -17186,6 +17215,73 @@
           <button class="rd-callout-choice ambush" type="button" data-action="rd-callout-choice" data-choice="ambush">기습한다<span>피해를 주고 즉시 경기 시작</span></button>
         </div>
       `;
+    }
+
+    function getRdIncidentChoiceHtml(segment) {
+      if (!isRdIncidentChoiceSegment(segment)) {
+        return "";
+      }
+      const directLabel = segment.type === "interference" ? "난입 허용" : "방송에 태운다";
+      return `
+        <div class="rd-callout-choice-row incident">
+          <button class="rd-callout-choice accept" type="button" data-action="rd-incident-choice" data-choice="broadcast">${directLabel}<span>Hype 상승 · 대립 열기 상승</span></button>
+          <button class="rd-callout-choice ignore" type="button" data-action="rd-incident-choice" data-choice="security">보안 투입<span>리스크 감소 · 관중 반응 하락</span></button>
+          <button class="rd-callout-choice ambush" type="button" data-action="rd-incident-choice" data-choice="unsanctioned">즉석 경기<span>컨디션 소모 · 바로 경기 전환</span></button>
+        </div>
+      `;
+    }
+
+    function getRdMatchMotivationText(context) {
+      if (!context?.wrestlerA || !context?.wrestlerB) {
+        return "이번 주 쇼의 흐름을 바꿀 수 있는 카드입니다.";
+      }
+      const rivalry = context.rivalry ? ensureRivalryExtendedState(context.rivalry) : null;
+      const lastIncident = rivalry?.lastIncident || rivalry?.history?.[rivalry.history.length - 1]?.summary || "";
+      if (lastIncident) {
+        return `발단: ${lastIncident}`;
+      }
+      if (context.championshipKey) {
+        return `${context.wrestlerA.name}와 ${context.wrestlerB.name}는 타이틀 전선을 두고 충돌합니다.`;
+      }
+      if (context.alignmentBonus?.hypeBonus >= 15) {
+        return `${context.wrestlerA.name}와 ${context.wrestlerB.name}의 선악 구도가 관중 반응을 끌어올리고 있습니다.`;
+      }
+      return `${context.wrestlerA.name}와 ${context.wrestlerB.name}가 메인 스팟을 증명하려 합니다.`;
+    }
+
+    function createRdWeeklyIncidentSegment(matchContexts = []) {
+      const context = matchContexts[0] || matchContexts[1] || null;
+      if (!context?.wrestlerA || !context?.wrestlerB) {
+        return null;
+      }
+      const roll = Math.abs(hashString(`${gameState.week}:${context.matchupKey}:rd-incident`)) % 100;
+      if (roll >= 72 && !context.rivalry) {
+        return null;
+      }
+      const type = roll < 24 ? "backstage" : roll < 48 ? "interference" : roll < 64 ? "interview" : "contract_signing";
+      const titleMap = {
+        backstage: "복도에서 터진 신경전",
+        interference: "불길한 음악",
+        interview: "카메라 앞 도발",
+        contract_signing: "계약서 위의 선전포고"
+      };
+      const descMap = {
+        backstage: `${context.wrestlerB.name}가 백스테이지에서 ${context.wrestlerA.name}의 길을 막아섭니다. ${getRdMatchMotivationText(context)}`,
+        interference: `경기장 조명이 꺼지고 ${context.wrestlerB.name}의 등장을 암시하는 음악이 울립니다. 난입 가능성이 커집니다.`,
+        interview: `${context.wrestlerA.name}가 인터뷰 중 ${context.wrestlerB.name}를 공개적으로 자극합니다. ${getRdMatchMotivationText(context)}`,
+        contract_signing: `${context.wrestlerA.name}와 ${context.wrestlerB.name}가 링 앞 계약 테이블에서 서로를 노려봅니다.`
+      };
+      return {
+        id: `rd_incident_${type}_${gameState.week}_${Math.abs(hashString(context.matchupKey || "main"))}`,
+        type,
+        label: "돌발 세그먼트",
+        title: titleMap[type],
+        description: descMap[type],
+        reaction: clamp(gameState.hype + 18 + (roll % 12), 40, 100),
+        participants: [context.wrestlerA.id, context.wrestlerB.id].filter(Boolean),
+        matchContextIndex: context.matchIndex,
+        surpriseIncident: true
+      };
     }
 
     function applyRdCalloutChoice(choice = "accept") {
@@ -17278,6 +17374,95 @@
       render();
     }
 
+    function applyRdIncidentChoice(choice = "broadcast") {
+      const booking = ensureDivisionBookingState();
+      const showState = booking.showState;
+      const segment = getCurrentShowSegment();
+      if (!showState?.segments?.length || !isRdIncidentChoiceSegment(segment)) {
+        return;
+      }
+      const faces = getRdSegmentFaces(segment);
+      const left = faces.left;
+      const right = faces.right;
+      if (!left || !right) {
+        advanceDivisionShowSegment();
+        return;
+      }
+      const rivalry = getRdCalloutRivalry(left, right, true);
+      segment.incidentResolved = choice;
+      if (choice === "security") {
+        gameState.hype = clamp(gameState.hype - 4, 0, 100);
+        if (rivalry) {
+          addRivalryHistory(rivalry, {
+            week: gameState.week,
+            segmentType: segment.type,
+            summary: `보안팀이 ${left.name}와 ${right.name}의 충돌을 막으며 불씨만 남겼습니다.`,
+            participants: [left.id, right.id],
+            heatChange: -3,
+            crowdReaction: clamp(Number(segment.reaction || 50) - 8, 0, 100)
+          });
+        }
+        segment.description = "보안팀이 둘을 갈라놓습니다. 당장의 충돌은 막았지만 관중은 찝찝한 야유를 보냅니다.";
+        showState.currentIndex = Math.min(showState.segments.length - 1, Number(showState.currentIndex || 0) + 1);
+        window.__divisionRuntimeShowState = showState;
+        render();
+        return;
+      }
+      if (choice === "unsanctioned") {
+        left.condition = clamp(Number(left.condition || 100) - 12, 0, 100);
+        right.condition = clamp(Number(right.condition || 100) - 12, 0, 100);
+        if (rivalry) {
+          addRivalryHistory(rivalry, {
+            week: gameState.week,
+            segmentType: "backstage",
+            summary: `${left.name}와 ${right.name}의 충돌이 즉석 경기로 번졌습니다.`,
+            participants: [left.id, right.id],
+            heatChange: 14,
+            crowdReaction: clamp(Number(segment.reaction || 60) + 12, 0, 100)
+          });
+        }
+        segment.type = "match";
+        segment.label = "즉석 경기";
+        segment.title = `${left.name} vs ${right.name}`;
+        segment.description = "통제되지 않은 충돌이 그대로 경기로 이어집니다. 두 선수 모두 컨디션을 소모한 상태입니다.";
+        segment.matchType = "unsanctioned";
+        segment.participants = [left.id, right.id];
+        segment.matchContextIndex = getRdShowSegmentContextIndex(segment, showState);
+        const context = getRdShowSegmentMatchContext(segment, showState, { persist: true });
+        if (context) {
+          setRdEntranceStep(showState, segment, 1);
+          startCurrentShowSegmentMatch();
+        } else {
+          render();
+        }
+        return;
+      }
+      gameState.hype = clamp(gameState.hype + 8, 0, 100);
+      if (rivalry) {
+        addRivalryHistory(rivalry, {
+          week: gameState.week,
+          segmentType: segment.type === "interference" ? "interference" : "opening_promo",
+          summary: `${left.name}와 ${right.name}의 돌발 장면이 방송을 타며 대립이 선명해졌습니다.`,
+          participants: [left.id, right.id],
+          heatChange: 9,
+          crowdReaction: clamp(Number(segment.reaction || 60) + 10, 0, 100)
+        });
+        createStoryHook({
+          type: "heated_followup",
+          rivalryKey: getRivalryKey(left.id, right.id),
+          priority: 78,
+          title: `${left.name}와 ${right.name} 후속 대치`,
+          description: "이번 주 돌발 장면 이후, 두 선수의 다음 발언이 기다려집니다.",
+          suggestedSegmentType: "opening_promo",
+          participants: [left.id, right.id]
+        });
+      }
+      segment.description = "카메라는 이 장면을 끝까지 잡습니다. 관중 반응이 커지고, 다음 주 후속 대립의 명분이 생겼습니다.";
+      showState.currentIndex = Math.min(showState.segments.length - 1, Number(showState.currentIndex || 0) + 1);
+      window.__divisionRuntimeShowState = showState;
+      render();
+    }
+
     function getRdFaceHtml(wrestler) {
       return `<div class="rd-step-face" style="${wrestler ? getWrestlerCardPortraitStyle(wrestler, "background-position:center bottom;background-size:contain;") : ""}"></div>`;
     }
@@ -17295,6 +17480,7 @@
       const promoARight = firstRight || mainRight;
       const promoBLeft = mainLeft || firstLeft;
       const promoBRight = mainRight || firstRight;
+      const incidentSegment = createRdWeeklyIncidentSegment(matchContexts);
       return [
         {
           id: `rd_start_${gameState.week}`,
@@ -17319,7 +17505,7 @@
           type: promoA.type,
           label: promoA.tag,
           title: promoA.title,
-          description: formatRdSegmentLine(promoA.line, promoALeft, promoARight),
+          description: `${formatRdSegmentLine(promoA.line, promoALeft, promoARight)} ${getRdMatchMotivationText(firstMatch || mainMatch)}`,
           reaction: clamp(gameState.hype + 10 + (hashString(`p1:${gameState.week}`) % 18), 35, 100),
           participants: [promoALeft?.id, promoARight?.id].filter(Boolean)
         },
@@ -17333,12 +17519,13 @@
           participants: [firstMatch?.wrestlerA?.id, firstMatch?.wrestlerB?.id].filter(Boolean),
           matchContextIndex: matchContexts.indexOf(firstMatch)
         },
+        ...(incidentSegment ? [incidentSegment] : []),
         {
           id: `rd_promo_2_${gameState.week}`,
           type: promoB.type,
           label: promoB.tag,
           title: promoB.title,
-          description: formatRdSegmentLine(promoB.line, promoBLeft, promoBRight),
+          description: `${formatRdSegmentLine(promoB.line, promoBLeft, promoBRight)} ${getRdMatchMotivationText(mainMatch || firstMatch)}`,
           reaction: clamp(gameState.hype + 14 + (hashString(`p2:${gameState.week}`) % 20), 35, 100),
           participants: [promoBLeft?.id, promoBRight?.id].filter(Boolean)
         },
@@ -17898,13 +18085,17 @@
       drawCurrentCanvasFrame(performance.now());
     }
 
-    function getRdManifestSpriteStyle(wrestler, extra = "") {
+    function getRdHomeSpriteAssetPath(wrestler) {
       const customKeys = wrestler && typeof getCustomWrestlerLookupKeys === "function" ? getCustomWrestlerLookupKeys(wrestler) : [];
       const directManifestPath = customKeys.length ? `data/images/wrestlers/custom/manifest_sprites/${customKeys[0]}.png` : "";
       const resolved = wrestler ? getResolvedStandSpriteSheet(wrestler) : "";
-      const spriteSheet = resolved && normalizeSpriteAssetPath(resolved).includes("data/images/wrestlers/custom/manifest_sprites/")
+      return resolved && normalizeSpriteAssetPath(resolved).includes("data/images/wrestlers/custom/manifest_sprites/")
         ? resolved
         : directManifestPath || resolved;
+    }
+
+    function getRdManifestSpriteStyle(wrestler, extra = "") {
+      const spriteSheet = getRdHomeSpriteAssetPath(wrestler);
       const style = spriteSheet
         ? `background-image:url('${spriteSheet}');background-color:transparent;`
         : "background-color:transparent;";
@@ -17914,8 +18105,9 @@
     const RD_BACKSTAGE_INTERVIEWER_SPRITE = "data/images/ui/generated/show_cutscenes/backstage_interviewer_sprite.png";
 
     function getRdHomeWrestlerHtml(wrestler, side = "left", extraClass = "") {
+      const hasSprite = Boolean(wrestler && getRdHomeSpriteAssetPath(wrestler));
       const style = wrestler ? getRdManifestSpriteStyle(wrestler, "background-position:center bottom;background-size:contain;") : "";
-      return `<div class="rd-home-wrestler ${escapeHtml(side)} ${escapeHtml(extraClass)}" style="${style}" aria-label="${escapeHtml(wrestler?.name || "TBA")}"></div>`;
+      return `<div class="rd-home-wrestler ${escapeHtml(side)} ${escapeHtml(extraClass)}${hasSprite ? "" : " generic-shadow"}" style="${style}" aria-label="${escapeHtml(wrestler?.name || "TBA")}"></div>`;
     }
 
     function getRdHomePerformerPairHtml(left, right, centerText = "VS") {
@@ -17980,15 +18172,18 @@
     function getRdHomeSceneBackgroundPath(segment) {
       const type = String(segment?.type || "show_start");
       if (type === "match" || type === "main_event") {
-        return "data/images/ui/generated/show_cutscenes/raw_entrance_ramp.png";
+        return "data/images/ui/generated/show_cutscenes/run_in_entrance_v2.png";
       }
-      if (type === "backstage" || type === "interference" || type === "interview") {
-        return "data/images/ui/generated/show_cutscenes/backstage_hallway.png";
+      if (type === "interference") {
+        return "data/images/ui/generated/show_cutscenes/run_in_entrance_v2.png";
+      }
+      if (type === "backstage" || type === "interview") {
+        return "data/images/ui/generated/show_cutscenes/backstage_confrontation_v2.png";
       }
       if (type === "contract_signing") {
-        return "data/images/ui/generated/show_cutscenes/contract_interview_stage.png";
+        return "data/images/ui/generated/show_cutscenes/contract_signing_silhouette_v2.png";
       }
-      return "data/images/ui/generated/show_cutscenes/raw_arena_stage.png";
+      return "data/images/ui/generated/show_cutscenes/promo_arena_silhouette_v2.png";
     }
 
     function getRdEntranceStep(showState, segment) {
@@ -18010,6 +18205,9 @@
       const previousButton = `<button class="rd-scene-arrow" type="button" data-action="previous-show-segment" aria-label="이전 장면" onclick="event.preventDefault();event.stopPropagation();window.previousDivisionShowSegment?.();return false;" ${previousDisabled ? "disabled" : ""}>‹</button>`;
       if (isRdCalloutSegment(segment) && !segment.calloutResolved) {
         return `${getRdCalloutChoiceHtml(segment)}<div class="rd-scene-nav solo">${previousButton}</div>`;
+      }
+      if (isRdIncidentChoiceSegment(segment)) {
+        return `${getRdIncidentChoiceHtml(segment)}<div class="rd-scene-nav solo">${previousButton}</div>`;
       }
       let nextAction = "advance-show-segment";
       let nextHandler = "window.advanceDivisionShowSegment()";
@@ -18065,14 +18263,29 @@
       return true;
     }
 
+    function runRdIncidentChoiceAction(button, event) {
+      if (!button) {
+        return false;
+      }
+      event?.preventDefault?.();
+      event?.stopPropagation?.();
+      event?.stopImmediatePropagation?.();
+      applyRdIncidentChoice(button.dataset.choice || "broadcast");
+      return true;
+    }
+
     function attachRdHomeSceneEvents() {
-      mainDynamicContentEl.querySelectorAll("[data-action='rd-callout-choice']").forEach((button) => {
+      mainDynamicContentEl.querySelectorAll("[data-action='rd-callout-choice'], [data-action='rd-incident-choice']").forEach((button) => {
         if (button.dataset.rdBound === "true") {
           return;
         }
         button.dataset.rdBound = "true";
         const runChoiceAction = (event) => {
-          runRdCalloutChoiceAction(button, event);
+          if (button.dataset.action === "rd-incident-choice") {
+            runRdIncidentChoiceAction(button, event);
+          } else {
+            runRdCalloutChoiceAction(button, event);
+          }
         };
         button.addEventListener("pointerdown", runChoiceAction);
         button.addEventListener("click", runChoiceAction);
@@ -18427,6 +18640,11 @@
             runRdCalloutChoiceAction(calloutChoice, event);
             return;
           }
+          const incidentChoice = event.target.closest?.("[data-action='rd-incident-choice']");
+          if (incidentChoice && mainDynamicContentEl.contains(incidentChoice)) {
+            runRdIncidentChoiceAction(incidentChoice, event);
+            return;
+          }
           const sceneArrow = event.target.closest?.(".rd-scene-arrow[data-action]");
           if (sceneArrow && mainDynamicContentEl.contains(sceneArrow)) {
             runRdSceneButtonAction(sceneArrow, event);
@@ -18444,6 +18662,13 @@
         document.addEventListener("click", (event) => {
           const calloutChoice = event.target.closest?.("[data-action='rd-callout-choice']");
           if (calloutChoice && mainDynamicContentEl.contains(calloutChoice)) {
+            event.preventDefault();
+            event.stopPropagation();
+            event.stopImmediatePropagation();
+            return;
+          }
+          const incidentChoice = event.target.closest?.("[data-action='rd-incident-choice']");
+          if (incidentChoice && mainDynamicContentEl.contains(incidentChoice)) {
             event.preventDefault();
             event.stopPropagation();
             event.stopImmediatePropagation();
@@ -19495,6 +19720,39 @@
       const session = pendingWeeklySession;
       const { wrestlerA, wrestlerB, championshipKey, defendingChampionId, rivalry, rivalryStoryText, rivalryHypeBonus, rivalryRevenueMultiplier, rivalryBadge, alignmentBonus, matchIndex } = context;
       const battleResult = battlePackage.battleResult;
+      if (battleResult?.interference && !battleResult.interference.storyRecorded) {
+        const interferenceRivalry = (gameState.rivalries || []).find((item) => (
+          item.id === battleResult.interference.rivalryId
+          || getRivalryKey(item.wrestlerAId, item.wrestlerBId) === battleResult.interference.rivalryKey
+        ));
+        if (interferenceRivalry) {
+          ensureRivalryExtendedState(interferenceRivalry);
+          adjustRivalryFreshness(interferenceRivalry, "interference");
+          addRivalryHistory(interferenceRivalry, {
+            week: gameState.week,
+            showType: session.ppvInfo?.isPpv ? "PPV" : "RAW",
+            segmentType: "interference",
+            summary: `${battleResult.interference.interfererName}가 ${battleResult.interference.targetName} 경기 중 난입했습니다.`,
+            participants: [battleResult.interference.interfererId, battleResult.interference.targetId, battleResult.winnerId],
+            resultType: battleResult.finishType,
+            heatChange: 15,
+            crowdReaction: clamp(session.runningHype + 12, 0, 100),
+            winnerId: battleResult.winnerId,
+            loserId: battleResult.loserId
+          });
+          createStoryHook({
+            type: "revenge_promo",
+            rivalryKey: battleResult.interference.rivalryKey,
+            priority: 88,
+            title: `${battleResult.interference.targetName} 분노 프로모`,
+            description: `${battleResult.interference.targetName}가 지난 경기 난입에 대한 보복을 예고합니다.`,
+            suggestedSegmentType: "opening_promo",
+            participants: [battleResult.interference.targetId, battleResult.interference.interfererId]
+          });
+          session.rivalryHighlights.push(`${battleResult.interference.interfererName}의 난입으로 ${battleResult.interference.targetName}와의 악연이 다음 주까지 이어집니다.`);
+        }
+        battleResult.interference.storyRecorded = true;
+      }
       const winner = battleResult.winnerId === wrestlerA.id ? wrestlerA : wrestlerB;
       const loser = winner.id === wrestlerA.id ? wrestlerB : wrestlerA;
       const winnerBattleState = battleResult.winnerId === wrestlerA.id ? battlePackage.leftState : battlePackage.rightState;
@@ -20901,7 +21159,7 @@
             <div class="rd-dash-title">이번 주 쇼</div>
             <button class="rd-dash-link" type="button" data-rd-home-action="open-booking">쇼 상세 보기 ›</button>
           </div>
-          <div class="rd-show-feature" style="--rd-show-bg:url('${escapeHtml(ppv.isPpv ? "data/images/ui/story/ppv_night_banner.png" : "data/images/ui/generated/show_cutscenes/raw_arena_stage.png")}')">
+            <div class="rd-show-feature" style="--rd-show-bg:url('${escapeHtml(ppv.isPpv ? "data/images/ui/story/ppv_night_banner.png" : "data/images/ui/generated/show_cutscenes/promo_arena_silhouette_v2.png")}')">
             <img class="rd-show-logo-panel" src="${escapeHtml(logoPath)}" alt="${escapeHtml(ppv.name)}">
             <div class="rd-show-copy">
               <h3>${escapeHtml(ppv.isPpv ? ppv.name : "TONIGHT'S STORY")}</h3>
@@ -21044,12 +21302,87 @@
     renderHomeMainContent = renderRingDynastyDashboardHome;
 
     const legacyAutoStartWeeklyMatches = startWeeklyMatches;
+
+    function startRdWeeklyShowFromCurrentCard() {
+      if (matchAnimationState.running) {
+        return true;
+      }
+      if (typeof ensureWeeklyMissionState === "function") {
+        ensureWeeklyMissionState();
+      }
+      const readyMatches = getReadyMatches().slice(0, 2);
+      if (!readyMatches.length) {
+        return false;
+      }
+      const invalidMatch = readyMatches
+        .map((slot, index) => ({
+          index,
+          wrestlerA: findWrestlerById(slot.wrestlerAId),
+          wrestlerB: findWrestlerById(slot.wrestlerBId)
+        }))
+        .find((entry) => !getBookingMatchRestriction(entry.wrestlerA, entry.wrestlerB).ok);
+      if (invalidMatch) {
+        const restriction = getBookingMatchRestriction(invalidMatch.wrestlerA, invalidMatch.wrestlerB);
+        window.alert(`${invalidMatch.index + 1}번 경기 편성 오류: ${restriction.reason}`);
+        return true;
+      }
+      const mainSlot = readyMatches[0] || null;
+      const mainWrestler = findWrestlerById(mainSlot?.wrestlerAId);
+      const mainRequirementFailure = mainSlot?.divisionGenerated ? "" : getWrestlerMainEventRequirementFailure(mainWrestler);
+      if (mainRequirementFailure) {
+        window.alert(`메인 이벤트 편성 오류: ${mainRequirementFailure}`);
+        return true;
+      }
+      const ppvInfo = getPpvInfo();
+      if (ppvInfo.isPpv && getAvailableTitleMatchChampionship() && !hasTitleMatchBooked()) {
+        window.alert("PPV 주간에는 메인 이벤트 타이틀 매치가 필요합니다.");
+        return true;
+      }
+      if (ppvInfo.isPpv && !gameState.ppvState.featuredMatchType) {
+        gameState.ppvState.featuredMatchType = ppvInfo.featuredMatchType || PPV_MATCH_TYPES[Math.floor(Math.random() * PPV_MATCH_TYPES.length)];
+      }
+      const matchContexts = readyMatches
+        .map((slot, matchIndex) => createWeeklyMatchContext(slot, matchIndex, ppvInfo))
+        .filter(Boolean);
+      if (!matchContexts.length) {
+        return false;
+      }
+      createRdPendingWeeklySession(matchContexts, ppvInfo);
+      const booking = ensureDivisionBookingState();
+      booking.showState = {
+        week: gameState.week,
+        isPpv: Boolean(ppvInfo.isPpv),
+        showName: ppvInfo.isPpv ? ppvInfo.name : "MONDAY NIGHT RAW",
+        currentIndex: 0,
+        choiceCount: 0,
+        gmChoices: [],
+        matchContexts,
+        playedMatchIndexes: [],
+        entranceSteps: {},
+        segments: getRdShowSegments(matchContexts)
+      };
+      booking.activePage = "opening";
+      window.__divisionRuntimeShowState = booking.showState;
+      window.__divisionRuntimeActivePage = "opening";
+      activeTab = "home";
+      render();
+      return true;
+    }
+
+    const rdBaseOpenWeeklyResultsModal = openWeeklyResultsModal;
+    openWeeklyResultsModal = function () {
+      if (pendingWeeklySummary && !pendingWeeklySummary.managementMapBonusApplied && typeof applyManagementMapBonusesToSummary === "function") {
+        pendingWeeklySummary.managementMapBonusApplied = true;
+        applyManagementMapBonusesToSummary();
+      }
+      rdBaseOpenWeeklyResultsModal();
+    };
+
     startWeeklyMatches = function () {
       if (window.__RING_DYNASTY_GM_OVERHAUL__?.activeBookingBoard) {
-        if (typeof ensureWeeklyMissionState === "function") {
-          ensureWeeklyMissionState();
+        if (!startRdWeeklyShowFromCurrentCard()) {
+          startManualWeeklyMatches();
         }
-        startManualWeeklyMatches();
         return;
       }
       if (typeof ensureManagementMapState === "function") {
@@ -21068,9 +21401,8 @@
       if (typeof syncManagementMapToWeeklySchedule === "function") {
         syncManagementMapToWeeklySchedule();
       }
-      startManualWeeklyMatches();
-      if (typeof applyManagementMapBonusesToSummary === "function") {
-        applyManagementMapBonusesToSummary();
+      if (!startRdWeeklyShowFromCurrentCard()) {
+        startManualWeeklyMatches();
       }
     };
 
