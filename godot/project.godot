@@ -1,0 +1,26 @@
+; Engine configuration file.
+; Open with Godot 4.x.
+
+config_version=5
+
+[application]
+
+config/name="RING DYNASTY Godot Prototype"
+run/main_scene="res://scenes/main/Main.tscn"
+config/features=PackedStringArray("4.2")
+
+[display]
+
+window/size/viewport_width=1600
+window/size/viewport_height=900
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/handheld/orientation=1
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=1

@@ -1,0 +1,3530 @@
+[
+  {
+    "id": "1-2__06",
+    "name": "1 2",
+    "nickname": "Legacy Star",
+    "grade": "LEGEND",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/1-2__06.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/1-2__06.png",
+    "stats": {
+      "power": 76,
+      "stamina": 73,
+      "technique": 64,
+      "charisma": 65,
+      "fame": 67
+    }
+  },
+  {
+    "id": "1-5__02",
+    "name": "1 5",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/1-5__02.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/1-5__02.png",
+    "stats": {
+      "power": 63,
+      "stamina": 72,
+      "technique": 79,
+      "charisma": 66,
+      "fame": 68
+    }
+  },
+  {
+    "id": "aj_styles",
+    "name": "AJ Styles",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "technician",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/aj_styles.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/aj_styles.png",
+    "stats": {
+      "power": 64,
+      "stamina": 73,
+      "technique": 80,
+      "charisma": 67,
+      "fame": 69
+    }
+  },
+  {
+    "id": "akira_tozawa",
+    "name": "Akira Tozawa",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/akira_tozawa.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/akira_tozawa.png",
+    "stats": {
+      "power": 79,
+      "stamina": 76,
+      "technique": 67,
+      "charisma": 68,
+      "fame": 70
+    }
+  },
+  {
+    "id": "al_snow",
+    "name": "Al Snow",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/al_snow.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/al_snow.png",
+    "stats": {
+      "power": 66,
+      "stamina": 75,
+      "technique": 82,
+      "charisma": 69,
+      "fame": 71
+    }
+  },
+  {
+    "id": "alba_fyre",
+    "name": "Alba Fyre",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/alba_fyre.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/alba_fyre.png",
+    "stats": {
+      "power": 67,
+      "stamina": 71,
+      "technique": 69,
+      "charisma": 84,
+      "fame": 79
+    }
+  },
+  {
+    "id": "alberto_del_rio",
+    "name": "Alberto Del Rio",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/alberto_del_rio.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/alberto_del_rio.png",
+    "stats": {
+      "power": 82,
+      "stamina": 79,
+      "technique": 70,
+      "charisma": 71,
+      "fame": 73
+    }
+  },
+  {
+    "id": "alexa_bliss",
+    "name": "Alexa Bliss",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/alexa_bliss.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/alexa_bliss.png",
+    "stats": {
+      "power": 69,
+      "stamina": 78,
+      "technique": 85,
+      "charisma": 72,
+      "fame": 74
+    }
+  },
+  {
+    "id": "andrade",
+    "name": "Andrade",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/andrade.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/andrade.png",
+    "stats": {
+      "power": 70,
+      "stamina": 74,
+      "technique": 72,
+      "charisma": 87,
+      "fame": 82
+    }
+  },
+  {
+    "id": "andre_chase",
+    "name": "Andre Chase",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/andre_chase.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/andre_chase.png",
+    "stats": {
+      "power": 85,
+      "stamina": 82,
+      "technique": 73,
+      "charisma": 74,
+      "fame": 76
+    }
+  },
+  {
+    "id": "andre_the_giant",
+    "name": "Andre The Giant",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "powerhouse",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/andre_the_giant.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/andre_the_giant.png",
+    "stats": {
+      "power": 86,
+      "stamina": 83,
+      "technique": 74,
+      "charisma": 75,
+      "fame": 77
+    }
+  },
+  {
+    "id": "angelo_dawkins",
+    "name": "Angelo Dawkins",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/angelo_dawkins.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/angelo_dawkins.png",
+    "stats": {
+      "power": 73,
+      "stamina": 77,
+      "technique": 75,
+      "charisma": 90,
+      "fame": 85
+    }
+  },
+  {
+    "id": "asuka",
+    "name": "Asuka",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/asuka.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/asuka.png",
+    "stats": {
+      "power": 74,
+      "stamina": 83,
+      "technique": 90,
+      "charisma": 77,
+      "fame": 79
+    }
+  },
+  {
+    "id": "austin_theory",
+    "name": "Austin Theory",
+    "nickname": "Legacy Star",
+    "grade": "LEGEND",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/austin_theory.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/austin_theory.png",
+    "stats": {
+      "power": 75,
+      "stamina": 84,
+      "technique": 91,
+      "charisma": 78,
+      "fame": 80
+    }
+  },
+  {
+    "id": "ava",
+    "name": "Ava",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "showman",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/ava.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/ava.png",
+    "stats": {
+      "power": 76,
+      "stamina": 80,
+      "technique": 78,
+      "charisma": 93,
+      "fame": 88
+    }
+  },
+  {
+    "id": "b_fab",
+    "name": "B Fab",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/b_fab.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/b_fab.png",
+    "stats": {
+      "power": 91,
+      "stamina": 88,
+      "technique": 79,
+      "charisma": 80,
+      "fame": 82
+    }
+  },
+  {
+    "id": "bad_bunny",
+    "name": "Bad Bunny",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/bad_bunny.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/bad_bunny.png",
+    "stats": {
+      "power": 78,
+      "stamina": 87,
+      "technique": 94,
+      "charisma": 81,
+      "fame": 83
+    }
+  },
+  {
+    "id": "batista",
+    "name": "Batista",
+    "nickname": "Legacy Star",
+    "grade": "LEGEND",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/batista.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/batista.png",
+    "stats": {
+      "power": 93,
+      "stamina": 90,
+      "technique": 81,
+      "charisma": 82,
+      "fame": 84
+    }
+  },
+  {
+    "id": "bayley",
+    "name": "Bayley",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/bayley.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/bayley.png",
+    "stats": {
+      "power": 76,
+      "stamina": 73,
+      "technique": 64,
+      "charisma": 65,
+      "fame": 67
+    }
+  },
+  {
+    "id": "becky_lynch",
+    "name": "Becky Lynch",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "showman",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/becky_lynch.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/becky_lynch.png",
+    "stats": {
+      "power": 63,
+      "stamina": 67,
+      "technique": 65,
+      "charisma": 80,
+      "fame": 75
+    }
+  },
+  {
+    "id": "bianca_belair",
+    "name": "Bianca Belair",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/bianca_belair.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/bianca_belair.png",
+    "stats": {
+      "power": 78,
+      "stamina": 75,
+      "technique": 66,
+      "charisma": 67,
+      "fame": 69
+    }
+  },
+  {
+    "id": "big_bill",
+    "name": "Big Bill",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/big_bill.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/big_bill.png",
+    "stats": {
+      "power": 79,
+      "stamina": 76,
+      "technique": 67,
+      "charisma": 68,
+      "fame": 70
+    }
+  },
+  {
+    "id": "big_show",
+    "name": "Big Show",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/big_show.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/big_show.png",
+    "stats": {
+      "power": 66,
+      "stamina": 75,
+      "technique": 82,
+      "charisma": 69,
+      "fame": 71
+    }
+  },
+  {
+    "id": "bo_dallas",
+    "name": "Bo Dallas",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/bo_dallas.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/bo_dallas.png",
+    "stats": {
+      "power": 67,
+      "stamina": 71,
+      "technique": 69,
+      "charisma": 84,
+      "fame": 79
+    }
+  },
+  {
+    "id": "booker_t",
+    "name": "Booker T",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/booker_t.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/booker_t.png",
+    "stats": {
+      "power": 82,
+      "stamina": 79,
+      "technique": 70,
+      "charisma": 71,
+      "fame": 73
+    }
+  },
+  {
+    "id": "braun_strowman",
+    "name": "Braun Strowman",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "powerhouse",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/braun_strowman.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/braun_strowman.png",
+    "stats": {
+      "power": 83,
+      "stamina": 80,
+      "technique": 71,
+      "charisma": 72,
+      "fame": 74
+    }
+  },
+  {
+    "id": "bret_hart",
+    "name": "Bret Hart",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/bret_hart.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/bret_hart.png",
+    "stats": {
+      "power": 70,
+      "stamina": 79,
+      "technique": 86,
+      "charisma": 73,
+      "fame": 75
+    }
+  },
+  {
+    "id": "brie_bella",
+    "name": "Brie Bella",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/brie_bella.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/brie_bella.png",
+    "stats": {
+      "power": 85,
+      "stamina": 82,
+      "technique": 73,
+      "charisma": 74,
+      "fame": 76
+    }
+  },
+  {
+    "id": "brock_lesnar",
+    "name": "Brock Lesnar",
+    "nickname": "Legacy Star",
+    "grade": "LEGEND",
+    "style": "powerhouse",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/brock_lesnar.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/brock_lesnar.png",
+    "stats": {
+      "power": 86,
+      "stamina": 83,
+      "technique": 74,
+      "charisma": 75,
+      "fame": 77
+    }
+  },
+  {
+    "id": "bron_breakker",
+    "name": "Bron Breakker",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "powerhouse",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/bron_breakker.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/bron_breakker.png",
+    "stats": {
+      "power": 87,
+      "stamina": 84,
+      "technique": 75,
+      "charisma": 76,
+      "fame": 78
+    }
+  },
+  {
+    "id": "brooks_jensen",
+    "name": "Brooks Jensen",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/brooks_jensen.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/brooks_jensen.png",
+    "stats": {
+      "power": 88,
+      "stamina": 85,
+      "technique": 76,
+      "charisma": 77,
+      "fame": 79
+    }
+  },
+  {
+    "id": "bryan_danielson",
+    "name": "Bryan Danielson",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/bryan_danielson.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/bryan_danielson.png",
+    "stats": {
+      "power": 75,
+      "stamina": 84,
+      "technique": 91,
+      "charisma": 78,
+      "fame": 80
+    }
+  },
+  {
+    "id": "bubba_ray_dudley",
+    "name": "Bubba Ray Dudley",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/bubba_ray_dudley.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/bubba_ray_dudley.png",
+    "stats": {
+      "power": 76,
+      "stamina": 80,
+      "technique": 78,
+      "charisma": 93,
+      "fame": 88
+    }
+  },
+  {
+    "id": "candice_lerae",
+    "name": "Candice Lerae",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/candice_lerae.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/candice_lerae.png",
+    "stats": {
+      "power": 91,
+      "stamina": 88,
+      "technique": 79,
+      "charisma": 80,
+      "fame": 82
+    }
+  },
+  {
+    "id": "carlito",
+    "name": "Carlito",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/carlito.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/carlito.png",
+    "stats": {
+      "power": 78,
+      "stamina": 87,
+      "technique": 94,
+      "charisma": 81,
+      "fame": 83
+    }
+  },
+  {
+    "id": "carmelo_hayes",
+    "name": "Carmelo Hayes",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "showman",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/carmelo_hayes.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/carmelo_hayes.png",
+    "stats": {
+      "power": 79,
+      "stamina": 83,
+      "technique": 81,
+      "charisma": 96,
+      "fame": 91
+    }
+  },
+  {
+    "id": "chad_gable",
+    "name": "Chad Gable",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "technician",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/chad_gable.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/chad_gable.png",
+    "stats": {
+      "power": 62,
+      "stamina": 71,
+      "technique": 78,
+      "charisma": 65,
+      "fame": 67
+    }
+  },
+  {
+    "id": "channing_stacks_lorenzo",
+    "name": "Channing Stacks Lorenzo",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/channing_stacks_lorenzo.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/channing_stacks_lorenzo.png",
+    "stats": {
+      "power": 63,
+      "stamina": 72,
+      "technique": 79,
+      "charisma": 66,
+      "fame": 68
+    }
+  },
+  {
+    "id": "charlie_dempsey",
+    "name": "Charlie Dempsey",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/charlie_dempsey.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/charlie_dempsey.png",
+    "stats": {
+      "power": 64,
+      "stamina": 68,
+      "technique": 66,
+      "charisma": 81,
+      "fame": 76
+    }
+  },
+  {
+    "id": "charlotte_flair",
+    "name": "Charlotte Flair",
+    "nickname": "Legacy Star",
+    "grade": "LEGEND",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/charlotte_flair.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/charlotte_flair.png",
+    "stats": {
+      "power": 65,
+      "stamina": 74,
+      "technique": 81,
+      "charisma": 68,
+      "fame": 70
+    }
+  },
+  {
+    "id": "chelsea_green",
+    "name": "Chelsea Green",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/chelsea_green.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/chelsea_green.png",
+    "stats": {
+      "power": 66,
+      "stamina": 75,
+      "technique": 82,
+      "charisma": 69,
+      "fame": 71
+    }
+  },
+  {
+    "id": "chris_jericho",
+    "name": "Chris Jericho",
+    "nickname": "Legacy Star",
+    "grade": "LEGEND",
+    "style": "showman",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/chris_jericho.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/chris_jericho.png",
+    "stats": {
+      "power": 67,
+      "stamina": 71,
+      "technique": 69,
+      "charisma": 84,
+      "fame": 79
+    }
+  },
+  {
+    "id": "cm_charlotte_flair_6",
+    "name": "Charlotte Flair",
+    "nickname": "Legacy Star",
+    "grade": "LEGEND",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/cm_charlotte_flair_6.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/cm_charlotte_flair_6.png",
+    "stats": {
+      "power": 68,
+      "stamina": 77,
+      "technique": 84,
+      "charisma": 71,
+      "fame": 73
+    }
+  },
+  {
+    "id": "cm_cody_rhodes_3",
+    "name": "Cody Rhodes",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "showman",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/cm_cody_rhodes_3.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/cm_cody_rhodes_3.png",
+    "stats": {
+      "power": 69,
+      "stamina": 73,
+      "technique": 71,
+      "charisma": 86,
+      "fame": 81
+    }
+  },
+  {
+    "id": "cm_punk",
+    "name": "Punk",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/cm_punk.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/cm_punk.png",
+    "stats": {
+      "power": 70,
+      "stamina": 74,
+      "technique": 72,
+      "charisma": 87,
+      "fame": 82
+    }
+  },
+  {
+    "id": "cody_rhodes",
+    "name": "Cody Rhodes",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "showman",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/cody_rhodes.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/cody_rhodes.png",
+    "stats": {
+      "power": 71,
+      "stamina": 75,
+      "technique": 73,
+      "charisma": 88,
+      "fame": 83
+    }
+  },
+  {
+    "id": "corey_graves",
+    "name": "Corey Graves",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/corey_graves.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/corey_graves.png",
+    "stats": {
+      "power": 72,
+      "stamina": 81,
+      "technique": 88,
+      "charisma": 75,
+      "fame": 77
+    }
+  },
+  {
+    "id": "d_von_dudley",
+    "name": "D Von Dudley",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/d_von_dudley.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/d_von_dudley.png",
+    "stats": {
+      "power": 73,
+      "stamina": 77,
+      "technique": 75,
+      "charisma": 90,
+      "fame": 85
+    }
+  },
+  {
+    "id": "dakota_kai",
+    "name": "Dakota Kai",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/dakota_kai.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/dakota_kai.png",
+    "stats": {
+      "power": 88,
+      "stamina": 85,
+      "technique": 76,
+      "charisma": 77,
+      "fame": 79
+    }
+  },
+  {
+    "id": "damian_priest",
+    "name": "Damian Priest",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/damian_priest.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/damian_priest.png",
+    "stats": {
+      "power": 75,
+      "stamina": 84,
+      "technique": 91,
+      "charisma": 78,
+      "fame": 80
+    }
+  },
+  {
+    "id": "dana_brooke",
+    "name": "Dana Brooke",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/dana_brooke.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/dana_brooke.png",
+    "stats": {
+      "power": 76,
+      "stamina": 80,
+      "technique": 78,
+      "charisma": 93,
+      "fame": 88
+    }
+  },
+  {
+    "id": "daphanie_lashaunn",
+    "name": "Daphanie Lashaunn",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/daphanie_lashaunn.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/daphanie_lashaunn.png",
+    "stats": {
+      "power": 91,
+      "stamina": 88,
+      "technique": 79,
+      "charisma": 80,
+      "fame": 82
+    }
+  },
+  {
+    "id": "dave_bautista",
+    "name": "Dave Bautista",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/dave_bautista.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/dave_bautista.png",
+    "stats": {
+      "power": 78,
+      "stamina": 87,
+      "technique": 94,
+      "charisma": 81,
+      "fame": 83
+    }
+  },
+  {
+    "id": "dean_ambrose",
+    "name": "Dean Ambrose",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/dean_ambrose.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/dean_ambrose.png",
+    "stats": {
+      "power": 79,
+      "stamina": 83,
+      "technique": 81,
+      "charisma": 96,
+      "fame": 91
+    }
+  },
+  {
+    "id": "dexter_lumis",
+    "name": "Dexter Lumis",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/dexter_lumis.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/dexter_lumis.png",
+    "stats": {
+      "power": 76,
+      "stamina": 73,
+      "technique": 64,
+      "charisma": 65,
+      "fame": 67
+    }
+  },
+  {
+    "id": "dijak",
+    "name": "Dijak",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/dijak.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/dijak.png",
+    "stats": {
+      "power": 63,
+      "stamina": 72,
+      "technique": 79,
+      "charisma": 66,
+      "fame": 68
+    }
+  },
+  {
+    "id": "dion_lennox",
+    "name": "Dion Lennox",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "showman",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/dion_lennox.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/dion_lennox.png",
+    "stats": {
+      "power": 64,
+      "stamina": 68,
+      "technique": 66,
+      "charisma": 81,
+      "fame": 76
+    }
+  },
+  {
+    "id": "dominik_mysterio",
+    "name": "Dominik Mysterio",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/dominik_mysterio.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/dominik_mysterio.png",
+    "stats": {
+      "power": 79,
+      "stamina": 76,
+      "technique": 67,
+      "charisma": 68,
+      "fame": 70
+    }
+  },
+  {
+    "id": "dragon_lee",
+    "name": "Dragon Lee",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/dragon_lee.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/dragon_lee.png",
+    "stats": {
+      "power": 66,
+      "stamina": 75,
+      "technique": 82,
+      "charisma": 69,
+      "fame": 71
+    }
+  },
+  {
+    "id": "drew_mcintyre",
+    "name": "Drew Mcintyre",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "powerhouse",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/drew_mcintyre.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/drew_mcintyre.png",
+    "stats": {
+      "power": 81,
+      "stamina": 78,
+      "technique": 69,
+      "charisma": 70,
+      "fame": 72
+    }
+  },
+  {
+    "id": "dusty_rhodes",
+    "name": "Dusty Rhodes",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/dusty_rhodes.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/dusty_rhodes.png",
+    "stats": {
+      "power": 82,
+      "stamina": 79,
+      "technique": 70,
+      "charisma": 71,
+      "fame": 73
+    }
+  },
+  {
+    "id": "edge",
+    "name": "Edge",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/edge.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/edge.png",
+    "stats": {
+      "power": 69,
+      "stamina": 78,
+      "technique": 85,
+      "charisma": 72,
+      "fame": 74
+    }
+  },
+  {
+    "id": "enzo_amore",
+    "name": "Enzo Amore",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/enzo_amore.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/enzo_amore.png",
+    "stats": {
+      "power": 70,
+      "stamina": 74,
+      "technique": 72,
+      "charisma": 87,
+      "fame": 82
+    }
+  },
+  {
+    "id": "eric_bischoff",
+    "name": "Eric Bischoff",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/eric_bischoff.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/eric_bischoff.png",
+    "stats": {
+      "power": 85,
+      "stamina": 82,
+      "technique": 73,
+      "charisma": 74,
+      "fame": 76
+    }
+  },
+  {
+    "id": "ethan_page",
+    "name": "Ethan Page",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/ethan_page.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/ethan_page.png",
+    "stats": {
+      "power": 72,
+      "stamina": 81,
+      "technique": 88,
+      "charisma": 75,
+      "fame": 77
+    }
+  },
+  {
+    "id": "finn_balor",
+    "name": "Finn Balor",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/finn_balor.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/finn_balor.png",
+    "stats": {
+      "power": 73,
+      "stamina": 77,
+      "technique": 75,
+      "charisma": 90,
+      "fame": 85
+    }
+  },
+  {
+    "id": "giulia",
+    "name": "Giulia",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/giulia.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/giulia.png",
+    "stats": {
+      "power": 88,
+      "stamina": 85,
+      "technique": 76,
+      "charisma": 77,
+      "fame": 79
+    }
+  },
+  {
+    "id": "goldberg",
+    "name": "Goldberg",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "powerhouse",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/goldberg.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/goldberg.png",
+    "stats": {
+      "power": 89,
+      "stamina": 86,
+      "technique": 77,
+      "charisma": 78,
+      "fame": 80
+    }
+  },
+  {
+    "id": "grayson_waller",
+    "name": "Grayson Waller",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/grayson_waller.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/grayson_waller.png",
+    "stats": {
+      "power": 76,
+      "stamina": 80,
+      "technique": 78,
+      "charisma": 93,
+      "fame": 88
+    }
+  },
+  {
+    "id": "gunther",
+    "name": "Gunther",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "powerhouse",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/gunther.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/gunther.png",
+    "stats": {
+      "power": 91,
+      "stamina": 88,
+      "technique": 79,
+      "charisma": 80,
+      "fame": 82
+    }
+  },
+  {
+    "id": "hikuleo",
+    "name": "Hikuleo",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/hikuleo.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/hikuleo.png",
+    "stats": {
+      "power": 78,
+      "stamina": 87,
+      "technique": 94,
+      "charisma": 81,
+      "fame": 83
+    }
+  },
+  {
+    "id": "hulk_hogan",
+    "name": "Hulk Hogan",
+    "nickname": "Legacy Star",
+    "grade": "LEGEND",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/hulk_hogan.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/hulk_hogan.png",
+    "stats": {
+      "power": 93,
+      "stamina": 90,
+      "technique": 81,
+      "charisma": 82,
+      "fame": 84
+    }
+  },
+  {
+    "id": "humberto_carrillo",
+    "name": "Humberto Carrillo",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/humberto_carrillo.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/humberto_carrillo.png",
+    "stats": {
+      "power": 76,
+      "stamina": 73,
+      "technique": 64,
+      "charisma": 65,
+      "fame": 67
+    }
+  },
+  {
+    "id": "ilja_dragunov",
+    "name": "Ilja Dragunov",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/ilja_dragunov.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/ilja_dragunov.png",
+    "stats": {
+      "power": 63,
+      "stamina": 72,
+      "technique": 79,
+      "charisma": 66,
+      "fame": 68
+    }
+  },
+  {
+    "id": "ivy_nile",
+    "name": "Ivy Nile",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/ivy_nile.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/ivy_nile.png",
+    "stats": {
+      "power": 64,
+      "stamina": 68,
+      "technique": 66,
+      "charisma": 81,
+      "fame": 76
+    }
+  },
+  {
+    "id": "iyo_sky",
+    "name": "IYO Sky",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/iyo_sky.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/iyo_sky.png",
+    "stats": {
+      "power": 65,
+      "stamina": 74,
+      "technique": 81,
+      "charisma": 68,
+      "fame": 70
+    }
+  },
+  {
+    "id": "jacob_fatu",
+    "name": "Jacob Fatu",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/jacob_fatu.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/jacob_fatu.png",
+    "stats": {
+      "power": 66,
+      "stamina": 75,
+      "technique": 82,
+      "charisma": 69,
+      "fame": 71
+    }
+  },
+  {
+    "id": "jacy_jayne",
+    "name": "Jacy Jayne",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "showman",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/jacy_jayne.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/jacy_jayne.png",
+    "stats": {
+      "power": 67,
+      "stamina": 71,
+      "technique": 69,
+      "charisma": 84,
+      "fame": 79
+    }
+  },
+  {
+    "id": "jade_cargill",
+    "name": "Jade Cargill",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/jade_cargill.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/jade_cargill.png",
+    "stats": {
+      "power": 82,
+      "stamina": 79,
+      "technique": 70,
+      "charisma": 71,
+      "fame": 73
+    }
+  },
+  {
+    "id": "jasper_troy",
+    "name": "Jasper Troy",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/jasper_troy.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/jasper_troy.png",
+    "stats": {
+      "power": 69,
+      "stamina": 78,
+      "technique": 85,
+      "charisma": 72,
+      "fame": 74
+    }
+  },
+  {
+    "id": "je_von_evans",
+    "name": "Je Von Evans",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/je_von_evans.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/je_von_evans.png",
+    "stats": {
+      "power": 70,
+      "stamina": 74,
+      "technique": 72,
+      "charisma": 87,
+      "fame": 82
+    }
+  },
+  {
+    "id": "jeff_cobb",
+    "name": "Jeff Cobb",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/jeff_cobb.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/jeff_cobb.png",
+    "stats": {
+      "power": 85,
+      "stamina": 82,
+      "technique": 73,
+      "charisma": 74,
+      "fame": 76
+    }
+  },
+  {
+    "id": "jeff_hardy",
+    "name": "Jeff Hardy",
+    "nickname": "Legacy Star",
+    "grade": "LEGEND",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/jeff_hardy.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/jeff_hardy.png",
+    "stats": {
+      "power": 72,
+      "stamina": 81,
+      "technique": 88,
+      "charisma": 75,
+      "fame": 77
+    }
+  },
+  {
+    "id": "jey_uso",
+    "name": "Jey Uso",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/jey_uso.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/jey_uso.png",
+    "stats": {
+      "power": 73,
+      "stamina": 77,
+      "technique": 75,
+      "charisma": 90,
+      "fame": 85
+    }
+  },
+  {
+    "id": "jim_duggan",
+    "name": "Jim Duggan",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/jim_duggan.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/jim_duggan.png",
+    "stats": {
+      "power": 88,
+      "stamina": 85,
+      "technique": 76,
+      "charisma": 77,
+      "fame": 79
+    }
+  },
+  {
+    "id": "jimmy_uso",
+    "name": "Jimmy Uso",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/jimmy_uso.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/jimmy_uso.png",
+    "stats": {
+      "power": 75,
+      "stamina": 84,
+      "technique": 91,
+      "charisma": 78,
+      "fame": 80
+    }
+  },
+  {
+    "id": "joe_gacy",
+    "name": "Joe Gacy",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/joe_gacy.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/joe_gacy.png",
+    "stats": {
+      "power": 76,
+      "stamina": 80,
+      "technique": 78,
+      "charisma": 93,
+      "fame": 88
+    }
+  },
+  {
+    "id": "john_cena",
+    "name": "John Cena",
+    "nickname": "Legacy Star",
+    "grade": "LEGEND",
+    "style": "showman",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/john_cena.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/john_cena.png",
+    "stats": {
+      "power": 77,
+      "stamina": 81,
+      "technique": 79,
+      "charisma": 94,
+      "fame": 89
+    }
+  },
+  {
+    "id": "johnny_gargano",
+    "name": "Johnny Gargano",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/johnny_gargano.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/johnny_gargano.png",
+    "stats": {
+      "power": 78,
+      "stamina": 87,
+      "technique": 94,
+      "charisma": 81,
+      "fame": 83
+    }
+  },
+  {
+    "id": "jorge_gonzalez",
+    "name": "Jorge Gonzalez",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/jorge_gonzalez.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/jorge_gonzalez.png",
+    "stats": {
+      "power": 79,
+      "stamina": 83,
+      "technique": 81,
+      "charisma": 96,
+      "fame": 91
+    }
+  },
+  {
+    "id": "josh_briggs",
+    "name": "Josh Briggs",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/josh_briggs.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/josh_briggs.png",
+    "stats": {
+      "power": 76,
+      "stamina": 73,
+      "technique": 64,
+      "charisma": 65,
+      "fame": 67
+    }
+  },
+  {
+    "id": "kairi_sane",
+    "name": "Kairi Sane",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/kairi_sane.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/kairi_sane.png",
+    "stats": {
+      "power": 63,
+      "stamina": 72,
+      "technique": 79,
+      "charisma": 66,
+      "fame": 68
+    }
+  },
+  {
+    "id": "kaitlyn",
+    "name": "Kaitlyn",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/kaitlyn.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/kaitlyn.png",
+    "stats": {
+      "power": 64,
+      "stamina": 68,
+      "technique": 66,
+      "charisma": 81,
+      "fame": 76
+    }
+  },
+  {
+    "id": "kane",
+    "name": "Kane",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/kane.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/kane.png",
+    "stats": {
+      "power": 79,
+      "stamina": 76,
+      "technique": 67,
+      "charisma": 68,
+      "fame": 70
+    }
+  },
+  {
+    "id": "karrion_kross",
+    "name": "Karrion Kross",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/karrion_kross.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/karrion_kross.png",
+    "stats": {
+      "power": 66,
+      "stamina": 75,
+      "technique": 82,
+      "charisma": 69,
+      "fame": 71
+    }
+  },
+  {
+    "id": "kevin_nash",
+    "name": "Kevin Nash",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/kevin_nash.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/kevin_nash.png",
+    "stats": {
+      "power": 67,
+      "stamina": 71,
+      "technique": 69,
+      "charisma": 84,
+      "fame": 79
+    }
+  },
+  {
+    "id": "kevin_owens",
+    "name": "Kevin Owens",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/kevin_owens.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/kevin_owens.png",
+    "stats": {
+      "power": 82,
+      "stamina": 79,
+      "technique": 70,
+      "charisma": 71,
+      "fame": 73
+    }
+  },
+  {
+    "id": "kurt_angle",
+    "name": "Kurt Angle",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/kurt_angle.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/kurt_angle.png",
+    "stats": {
+      "power": 69,
+      "stamina": 78,
+      "technique": 85,
+      "charisma": 72,
+      "fame": 74
+    }
+  },
+  {
+    "id": "kylie_rae",
+    "name": "Kylie Rae",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "showman",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/kylie_rae.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/kylie_rae.png",
+    "stats": {
+      "power": 70,
+      "stamina": 74,
+      "technique": 72,
+      "charisma": 87,
+      "fame": 82
+    }
+  },
+  {
+    "id": "la_knight",
+    "name": "La Knight",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "showman",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/la_knight.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/la_knight.png",
+    "stats": {
+      "power": 71,
+      "stamina": 75,
+      "technique": 73,
+      "charisma": 88,
+      "fame": 83
+    }
+  },
+  {
+    "id": "lance_cade",
+    "name": "Lance Cade",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/lance_cade.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/lance_cade.png",
+    "stats": {
+      "power": 72,
+      "stamina": 81,
+      "technique": 88,
+      "charisma": 75,
+      "fame": 77
+    }
+  },
+  {
+    "id": "lash_legend",
+    "name": "Lash Legend",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/lash_legend.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/lash_legend.png",
+    "stats": {
+      "power": 73,
+      "stamina": 77,
+      "technique": 75,
+      "charisma": 90,
+      "fame": 85
+    }
+  },
+  {
+    "id": "lexis_king",
+    "name": "Lexis King",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/lexis_king.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/lexis_king.png",
+    "stats": {
+      "power": 88,
+      "stamina": 85,
+      "technique": 76,
+      "charisma": 77,
+      "fame": 79
+    }
+  },
+  {
+    "id": "liv_morgan",
+    "name": "Liv Morgan",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/liv_morgan.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/liv_morgan.png",
+    "stats": {
+      "power": 75,
+      "stamina": 84,
+      "technique": 91,
+      "charisma": 78,
+      "fame": 80
+    }
+  },
+  {
+    "id": "logan_paul",
+    "name": "Logan Paul",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/logan_paul.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/logan_paul.png",
+    "stats": {
+      "power": 76,
+      "stamina": 80,
+      "technique": 78,
+      "charisma": 93,
+      "fame": 88
+    }
+  },
+  {
+    "id": "lou_albano",
+    "name": "Lou Albano",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/lou_albano.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/lou_albano.png",
+    "stats": {
+      "power": 91,
+      "stamina": 88,
+      "technique": 79,
+      "charisma": 80,
+      "fame": 82
+    }
+  },
+  {
+    "id": "ludwig_kaiser",
+    "name": "Ludwig Kaiser",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/ludwig_kaiser.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/ludwig_kaiser.png",
+    "stats": {
+      "power": 78,
+      "stamina": 87,
+      "technique": 94,
+      "charisma": 81,
+      "fame": 83
+    }
+  },
+  {
+    "id": "lyra_valkyria",
+    "name": "Lyra Valkyria",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/lyra_valkyria.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/lyra_valkyria.png",
+    "stats": {
+      "power": 79,
+      "stamina": 83,
+      "technique": 81,
+      "charisma": 96,
+      "fame": 91
+    }
+  },
+  {
+    "id": "mankind",
+    "name": "Mankind",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/mankind.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/mankind.png",
+    "stats": {
+      "power": 76,
+      "stamina": 73,
+      "technique": 64,
+      "charisma": 65,
+      "fame": 67
+    }
+  },
+  {
+    "id": "mariah_may",
+    "name": "Mariah May",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/mariah_may.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/mariah_may.png",
+    "stats": {
+      "power": 63,
+      "stamina": 72,
+      "technique": 79,
+      "charisma": 66,
+      "fame": 68
+    }
+  },
+  {
+    "id": "matt_bloom",
+    "name": "Matt Bloom",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/matt_bloom.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/matt_bloom.png",
+    "stats": {
+      "power": 64,
+      "stamina": 68,
+      "technique": 66,
+      "charisma": 81,
+      "fame": 76
+    }
+  },
+  {
+    "id": "matt_hardy",
+    "name": "Matt Hardy",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/matt_hardy.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/matt_hardy.png",
+    "stats": {
+      "power": 79,
+      "stamina": 76,
+      "technique": 67,
+      "charisma": 68,
+      "fame": 70
+    }
+  },
+  {
+    "id": "maxxine_dupri",
+    "name": "Maxxine Dupri",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "technician",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/maxxine_dupri.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/maxxine_dupri.png",
+    "stats": {
+      "power": 66,
+      "stamina": 75,
+      "technique": 82,
+      "charisma": 69,
+      "fame": 71
+    }
+  },
+  {
+    "id": "mia_yim",
+    "name": "Mia Yim",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/mia_yim.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/mia_yim.png",
+    "stats": {
+      "power": 67,
+      "stamina": 71,
+      "technique": 69,
+      "charisma": 84,
+      "fame": 79
+    }
+  },
+  {
+    "id": "michin",
+    "name": "Michin",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/michin.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/michin.png",
+    "stats": {
+      "power": 82,
+      "stamina": 79,
+      "technique": 70,
+      "charisma": 71,
+      "fame": 73
+    }
+  },
+  {
+    "id": "mick_foley",
+    "name": "Mick Foley",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/mick_foley.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/mick_foley.png",
+    "stats": {
+      "power": 69,
+      "stamina": 78,
+      "technique": 85,
+      "charisma": 72,
+      "fame": 74
+    }
+  },
+  {
+    "id": "montez_ford",
+    "name": "Montez Ford",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/montez_ford.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/montez_ford.png",
+    "stats": {
+      "power": 70,
+      "stamina": 74,
+      "technique": 72,
+      "charisma": 87,
+      "fame": 82
+    }
+  },
+  {
+    "id": "muhammad_hassan",
+    "name": "Muhammad Hassan",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/muhammad_hassan.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/muhammad_hassan.png",
+    "stats": {
+      "power": 85,
+      "stamina": 82,
+      "technique": 73,
+      "charisma": 74,
+      "fame": 76
+    }
+  },
+  {
+    "id": "myles_borne",
+    "name": "Myles Borne",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/myles_borne.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/myles_borne.png",
+    "stats": {
+      "power": 72,
+      "stamina": 81,
+      "technique": 88,
+      "charisma": 75,
+      "fame": 77
+    }
+  },
+  {
+    "id": "name_edit_booker_t",
+    "name": "Name Edit Booker T",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "showman",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/name_edit_booker_t.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/name_edit_booker_t.png",
+    "stats": {
+      "power": 73,
+      "stamina": 77,
+      "technique": 75,
+      "charisma": 90,
+      "fame": 85
+    }
+  },
+  {
+    "id": "naomi",
+    "name": "Naomi",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/naomi.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/naomi.png",
+    "stats": {
+      "power": 88,
+      "stamina": 85,
+      "technique": 76,
+      "charisma": 77,
+      "fame": 79
+    }
+  },
+  {
+    "id": "natalya_neidhart",
+    "name": "Natalya Neidhart",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/natalya_neidhart.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/natalya_neidhart.png",
+    "stats": {
+      "power": 75,
+      "stamina": 84,
+      "technique": 91,
+      "charisma": 78,
+      "fame": 80
+    }
+  },
+  {
+    "id": "nia_jax",
+    "name": "Nia Jax",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/nia_jax.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/nia_jax.png",
+    "stats": {
+      "power": 76,
+      "stamina": 80,
+      "technique": 78,
+      "charisma": 93,
+      "fame": 88
+    }
+  },
+  {
+    "id": "nick_aldis",
+    "name": "Nick Aldis",
+    "nickname": "Legacy Star",
+    "grade": "LEGEND",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/nick_aldis.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/nick_aldis.png",
+    "stats": {
+      "power": 91,
+      "stamina": 88,
+      "technique": 79,
+      "charisma": 80,
+      "fame": 82
+    }
+  },
+  {
+    "id": "nikki_bella",
+    "name": "Nikki Bella",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/nikki_bella.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/nikki_bella.png",
+    "stats": {
+      "power": 78,
+      "stamina": 87,
+      "technique": 94,
+      "charisma": 81,
+      "fame": 83
+    }
+  },
+  {
+    "id": "nikki_cross",
+    "name": "Nikki Cross",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/nikki_cross.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/nikki_cross.png",
+    "stats": {
+      "power": 79,
+      "stamina": 83,
+      "technique": 81,
+      "charisma": 96,
+      "fame": 91
+    }
+  },
+  {
+    "id": "noam_dar",
+    "name": "Noam Dar",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/noam_dar.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/noam_dar.png",
+    "stats": {
+      "power": 76,
+      "stamina": 73,
+      "technique": 64,
+      "charisma": 65,
+      "fame": 67
+    }
+  },
+  {
+    "id": "oba_femi",
+    "name": "Oba Femi",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "powerhouse",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/oba_femi.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/oba_femi.png",
+    "stats": {
+      "power": 77,
+      "stamina": 74,
+      "technique": 65,
+      "charisma": 66,
+      "fame": 68
+    }
+  },
+  {
+    "id": "omos",
+    "name": "Omos",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "powerhouse",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/omos.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/omos.png",
+    "stats": {
+      "power": 78,
+      "stamina": 75,
+      "technique": 66,
+      "charisma": 67,
+      "fame": 69
+    }
+  },
+  {
+    "id": "orlando_jordan",
+    "name": "Orlando Jordan",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/orlando_jordan.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/orlando_jordan.png",
+    "stats": {
+      "power": 79,
+      "stamina": 76,
+      "technique": 67,
+      "charisma": 68,
+      "fame": 70
+    }
+  },
+  {
+    "id": "otis",
+    "name": "Otis",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/otis.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/otis.png",
+    "stats": {
+      "power": 66,
+      "stamina": 75,
+      "technique": 82,
+      "charisma": 69,
+      "fame": 71
+    }
+  },
+  {
+    "id": "pat_mcafee",
+    "name": "Pat Mcafee",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/pat_mcafee.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/pat_mcafee.png",
+    "stats": {
+      "power": 67,
+      "stamina": 71,
+      "technique": 69,
+      "charisma": 84,
+      "fame": 79
+    }
+  },
+  {
+    "id": "paul_heyman",
+    "name": "Paul Heyman",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "showman",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/paul_heyman.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/paul_heyman.png",
+    "stats": {
+      "power": 68,
+      "stamina": 72,
+      "technique": 70,
+      "charisma": 85,
+      "fame": 80
+    }
+  },
+  {
+    "id": "paul_london",
+    "name": "Paul London",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "showman",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/paul_london.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/paul_london.png",
+    "stats": {
+      "power": 69,
+      "stamina": 73,
+      "technique": 71,
+      "charisma": 86,
+      "fame": 81
+    }
+  },
+  {
+    "id": "pete_dunne",
+    "name": "Pete Dunne",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/pete_dunne.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/pete_dunne.png",
+    "stats": {
+      "power": 70,
+      "stamina": 79,
+      "technique": 86,
+      "charisma": 73,
+      "fame": 75
+    }
+  },
+  {
+    "id": "piper_niven",
+    "name": "Piper Niven",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/piper_niven.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/piper_niven.png",
+    "stats": {
+      "power": 85,
+      "stamina": 82,
+      "technique": 73,
+      "charisma": 74,
+      "fame": 76
+    }
+  },
+  {
+    "id": "powerhouse_hobbs",
+    "name": "Powerhouse Hobbs",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/powerhouse_hobbs.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/powerhouse_hobbs.png",
+    "stats": {
+      "power": 72,
+      "stamina": 81,
+      "technique": 88,
+      "charisma": 75,
+      "fame": 77
+    }
+  },
+  {
+    "id": "r_truth",
+    "name": "R Truth",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/r_truth.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/r_truth.png",
+    "stats": {
+      "power": 73,
+      "stamina": 77,
+      "technique": 75,
+      "charisma": 90,
+      "fame": 85
+    }
+  },
+  {
+    "id": "randy_orton",
+    "name": "Randy Orton",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/randy_orton.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/randy_orton.png",
+    "stats": {
+      "power": 88,
+      "stamina": 85,
+      "technique": 76,
+      "charisma": 77,
+      "fame": 79
+    }
+  },
+  {
+    "id": "randy_savage",
+    "name": "Randy Savage",
+    "nickname": "Legacy Star",
+    "grade": "LEGEND",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/randy_savage.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/randy_savage.png",
+    "stats": {
+      "power": 75,
+      "stamina": 84,
+      "technique": 91,
+      "charisma": 78,
+      "fame": 80
+    }
+  },
+  {
+    "id": "raquel_rodriguez",
+    "name": "Raquel Rodriguez",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "showman",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/raquel_rodriguez.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/raquel_rodriguez.png",
+    "stats": {
+      "power": 76,
+      "stamina": 80,
+      "technique": 78,
+      "charisma": 93,
+      "fame": 88
+    }
+  },
+  {
+    "id": "raul_mendoza",
+    "name": "Raul Mendoza",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/raul_mendoza.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/raul_mendoza.png",
+    "stats": {
+      "power": 91,
+      "stamina": 88,
+      "technique": 79,
+      "charisma": 80,
+      "fame": 82
+    }
+  },
+  {
+    "id": "raven",
+    "name": "Raven",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/raven.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/raven.png",
+    "stats": {
+      "power": 78,
+      "stamina": 87,
+      "technique": 94,
+      "charisma": 81,
+      "fame": 83
+    }
+  },
+  {
+    "id": "rene_dupree",
+    "name": "Rene Dupree",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/rene_dupree.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/rene_dupree.png",
+    "stats": {
+      "power": 79,
+      "stamina": 83,
+      "technique": 81,
+      "charisma": 96,
+      "fame": 91
+    }
+  },
+  {
+    "id": "retro_legends_pack_01_randy_savage",
+    "name": "Retro Legends Pack 01 Randy Savage",
+    "nickname": "Legacy Star",
+    "grade": "LEGEND",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/retro_legends_pack_01_randy_savage.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/retro_legends_pack_01_randy_savage.png",
+    "stats": {
+      "power": 76,
+      "stamina": 73,
+      "technique": 64,
+      "charisma": 65,
+      "fame": 67
+    }
+  },
+  {
+    "id": "retro_legends_pack_01_ric_flair",
+    "name": "Retro Legends Pack 01 Ric Flair",
+    "nickname": "Legacy Star",
+    "grade": "LEGEND",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/retro_legends_pack_01_ric_flair.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/retro_legends_pack_01_ric_flair.png",
+    "stats": {
+      "power": 63,
+      "stamina": 72,
+      "technique": 79,
+      "charisma": 66,
+      "fame": 68
+    }
+  },
+  {
+    "id": "retro_legends_pack_01_ultimate_warrior",
+    "name": "Retro Legends Pack 01 Ultimate Warrior",
+    "nickname": "Legacy Star",
+    "grade": "LEGEND",
+    "style": "showman",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/retro_legends_pack_01_ultimate_warrior.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/retro_legends_pack_01_ultimate_warrior.png",
+    "stats": {
+      "power": 64,
+      "stamina": 68,
+      "technique": 66,
+      "charisma": 81,
+      "fame": 76
+    }
+  },
+  {
+    "id": "rey_fenix",
+    "name": "Rey Fenix",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/rey_fenix.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/rey_fenix.png",
+    "stats": {
+      "power": 79,
+      "stamina": 76,
+      "technique": 67,
+      "charisma": 68,
+      "fame": 70
+    }
+  },
+  {
+    "id": "rey_mysterio",
+    "name": "Rey Mysterio",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/rey_mysterio.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/rey_mysterio.png",
+    "stats": {
+      "power": 66,
+      "stamina": 75,
+      "technique": 82,
+      "charisma": 69,
+      "fame": 71
+    }
+  },
+  {
+    "id": "rhea_ripley",
+    "name": "Rhea Ripley",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "powerhouse",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/rhea_ripley.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/rhea_ripley.png",
+    "stats": {
+      "power": 81,
+      "stamina": 78,
+      "technique": 69,
+      "charisma": 70,
+      "fame": 72
+    }
+  },
+  {
+    "id": "ric_flair",
+    "name": "Ric Flair",
+    "nickname": "Legacy Star",
+    "grade": "LEGEND",
+    "style": "showman",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/ric_flair.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/ric_flair.png",
+    "stats": {
+      "power": 68,
+      "stamina": 72,
+      "technique": 70,
+      "charisma": 85,
+      "fame": 80
+    }
+  },
+  {
+    "id": "ricky_starks",
+    "name": "Ricky Starks",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/ricky_starks.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/ricky_starks.png",
+    "stats": {
+      "power": 69,
+      "stamina": 78,
+      "technique": 85,
+      "charisma": 72,
+      "fame": 74
+    }
+  },
+  {
+    "id": "ridge_holland",
+    "name": "Ridge Holland",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/ridge_holland.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/ridge_holland.png",
+    "stats": {
+      "power": 70,
+      "stamina": 74,
+      "technique": 72,
+      "charisma": 87,
+      "fame": 82
+    }
+  },
+  {
+    "id": "roddy_piper",
+    "name": "Roddy Piper",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/roddy_piper.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/roddy_piper.png",
+    "stats": {
+      "power": 85,
+      "stamina": 82,
+      "technique": 73,
+      "charisma": 74,
+      "fame": 76
+    }
+  },
+  {
+    "id": "roman_reigns",
+    "name": "Roman Reigns",
+    "nickname": "Legacy Star",
+    "grade": "LEGEND",
+    "style": "powerhouse",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/roman_reigns.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/roman_reigns.png",
+    "stats": {
+      "power": 86,
+      "stamina": 83,
+      "technique": 74,
+      "charisma": 75,
+      "fame": 77
+    }
+  },
+  {
+    "id": "ronda_rousey",
+    "name": "Ronda Rousey",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/ronda_rousey.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/ronda_rousey.png",
+    "stats": {
+      "power": 73,
+      "stamina": 77,
+      "technique": 75,
+      "charisma": 90,
+      "fame": 85
+    }
+  },
+  {
+    "id": "roxanne_perez",
+    "name": "Roxanne Perez",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/roxanne_perez.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/roxanne_perez.png",
+    "stats": {
+      "power": 88,
+      "stamina": 85,
+      "technique": 76,
+      "charisma": 77,
+      "fame": 79
+    }
+  },
+  {
+    "id": "ryan_nemeth",
+    "name": "Ryan Nemeth",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/ryan_nemeth.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/ryan_nemeth.png",
+    "stats": {
+      "power": 75,
+      "stamina": 84,
+      "technique": 91,
+      "charisma": 78,
+      "fame": 80
+    }
+  },
+  {
+    "id": "ryback",
+    "name": "Ryback",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/ryback.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/ryback.png",
+    "stats": {
+      "power": 76,
+      "stamina": 80,
+      "technique": 78,
+      "charisma": 93,
+      "fame": 88
+    }
+  },
+  {
+    "id": "sami_zayn",
+    "name": "Sami Zayn",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "showman",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/sami_zayn.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/sami_zayn.png",
+    "stats": {
+      "power": 77,
+      "stamina": 81,
+      "technique": 79,
+      "charisma": 94,
+      "fame": 89
+    }
+  },
+  {
+    "id": "santos_escobar",
+    "name": "Santos Escobar",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "powerhouse",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/santos_escobar.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/santos_escobar.png",
+    "stats": {
+      "power": 92,
+      "stamina": 89,
+      "technique": 80,
+      "charisma": 81,
+      "fame": 83
+    }
+  },
+  {
+    "id": "saraya_bevis",
+    "name": "Saraya Bevis",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "showman",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/saraya_bevis.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/saraya_bevis.png",
+    "stats": {
+      "power": 79,
+      "stamina": 83,
+      "technique": 81,
+      "charisma": 96,
+      "fame": 91
+    }
+  },
+  {
+    "id": "scarlett_bordeaux",
+    "name": "Scarlett Bordeaux",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/scarlett_bordeaux.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/scarlett_bordeaux.png",
+    "stats": {
+      "power": 76,
+      "stamina": 73,
+      "technique": 64,
+      "charisma": 65,
+      "fame": 67
+    }
+  },
+  {
+    "id": "scott_hall",
+    "name": "Scott Hall",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/scott_hall.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/scott_hall.png",
+    "stats": {
+      "power": 63,
+      "stamina": 72,
+      "technique": 79,
+      "charisma": 66,
+      "fame": 68
+    }
+  },
+  {
+    "id": "seth_rollins",
+    "name": "Seth Rollins",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "showman",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/seth_rollins.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/seth_rollins.png",
+    "stats": {
+      "power": 64,
+      "stamina": 68,
+      "technique": 66,
+      "charisma": 81,
+      "fame": 76
+    }
+  },
+  {
+    "id": "shawn_michaels",
+    "name": "Shawn Michaels",
+    "nickname": "Legacy Star",
+    "grade": "LEGEND",
+    "style": "showman",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/shawn_michaels.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/shawn_michaels.png",
+    "stats": {
+      "power": 65,
+      "stamina": 69,
+      "technique": 67,
+      "charisma": 82,
+      "fame": 77
+    }
+  },
+  {
+    "id": "shawn_spears",
+    "name": "Shawn Spears",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/shawn_spears.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/shawn_spears.png",
+    "stats": {
+      "power": 66,
+      "stamina": 75,
+      "technique": 82,
+      "charisma": 69,
+      "fame": 71
+    }
+  },
+  {
+    "id": "sheamus",
+    "name": "Sheamus",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "powerhouse",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/sheamus.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/sheamus.png",
+    "stats": {
+      "power": 81,
+      "stamina": 78,
+      "technique": 69,
+      "charisma": 70,
+      "fame": 72
+    }
+  },
+  {
+    "id": "shinsuke_nakamura",
+    "name": "Shinsuke Nakamura",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/shinsuke_nakamura.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/shinsuke_nakamura.png",
+    "stats": {
+      "power": 82,
+      "stamina": 79,
+      "technique": 70,
+      "charisma": 71,
+      "fame": 73
+    }
+  },
+  {
+    "id": "solo_sikoa",
+    "name": "Solo Sikoa",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/solo_sikoa.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/solo_sikoa.png",
+    "stats": {
+      "power": 69,
+      "stamina": 78,
+      "technique": 85,
+      "charisma": 72,
+      "fame": 74
+    }
+  },
+  {
+    "id": "sonya_deville",
+    "name": "Sonya Deville",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/sonya_deville.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/sonya_deville.png",
+    "stats": {
+      "power": 70,
+      "stamina": 74,
+      "technique": 72,
+      "charisma": 87,
+      "fame": 82
+    }
+  },
+  {
+    "id": "spike_dudley",
+    "name": "Spike Dudley",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/spike_dudley.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/spike_dudley.png",
+    "stats": {
+      "power": 85,
+      "stamina": 82,
+      "technique": 73,
+      "charisma": 74,
+      "fame": 76
+    }
+  },
+  {
+    "id": "stephanie_mcmahon",
+    "name": "Stephanie Mcmahon",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/stephanie_mcmahon.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/stephanie_mcmahon.png",
+    "stats": {
+      "power": 72,
+      "stamina": 81,
+      "technique": 88,
+      "charisma": 75,
+      "fame": 77
+    }
+  },
+  {
+    "id": "stephanie_vaquer",
+    "name": "Stephanie Vaquer",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/stephanie_vaquer.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/stephanie_vaquer.png",
+    "stats": {
+      "power": 73,
+      "stamina": 77,
+      "technique": 75,
+      "charisma": 90,
+      "fame": 85
+    }
+  },
+  {
+    "id": "stevie_richards",
+    "name": "Stevie Richards",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/stevie_richards.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/stevie_richards.png",
+    "stats": {
+      "power": 88,
+      "stamina": 85,
+      "technique": 76,
+      "charisma": 77,
+      "fame": 79
+    }
+  },
+  {
+    "id": "sting",
+    "name": "Sting",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/sting.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/sting.png",
+    "stats": {
+      "power": 75,
+      "stamina": 84,
+      "technique": 91,
+      "charisma": 78,
+      "fame": 80
+    }
+  },
+  {
+    "id": "stone_cold_steve_austin",
+    "name": "Stone Cold Steve Austin",
+    "nickname": "Legacy Star",
+    "grade": "LEGEND",
+    "style": "showman",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/stone_cold_steve_austin.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/stone_cold_steve_austin.png",
+    "stats": {
+      "power": 76,
+      "stamina": 80,
+      "technique": 78,
+      "charisma": 93,
+      "fame": 88
+    }
+  },
+  {
+    "id": "tama_tonga",
+    "name": "Tama Tonga",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/tama_tonga.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/tama_tonga.png",
+    "stats": {
+      "power": 91,
+      "stamina": 88,
+      "technique": 79,
+      "charisma": 80,
+      "fame": 82
+    }
+  },
+  {
+    "id": "tanga_loa",
+    "name": "Tanga Loa",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/tanga_loa.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/tanga_loa.png",
+    "stats": {
+      "power": 78,
+      "stamina": 87,
+      "technique": 94,
+      "charisma": 81,
+      "fame": 83
+    }
+  },
+  {
+    "id": "tank_ledger",
+    "name": "Tank Ledger",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "powerhouse",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/tank_ledger.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/tank_ledger.png",
+    "stats": {
+      "power": 93,
+      "stamina": 90,
+      "technique": 81,
+      "charisma": 82,
+      "fame": 84
+    }
+  },
+  {
+    "id": "teddy_long",
+    "name": "Teddy Long",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/teddy_long.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/teddy_long.png",
+    "stats": {
+      "power": 76,
+      "stamina": 73,
+      "technique": 64,
+      "charisma": 65,
+      "fame": 67
+    }
+  },
+  {
+    "id": "tenille_dashwood",
+    "name": "Tenille Dashwood",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/tenille_dashwood.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/tenille_dashwood.png",
+    "stats": {
+      "power": 63,
+      "stamina": 72,
+      "technique": 79,
+      "charisma": 66,
+      "fame": 68
+    }
+  },
+  {
+    "id": "the_fiend",
+    "name": "The Fiend",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "showman",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/the_fiend.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/the_fiend.png",
+    "stats": {
+      "power": 64,
+      "stamina": 68,
+      "technique": 66,
+      "charisma": 81,
+      "fame": 76
+    }
+  },
+  {
+    "id": "the_honky_tonk_man",
+    "name": "The Honky Tonk Man",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/the_honky_tonk_man.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/the_honky_tonk_man.png",
+    "stats": {
+      "power": 79,
+      "stamina": 76,
+      "technique": 67,
+      "charisma": 68,
+      "fame": 70
+    }
+  },
+  {
+    "id": "the_rock",
+    "name": "The Rock",
+    "nickname": "Legacy Star",
+    "grade": "LEGEND",
+    "style": "showman",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/the_rock.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/the_rock.png",
+    "stats": {
+      "power": 66,
+      "stamina": 70,
+      "technique": 68,
+      "charisma": 83,
+      "fame": 78
+    }
+  },
+  {
+    "id": "the_undertaker",
+    "name": "The Undertaker",
+    "nickname": "Legacy Star",
+    "grade": "LEGEND",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/the_undertaker.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/the_undertaker.png",
+    "stats": {
+      "power": 81,
+      "stamina": 78,
+      "technique": 69,
+      "charisma": 70,
+      "fame": 72
+    }
+  },
+  {
+    "id": "tiffany_stratton",
+    "name": "Tiffany Stratton",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/tiffany_stratton.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/tiffany_stratton.png",
+    "stats": {
+      "power": 82,
+      "stamina": 79,
+      "technique": 70,
+      "charisma": 71,
+      "fame": 73
+    }
+  },
+  {
+    "id": "tommaso_ciampa",
+    "name": "Tommaso Ciampa",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/tommaso_ciampa.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/tommaso_ciampa.png",
+    "stats": {
+      "power": 69,
+      "stamina": 78,
+      "technique": 85,
+      "charisma": 72,
+      "fame": 74
+    }
+  },
+  {
+    "id": "tony_d_angelo",
+    "name": "Tony D Angelo",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/tony_d_angelo.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/tony_d_angelo.png",
+    "stats": {
+      "power": 70,
+      "stamina": 74,
+      "technique": 72,
+      "charisma": 87,
+      "fame": 82
+    }
+  },
+  {
+    "id": "trick_williams",
+    "name": "Trick Williams",
+    "nickname": "Main Roster Prospect",
+    "grade": "S",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/trick_williams.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/trick_williams.png",
+    "stats": {
+      "power": 85,
+      "stamina": 82,
+      "technique": 73,
+      "charisma": 74,
+      "fame": 76
+    }
+  },
+  {
+    "id": "tripleh",
+    "name": "Tripleh",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/tripleh.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/tripleh.png",
+    "stats": {
+      "power": 72,
+      "stamina": 81,
+      "technique": 88,
+      "charisma": 75,
+      "fame": 77
+    }
+  },
+  {
+    "id": "tyler_bate",
+    "name": "Tyler Bate",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "showman",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/tyler_bate.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/tyler_bate.png",
+    "stats": {
+      "power": 73,
+      "stamina": 77,
+      "technique": 75,
+      "charisma": 90,
+      "fame": 85
+    }
+  },
+  {
+    "id": "ultimate_warrior",
+    "name": "Ultimate Warrior",
+    "nickname": "Legacy Star",
+    "grade": "LEGEND",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/ultimate_warrior.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/ultimate_warrior.png",
+    "stats": {
+      "power": 88,
+      "stamina": 85,
+      "technique": 76,
+      "charisma": 77,
+      "fame": 79
+    }
+  },
+  {
+    "id": "xpac",
+    "name": "X-Pac",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/xpac.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/xpac.png",
+    "stats": {
+      "power": 75,
+      "stamina": 84,
+      "technique": 91,
+      "charisma": 78,
+      "fame": 80
+    }
+  },
+  {
+    "id": "yokozuna",
+    "name": "Yokozuna",
+    "nickname": "Main Roster Prospect",
+    "grade": "B",
+    "style": "powerhouse",
+    "alignment": "neutral",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/yokozuna.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/yokozuna.png",
+    "stats": {
+      "power": 90,
+      "stamina": 87,
+      "technique": 78,
+      "charisma": 79,
+      "fame": 81
+    }
+  },
+  {
+    "id": "zelina_vega",
+    "name": "Zelina Vega",
+    "nickname": "Main Roster Prospect",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "heel",
+    "finisher": "Signature Finish",
+    "portrait": "res://assets/images/wrestlers/zelina_vega.png",
+    "source_portrait": "data/images/wrestlers/custom/manifest_sprites/zelina_vega.png",
+    "stats": {
+      "power": 91,
+      "stamina": 88,
+      "technique": 79,
+      "charisma": 80,
+      "fame": 82
+    }
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "starting_gold": 25000,
+  "starting_fame": 12,
+  "starting_hype": 54,
+  "show_income": {
+    "weekly": 90,
+    "ppv": 180
+  },
+  "recruit_costs": {
+    "standard": 4000,
+    "premium": 9000,
+    "legend": 18000
+  },
+  "legacy_shop": {
+    "scout_discount_gold": 3000,
+    "pyro_package_hype": 8,
+    "medical_grant_condition": 8,
+    "legacy_banner_fame": 5
+  }
+}
+

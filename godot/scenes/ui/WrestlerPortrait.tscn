@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://rdportrait"]
+
+[node name="WrestlerPortrait" type="TextureRect"]
+custom_minimum_size = Vector2(190, 300)
+expand_mode = 1
+stretch_mode = 6
+

@@ -1,0 +1,113 @@
+[
+  {
+    "id": "charlotte_flair",
+    "name": "Charlotte Flair",
+    "nickname": "Queen of the Division",
+    "grade": "LEGEND",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Figure Eight",
+    "portrait": "res://assets/images/wrestlers/charlotte_flair.png",
+    "stats": { "power": 84, "stamina": 88, "technique": 94, "charisma": 92, "fame": 98 }
+  },
+  {
+    "id": "cm_punk",
+    "name": "CM Punk",
+    "nickname": "Voice of the Crowd",
+    "grade": "S",
+    "style": "showman",
+    "alignment": "face",
+    "finisher": "GTS",
+    "portrait": "res://assets/images/wrestlers/cm_punk.png",
+    "stats": { "power": 77, "stamina": 82, "technique": 88, "charisma": 97, "fame": 96 }
+  },
+  {
+    "id": "cody_rhodes",
+    "name": "Cody Rhodes",
+    "nickname": "American Main Event",
+    "grade": "S",
+    "style": "showman",
+    "alignment": "face",
+    "finisher": "Cross Rhodes",
+    "portrait": "res://assets/images/wrestlers/cody_rhodes.png",
+    "stats": { "power": 82, "stamina": 86, "technique": 86, "charisma": 96, "fame": 97 }
+  },
+  {
+    "id": "drew_mcintyre",
+    "name": "Drew McIntyre",
+    "nickname": "Scottish Destroyer",
+    "grade": "S",
+    "style": "powerhouse",
+    "alignment": "heel",
+    "finisher": "Claymore",
+    "portrait": "res://assets/images/wrestlers/drew_mcintyre.png",
+    "stats": { "power": 94, "stamina": 87, "technique": 80, "charisma": 86, "fame": 91 }
+  },
+  {
+    "id": "finn_balor",
+    "name": "Finn Balor",
+    "nickname": "Judgment Blade",
+    "grade": "A",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Coup de Grace",
+    "portrait": "res://assets/images/wrestlers/finn_balor.png",
+    "stats": { "power": 76, "stamina": 85, "technique": 91, "charisma": 86, "fame": 88 }
+  },
+  {
+    "id": "gunther",
+    "name": "Gunther",
+    "nickname": "Ring General",
+    "grade": "S",
+    "style": "powerhouse",
+    "alignment": "heel",
+    "finisher": "Powerbomb",
+    "portrait": "res://assets/images/wrestlers/gunther.png",
+    "stats": { "power": 96, "stamina": 90, "technique": 86, "charisma": 82, "fame": 91 }
+  },
+  {
+    "id": "iyo_sky",
+    "name": "IYO SKY",
+    "nickname": "Genius of the Sky",
+    "grade": "S",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Over the Moonsault",
+    "portrait": "res://assets/images/wrestlers/iyo_sky.png",
+    "stats": { "power": 72, "stamina": 88, "technique": 96, "charisma": 84, "fame": 90 }
+  },
+  {
+    "id": "jade_cargill",
+    "name": "Jade Cargill",
+    "nickname": "Storm Standard",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Jaded",
+    "portrait": "res://assets/images/wrestlers/jade_cargill.png",
+    "stats": { "power": 92, "stamina": 82, "technique": 72, "charisma": 86, "fame": 88 }
+  },
+  {
+    "id": "kevin_owens",
+    "name": "Kevin Owens",
+    "nickname": "Prizefighter",
+    "grade": "A",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Stunner",
+    "portrait": "res://assets/images/wrestlers/kevin_owens.png",
+    "stats": { "power": 86, "stamina": 86, "technique": 82, "charisma": 88, "fame": 89 }
+  },
+  {
+    "id": "the_rock",
+    "name": "The Rock",
+    "nickname": "People's Icon",
+    "grade": "LEGEND",
+    "style": "showman",
+    "alignment": "face",
+    "finisher": "Rock Bottom",
+    "portrait": "res://assets/images/wrestlers/the_rock.png",
+    "stats": { "power": 90, "stamina": 86, "technique": 80, "charisma": 100, "fame": 100 }
+  }
+]
+

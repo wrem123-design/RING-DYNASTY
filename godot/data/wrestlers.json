@@ -1,0 +1,113 @@
+[
+  {
+    "id": "aj_styles",
+    "name": "AJ Styles",
+    "nickname": "Phenomenal Ace",
+    "grade": "S",
+    "style": "technician",
+    "alignment": "face",
+    "finisher": "Phenomenal Forearm",
+    "portrait": "res://assets/images/wrestlers/aj_styles.png",
+    "stats": { "power": 74, "stamina": 82, "technique": 93, "charisma": 84, "fame": 90 }
+  },
+  {
+    "id": "asuka",
+    "name": "Asuka",
+    "nickname": "Empress of Strikes",
+    "grade": "S",
+    "style": "technician",
+    "alignment": "heel",
+    "finisher": "Asuka Lock",
+    "portrait": "res://assets/images/wrestlers/asuka.png",
+    "stats": { "power": 72, "stamina": 86, "technique": 94, "charisma": 82, "fame": 88 }
+  },
+  {
+    "id": "batista",
+    "name": "Batista",
+    "nickname": "The Animal",
+    "grade": "LEGEND",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "Power Bomb",
+    "portrait": "res://assets/images/wrestlers/batista.png",
+    "stats": { "power": 96, "stamina": 84, "technique": 74, "charisma": 86, "fame": 95 }
+  },
+  {
+    "id": "bayley",
+    "name": "Bayley",
+    "nickname": "Locker Room Boss",
+    "grade": "A",
+    "style": "showman",
+    "alignment": "heel",
+    "finisher": "Rose Plant",
+    "portrait": "res://assets/images/wrestlers/bayley.png",
+    "stats": { "power": 70, "stamina": 82, "technique": 80, "charisma": 89, "fame": 84 }
+  },
+  {
+    "id": "becky_lynch",
+    "name": "Becky Lynch",
+    "nickname": "The Man",
+    "grade": "S",
+    "style": "showman",
+    "alignment": "face",
+    "finisher": "Manhandle Slam",
+    "portrait": "res://assets/images/wrestlers/becky_lynch.png",
+    "stats": { "power": 78, "stamina": 87, "technique": 84, "charisma": 95, "fame": 96 }
+  },
+  {
+    "id": "bianca_belair",
+    "name": "Bianca Belair",
+    "nickname": "EST Standard",
+    "grade": "S",
+    "style": "powerhouse",
+    "alignment": "face",
+    "finisher": "KOD",
+    "portrait": "res://assets/images/wrestlers/bianca_belair.png",
+    "stats": { "power": 91, "stamina": 90, "technique": 80, "charisma": 88, "fame": 91 }
+  },
+  {
+    "id": "john_cena",
+    "name": "John Cena",
+    "nickname": "Franchise Icon",
+    "grade": "LEGEND",
+    "style": "showman",
+    "alignment": "face",
+    "finisher": "Attitude Adjustment",
+    "portrait": "res://assets/images/wrestlers/john_cena.png",
+    "stats": { "power": 88, "stamina": 91, "technique": 80, "charisma": 99, "fame": 100 }
+  },
+  {
+    "id": "rhea_ripley",
+    "name": "Rhea Ripley",
+    "nickname": "Nightmare Champion",
+    "grade": "S",
+    "style": "powerhouse",
+    "alignment": "heel",
+    "finisher": "Riptide",
+    "portrait": "res://assets/images/wrestlers/rhea_ripley.png",
+    "stats": { "power": 94, "stamina": 88, "technique": 78, "charisma": 90, "fame": 93 }
+  },
+  {
+    "id": "roman_reigns",
+    "name": "Roman Reigns",
+    "nickname": "Tribal Main Event",
+    "grade": "LEGEND",
+    "style": "powerhouse",
+    "alignment": "heel",
+    "finisher": "Spear",
+    "portrait": "res://assets/images/wrestlers/roman_reigns.png",
+    "stats": { "power": 95, "stamina": 90, "technique": 82, "charisma": 96, "fame": 100 }
+  },
+  {
+    "id": "seth_rollins",
+    "name": "Seth Rollins",
+    "nickname": "Visionary Architect",
+    "grade": "S",
+    "style": "showman",
+    "alignment": "face",
+    "finisher": "Stomp",
+    "portrait": "res://assets/images/wrestlers/seth_rollins.png",
+    "stats": { "power": 80, "stamina": 89, "technique": 88, "charisma": 94, "fame": 95 }
+  }
+]
+

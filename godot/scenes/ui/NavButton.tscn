@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://rdnavbutton"]
+
+[node name="NavButton" type="Button"]
+custom_minimum_size = Vector2(92, 38)
+
